@@ -1,0 +1,114 @@
+import Image from 'next/image';
+import Link from 'next/link';
+import { Linkedin, Facebook, Send } from 'lucide-react';
+
+export default function Footer() {
+  return (
+    <footer className="relative mt-32">
+      {/* TOP DIVIDER */}
+      <div
+        className="h-px w-full"
+        style={{
+          background:
+            'linear-gradient(90deg, transparent, var(--border), transparent)',
+        }}
+      />
+
+      {/* FOOTER SURFACE */}
+      <div className="bg-[var(--surface)] backdrop-blur-xl">
+        <div
+          className="
+            mx-auto max-w-7xl
+            px-6 py-12
+            flex flex-col gap-8
+            md:flex-row md:items-center md:justify-between
+          "
+        >
+          {/* LEFT — LOGO + TEXT */}
+          <div
+            className="
+              flex flex-col items-center gap-3
+              md:flex-row md:items-center md:gap-4
+            "
+          >
+            {/* LOGO (70x70, theme-safe) */}
+            <div className="relative h-[70px] w-[70px]">
+              <Image
+                src="/logo-dark.png"
+                alt="Sites Pro"
+                width={70}
+                height={70}
+                className="logo-dark absolute inset-0"
+              />
+              <Image
+                src="/logo-light.png"
+                alt="Sites Pro"
+                width={70}
+                height={70}
+                className="logo-light absolute inset-0"
+              />
+            </div>
+
+            {/* TEXT */}
+            <span className="text-sm font-medium text-[var(--text-muted)] text-center md:text-left">
+              Digital Done Right.
+            </span>
+          </div>
+
+          {/* CENTER — SOCIALS */}
+          <div className="flex items-center gap-4 justify-center md:justify-start">
+            <SocialLink
+              href="https://www.linkedin.com/company/sites-pro/"
+              icon={Linkedin}
+              label="Sites Pro on LinkedIn"
+            />
+            <SocialLink
+              href="https://www.facebook.com/ilja.kovalenko"
+              icon={Facebook}
+              label="Ilja on Facebook"
+            />
+            <SocialLink
+              href="https://t.me/IljaFinTech"
+              icon={Send}
+              label="IljaFinTech on Telegram"
+            />
+          </div>
+
+          {/* RIGHT */}
+          <div className="text-sm text-[var(--text-subtle)] text-center md:text-right">
+            © 2025 Sites Pro. All rights reserved.
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+function SocialLink({
+  href,
+  icon: Icon,
+  label,
+}: {
+  href: string;
+  icon: any;
+  label: string;
+}) {
+  return (
+    <Link
+      href={href}
+      target="_blank"
+      aria-label={label}
+      className="
+        flex h-10 w-10 items-center justify-center
+        rounded-full
+        bg-[var(--surface)]
+        border border-[var(--border)]
+        transition
+        hover:bg-[var(--surface-strong)]
+        cursor-pointer
+      "
+    >
+      <Icon className="h-5 w-5 text-[var(--fg)]/80" />
+    </Link>
+  );
+}
