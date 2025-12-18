@@ -1,12 +1,18 @@
 import Link from 'next/link';
 import ContactForm from '@/components/contact/contact-form';
 import {
-  Layers,
-  Server,
-  Database,
-  Plug,
+  CreditCard,
+  TrendingUp,
+  Code,
+  Brain,
+  Globe,
+  Lightbulb,
+  BarChart3,
   ShieldCheck,
-  Headphones,
+  Zap,
+  Target,
+  Users,
+  FileCheck,
 } from 'lucide-react';
 
 /* brand accents */
@@ -17,47 +23,49 @@ const ACCENT_2 = 'var(--accent-2)';
    DATA
 ====================================================== */
 
-const techStack = [
+const consultingAreas = [
   {
-    name: 'Frontend applications',
-    description: 'React, Next.js and modern UI architectures for complex user interfaces.',
+    name: 'Payment system integration',
+    description: 'Stripe, PayPal, Square and custom payment gateways. Secure, compliant and optimized checkout flows.',
   },
   {
-    name: 'Backend systems',
-    description: 'Node.js APIs, business logic, integrations and microservices.',
+    name: 'Fintech solutions',
+    description: 'Financial technology architecture, compliance, security and scalable fintech platforms.',
   },
   {
-    name: 'Databases & storage',
-    description: 'PostgreSQL, MySQL, Redis and scalable data layers.',
+    name: 'Website development strategy',
+    description: 'Architecture planning, technology selection and roadmap for web projects.',
   },
   {
-    name: 'Integrations & APIs',
-    description: 'Payment systems, third-party services and internal APIs.',
+    name: 'Application development',
+    description: 'System design, scalability planning and technical architecture for custom applications.',
   },
   {
-    name: 'Security & reliability',
-    description: 'Authentication, permissions, data protection and stability.',
+    name: 'AI & automation consulting',
+    description: 'AI integration strategies, automation workflows and intelligent system design.',
   },
   {
-    name: 'Infrastructure & monitoring',
-    description: 'Cloud hosting, CI/CD pipelines and system observability.',
+    name: 'Project assessment & planning',
+    description: 'Technical audits, feasibility studies and development roadmaps.',
   },
 ];
 
 const additionalServices = [
-  { icon: Layers, label: 'System architecture & planning' },
-  { icon: Server, label: 'Backend & API development' },
-  { icon: Database, label: 'Database design & optimization' },
-  { icon: Plug, label: 'Third-party integrations' },
-  { icon: ShieldCheck, label: 'Security & access control' },
-  { icon: Headphones, label: 'Support, scaling & improvements' },
+  { icon: Lightbulb, label: 'Technical strategy & planning' },
+  { icon: BarChart3, label: 'Architecture & system design' },
+  { icon: ShieldCheck, label: 'Security & compliance review' },
+  { icon: Zap, label: 'Performance optimization' },
+  { icon: Target, label: 'Technology stack selection' },
+  { icon: Users, label: 'Team guidance & mentoring' },
+  { icon: FileCheck, label: 'Code review & audits' },
+  { icon: TrendingUp, label: 'Scalability planning' },
 ];
 
 /* ======================================================
    PAGE
 ====================================================== */
 
-export default function ApplicationsPage() {
+export default function ConsultingPage() {
   return (
     <main className="bg-[var(--bg)] text-[var(--fg)]">
       {/* =====================================================
@@ -78,11 +86,11 @@ export default function ApplicationsPage() {
               className="mt-10 block text-sm uppercase tracking-widest font-medium"
               style={{ color: ACCENT_1 }}
             >
-              Applications
+              Consulting
             </span>
 
             <h1 className="mt-6 text-4xl md:text-6xl font-semibold tracking-tight">
-              Scalable applications,
+              Expert guidance for
               <br />
               <span
                 className="bg-clip-text text-transparent"
@@ -90,14 +98,14 @@ export default function ApplicationsPage() {
                   backgroundImage: `linear-gradient(90deg, ${ACCENT_1}, ${ACCENT_2})`,
                 }}
               >
-                built as systems
+                your digital projects
               </span>
             </h1>
 
             <p className="mt-8 text-lg text-[var(--text-muted)] leading-relaxed max-w-xl">
-              We design and build custom web applications and platforms —
-              focused on architecture, performance and long-term scalability.
-              Built to grow with your business.
+              Strategic consulting for payment systems, fintech solutions,
+              website and app development, AI integration, and project planning.
+              Get expert guidance to make the right technical decisions.
             </p>
 
             <Link
@@ -112,35 +120,35 @@ export default function ApplicationsPage() {
                 transition
               "
             >
-              Start your project
+              Start consulting
             </Link>
           </div>
 
           {/* INFOGRAPHIC */}
           <div className="flex justify-center">
-            <ApplicationsHeroInfographic />
+            <ConsultingHeroInfographic />
           </div>
         </div>
       </section>
 
       {/* =====================================================
-          TECHNOLOGY & ARCHITECTURE
+          CONSULTING AREAS
       ====================================================== */}
       <section className="px-6 py-32 bg-[var(--surface)]">
         <div className="mx-auto max-w-6xl">
           <h2 className="text-3xl font-semibold text-center">
-            Architecture & technology
+            Consulting areas
           </h2>
 
           <p className="mt-6 text-center text-[var(--text-muted)] max-w-3xl mx-auto">
-            We approach applications as systems — with clear architecture,
-            reliable infrastructure and room for future growth.
+            We provide expert guidance across multiple domains — from payment
+            integrations and fintech to web development, applications, AI and project planning.
           </p>
 
           <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {techStack.map((tech) => (
+            {consultingAreas.map((area) => (
               <div
-                key={tech.name}
+                key={area.name}
                 className="
                   rounded-2xl p-6
                   border border-[var(--border)]
@@ -156,10 +164,10 @@ export default function ApplicationsPage() {
 
                   <div>
                     <h3 className="font-medium">
-                      {tech.name}
+                      {area.name}
                     </h3>
                     <p className="mt-1 text-sm text-[var(--text-muted)]">
-                      {tech.description}
+                      {area.description}
                     </p>
                   </div>
                 </div>
@@ -176,13 +184,14 @@ export default function ApplicationsPage() {
         <div className="mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-20">
           <div>
             <h2 className="text-3xl font-semibold">
-              More than just code
+              Strategic technical guidance
             </h2>
 
             <p className="mt-6 text-[var(--text-muted)] leading-relaxed">
-              Applications require careful planning, solid foundations
-              and continuous improvements. We support projects from
-              early architecture decisions to long-term scaling.
+              Whether you're planning a new project, integrating payment systems,
+              building fintech solutions, or need guidance on web/app/AI development,
+              we provide expert consulting to help you make informed decisions
+              and avoid costly mistakes.
             </p>
           </div>
 
@@ -235,13 +244,13 @@ export default function ApplicationsPage() {
       >
         <div className="mx-auto max-w-4xl text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-semibold">
-            Let’s build your application
+            Let's discuss your project
           </h2>
 
           <p className="mt-6 text-[var(--text-muted)] leading-relaxed">
-            Tell us about your idea or existing system.
-            We’ll help design the right architecture
-            and turn it into a reliable, scalable application.
+            Tell us about your project, challenges or goals.
+            We'll provide expert guidance on payment systems, fintech solutions,
+            development strategies, AI integration, or any technical consulting needs.
           </p>
         </div>
 
@@ -254,65 +263,109 @@ export default function ApplicationsPage() {
 }
 
 /* ======================================================
-   HERO INFOGRAPHIC — Simple phone with app
+   HERO INFOGRAPHIC — Consulting theme with interconnected nodes
 ====================================================== */
 
-function ApplicationsHeroInfographic() {
+function ConsultingHeroInfographic() {
   return (
-    <div className="relative flex items-center justify-center w-[360px] h-[420px] select-none mx-auto">
+    <div className="relative flex items-center justify-center w-[360px] h-[360px] select-none mx-auto">
       {/* Simple ambient background */}
       <div
         className="absolute inset-0 -z-10 blur-xl opacity-60 pointer-events-none"
         style={{
-          background: `radial-gradient(circle at 65% 35%, ${ACCENT_1}22 0%, transparent 70%), radial-gradient(circle at 30% 70%, ${ACCENT_2}22 0%, transparent 60%)`,
+          background: `radial-gradient(circle at 50% 50%, ${ACCENT_1}22 0%, transparent 70%), radial-gradient(circle at 30% 70%, ${ACCENT_2}22 0%, transparent 60%)`,
         }}
       />
 
-      {/* Simple phone device */}
-      <div
-        className="
-          relative
-          w-[200px] h-[410px]
-          rounded-[2.5rem]
-          border-4 border-[var(--border)]
-          bg-[var(--surface-strong)]
-          shadow-lg
-          flex flex-col items-center
-          overflow-hidden
-        "
-        style={{
-          boxShadow: `0 10px 38px -18px color-mix(in srgb, ${ACCENT_2} 35%, transparent)`,
-        }}
-      >
-        {/* Top Notch */}
-        <div className="absolute top-3 left-1/2 -translate-x-1/2 h-2 w-16 rounded-full bg-[var(--border)]/40 z-10" />
-
-        {/* App "screen" */}
-        <div className="mt-7 flex-1 w-full bg-[var(--bg)] flex flex-col items-center px-5 pt-6">
-          {/* Example App Icon */}
+      {/* Central hub with connecting lines */}
+      <div className="relative w-full h-full">
+        {/* Central circle */}
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
           <div
-            className="rounded-[1.1rem] w-16 h-16 mb-5 grid place-items-center shadow-md"
+            className="
+              relative
+              w-24 h-24
+              rounded-2xl
+              border-2
+              flex items-center justify-center
+              bg-[var(--surface-strong)]
+            "
             style={{
-              background: `linear-gradient(135deg, ${ACCENT_1}, ${ACCENT_2})`,
+              borderColor: `color-mix(in srgb, ${ACCENT_1} 50%, transparent)`,
+              boxShadow: `0 10px 38px -18px color-mix(in srgb, ${ACCENT_2} 35%, transparent)`,
             }}
           >
-            <svg aria-hidden="true" width="34" height="34" viewBox="0 0 34 34" fill="none">
-              <rect x="7" y="7" width="20" height="20" rx="6" fill="white" fillOpacity="0.9" />
-              <path d="M14 17l3 3 3-6" stroke={ACCENT_1} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </div>
-          {/* App Title */}
-          <div className="text-lg font-semibold text-[var(--fg)]">SitesPro App</div>
-          {/* App content (just a text block) */}
-          <div className="mt-3 text-sm text-center text-[var(--text-muted)] leading-snug">
-            Welcome to our App. <br />
-            Manage your services and stay connected on the go.
+            <Lightbulb size={32} style={{ color: ACCENT_1 }} />
           </div>
         </div>
 
-        {/* Home indicator */}
-        <div className="mb-4 mt-3 h-2 w-16 rounded-full bg-[var(--border)]/30 mx-auto" />
+        {/* Connecting lines and nodes */}
+        {[
+          { icon: CreditCard, angle: 0, label: 'Payments' },
+          { icon: TrendingUp, angle: 60, label: 'Fintech' },
+          { icon: Globe, angle: 120, label: 'Web' },
+          { icon: Code, angle: 180, label: 'Apps' },
+          { icon: Brain, angle: 240, label: 'AI' },
+          { icon: FileCheck, angle: 300, label: 'Planning' },
+        ].map((node, i) => {
+          const radius = 120;
+          const angleRad = (node.angle * Math.PI) / 180;
+          const x = Math.cos(angleRad) * radius;
+          const y = Math.sin(angleRad) * radius;
+
+          return (
+            <div key={i} className="absolute left-1/2 top-1/2">
+              {/* Line */}
+              <svg
+                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+                width="240"
+                height="240"
+                style={{
+                  transform: 'translate(-50%, -50%)',
+                }}
+              >
+                <line
+                  x1="120"
+                  y1="120"
+                  x2={120 + x}
+                  y2={120 + y}
+                  stroke={ACCENT_1}
+                  strokeOpacity="0.2"
+                  strokeWidth="1"
+                />
+              </svg>
+
+              {/* Node */}
+              <div
+                className="absolute"
+                style={{
+                  left: '50%',
+                  top: '50%',
+                  transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,
+                }}
+              >
+                <div
+                  className="
+                    w-16 h-16
+                    rounded-xl
+                    border
+                    flex flex-col items-center justify-center
+                    bg-[var(--bg)]
+                    transition-all duration-300
+                    hover:scale-110
+                  "
+                  style={{
+                    borderColor: `color-mix(in srgb, ${ACCENT_1} 30%, var(--border))`,
+                  }}
+                >
+                  <node.icon size={20} style={{ color: ACCENT_1 }} />
+                </div>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
 }
+
