@@ -259,12 +259,17 @@ export default function WebsitesPage() {
 
 function WebsiteHeroInfographic() {
   return (
-    <div className="relative w-[320px] h-[320px]">
+    <div className="relative w-[320px] h-[320px] flex items-center justify-center">
       {/* ambient */}
-      <div className="absolute inset-0 rounded-3xl bg-[var(--accent-1)]/10 blur-3xl" />
+      <div
+        className="absolute inset-0 -z-10 blur-xl opacity-60 pointer-events-none "
+        style={{
+          background: `radial-gradient(circle at 65% 35%, ${ACCENT_1}22 0%, transparent 70%), radial-gradient(circle at 30% 70%, ${ACCENT_2}22 0%, transparent 60%)`,
+        }}
+      />
 
       {/* browser */}
-      <div className="absolute inset-8 rounded-2xl border border-[var(--border)] bg-[var(--surface)] overflow-hidden">
+      <div className="border-[var(--border)] bg-[var(--surface-strong)]  relative w-[280px] h-[280px] rounded-2xl bg-[var(--surface)] overflow-hidden">
         <div className="h-10 border-b border-[var(--border)] flex items-center px-4 gap-2">
           <span className="h-2 w-2 rounded-full bg-[var(--border)]" />
           <span className="h-2 w-2 rounded-full bg-[var(--border)]" />

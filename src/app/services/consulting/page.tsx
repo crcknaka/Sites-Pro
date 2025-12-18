@@ -268,17 +268,20 @@ export default function ConsultingPage() {
 
 function ConsultingHeroInfographic() {
   return (
-    <div className="relative flex items-center justify-center w-[360px] h-[360px] select-none mx-auto">
+    <div className="relative w-[320px] h-[320px] flex items-center justify-center">
       {/* Simple ambient background */}
       <div
         className="absolute inset-0 -z-10 blur-xl opacity-60 pointer-events-none"
         style={{
-          background: `radial-gradient(circle at 50% 50%, ${ACCENT_1}22 0%, transparent 70%), radial-gradient(circle at 30% 70%, ${ACCENT_2}22 0%, transparent 60%)`,
+          background: `radial-gradient(circle at 65% 35%, ${ACCENT_1}22 0%, transparent 70%), radial-gradient(circle at 30% 70%, ${ACCENT_2}22 0%, transparent 60%)`,
         }}
       />
 
-      {/* Central hub with connecting lines */}
-      <div className="relative w-full h-full">
+      {/* Container with transparent background */}
+      <div className="relative w-[280px] h-[280px] rounded-2xl bg-[var(--surface)]">
+        <div className="relative w-full h-full flex items-center justify-center select-none">
+          {/* Central hub with connecting lines */}
+          <div className="relative w-full h-full">
         {/* Central circle */}
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
           <div
@@ -364,6 +367,8 @@ function ConsultingHeroInfographic() {
             </div>
           );
         })}
+          </div>
+        </div>
       </div>
     </div>
   );

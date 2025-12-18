@@ -43,6 +43,13 @@ export default function Services() {
         select-none
       "
     >
+      {/* Semi-transparent background overlay */}
+      <div
+        className="absolute inset-0 -z-10 blur-3xl opacity-40 pointer-events-none"
+        style={{
+          background: `radial-gradient(circle at 50% 50%, ${ACCENT_1}15 0%, transparent 70%), radial-gradient(circle at 30% 70%, ${ACCENT_2}15 0%, transparent 60%)`,
+        }}
+      />
       <div className="mx-auto max-w-7xl">
         {/* HEADING */}
         <div className="mx-auto max-w-3xl text-center">
@@ -143,8 +150,17 @@ function ServiceInfographic({ type }: { type: string }) {
 ------------------------------------------------------ */
 function WebInfographic() {
   return (
-    <div className="relative h-28 w-36 select-none" style={{ userSelect: 'none' }}>
-      <div className="absolute inset-0 rounded-xl border border-[var(--border)] bg-[var(--surface-strong)] overflow-hidden select-none" style={{ userSelect: 'none' }}>
+    <div
+      className="relative h-28 w-36 select-none"
+      style={{ userSelect: 'none' }}
+    >
+      <div
+        className="absolute inset-0 rounded-xl border border-[var(--border)] overflow-hidden select-none"
+        style={{
+          userSelect: 'none',
+          background: 'rgba(var(--surface-strong-rgb),0.88)',
+        }}
+      >
         {/* top bar */}
         <div className="flex items-center gap-1.5 px-3 py-2 border-b border-[var(--border)] select-none">
           <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent-1)]/70 select-none" />
@@ -166,8 +182,10 @@ function WebInfographic() {
           </div>
         </div>
       </div>
-
-      <div className="absolute -inset-3 rounded-full bg-[var(--accent-1)]/5 blur-xl -z-10 select-none" />
+      <div
+        className="absolute -inset-3 rounded-full blur-xl -z-10 select-none"
+        style={{ background: 'rgba(var(--surface-strong-rgb),0.8)' }}
+      />
     </div>
   );
 }
@@ -177,8 +195,17 @@ function WebInfographic() {
 ------------------------------------------------------ */
 function AppsInfographic() {
   return (
-    <div className="relative h-28 w-20 select-none" style={{ userSelect: 'none' }}>
-      <div className="absolute inset-0 rounded-2xl border border-[var(--border)] bg-[var(--surface-strong)] overflow-hidden select-none" style={{ userSelect: 'none' }}>
+    <div
+      className="relative h-28 w-20 select-none"
+      style={{ userSelect: 'none' }}
+    >
+      <div
+        className="absolute inset-0 rounded-2xl border border-[var(--border)] overflow-hidden select-none"
+        style={{
+          userSelect: 'none',
+          background: 'rgba(var(--surface-strong-rgb),0.88)',
+        }}
+      >
         <div className="absolute top-2 left-1/2 h-1 w-8 -translate-x-1/2 rounded bg-[var(--border)]/70 select-none" />
 
         <div className="absolute inset-x-2 top-6 bottom-2 space-y-2 select-none">
@@ -194,8 +221,10 @@ function AppsInfographic() {
           </div>
         </div>
       </div>
-
-      <div className="absolute -inset-3 rounded-full bg-[var(--accent-2)]/5 blur-xl -z-10 select-none" />
+      <div
+        className="absolute -inset-3 rounded-full blur-xl -z-10 select-none"
+        style={{ background: 'rgba(var(--surface-strong-rgb),0.8)' }}
+      />
     </div>
   );
 }
@@ -205,8 +234,17 @@ function AppsInfographic() {
 ------------------------------------------------------ */
 function AIInfographic() {
   return (
-    <div className="relative h-28 w-28 select-none" style={{ userSelect: 'none' }}>
-      <div className="absolute left-1/2 top-1/2 h-10 w-10 -translate-x-1/2 -translate-y-1/2 rounded-xl bg-[var(--accent-1)]/25 border border-[var(--accent-1)]/40 flex items-center justify-center select-none" style={{ userSelect: 'none' }}>
+    <div
+      className="relative h-28 w-28 select-none rounded-2xl border border-[var(--border)]"
+      style={{
+        userSelect: 'none',
+        background: 'rgba(var(--surface-strong-rgb),0.88)',
+      }}
+    >
+      <div
+        className="absolute left-1/2 top-1/2 h-10 w-10 -translate-x-1/2 -translate-y-1/2 rounded-xl bg-[var(--accent-1)]/25 border border-[var(--accent-1)]/40 flex items-center justify-center select-none"
+        style={{ userSelect: 'none' }}
+      >
         <span className="h-4 w-4 rounded bg-[var(--accent-1)]/70 select-none" />
       </div>
 
@@ -214,7 +252,7 @@ function AIInfographic() {
         <div
           key={deg}
           className="absolute left-1/2 top-1/2 select-none"
-          style={{ 
+          style={{
             transform: `rotate(${deg}deg)`,
             userSelect: 'none',
           }}
@@ -235,7 +273,10 @@ function AIInfographic() {
       ))}
 
       <div className="absolute inset-1 rounded-full border border-dashed border-[var(--accent-1)]/30 select-none" />
-      <div className="absolute inset-4 rounded-full bg-[var(--accent-1)]/10 blur-xl -z-10 select-none" />
+      <div
+        className="absolute inset-4 rounded-full blur-xl -z-10 select-none"
+        style={{ background: 'rgba(var(--surface-strong-rgb),0.7)' }}
+      />
     </div>
   );
 }
@@ -245,9 +286,18 @@ function AIInfographic() {
 ------------------------------------------------------ */
 function ConsultingInfographic() {
   return (
-    <div className="relative h-24 w-36 select-none" style={{ userSelect: 'none' }}>
-      <div className="absolute inset-0 flex items-center justify-center gap-3 select-none">
-        <div className="h-6 w-6 rounded-lg bg-[var(--accent-1)]/30 border border-[var(--accent-1)]/40 flex items-center justify-center select-none" style={{ userSelect: 'none' }}>
+    <div
+      className="relative h-24 w-36 select-none rounded-2xl border border-[var(--border)]"
+      style={{
+        userSelect: 'none',
+        background: 'rgba(var(--surface-strong-rgb),0.88)',
+      }}
+    >
+      <div className="absolute inset-1 flex items-center justify-center gap-3 select-none">
+        <div
+          className="h-6 w-6 rounded-lg bg-[var(--accent-1)]/30 border border-[var(--accent-1)]/40 flex items-center justify-center select-none"
+          style={{ userSelect: 'none' }}
+        >
           <span className="h-2 w-2 rounded bg-[var(--accent-1)]/80 select-none" />
         </div>
 
@@ -255,7 +305,13 @@ function ConsultingInfographic() {
           <span className="absolute right-0 top-1/2 -translate-y-1/2 border-l-[4px] border-l-[var(--accent-1)]/40 border-y-[3px] border-y-transparent select-none" />
         </div>
 
-        <div className="h-7 w-7 rotate-45 rounded-sm bg-[var(--surface-strong)] border border-[var(--accent-1)]/40 flex items-center justify-center select-none" style={{ userSelect: 'none' }}>
+        <div
+          className="h-7 w-7 rotate-45 rounded-sm border border-[var(--accent-1)]/40 flex items-center justify-center select-none"
+          style={{
+            userSelect: 'none',
+            background: 'rgba(var(--surface-strong-rgb),0.88)',
+          }}
+        >
           <span className="-rotate-45 text-xs text-[var(--accent-1)]/80 select-none">?</span>
         </div>
 
@@ -263,7 +319,10 @@ function ConsultingInfographic() {
           <span className="absolute right-0 top-1/2 -translate-y-1/2 border-l-[4px] border-l-[var(--accent-2)]/40 border-y-[3px] border-y-transparent select-none" />
         </div>
 
-        <div className="h-6 w-6 rounded-full bg-[var(--accent-2)]/40 border border-[var(--accent-2)]/50 flex items-center justify-center select-none" style={{ userSelect: 'none' }}>
+        <div
+          className="h-6 w-6 rounded-full bg-[var(--accent-2)]/40 border border-[var(--accent-2)]/50 flex items-center justify-center select-none"
+          style={{ userSelect: 'none' }}
+        >
           <span className="h-2 w-2 rounded-full bg-[var(--accent-2)]/90 select-none" />
         </div>
       </div>

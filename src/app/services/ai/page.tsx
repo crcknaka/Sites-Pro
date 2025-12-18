@@ -83,7 +83,7 @@ const useCases = [
 
 export default function AIPage() {
   return (
-    <main className="bg-transparent text-[var(--fg)]">
+    <main className="bg-[var(--bg)] text-[var(--fg)]">
       {/* =====================================================
           HERO
       ====================================================== */}
@@ -270,112 +270,122 @@ function AIHeroInfographic() {
   ];
 
   return (
-    <div className="relative w-[320px] h-[320px] group select-none" style={{ userSelect: 'none' }}>
+    <div className="relative w-[320px] h-[320px] flex items-center justify-center">
       {/* Ambient */}
-      <div className="absolute inset-0 rounded-3xl bg-[var(--accent-1)]/10 blur-3xl select-none" />
+      <div
+        className="absolute inset-0 -z-10 blur-xl opacity-60 pointer-events-none"
+        style={{
+          background: `radial-gradient(circle at 65% 35%, ${ACCENT_1}22 0%, transparent 70%), radial-gradient(circle at 30% 70%, ${ACCENT_2}22 0%, transparent 60%)`,
+        }}
+      />
 
-      {/* SVG: lines + rotating ring */}
-      <svg
-        className="absolute inset-0 w-full h-full pointer-events-none select-none"
-        viewBox={`0 0 ${size} ${size}`}
-        style={{ userSelect: 'none' }}
-      >
-        {/* rotating outer ring */}
-        <circle
-          cx={center}
-          cy={center}
-          r={radius}
-          fill="none"
-          stroke="var(--accent-1)"
-          strokeOpacity="0.25"
-          strokeDasharray="6 6"
-          className="origin-center animate-orbit"
-        />
-
-        {/* connection lines */}
-        {nodes.map((_, i) => {
-          const angle = (i * 2 * Math.PI) / nodes.length;
-          const x = center + radius * Math.cos(angle);
-          const y = center + radius * Math.sin(angle);
-
-          return (
-            <line
-              key={i}
-              x1={center}
-              y1={center}
-              x2={x}
-              y2={y}
+      {/* Container with transparent background */}
+      <div className="relative w-[280px] h-[280px] rounded-2xl bg-[var(--surface)]">
+        <div className="relative w-full h-full group select-none" style={{ userSelect: 'none' }}>
+          {/* SVG: lines + rotating ring */}
+          <svg
+            className="absolute inset-0 w-full h-full pointer-events-none select-none"
+            viewBox={`0 0 ${size} ${size}`}
+            style={{ userSelect: 'none' }}
+          >
+            {/* rotating outer ring */}
+            <circle
+              cx={center}
+              cy={center}
+              r={radius}
+              fill="none"
               stroke="var(--accent-1)"
               strokeOpacity="0.25"
-              strokeWidth="1"
-              className="transition-opacity duration-300 group-hover:stroke-opacity-40"
+              strokeDasharray="6 6"
+              className="origin-center animate-orbit"
             />
-          );
-        })}
-      </svg>
 
-      {/* CENTER CORE */}
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 select-none">
-        <div className="relative select-none">
-          <div className="absolute inset-0 rounded-2xl bg-[var(--accent-1)]/30 blur-xl animate-pulse-slow select-none" />
-          <div
-            className="
-              relative h-20 w-20 rounded-2xl
-              flex items-center justify-center
-              border
-              select-none
-            "
-            style={{
-              borderColor:
-                'color-mix(in srgb, var(--accent-1) 50%, transparent)',
-              backgroundImage: `linear-gradient(135deg, ${ACCENT_1}, ${ACCENT_2})`,
-              userSelect: 'none',
-            }}
-          >
-            <Brain size={36} color="white" />
-          </div>
-        </div>
-      </div>
+            {/* connection lines */}
+            {nodes.map((_, i) => {
+              const angle = (i * 2 * Math.PI) / nodes.length;
+              const x = center + radius * Math.cos(angle);
+              const y = center + radius * Math.sin(angle);
 
-      {/* ORBITING NODES */}
-      {nodes.map((node, i) => {
-        const angle = (i * 360) / nodes.length;
+              return (
+                <line
+                  key={i}
+                  x1={center}
+                  y1={center}
+                  x2={x}
+                  y2={y}
+                  stroke="var(--accent-1)"
+                  strokeOpacity="0.25"
+                  strokeWidth="1"
+                  className="transition-opacity duration-300 group-hover:stroke-opacity-40"
+                />
+              );
+            })}
+          </svg>
 
-        return (
-          <div
-            key={node.id}
-            className="absolute left-1/2 top-1/2 select-none"
-            style={{
-              transform: `
-                translate(-50%, -50%)
-                rotate(${angle}deg)
-                translate(${radius}px)
-              `,
-              userSelect: 'none',
-            }}
-          >
-            <div
-              className="
-                h-10 w-10
-                rounded-xl
-                flex items-center justify-center
-                border
-                bg-[var(--surface)]
-                transition-all duration-300
-                hover:scale-110
-                select-none
-              "
-              style={{
-                borderColor:
-                  'color-mix(in srgb, var(--accent-1) 30%, var(--border))',
-                userSelect: 'none',
-              }}
-            >
-              <node.icon size={16} style={{ color: ACCENT_1 }} />
+          {/* CENTER CORE */}
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 select-none">
+            <div className="relative select-none">
+              <div className="absolute inset-0 rounded-2xl bg-[var(--accent-1)]/30 blur-xl animate-pulse-slow select-none" />
+              <div
+                className="
+                  relative h-20 w-20 rounded-2xl
+                  flex items-center justify-center
+                  border
+                  select-none
+                "
+                style={{
+                  borderColor:
+                    'color-mix(in srgb, var(--accent-1) 50%, transparent)',
+                  backgroundImage: `linear-gradient(135deg, ${ACCENT_1}, ${ACCENT_2})`,
+                  userSelect: 'none',
+                }}
+              >
+                <Brain size={36} color="white" />
+              </div>
             </div>
           </div>
-        );
-      })}
+
+          {/* ORBITING NODES */}
+          {nodes.map((node, i) => {
+            const angle = (i * 360) / nodes.length;
+
+            return (
+              <div
+                key={node.id}
+                className="absolute left-1/2 top-1/2 select-none"
+                style={{
+                  transform: `
+                    translate(-50%, -50%)
+                    rotate(${angle}deg)
+                    translate(${radius}px)
+                  `,
+                  userSelect: 'none',
+                }}
+              >
+                <div
+                  className="
+                    h-10 w-10
+                    rounded-xl
+                    flex items-center justify-center
+                    border
+                    bg-[var(--surface)]
+                    transition-all duration-300
+                    hover:scale-110
+                    select-none
+                  "
+                  style={{
+                    borderColor:
+                      'color-mix(in srgb, var(--accent-1) 30%, var(--border))',
+                    userSelect: 'none',
+                  }}
+                >
+                  <node.icon size={16} style={{ color: ACCENT_1 }} />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 }

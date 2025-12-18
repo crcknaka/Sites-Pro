@@ -259,7 +259,7 @@ export default function ApplicationsPage() {
 
 function ApplicationsHeroInfographic() {
   return (
-    <div className="relative flex items-center justify-center w-[360px] h-[420px] select-none mx-auto">
+    <div className="relative w-[320px] h-[320px] flex items-center justify-center">
       {/* Simple ambient background */}
       <div
         className="absolute inset-0 -z-10 blur-xl opacity-60 pointer-events-none"
@@ -268,50 +268,53 @@ function ApplicationsHeroInfographic() {
         }}
       />
 
-      {/* Simple phone device */}
-      <div
-        className="
-          relative
-          w-[200px] h-[410px]
-          rounded-[2.5rem]
-          border-4 border-[var(--border)]
-          bg-[var(--surface-strong)]
-          shadow-lg
-          flex flex-col items-center
-          overflow-hidden
-        "
-        style={{
-          boxShadow: `0 10px 38px -18px color-mix(in srgb, ${ACCENT_2} 35%, transparent)`,
-        }}
-      >
+      {/* Container with transparent background */}
+      <div className="relative w-[280px] h-[280px] rounded-2xl bg-[var(--surface)] flex items-center justify-center">
+        {/* Simple phone device */}
+        <div
+          className="
+            relative
+            w-[160px] h-[280px]
+            rounded-[2rem]
+            border-4 border-[var(--border)]
+            bg-[var(--surface-strong)]
+            shadow-lg
+            flex flex-col items-center
+            overflow-hidden
+          "
+          style={{
+            boxShadow: `0 10px 38px -18px color-mix(in srgb, ${ACCENT_2} 35%, transparent)`,
+          }}
+        >
         {/* Top Notch */}
-        <div className="absolute top-3 left-1/2 -translate-x-1/2 h-2 w-16 rounded-full bg-[var(--border)]/40 z-10" />
+        <div className="absolute top-2 left-1/2 -translate-x-1/2 h-1.5 w-12 rounded-full bg-[var(--border)]/40 z-10" />
 
         {/* App "screen" */}
-        <div className="mt-7 flex-1 w-full bg-[var(--bg)] flex flex-col items-center px-5 pt-6">
+        <div className="mt-5 flex-1 w-full bg-[var(--bg)] flex flex-col items-center px-4 pt-4">
           {/* Example App Icon */}
           <div
-            className="rounded-[1.1rem] w-16 h-16 mb-5 grid place-items-center shadow-md"
+            className="rounded-xl w-12 h-12 mb-3 grid place-items-center shadow-md"
             style={{
               background: `linear-gradient(135deg, ${ACCENT_1}, ${ACCENT_2})`,
             }}
           >
-            <svg aria-hidden="true" width="34" height="34" viewBox="0 0 34 34" fill="none">
+            <svg aria-hidden="true" width="24" height="24" viewBox="0 0 34 34" fill="none">
               <rect x="7" y="7" width="20" height="20" rx="6" fill="white" fillOpacity="0.9" />
               <path d="M14 17l3 3 3-6" stroke={ACCENT_1} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </div>
           {/* App Title */}
-          <div className="text-lg font-semibold text-[var(--fg)]">SitesPro App</div>
+          <div className="text-sm font-semibold text-[var(--fg)]">SitesPro App</div>
           {/* App content (just a text block) */}
-          <div className="mt-3 text-sm text-center text-[var(--text-muted)] leading-snug">
+          <div className="mt-2 text-xs text-center text-[var(--text-muted)] leading-snug px-2">
             Welcome to our App. <br />
-            Manage your services and stay connected on the go.
+            Manage your services.
           </div>
         </div>
 
         {/* Home indicator */}
-        <div className="mb-4 mt-3 h-2 w-16 rounded-full bg-[var(--border)]/30 mx-auto" />
+        <div className="mb-3 mt-2 h-1.5 w-12 rounded-full bg-[var(--border)]/30 mx-auto" />
+        </div>
       </div>
     </div>
   );
