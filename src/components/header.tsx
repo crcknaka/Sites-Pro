@@ -1,11 +1,6 @@
 'use client';
 
-import {
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
@@ -89,16 +84,20 @@ export default function Header() {
 
     const observer = new IntersectionObserver(
       (entries) => {
-        let best: { id: string; ratio: number } | null = null;
+        let bestRatio = 0;
+        let bestId = '';
 
-        entries.forEach((e) => {
-          if (!e.isIntersecting) return;
-          if (!best || e.intersectionRatio > best.ratio) {
-            best = { id: e.target.id, ratio: e.intersectionRatio };
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const target = entry.target as HTMLElement;
+          if (!target.id) return;
+          if (entry.intersectionRatio > bestRatio) {
+            bestRatio = entry.intersectionRatio;
+            bestId = target.id;
           }
         });
 
-        if (best) setActive(best.id);
+        if (bestId) setActive(bestId);
       },
       {
         rootMargin: '-30% 0px -55% 0px',
@@ -130,10 +129,7 @@ export default function Header() {
     const textRect = text.getBoundingClientRect();
 
     const width = textRect.width * (1 + UNDERLINE_PADDING);
-    const x =
-      textRect.left -
-      navRect.left -
-      (width - textRect.width) / 2;
+    const x = textRect.left - navRect.left - (width - textRect.width) / 2;
 
     underline.current.targetX = x;
     underline.current.targetW = width;
@@ -165,9 +161,26 @@ export default function Header() {
   return (
     <>
       {/* HEADER */}
-      <header className="fixed inset-x-0 top-0 z-50 border-b border-[var(--border)] bg-[var(--surface)] backdrop-blur-md">
-        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
-          {/* LOGO — теперь всегда с безопасным отступом */}
+      <header
+        className="fixed top-0 left-0 right-0 z-30 border-b border-[var(--border)]"
+        style={{
+          boxSizing: 'border-box',
+          overflow: 'clip',
+        }}
+      >
+        {/* Backdrop blur layer confined to header box */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 -z-10"
+          style={{
+            background: 'color-mix(in oklab, var(--surface) 85%, transparent)',
+            backdropFilter: 'blur(16px)',
+            WebkitBackdropFilter: 'blur(16px)',
+          }}
+        />
+
+        <div className="relative mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
+          {/* LOGO */}
           <Link
             href="/"
             aria-label="Go to home"
@@ -192,20 +205,12 @@ export default function Header() {
           </Link>
 
           {/* DESKTOP NAV */}
-          <div
-            ref={navRef}
-            className="relative hidden items-center gap-8 text-sm md:flex"
-          >
+          <div ref={navRef} className="relative hidden items-center gap-8 text-sm md:flex">
             {navItems.map((item) => {
-              const key =
-                item.type === 'section'
-                  ? item.target
-                  : item.href;
+              const key = item.type === 'section' ? item.target : item.href;
 
               const isActive =
-                item.type === 'section'
-                  ? active === item.target
-                  : pathname === item.href;
+                item.type === 'section' ? active === item.target : pathname === item.href;
 
               return (
                 <button
@@ -265,10 +270,7 @@ export default function Header() {
           </div>
 
           {/* MOBILE */}
-          <button
-            onClick={() => setOpen(true)}
-            className="cursor-pointer select-none md:hidden"
-          >
+          <button onClick={() => setOpen(true)} className="cursor-pointer select-none md:hidden">
             <Menu className="h-6 w-6 text-[var(--fg)]" />
           </button>
         </div>
@@ -295,11 +297,7 @@ export default function Header() {
           bg-[var(--surface)]
           backdrop-blur-xl
           transition
-          ${
-            open
-              ? 'translate-x-0 opacity-100'
-              : 'pointer-events-none translate-x-6 opacity-0'
-          }
+          ${open ? 'translate-x-0 opacity-100' : 'pointer-events-none translate-x-6 opacity-0'}
         `}
       >
         <div className="flex justify-end px-4 pt-4">
@@ -316,9 +314,7 @@ export default function Header() {
 
           {navItems.map((item) => {
             const isActive =
-              item.type === 'section'
-                ? active === item.target
-                : pathname === item.href;
+              item.type === 'section' ? active === item.target : pathname === item.href;
 
             return (
               <button
@@ -331,11 +327,7 @@ export default function Header() {
                   transition transition-transform
                   active:scale-[0.96]
                   hover:bg-[var(--surface-strong)]
-                  ${
-                    isActive
-                      ? 'text-[var(--fg)]'
-                      : 'text-[var(--text-muted)]'
-                  }
+                  ${isActive ? 'text-[var(--fg)]' : 'text-[var(--text-muted)]'}
                 `}
                 style={isActive ? { color: ACCENT } : undefined}
               >

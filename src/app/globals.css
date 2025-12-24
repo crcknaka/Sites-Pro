@@ -84,6 +84,13 @@ html {
   background: var(--bg);
   min-height: 100%;
   height: 100%;
+  /* Hide scrollbar but keep scrolling functionality */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+html::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }
 
 body {
@@ -91,6 +98,14 @@ body {
   color: var(--fg);
   min-height: 100%;
   height: 100%;
+  overflow-x: hidden;
+  /* Hide scrollbar but keep scrolling functionality */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }
 
 /* Ensure background covers all content */
