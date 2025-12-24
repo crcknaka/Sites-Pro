@@ -52,6 +52,7 @@ export default function Contact() {
               icon={Mail}
               title="Email"
               value="info@sitespro.org"
+              selectable
             />
             <InfoItem
               icon={MapPin}
@@ -112,10 +113,12 @@ function InfoItem({
   icon: Icon,
   title,
   value,
+  selectable,
 }: {
   icon: any;
   title: string;
   value: string;
+  selectable?: boolean;
 }) {
   return (
     <div className="flex items-start gap-4">
@@ -134,7 +137,9 @@ function InfoItem({
         <p className="font-medium text-[var(--fg)]">
           {title}
         </p>
-        <p className="mt-1 text-sm text-[var(--text-muted)]">
+        <p
+          className={`mt-1 text-sm text-[var(--text-muted)]${selectable ? ' select-text' : ''}`}
+        >
           {value}
         </p>
       </div>
