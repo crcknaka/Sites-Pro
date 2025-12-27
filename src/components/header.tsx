@@ -187,14 +187,26 @@ export default function Header() {
           overflow: 'clip',
         }}
       >
-        {/* Backdrop blur layer confined to header box */}
+        {/* Darkening overlay for dark theme */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 -z-10 dark-overlay"
+        />
+        
+        {/* Light overlay for light theme */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 -z-10 light-overlay"
+        />
+        
+        {/* Backdrop blur layer with enhanced opacity */}
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 -z-10"
           style={{
-            background: 'color-mix(in oklab, var(--surface) 85%, transparent)',
-            backdropFilter: 'blur(26px)',
-            WebkitBackdropFilter: 'blur(16px)',
+            background: 'color-mix(in oklab, var(--surface) 95%, transparent)',
+            backdropFilter: 'blur(20px) saturate(180%)',
+            WebkitBackdropFilter: 'blur(20px) saturate(180%)',
           }}
         />
 

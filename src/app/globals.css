@@ -707,3 +707,23 @@ body {
   animation: pulse-slow 4s ease-in-out infinite;
   user-select: none;
 }
+
+/* Header overlay - dark theme */
+.dark-overlay {
+  background: rgba(0, 0, 0, 0.25);
+  opacity: 1;
+}
+
+[data-theme="light"] .dark-overlay {
+  opacity: 0;
+}
+
+/* Header overlay - light theme */
+.light-overlay {
+  background: rgba(0, 0, 0, 0.08);
+  opacity: 0;
+}
+
+[data-theme="light"] .light-overlay {
+  opacity: 1;
+}
