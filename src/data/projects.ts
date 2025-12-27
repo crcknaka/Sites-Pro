@@ -266,4 +266,28 @@ export const projects = [
     `,
     image: '/projects/screenshots/annexedefrancais.jpg',
   },
+
+  {
+    slug: 'imun',
+    title: 'Imun',
+    category: 'Informational',
+    description: 'Advanced payment technology for modern financial operations.',
+    challenge: `
+      Create a professional, trustworthy online presence that communicates
+      technical sophistication and security without overwhelming business clients
+      with complexity.
+    `,
+    solution: [
+      'Clean, professional design emphasizing security and reliability',
+      'Clear value proposition and service overview',
+      'Structured information architecture',
+      'Trust-building elements and compliance messaging',
+      'Scalable content structure for technical documentation',
+    ],
+    result: `
+      A credible and informative platform that effectively communicates Imun's
+      fintech capabilities and builds confidence with enterprise clients.
+    `,
+    image: '/projects/screenshots/imun.jpg',
+  },
 ];
