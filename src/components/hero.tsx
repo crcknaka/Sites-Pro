@@ -9,12 +9,15 @@ const ACCENT_1 = 'var(--accent-1)';
 const ACCENT_2 = 'var(--accent-2)';
 
 /* -------------------------------------------------------
-  helper: scroll to section (no URL change)
+  helper: scroll to section (with URL hash update)
 ------------------------------------------------------- */
 function scrollToSection(id: string) {
   const el = document.getElementById(id);
   if (!el) return;
 
+  // Update URL hash
+  window.history.pushState(null, '', `#${id}`);
+  
   el.scrollIntoView({
     behavior: 'smooth',
     block: 'start',
@@ -23,19 +26,35 @@ function scrollToSection(id: string) {
 
 export default function Hero() {
   /* -------------------------------------------------------
-    scroll target from other pages
+    scroll target from hash in URL
   ------------------------------------------------------- */
   useEffect(() => {
-    const target = sessionStorage.getItem('scrollTarget');
-    if (!target) return;
+    const handleHashScroll = () => {
+      const hash = window.location.hash.slice(1); // Remove # symbol
+      if (!hash) return;
 
-    requestAnimationFrame(() => {
-      const el = document.getElementById(target);
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-      sessionStorage.removeItem('scrollTarget');
-    });
+      // Use a small delay to ensure DOM is ready
+      const scrollToHash = () => {
+        const el = document.getElementById(hash);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      };
+
+      // Try immediately and also with a delay
+      requestAnimationFrame(() => {
+        scrollToHash();
+        // Retry after a short delay in case page is still loading
+        setTimeout(scrollToHash, 100);
+      });
+    };
+
+    // Handle hash on mount
+    handleHashScroll();
+
+    // Handle hash changes (e.g., browser back/forward)
+    window.addEventListener('hashchange', handleHashScroll);
+    return () => window.removeEventListener('hashchange', handleHashScroll);
   }, []);
 
   return (

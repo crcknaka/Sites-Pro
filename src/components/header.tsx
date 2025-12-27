@@ -68,10 +68,12 @@ export default function Header() {
     }
 
     if (isHome) {
+      // Update URL hash and scroll to section
+      window.history.pushState(null, '', `#${item.target}`);
       scrollToSection(item.target);
     } else {
-      sessionStorage.setItem('scrollTarget', item.target);
-      router.push('/');
+      // Navigate to home with hash
+      router.push(`/#${item.target}`);
     }
   };
 
@@ -97,7 +99,13 @@ export default function Header() {
           }
         });
 
-        if (bestId) setActive(bestId);
+        if (bestId) {
+          setActive(bestId);
+          // Update URL hash without scrolling
+          if (window.location.hash !== `#${bestId}`) {
+            window.history.replaceState(null, '', `#${bestId}`);
+          }
+        }
       },
       {
         rootMargin: '-30% 0px -55% 0px',
@@ -107,6 +115,17 @@ export default function Header() {
 
     sections.forEach((s) => observer.observe(s));
     return () => observer.disconnect();
+  }, [isHome]);
+
+  /* handle hash on page load */
+  useEffect(() => {
+    if (!isHome) return;
+
+    const hash = window.location.hash.slice(1);
+    if (hash) {
+      // Set active section based on hash
+      setActive(hash);
+    }
   }, [isHome]);
 
   useEffect(() => {
