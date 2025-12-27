@@ -88,25 +88,28 @@ export default async function WorkCase({
         {/* =========================
            RIGHT — STICKY VISUAL
         ========================= */}
-        {project.image && (
+        {((project as any).images || project.image) && (
           <div className="relative">
-            <div className="sticky top-32">
-              <div
-                className="
-                  overflow-hidden rounded-3xl
-                  border border-[var(--border)]
-                  bg-[var(--surface)]
-                "
-              >
-                <Image
-                  src={project.image}
-                  alt={`${project.title} preview`}
-                  width={1200}
-                  height={900}
-                  className="w-full h-auto"
-                  priority
-                />
-              </div>
+            <div className="sticky top-32 space-y-6">
+              {((project as any).images || [project.image]).map((img: string, idx: number) => (
+                <div
+                  key={idx}
+                  className="
+                    overflow-hidden rounded-3xl
+                    border border-[var(--border)]
+                    bg-[var(--surface)]
+                  "
+                >
+                  <Image
+                    src={img}
+                    alt={`${project.title} preview ${idx + 1}`}
+                    width={1200}
+                    height={900}
+                    className="w-full h-auto"
+                    priority={idx === 0}
+                  />
+                </div>
+              ))}
             </div>
           </div>
         )}

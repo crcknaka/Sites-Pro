@@ -290,4 +290,36 @@ export const projects = [
     `,
     image: '/projects/screenshots/imun.jpg',
   },
+
+  {
+    slug: 'wellton',
+    title: 'Wellton',
+    category: 'E-Commerce',
+    description: 'Premium SPA vouchers for Wellton Hotels & Spa in Riga.',
+    challenge: `
+      Create an elegant and user-friendly platform for selling premium wellness
+      vouchers that balances the luxurious brand identity with straightforward
+      e-commerce functionality, while making the purchase process feel like a
+      gift experience.
+    `,
+    solution: [
+      'Premium, relaxing design aesthetic reflecting SPA experience',
+      'Clear categorization of wellness offerings (SPA zones, massages, memberships)',
+      'Easy-to-use voucher selection and purchase flow',
+      'Gift-friendly presentation and flexible pricing options',
+      'Trust-building elements highlighting professional service and premium facilities',
+      'Mobile-optimized shopping experience',
+    ],
+    result: `
+      A beautiful e-commerce platform that successfully sells wellness experiences
+      online, making it easy for customers to purchase premium SPA vouchers as
+      gifts or for personal use, while maintaining the luxurious Wellton brand
+      identity.
+    `,
+    image: '/projects/screenshots/wellton.jpg',
+    images: [
+      '/projects/screenshots/wellton2.png',
+      '/projects/screenshots/wellton.jpg',
+    ],
+  },
 ];

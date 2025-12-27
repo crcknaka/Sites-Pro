@@ -193,7 +193,7 @@ export default function Header() {
           className="pointer-events-none absolute inset-0 -z-10"
           style={{
             background: 'color-mix(in oklab, var(--surface) 85%, transparent)',
-            backdropFilter: 'blur(16px)',
+            backdropFilter: 'blur(26px)',
             WebkitBackdropFilter: 'blur(16px)',
           }}
         />
