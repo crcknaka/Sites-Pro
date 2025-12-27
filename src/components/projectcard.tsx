@@ -26,8 +26,11 @@ export default function ProjectCard({
         rounded-2xl p-6
         bg-[var(--surface)]
         border border-[var(--border)]
-        transition
-        hover:border-opacity-60
+        transition-all duration-300
+        hover:bg-[var(--surface-strong)]
+        hover:border-[color-mix(in_srgb,var(--accent-1)_20%,var(--border))]
+        hover:shadow-lg
+        hover:shadow-[var(--accent-1)]/5
       "
     >
       {/* Accent line */}
@@ -48,7 +51,7 @@ export default function ProjectCard({
         </h3>
 
         {/* Description */}
-        <p className="mt-3 text-sm leading-relaxed text-[var(--text-muted)]">
+        <p className="mt-3 text-sm leading-relaxed text-[var(--text-muted)] max-w-[85%]">
           {description}
         </p>
       </div>
@@ -61,11 +64,13 @@ export default function ProjectCard({
           rounded-full
           bg-[var(--surface-strong)]
           border border-[var(--border)]
-          transition
-          group-hover:bg-[var(--surface)]
+          opacity-40
+          transition-all duration-300
+          group-hover:opacity-100
+          group-hover:scale-110
         "
       >
-        <ArrowUpRight className="h-4 w-4 text-[var(--accent-1)]" />
+        <ArrowUpRight className="h-4 w-4 text-[var(--accent-1)] transition-opacity duration-300" />
       </div>
     </Link>
   );

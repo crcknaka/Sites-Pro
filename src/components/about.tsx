@@ -186,6 +186,16 @@ export default function About() {
                   bg-[var(--surface)]
                   border border-[var(--border)]
                   text-[var(--text-muted)]
+                  opacity-75
+                  transition-all duration-300
+                  cursor-default
+                  hover:opacity-100
+                  hover:text-[var(--fg)]
+                  hover:bg-[var(--surface-strong)]
+                  hover:border-[color-mix(in_srgb,var(--accent-1)_20%,var(--border))]
+                  hover:shadow-lg
+                  hover:shadow-[var(--accent-1)]/5
+                  hover:scale-105
                 "
               >
                 {method}
