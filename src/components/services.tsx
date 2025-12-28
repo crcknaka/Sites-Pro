@@ -257,74 +257,61 @@ function AIInfographic() {
           background: 'color-mix(in srgb, var(--surface-strong) 95%, transparent)',
         }}
       >
-
-      {/* Brain icon in center */}
-      <div
-        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10"
-      >
-        <svg
-          width="48"
-          height="48"
-          viewBox="0 0 24 24"
-          fill="none"
-          className="animate-pulse-slow"
-        >
-          {/* Brain icon */}
-          <path
-            d="M12 2C10.5 2 9.2 2.6 8.3 3.5C7.3 2.9 6.2 2.5 5 2.5C2.2 2.5 0 4.7 0 7.5C0 8.4 0.3 9.2 0.7 10C0.3 10.8 0 11.7 0 12.5C0 15.3 2.2 17.5 5 17.5C5.8 17.5 6.6 17.3 7.2 16.9C8 19.2 10.2 21 12.8 21C15.4 21 17.6 19.2 18.4 16.9C19 17.3 19.8 17.5 20.6 17.5C23.4 17.5 25.6 15.3 25.6 12.5C25.6 11.7 25.3 10.8 24.9 10C25.3 9.2 25.6 8.4 25.6 7.5C25.6 4.7 23.4 2.5 20.6 2.5C19.4 2.5 18.3 2.9 17.3 3.5C16.4 2.6 15.1 2 13.6 2H12Z"
-            fill={ACCENT_1}
-            fillOpacity="0.2"
-          />
-          <circle cx="8" cy="8" r="1.5" fill={ACCENT_1} />
-          <circle cx="16" cy="8" r="1.5" fill={ACCENT_1} />
-          <circle cx="12" cy="12" r="2" fill={ACCENT_2} />
-          <circle cx="8" cy="16" r="1.5" fill={ACCENT_2} />
-          <circle cx="16" cy="16" r="1.5" fill={ACCENT_2} />
-          
-          {/* Neural connections */}
-          <path d="M8 8 L12 12" stroke={ACCENT_1} strokeWidth="1" strokeOpacity="0.4" />
-          <path d="M16 8 L12 12" stroke={ACCENT_1} strokeWidth="1" strokeOpacity="0.4" />
-          <path d="M12 12 L8 16" stroke={ACCENT_2} strokeWidth="1" strokeOpacity="0.4" />
-          <path d="M12 12 L16 16" stroke={ACCENT_2} strokeWidth="1" strokeOpacity="0.4" />
-        </svg>
-      </div>
-
-      {/* Animated neural connections around the circle */}
-      {[0, 60, 120, 180, 240, 300].map((deg, i) => (
-        <div
-          key={deg}
-          className="absolute left-1/2 top-1/2 neural-connection"
-          style={{
-            transform: `rotate(${deg}deg)`,
-            animation: `neural-pulse ${1.5 + i * 0.2}s ease-in-out infinite`,
-            animationDelay: `${i * 0.3}s`,
-          }}
-        >
-          {/* Connection line */}
+        {/* Central pulsing node */}
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
           <div
-            className="absolute h-px w-12 origin-left transition-all duration-300"
+            className="h-6 w-6 rounded-full animate-pulse-slow"
             style={{
-              background: `linear-gradient(to right, ${i % 2 === 0 ? ACCENT_1 : ACCENT_2}60, transparent)`,
-            }}
-          />
-          
-          {/* Pulsing node */}
-          <div
-            className="absolute h-2.5 w-2.5 rounded-full border transition-all duration-300"
-            style={{
-              transform: 'translateX(44px) translateY(-5px)',
-              background: i % 2 === 0 ? `${ACCENT_1}` : `${ACCENT_2}`,
-              borderColor: i % 2 === 0 ? `${ACCENT_1}` : `${ACCENT_2}`,
-              opacity: 0.7,
-              boxShadow: `0 0 8px ${i % 2 === 0 ? ACCENT_1 : ACCENT_2}`,
+              background: `linear-gradient(135deg, ${ACCENT_1}, ${ACCENT_2})`,
+              boxShadow: `0 0 20px ${ACCENT_1}80`,
             }}
           />
         </div>
-      ))}
 
-      {/* Orbital rings */}
-      <div className="absolute inset-3 rounded-full border border-dashed border-[var(--accent-1)]/20 animate-spin-slow" />
-      <div className="absolute inset-6 rounded-full border border-dashed border-[var(--accent-2)]/15 animate-spin-reverse" />
+        {/* Animated neural connections with visible lines to center */}
+        {[0, 60, 120, 180, 240, 300].map((deg, i) => (
+          <div key={deg}>
+            {/* Connection line from node to center */}
+            <div
+              className="absolute left-1/2 top-1/2"
+              style={{
+                transform: `rotate(${deg}deg)`,
+                transformOrigin: 'center',
+              }}
+            >
+              {/* Thin dashed line connecting to center */}
+              <div
+                className="absolute h-px w-[25px] origin-left"
+                style={{
+                  transform: 'translateX(12px)',
+                  background: `repeating-linear-gradient(
+                    to right,
+                    ${i % 2 === 0 ? ACCENT_1 : ACCENT_2} 0px,
+                    ${i % 2 === 0 ? ACCENT_1 : ACCENT_2} 3px,
+                    transparent 3px,
+                    transparent 6px
+                  )`,
+                  opacity: 0.4,
+                  animation: `neural-pulse ${2.0 + i * 0.3}s ease-in-out infinite`,
+                  animationDelay: `${i * 0.4}s`,
+                }}
+              />
+              
+              {/* Outer node */}
+              <div
+                className="absolute h-3 w-3 rounded-full border-2"
+                style={{
+                  transform: 'translateX(37px) translateY(-6px)',
+                  background: i % 2 === 0 ? ACCENT_1 : ACCENT_2,
+                  borderColor: i % 2 === 0 ? ACCENT_1 : ACCENT_2,
+                  boxShadow: `0 0 10px ${i % 2 === 0 ? ACCENT_1 : ACCENT_2}`,
+                  animation: `neural-pulse ${2.0 + i * 0.3}s ease-in-out infinite`,
+                  animationDelay: `${i * 0.4}s`,
+                }}
+              />
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -349,53 +336,85 @@ function ConsultingInfographic() {
           background: 'color-mix(in srgb, var(--surface-strong) 95%, transparent)',
         }}
       >
+        {/* Flow diagram */}
+        <div className="absolute inset-3 flex items-center justify-between gap-2">
+          {/* Start node */}
+          <div
+            className="h-10 w-10 rounded-full flex items-center justify-center transition-all duration-300"
+            style={{
+              background: `linear-gradient(135deg, ${ACCENT_1}50, ${ACCENT_1}30)`,
+              border: `2px solid ${ACCENT_1}60`,
+              boxShadow: `0 0 8px ${ACCENT_1}40`,
+            }}
+          >
+            <div className="h-3 w-3 rounded-full" style={{ background: ACCENT_1 }} />
+          </div>
 
-      {/* Flow diagram */}
-      <div className="absolute inset-2 flex items-center justify-between gap-2">
-        {/* Start node */}
-        <div
-          className="h-8 w-8 rounded-xl border border-[var(--accent-1)]/50 flex items-center justify-center transition-all duration-300 group-hover:scale-110"
-          style={{
-            background: `linear-gradient(135deg, color-mix(in srgb, ${ACCENT_1} 40%, transparent), color-mix(in srgb, ${ACCENT_1} 20%, transparent))`,
-          }}
-        >
-          <div className="h-3 w-3 rounded-lg" style={{ background: ACCENT_1 }} />
+          {/* Arrow 1 - thinner dashed */}
+          <div 
+            className="relative flex-1 h-px" 
+            style={{ 
+              background: `repeating-linear-gradient(
+                to right,
+                ${ACCENT_1} 0px,
+                ${ACCENT_1} 3px,
+                transparent 3px,
+                transparent 6px
+              )`, 
+              opacity: 0.5 
+            }}
+          >
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 border-l-[3px] border-l-[var(--accent-1)] border-y-[2px] border-y-transparent opacity-50" />
+          </div>
+
+          {/* Question node with icon */}
+          <div
+            className="h-16 w-16 rounded-xl flex items-center justify-center transition-all duration-300"
+            style={{
+              background: `linear-gradient(135deg, ${ACCENT_1}40, ${ACCENT_2}30)`,
+              border: `2px solid ${ACCENT_1}50`,
+              boxShadow: `0 0 12px ${ACCENT_1}50`,
+            }}
+          >
+            {/* Question mark icon */}
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"
+                fill={ACCENT_1}
+                fillOpacity="0.9"
+              />
+            </svg>
+          </div>
+
+          {/* Arrow 2 - thinner dashed */}
+          <div 
+            className="relative flex-1 h-px" 
+            style={{ 
+              background: `repeating-linear-gradient(
+                to right,
+                ${ACCENT_2} 0px,
+                ${ACCENT_2} 3px,
+                transparent 3px,
+                transparent 6px
+              )`, 
+              opacity: 0.5 
+            }}
+          >
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 border-l-[3px] border-l-[var(--accent-2)] border-y-[2px] border-y-transparent opacity-50" />
+          </div>
+
+          {/* End node */}
+          <div
+            className="h-10 w-10 rounded-full flex items-center justify-center transition-all duration-300"
+            style={{
+              background: `linear-gradient(135deg, ${ACCENT_2}50, ${ACCENT_2}30)`,
+              border: `2px solid ${ACCENT_2}60`,
+              boxShadow: `0 0 8px ${ACCENT_2}40`,
+            }}
+          >
+            <div className="h-3 w-3 rounded-full" style={{ background: ACCENT_2 }} />
+          </div>
         </div>
-
-        {/* Arrow 1 */}
-        <div className="relative flex-1 h-px" style={{ background: `linear-gradient(to right, ${ACCENT_1}60, ${ACCENT_1}40)` }}>
-          <div className="absolute right-0 top-1/2 -translate-y-1/2 border-l-[4px] border-l-[var(--accent-1)] border-y-[3px] border-y-transparent" />
-        </div>
-
-        {/* Decision node (diamond) */}
-        <div
-          className="h-9 w-9 rotate-45 rounded-lg border border-[var(--accent-1)]/40 flex items-center justify-center transition-all duration-300 group-hover:scale-110"
-          style={{
-            background: 'linear-gradient(135deg, var(--surface-strong), var(--surface))',
-          }}
-        >
-          <span className="-rotate-45 text-[0.65rem] font-bold" style={{ color: ACCENT_1 }}>?</span>
-        </div>
-
-        {/* Arrow 2 */}
-        <div className="relative flex-1 h-px" style={{ background: `linear-gradient(to right, ${ACCENT_1}40, ${ACCENT_2}60)` }}>
-          <div className="absolute right-0 top-1/2 -translate-y-1/2 border-l-[4px] border-l-[var(--accent-2)] border-y-[3px] border-y-transparent" />
-        </div>
-
-        {/* End node */}
-        <div
-          className="h-8 w-8 rounded-full border border-[var(--accent-2)]/50 flex items-center justify-center transition-all duration-300 group-hover:scale-110"
-          style={{
-            background: `linear-gradient(135deg, color-mix(in srgb, ${ACCENT_2} 50%, transparent), color-mix(in srgb, ${ACCENT_2} 25%, transparent))`,
-          }}
-        >
-          <div className="h-3 w-3 rounded-full" style={{ background: ACCENT_2 }} />
-        </div>
-      </div>
-
-      {/* Vertical connectors */}
-      <div className="absolute left-1/2 top-2 h-3 w-px -translate-x-1/2 bg-gradient-to-b from-transparent to-[var(--border)]/30" />
-      <div className="absolute left-1/2 bottom-2 h-3 w-px -translate-x-1/2 bg-gradient-to-b from-[var(--border)]/30 to-transparent" />
       </div>
     </div>
   );
