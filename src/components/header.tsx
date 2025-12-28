@@ -35,6 +35,8 @@ export default function Header() {
 
   const isHome = pathname === '/';
   const isAboutPage = pathname === '/about';
+  const isServicesPage = pathname.startsWith('/services');
+  const isPortfolioPage = pathname.startsWith('/portfolio');
 
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState('');
@@ -103,20 +105,42 @@ export default function Header() {
   }, [isHome]);
 
   useEffect(() => {
-    if (isAboutPage) setActive('about');
-  }, [isAboutPage]);
+    if (isAboutPage) {
+      setActive('about');
+      setVisible(true);
+    } else if (isServicesPage) {
+      setActive('services');
+      setVisible(true);
+    } else if (isPortfolioPage) {
+      setActive('portfolio');
+      setVisible(true);
+    } else if (!isHome) {
+      // For other pages, hide underline
+      setActive('');
+      setVisible(false);
+    }
+  }, [isAboutPage, isServicesPage, isPortfolioPage, isHome]);
 
   /* underline target */
   useLayoutEffect(() => {
-    if (!navRef.current || !active) return;
+    if (!navRef.current || !active) {
+      setVisible(false);
+      return;
+    }
 
-    const btn = navRef.current.querySelector<HTMLElement>(
-      `button[data-key="${CSS.escape(active)}"]`
+    const link = navRef.current.querySelector<HTMLElement>(
+      `a[data-key="${CSS.escape(active)}"]`
     );
-    if (!btn) return;
+    if (!link) {
+      setVisible(false);
+      return;
+    }
 
-    const text = btn.querySelector<HTMLElement>('span');
-    if (!text) return;
+    const text = link.querySelector<HTMLElement>('span');
+    if (!text) {
+      setVisible(false);
+      return;
+    }
 
     const navRect = navRef.current.getBoundingClientRect();
     const textRect = text.getBoundingClientRect();
