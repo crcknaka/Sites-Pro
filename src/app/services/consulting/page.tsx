@@ -109,7 +109,7 @@ export default function ConsultingPage() {
             </p>
 
             <Link
-              href="#contact"
+              href="/#contact"
               className="
                 inline-block
                 mt-10

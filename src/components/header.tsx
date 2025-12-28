@@ -213,13 +213,16 @@ export default function Header() {
           <div ref={navRef} className="relative hidden items-center gap-8 text-sm md:flex">
             {navItems.map((item) => {
               const key = item.type === 'section' ? item.target : item.href;
-              const href = item.type === 'section' ? `#${item.target}` : item.href;
+              // Fixed: Navigate to home with hash for sections
+              const href = item.type === 'section' 
+                ? (isHome ? `#${item.target}` : `/#${item.target}`)
+                : item.href;
 
               const isActive =
                 item.type === 'section' ? active === item.target : pathname === item.href;
 
               return (
-                <a
+                <Link
                   key={item.label}
                   data-key={key}
                   href={href}
@@ -235,7 +238,7 @@ export default function Header() {
                   `}
                 >
                   <span>{item.label}</span>
-                </a>
+                </Link>
               );
             })}
 
@@ -255,8 +258,8 @@ export default function Header() {
           <div className="hidden md:flex items-center gap-4">
             <ThemeToggle />
 
-            <a
-              href="#contact"
+            <Link
+              href={isHome ? "#contact" : "/#contact"}
               className="
                 cursor-pointer select-none
                 rounded-lg px-4 py-2 text-sm font-medium
@@ -266,7 +269,7 @@ export default function Header() {
               style={{ background: ACCENT }}
             >
               Get Started
-            </a>
+            </Link>
           </div>
 
           {/* MOBILE */}
@@ -313,12 +316,15 @@ export default function Header() {
           <ThemeToggle />
 
           {navItems.map((item) => {
-            const href = item.type === 'section' ? `#${item.target}` : item.href;
+            // Fixed: Navigate to home with hash for sections from any page
+            const href = item.type === 'section' 
+              ? (isHome ? `#${item.target}` : `/#${item.target}`)
+              : item.href;
             const isActive =
               item.type === 'section' ? active === item.target : pathname === item.href;
 
             return (
-              <a
+              <Link
                 key={item.label}
                 href={href}
                 onClick={() => setOpen(false)}
@@ -334,7 +340,7 @@ export default function Header() {
                 style={isActive ? { color: ACCENT } : undefined}
               >
                 {item.label}
-              </a>
+              </Link>
             );
           })}
         </nav>

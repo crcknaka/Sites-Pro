@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Linkedin, Send } from 'lucide-react';
 
 /* brand accents via CSS vars */
@@ -7,6 +9,8 @@ const ACCENT_1 = 'var(--accent-1)';
 const ACCENT_2 = 'var(--accent-2)';
 
 export default function Hero() {
+  const pathname = usePathname();
+  const isHome = pathname === '/';
 
   return (
     <section
@@ -48,8 +52,8 @@ export default function Hero() {
 
         {/* CTA BUTTONS */}
         <div className="mt-8 sm:mt-12 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 px-4">
-          <a
-            href="#contact"
+          <Link
+            href={isHome ? "#contact" : "/#contact"}
             className="
               w-full sm:w-auto
               cursor-pointer inline-flex items-center justify-center gap-2 sm:gap-3
@@ -60,10 +64,10 @@ export default function Hero() {
             style={{ background: 'var(--accent-1)' }}
           >
             Get in Touch 
-          </a>
+          </Link>
 
-          <a
-            href="#services"
+          <Link
+            href={isHome ? "#services" : "/#services"}
             className="
               w-full sm:w-auto
               cursor-pointer inline-flex items-center justify-center
@@ -76,7 +80,7 @@ export default function Hero() {
             "
           >
             Explore Services
-          </a>
+          </Link>
         </div>
 
         {/* SOCIAL */}

@@ -101,7 +101,7 @@ export default function ApplicationsPage() {
             </p>
 
             <Link
-              href="#contact"
+              href="/#contact"
               className="
                 inline-block
                 mt-10
