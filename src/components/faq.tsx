@@ -8,8 +8,8 @@ const ACCENT = 'var(--accent-1)';
 
 const faqs = [
   {
-    q: 'How long does it take to build a website?',
-    a: 'Typically, a standard website takes 2–4 weeks from concept to launch. More complex projects like e-commerce platforms or custom applications may take 6–12 weeks. We’ll provide a detailed timeline during our initial consultation.',
+    q: 'What’s the typical timeline for building a website, app, or AI automation?',
+    a: 'There’s no one-size-fits-all answer — everything depends on your goals, scope, and how urgent the project is. We’re highly flexible and can adapt to your deadlines. A simple website can be delivered quickly, while more complex apps or AI automations naturally take longer. During our initial discussion, we align on priorities and define a timeline that works best for you.',
   },
   {
     q: 'What is your development process?',
