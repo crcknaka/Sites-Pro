@@ -73,7 +73,7 @@ export default function Hero() {
         <div className="mb-10 flex justify-center">
           <div className="relative h-[92px] w-[92px]">
             <Image
-              src="/logo-dark.png"
+              src="/logo-dark.svg"
               alt="Sites Pro"
               width={92}
               height={92}
@@ -81,7 +81,7 @@ export default function Hero() {
               priority
             />
             <Image
-              src="/logo-light.png"
+              src="/logo-light.svg"
               alt="Sites Pro"
               width={92}
               height={92}

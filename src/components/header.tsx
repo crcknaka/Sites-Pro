@@ -218,7 +218,7 @@ export default function Header() {
             className="relative block h-[70px] w-[70px] select-none"
           >
             <Image
-              src="/logo-dark.png"
+              src="/logo-dark.svg"
               alt="Logo"
               width={70}
               height={70}
@@ -226,7 +226,7 @@ export default function Header() {
               priority
             />
             <Image
-              src="/logo-light.png"
+              src="/logo-light.svg"
               alt="Logo"
               width={70}
               height={70}

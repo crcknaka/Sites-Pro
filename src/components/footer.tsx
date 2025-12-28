@@ -34,14 +34,14 @@ export default function Footer() {
             {/* LOGO (70x70, theme-safe) */}
             <div className="relative h-[70px] w-[70px]">
               <Image
-                src="/logo-dark.png"
+                src="/logo-dark.svg"
                 alt="Sites Pro"
                 width={70}
                 height={70}
                 className="logo-dark absolute inset-0"
               />
               <Image
-                src="/logo-light.png"
+                src="/logo-light.svg"
                 alt="Sites Pro"
                 width={70}
                 height={70}
