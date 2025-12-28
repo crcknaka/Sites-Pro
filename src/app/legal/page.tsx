@@ -14,15 +14,7 @@ export default function LegalPage() {
   return (
     <main className="relative">
       <section className="mx-auto max-w-4xl px-6 pt-32 pb-40">
-        {/* BACK TO HOME LINK */}
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 text-sm text-[var(--text-muted)] hover:text-[var(--fg)] transition-colors"
-        >
-          ← Back Home
-        </Link>
-
-        <h1 className="mt-10 text-4xl font-semibold tracking-tight text-[var(--fg)]">
+        <h1 className="text-4xl font-semibold tracking-tight text-[var(--fg)]">
           Legal Notice
         </h1>
 
@@ -70,6 +62,34 @@ export default function LegalPage() {
               This Legal Notice may be updated at any time without prior notice.
             </p>
           </Section>
+        </div>
+      </section>
+
+      {/* BACK HOME */}
+      <section className="px-6 py-16">
+        <div className="mx-auto max-w-4xl">
+          <div className="flex justify-center">
+            <Link
+              href="/"
+              className="
+                group
+                flex items-center justify-center gap-2
+                px-6 py-4
+                rounded-xl
+                border border-[var(--border)]
+                bg-[var(--surface)]
+                text-sm sm:text-base font-medium
+                text-[var(--text-muted)]
+                hover:text-[var(--fg)]
+                hover:border-[var(--accent-1)]
+                transition-all
+                cursor-pointer select-none
+              "
+            >
+              <span>←</span>
+              <span>Back Home</span>
+            </Link>
+          </div>
         </div>
       </section>
     </main>

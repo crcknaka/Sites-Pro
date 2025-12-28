@@ -75,15 +75,8 @@ export default function ConsultingPage() {
         <div className="mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           {/* TEXT */}
           <div>
-            <Link
-              href="/#services"
-              className="inline-flex items-center gap-2 text-sm text-[var(--text-muted)] hover:text-[var(--fg)] transition-colors"
-            >
-              ← Back to services
-            </Link>
-
             <span
-              className="mt-10 block text-sm uppercase tracking-widest font-medium"
+              className="block text-sm uppercase tracking-widest font-medium"
               style={{ color: ACCENT_1 }}
             >
               Consulting
@@ -257,6 +250,34 @@ export default function ConsultingPage() {
 
         <div className="mx-auto max-w-3xl">
           <ContactForm />
+        </div>
+      </section>
+
+      {/* BACK TO SERVICES */}
+      <section className="px-6 py-16">
+        <div className="mx-auto max-w-6xl">
+          <div className="flex justify-center">
+            <Link
+              href="/#services"
+              className="
+                group
+                flex items-center justify-center gap-2
+                px-6 py-4
+                rounded-xl
+                border border-[var(--border)]
+                bg-[var(--surface)]
+                text-sm sm:text-base font-medium
+                text-[var(--text-muted)]
+                hover:text-[var(--fg)]
+                hover:border-[var(--accent-1)]
+                transition-all
+                cursor-pointer select-none
+              "
+            >
+              <span>←</span>
+              <span>Back to services</span>
+            </Link>
+          </div>
         </div>
       </section>
     </main>

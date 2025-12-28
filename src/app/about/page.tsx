@@ -76,16 +76,8 @@ export default function AboutPage() {
     <main className="relative">
       {/* HERO */}
       <section className="mx-auto max-w-6xl px-6 pt-32 pb-24">
-        {/* BACK TO HOME LINK */}
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 text-sm text-[var(--text-muted)] hover:text-[var(--fg)] transition-colors"
-        >
-          ← Back Home
-        </Link>
-
         <span
-          className="mt-10 block text-sm font-medium tracking-widest uppercase"
+          className="block text-sm font-medium tracking-widest uppercase"
           style={{ color: ACCENT_1 }}
         >
           About Sites Pro
@@ -133,13 +125,21 @@ export default function AboutPage() {
               <div key={step.step} className="relative px-6 text-center">
                 <div
                   className="
-                    relative mx-auto mb-8 h-24 w-24 rounded-full
+                    relative z-10 mx-auto mb-8 h-24 w-24 rounded-xl
                     flex items-center justify-center
-                    bg-[var(--surface)]
+                    bg-[var(--surface-strong)] backdrop-blur-sm
                     border border-[var(--border)]
+                    text-[var(--text-muted)]
+                    hover:text-[var(--fg)]
+                    hover:border-[var(--accent-1)]
+                    hover:bg-[var(--surface-strong)]
+                    transition-all duration-300
                   "
+                  style={{
+                    backgroundColor: 'color-mix(in srgb, var(--bg) 95%, var(--surface-strong))',
+                  }}
                 >
-                  <Icon className="h-10 w-10 text-[var(--fg)]/70" />
+                  <Icon className="h-10 w-10" />
 
                   <span
                     className="
@@ -419,6 +419,34 @@ export default function AboutPage() {
                 submissions in accordance with GDPR and privacy best practices.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* BACK HOME */}
+      <section className="px-6 py-16">
+        <div className="mx-auto max-w-6xl">
+          <div className="flex justify-center">
+            <Link
+              href="/"
+              className="
+                group
+                flex items-center justify-center gap-2
+                px-6 py-4
+                rounded-xl
+                border border-[var(--border)]
+                bg-[var(--surface)]
+                text-sm sm:text-base font-medium
+                text-[var(--text-muted)]
+                hover:text-[var(--fg)]
+                hover:border-[var(--accent-1)]
+                transition-all
+                cursor-pointer select-none
+              "
+            >
+              <span>←</span>
+              <span>Back Home</span>
+            </Link>
           </div>
         </div>
       </section>

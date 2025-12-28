@@ -103,19 +103,21 @@ export default function About() {
               >
                 <div
                   className="
-                    relative mb-6 h-24 w-24 rounded-full
+                    relative z-10 mb-6 h-24 w-24 rounded-xl
                     flex items-center justify-center
-                    bg-[var(--surface)]
+                    bg-[var(--surface-strong)] backdrop-blur-sm
                     border border-[var(--border)]
-                    transition-all duration-300
+                    text-[var(--text-muted)]
+                    hover:text-[var(--fg)]
                     hover:border-[var(--accent-1)]
-                    hover:shadow-lg
+                    hover:bg-[var(--surface-strong)]
+                    transition-all duration-300
                   "
                   style={{
-                    boxShadow: '0 0 0 rgba(var(--accent-1-rgb), 0)',
+                    backgroundColor: 'color-mix(in srgb, var(--bg) 95%, var(--surface-strong))',
                   }}
                 >
-                  <Icon className="h-10 w-10 text-[var(--fg)]/70" />
+                  <Icon className="h-10 w-10" />
 
                   <span
                     className="
