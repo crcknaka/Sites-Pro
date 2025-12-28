@@ -34,8 +34,16 @@ export default async function WorkCase({
            LEFT — CONTENT
         ========================= */}
         <div>
+          {/* BACK TO PORTFOLIO LINK */}
+          <Link
+            href="/#portfolio"
+            className="inline-flex items-center gap-2 text-sm text-[var(--text-muted)] hover:text-[var(--fg)] transition-colors"
+          >
+            ← Back to portfolio
+          </Link>
+
           {/* META */}
-          <span className="text-xs uppercase tracking-widest text-[var(--text-subtle)]">
+          <span className="mt-10 block text-xs uppercase tracking-widest text-[var(--text-subtle)]">
             {project.category}
           </span>
 
