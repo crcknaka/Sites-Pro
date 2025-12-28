@@ -123,7 +123,7 @@ export const projects = [
     result: `
       A trustworthy and informative website that supports institutional goals.
     `,
-    image: '/projects/screenshots/institutdefrancais.jpg',
+    image: '/projects/screenshots/institut.jpg',
   },
 
   {
