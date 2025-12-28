@@ -180,10 +180,10 @@ body {
 ====================================================== */
 
 /* ======================================================
-   PERFORMANCE: DISABLE ANIMATIONS ON MOBILE
+   PERFORMANCE: DISABLE ANIMATIONS ON MOBILE & TABLETS
 ====================================================== */
-@media (max-width: 768px) {
-  /* Disable all keyframe animations on mobile for better performance */
+@media (max-width: 1024px) {
+  /* Disable all keyframe animations on mobile and tablets for better performance */
   * {
     animation-duration: 0s !important;
     animation-delay: 0s !important;

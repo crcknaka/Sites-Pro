@@ -14,9 +14,9 @@ export default function AnimatedBackground() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    // Detect mobile devices
+    // Detect mobile and tablet devices
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+      setIsMobile(window.innerWidth < 1024);
     };
     
     checkMobile();
@@ -24,7 +24,7 @@ export default function AnimatedBackground() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Disable animations on mobile or if user prefers reduced motion
+  // Disable animations on mobile/tablet or if user prefers reduced motion
   const shouldAnimate = !reduce && !isMobile;
 
   /* ---------------- mouse motion ---------------- */

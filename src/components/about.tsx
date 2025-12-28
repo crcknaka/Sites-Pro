@@ -39,6 +39,7 @@ export default function About() {
     <section
       id="about"
       className="
+        hidden md:block
         scroll-mt-24 relative
         py-20 sm:py-32 px-4 sm:px-6
         select-none
