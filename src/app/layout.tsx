@@ -1,5 +1,5 @@
 import './globals.css';
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 
 import Header from '@/components/header';
@@ -8,6 +8,13 @@ import ScrollToTop from '@/components/scroll-to-top';
 import AnimatedBackground from '@/components/animated-background';
 
 const inter = Inter({ subsets: ['latin'] });
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
 
 export const metadata: Metadata = {
   title: {
@@ -19,12 +26,6 @@ export const metadata: Metadata = {
   authors: [{ name: 'Sites Pro' }],
   creator: 'Sites Pro',
   metadataBase: new URL('https://sitespro.org'),
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 1,
-    userScalable: false,
-  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
