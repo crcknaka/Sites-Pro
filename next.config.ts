@@ -10,18 +10,18 @@ const nextConfig: NextConfig = {
             key: 'Content-Security-Policy',
             value: [
               "default-src 'self'",
-              // Scripts: allow self, Next.js dev mode, and Cloudflare Turnstile
-              "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://challenges.cloudflare.com",
+              // Scripts: allow self, Next.js dev mode, Cloudflare Turnstile, and Vercel
+              "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://challenges.cloudflare.com https://vercel.live https://*.vercel.live",
               // Styles: allow self, inline styles, Google Fonts, and Turnstile
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://challenges.cloudflare.com",
               // Fonts: allow self and Google Fonts
               "font-src 'self' data: https://fonts.gstatic.com",
               // Images: allow all HTTPS, data URIs, and self
               "img-src 'self' data: https:",
-              // Connect: allow self and Turnstile API
-              "connect-src 'self' https://challenges.cloudflare.com",
-              // Frames: allow Turnstile iframe
-              "frame-src https://challenges.cloudflare.com",
+              // Connect: allow self, Turnstile API, and Vercel
+              "connect-src 'self' https://challenges.cloudflare.com https://vercel.live https://*.vercel.live wss://*.pusher.com",
+              // Frames: allow Turnstile iframe and Vercel
+              "frame-src https://challenges.cloudflare.com https://vercel.live",
               // Block objects and restrict base URI
               "object-src 'none'",
               "base-uri 'self'",
