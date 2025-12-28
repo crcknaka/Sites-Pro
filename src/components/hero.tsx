@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import Image from 'next/image';
-import { Linkedin, Facebook, Send } from 'lucide-react';
+import { Linkedin, Send } from 'lucide-react';
 
 /* brand accents via CSS vars */
 const ACCENT_1 = 'var(--accent-1)';
@@ -157,11 +157,6 @@ export default function Hero() {
                 href: 'https://www.linkedin.com/company/sites-pro/',
                 label: 'Sites Pro on LinkedIn',
                 Icon: Linkedin,
-              },
-              {
-                href: 'https://www.facebook.com/ilja.kovalenko',
-                label: 'Ilja on Facebook',
-                Icon: Facebook,
               },
               {
                 href: 'https://t.me/IljaFinTech',

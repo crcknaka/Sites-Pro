@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { Linkedin, Facebook, Send } from 'lucide-react';
+import { Linkedin, Send } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -63,11 +63,6 @@ export default function Footer() {
               label="Sites Pro on LinkedIn"
             />
             <SocialLink
-              href="https://www.facebook.com/ilja.kovalenko"
-              icon={Facebook}
-              label="Ilja on Facebook"
-            />
-            <SocialLink
               href="https://t.me/IljaFinTech"
               icon={Send}
               label="IljaFinTech on Telegram"
@@ -76,7 +71,21 @@ export default function Footer() {
 
           {/* RIGHT */}
           <div className="text-sm text-[var(--text-subtle)] text-center md:text-right">
-            © 2025 Sites Pro. All rights reserved.
+            <div>© 2025 Sites Pro. All rights reserved.</div>
+            <div className="mt-2 flex flex-col md:flex-row gap-2 md:gap-4 justify-center md:justify-end">
+              <Link
+                href="/privacy"
+                className="text-xs text-[var(--text-muted)] hover:text-[var(--fg)] transition-colors underline"
+              >
+                Privacy Policy
+              </Link>
+              <Link
+                href="/legal"
+                className="text-xs text-[var(--text-muted)] hover:text-[var(--fg)] transition-colors underline"
+              >
+                Legal Notice
+              </Link>
+            </div>
           </div>
         </div>
       </div>
