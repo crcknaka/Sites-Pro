@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useTransition } from 'react';
 import { Turnstile } from '@marsidev/react-turnstile';
-import { Send, CheckCircle } from 'lucide-react';
+import { SendHorizontal, CheckCircle } from 'lucide-react';
 import { sendContactMessage } from './contact-actions';
 
 /* brand accent via CSS var */
@@ -165,8 +165,8 @@ export default function ContactForm() {
           </span>
         ) : (
           <>
-            Send message
-            <Send className="h-4 w-4" />
+            Send
+            <SendHorizontal className="h-4 w-4" />
           </>
         )}
       </button>

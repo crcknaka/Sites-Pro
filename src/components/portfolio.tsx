@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { projects } from '@/data/projects';
 import ProjectCard from '@/components/projectcard';
 
@@ -17,7 +17,30 @@ const CATEGORIES = [
 
 export default function Portfolio() {
   const [active, setActive] = useState<(typeof CATEGORIES)[number]>('All');
+  const [isMobile, setIsMobile] = useState(false);
   const [visibleCount, setVisibleCount] = useState(6);
+  const [isInitialized, setIsInitialized] = useState(false);
+
+  // Check if mobile on mount and resize
+  useEffect(() => {
+    const checkMobile = () => {
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+      
+      // Set initial count only once
+      if (!isInitialized) {
+        setVisibleCount(mobile ? 4 : 6);
+        setIsInitialized(true);
+      }
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, [isInitialized]);
+  
+  // Determine initial count based on screen size
+  const getInitialCount = () => (isMobile ? 4 : 6);
 
   const filteredProjects =
     active === 'All'
@@ -28,13 +51,14 @@ export default function Portfolio() {
   const hasMore = visibleCount < filteredProjects.length;
 
   const loadMore = () => {
-    setVisibleCount((prev) => prev + 6);
+    const increment = isMobile ? 4 : 6;
+    setVisibleCount((prev) => prev + increment);
   };
 
   // Reset visible count when filter changes
   const handleCategoryChange = (category: (typeof CATEGORIES)[number]) => {
     setActive(category);
-    setVisibleCount(6);
+    setVisibleCount(getInitialCount());
   };
 
   return (

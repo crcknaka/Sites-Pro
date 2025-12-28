@@ -110,7 +110,7 @@ export default function Services() {
             >
               <div
                 className="
-                  relative h-full min-h-[180px] sm:min-h-0 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8
+                  relative h-full min-h-[220px] sm:min-h-0 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8
                   bg-[var(--surface)]
                   border border-[var(--border)]
                   overflow-hidden
@@ -118,7 +118,7 @@ export default function Services() {
                   hover:-translate-y-0.5
                   hover:bg-[var(--surface-strong)]
                   hover:border-[color-mix(in_srgb,var(--accent-1)_25%,var(--border))]
-                  flex flex-col items-center justify-center sm:items-start sm:justify-start
+                  flex flex-col
                 "
               >
                 {/* Accent line */}
@@ -135,16 +135,16 @@ export default function Services() {
                 />
 
                 {/* INFOGRAPHIC */}
-                <div className="mt-4 sm:mt-0 mb-5 sm:mb-8 md:mb-10 flex h-24 sm:h-24 md:h-28 items-center justify-center lg:animate-[slow-float_6s_ease-in-out_infinite]">
+                <div className="mb-6 sm:mb-8 md:mb-10 flex h-28 sm:h-28 md:h-32 items-center justify-center lg:animate-[slow-float_6s_ease-in-out_infinite]">
                   <ServiceInfographic type={service.type} />
                 </div>
 
                 {/* TEXT */}
-                <h3 className="text-center sm:text-left text-base sm:text-lg md:text-xl font-semibold w-full">
+                <h3 className="text-base sm:text-lg md:text-xl font-semibold mb-2 sm:mb-3">
                   {service.title}
                 </h3>
 
-                <p className="hidden sm:block mt-2 sm:mt-3 md:mt-4 text-xs sm:text-sm leading-relaxed text-[var(--text-muted)]">
+                <p className="text-xs sm:text-sm leading-relaxed text-[var(--text-muted)] line-clamp-3 sm:line-clamp-none">
                   {service.description}
                 </p>
               </div>

@@ -1,37 +1,12 @@
 'use client';
 
-import { useEffect } from 'react';
 import { Linkedin, Send } from 'lucide-react';
-import { scrollToSection } from '@/utils/scroll';
 
 /* brand accents via CSS vars */
 const ACCENT_1 = 'var(--accent-1)';
 const ACCENT_2 = 'var(--accent-2)';
 
 export default function Hero() {
-  /* -------------------------------------------------------
-    scroll target from hash in URL
-  ------------------------------------------------------- */
-  useEffect(() => {
-    const handleHashScroll = () => {
-      const hash = window.location.hash.slice(1);
-      if (hash) {
-        scrollToSection(hash);
-      }
-    };
-
-    // Handle hash on mount with delay to ensure all components are rendered
-    const initialScrollTimer = setTimeout(() => {
-      handleHashScroll();
-    }, 300);
-
-    // Handle hash changes (e.g., browser back/forward)
-    window.addEventListener('hashchange', handleHashScroll);
-    return () => {
-      clearTimeout(initialScrollTimer);
-      window.removeEventListener('hashchange', handleHashScroll);
-    };
-  }, []);
 
   return (
     <section
@@ -73,8 +48,8 @@ export default function Hero() {
 
         {/* CTA BUTTONS */}
         <div className="mt-8 sm:mt-12 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 px-4">
-          <button
-            onClick={() => scrollToSection('contact')}
+          <a
+            href="#contact"
             className="
               w-full sm:w-auto
               cursor-pointer inline-flex items-center justify-center gap-2 sm:gap-3
@@ -84,11 +59,11 @@ export default function Hero() {
             "
             style={{ background: 'var(--accent-1)' }}
           >
-            Get in Touch <span aria-hidden>→</span>
-          </button>
+            Get in Touch 
+          </a>
 
-          <button
-            onClick={() => scrollToSection('services')}
+          <a
+            href="#services"
             className="
               w-full sm:w-auto
               cursor-pointer inline-flex items-center justify-center
@@ -101,7 +76,7 @@ export default function Hero() {
             "
           >
             Explore Services
-          </button>
+          </a>
         </div>
 
         {/* SOCIAL */}

@@ -72,29 +72,13 @@ export default function About() {
             success first. Our proven process ensures exceptional results every
             time.
           </p>
-
-          {/* READ MORE */}
-          <div className="mt-8">
-            <Link
-              href="/about"
-              className="
-                group inline-flex items-center gap-2
-                text-sm font-medium
-                text-[var(--accent-1)]
-                cursor-pointer
-              "
-            >
-              Read more
-              <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </Link>
-          </div>
         </div>
 
         {/* STEPS - hidden on mobile, visible on desktop */}
-        <div className="hidden md:block relative mt-24 grid grid-cols-1 gap-12 md:grid-cols-3">
+        <div className="hidden md:grid relative mt-24 grid-cols-3 gap-8 lg:gap-12">
           {/* connector line */}
           <div
-            className="absolute top-12 left-[10%] right-[10%] hidden h-px md:block"
+            className="absolute top-12 left-[10%] right-[10%] h-px"
             style={{
               background: `
                 linear-gradient(
@@ -115,15 +99,21 @@ export default function About() {
             return (
               <div
                 key={step.step}
-                className="relative px-6 text-center"
+                className="relative flex flex-col items-center text-center px-4"
               >
                 <div
                   className="
-                    relative mx-auto mb-8 h-24 w-24 rounded-full
+                    relative mb-6 h-24 w-24 rounded-full
                     flex items-center justify-center
                     bg-[var(--surface)]
                     border border-[var(--border)]
+                    transition-all duration-300
+                    hover:border-[var(--accent-1)]
+                    hover:shadow-lg
                   "
+                  style={{
+                    boxShadow: '0 0 0 rgba(var(--accent-1-rgb), 0)',
+                  }}
                 >
                   <Icon className="h-10 w-10 text-[var(--fg)]/70" />
 
@@ -132,6 +122,7 @@ export default function About() {
                       absolute -top-2 -right-2 h-8 w-8 rounded-full
                       flex items-center justify-center
                       text-sm font-semibold text-black
+                      shadow-lg
                     "
                     style={{ background: ACCENT_1 }}
                   >
@@ -139,16 +130,32 @@ export default function About() {
                   </span>
                 </div>
 
-                <h3 className="text-xl font-semibold">
+                <h3 className="text-xl font-semibold mb-3">
                   {step.title}
                 </h3>
 
-                <p className="mt-4 text-sm leading-relaxed text-[var(--text-muted)]">
+                <p className="text-sm leading-relaxed text-[var(--text-muted)] max-w-sm">
                   {step.description}
                 </p>
               </div>
             );
           })}
+        </div>
+
+        {/* READ MORE */}
+        <div className="mt-12 text-center">
+          <Link
+            href="/about"
+            className="
+              group inline-flex items-center gap-2
+              text-sm font-medium
+              text-[var(--accent-1)]
+              cursor-pointer
+            "
+          >
+            Read more
+            <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </Link>
         </div>
       </div>
     </section>

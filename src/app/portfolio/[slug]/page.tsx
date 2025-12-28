@@ -124,9 +124,38 @@ export default async function WorkCase({
       </section>
 
       {/* =========================
+         CTA SECTION
+      ========================= */}
+      <div className="mt-32 text-center">
+        <div className="mx-auto max-w-2xl">
+          <h3 className="text-2xl sm:text-3xl font-semibold mb-4">
+            Want a similar project?
+          </h3>
+          <p className="text-[var(--text-muted)] mb-8">
+            Let's discuss how we can bring your vision to life with the same quality and attention to detail.
+          </p>
+          <Link
+            href="/#contact"
+            className="
+              inline-flex items-center justify-center gap-2
+              rounded-2xl px-8 py-4
+              text-sm font-medium text-black
+              transition-all duration-300
+              hover:opacity-90 hover:scale-105
+              active:scale-95
+            "
+            style={{ background: 'var(--accent-1)' }}
+          >
+            Get in Touch
+           
+          </Link>
+        </div>
+      </div>
+
+      {/* =========================
          PREV / NEXT
       ========================= */}
-      <div className="mt-32 flex items-center justify-between gap-6 border-t border-[var(--border)] pt-8">
+      <div className="mt-24 flex items-center justify-between gap-6 border-t border-[var(--border)] pt-8">
         {prev ? (
           <Link
             href={`/portfolio/${prev.slug}`}

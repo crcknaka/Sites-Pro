@@ -3,10 +3,9 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import { ThemeToggle } from '@/components/theme/theme-toggle';
-import { scrollToSection } from '@/utils/scroll';
 
 /* brand accent */
 const ACCENT = 'var(--accent-1)';
@@ -33,7 +32,6 @@ const UNDERLINE_PADDING = 0.32;
 
 export default function Header() {
   const pathname = usePathname();
-  const router = useRouter();
 
   const isHome = pathname === '/';
   const isAboutPage = pathname === '/about';
@@ -52,24 +50,6 @@ export default function Header() {
   });
 
   const [, force] = useState(0);
-
-  const onNavClick = (item: NavItem) => {
-    setOpen(false);
-
-    if (item.type === 'page') {
-      router.push(item.href);
-      return;
-    }
-
-    if (isHome) {
-      // Update URL hash and scroll to section
-      window.history.pushState(null, '', `#${item.target}`);
-      scrollToSection(item.target);
-    } else {
-      // Navigate to home with hash
-      router.push(`/#${item.target}`);
-    }
-  };
 
   /* scroll spy */
   useEffect(() => {
@@ -233,15 +213,16 @@ export default function Header() {
           <div ref={navRef} className="relative hidden items-center gap-8 text-sm md:flex">
             {navItems.map((item) => {
               const key = item.type === 'section' ? item.target : item.href;
+              const href = item.type === 'section' ? `#${item.target}` : item.href;
 
               const isActive =
                 item.type === 'section' ? active === item.target : pathname === item.href;
 
               return (
-                <button
+                <a
                   key={item.label}
                   data-key={key}
-                  onClick={() => onNavClick(item)}
+                  href={href}
                   className={`
                     cursor-pointer select-none
                     transition-colors transition-transform
@@ -254,7 +235,7 @@ export default function Header() {
                   `}
                 >
                   <span>{item.label}</span>
-                </button>
+                </a>
               );
             })}
 
@@ -274,14 +255,8 @@ export default function Header() {
           <div className="hidden md:flex items-center gap-4">
             <ThemeToggle />
 
-            <button
-              onClick={() =>
-                onNavClick({
-                  label: 'Contact',
-                  type: 'section',
-                  target: 'contact',
-                })
-              }
+            <a
+              href="#contact"
               className="
                 cursor-pointer select-none
                 rounded-lg px-4 py-2 text-sm font-medium
@@ -291,7 +266,7 @@ export default function Header() {
               style={{ background: ACCENT }}
             >
               Get Started
-            </button>
+            </a>
           </div>
 
           {/* MOBILE */}
@@ -338,13 +313,15 @@ export default function Header() {
           <ThemeToggle />
 
           {navItems.map((item) => {
+            const href = item.type === 'section' ? `#${item.target}` : item.href;
             const isActive =
               item.type === 'section' ? active === item.target : pathname === item.href;
 
             return (
-              <button
+              <a
                 key={item.label}
-                onClick={() => onNavClick(item)}
+                href={href}
+                onClick={() => setOpen(false)}
                 className={`
                   w-full text-right
                   cursor-pointer select-none
@@ -357,7 +334,7 @@ export default function Header() {
                 style={isActive ? { color: ACCENT } : undefined}
               >
                 {item.label}
-              </button>
+              </a>
             );
           })}
         </nav>
