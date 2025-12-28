@@ -253,139 +253,101 @@ export default function AIPage() {
 }
 
 /* ======================================================
-   HERO INFOGRAPHIC — FIXED, PERFECT GEOMETRY
+   HERO INFOGRAPHIC — AI Neural Network
 ====================================================== */
 
 function AIHeroInfographic() {
-  const size = 320;
-  const center = size / 2;
-  const radius = 120;
-
-  const nodes = [
-    { icon: MessageSquare, id: 'chat' },
-    { icon: Workflow, id: 'workflow' },
-    { icon: Eye, id: 'vision' },
-    { icon: Database, id: 'data' },
-    { icon: Sparkles, id: 'gen' },
-    { icon: Brain, id: 'brain' },
-  ];
-
   return (
-    <div className="relative w-[320px] h-[320px] flex items-center justify-center">
-      {/* Ambient */}
+    <div className="relative w-[320px] h-[320px] flex items-center justify-center group">
+      {/* Glow effect */}
       <div
-        className="absolute inset-0 -z-10 blur-xl opacity-60 pointer-events-none"
+        className="absolute -inset-8 rounded-3xl blur-3xl opacity-40 group-hover:opacity-60 transition-opacity duration-700 -z-10"
         style={{
-          background: `radial-gradient(circle at 65% 35%, ${ACCENT_1}22 0%, transparent 70%), radial-gradient(circle at 30% 70%, ${ACCENT_2}22 0%, transparent 60%)`,
+          background: `radial-gradient(circle at 50% 50%, ${ACCENT_1}40, ${ACCENT_2}30, transparent)`,
         }}
       />
 
-      {/* Container with transparent background */}
-      <div className="relative w-[280px] h-[280px] rounded-2xl bg-[var(--surface)]">
-        <div className="relative w-full h-full group select-none" style={{ userSelect: 'none' }}>
-          {/* SVG: lines + rotating ring */}
-          <svg
-            className="absolute inset-0 w-full h-full pointer-events-none select-none"
-            viewBox={`0 0 ${size} ${size}`}
-            style={{ userSelect: 'none' }}
+      {/* Container */}
+      <div
+        className="relative w-[300px] h-[280px] rounded-2xl border border-[var(--border)] overflow-hidden shadow-2xl backdrop-blur-sm transition-all duration-500 group-hover:scale-[1.02]"
+        style={{
+          background: 'color-mix(in srgb, var(--surface-strong) 95%, transparent)',
+        }}
+      >
+        {/* Central Brain Node */}
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+          <div
+            className="h-20 w-20 rounded-2xl flex items-center justify-center animate-pulse-slow transition-all duration-300 hover:scale-110 cursor-pointer border backdrop-blur-sm"
+            style={{
+              background: `linear-gradient(135deg, ${ACCENT_1}, ${ACCENT_2})`,
+              borderColor: `color-mix(in srgb, white 20%, transparent)`,
+              boxShadow: `0 0 40px ${ACCENT_1}60`,
+            }}
           >
-            {/* rotating outer ring */}
-            <circle
-              cx={center}
-              cy={center}
-              r={radius}
-              fill="none"
-              stroke="var(--accent-1)"
-              strokeOpacity="0.25"
-              strokeDasharray="6 6"
-              className="origin-center animate-orbit"
-            />
+            <Brain size={40} color="white" />
+          </div>
+        </div>
 
-            {/* connection lines */}
-            {nodes.map((_, i) => {
-              const angle = (i * 2 * Math.PI) / nodes.length;
-              const x = center + radius * Math.cos(angle);
-              const y = center + radius * Math.sin(angle);
+        {/* Neural Connection Nodes - 6 around the center */}
+        {[0, 60, 120, 180, 240, 300].map((deg, i) => {
+          const radius = 100;
+          const angleRad = (deg * Math.PI) / 180;
+          const x = 150 + radius * Math.cos(angleRad);
+          const y = 140 + radius * Math.sin(angleRad);
 
-              return (
+          // Calculate line start point (from edge of center circle)
+          const centerRadius = 50; // half of h-20 w-20 (80px / 2 = 40px) + some padding
+          const lineStartX = 150 + centerRadius * Math.cos(angleRad);
+          const lineStartY = 140 + centerRadius * Math.sin(angleRad);
+
+          // Calculate line end point (to edge of outer node)
+          const nodeRadius = 24; // half of h-12 w-12 (48px / 2 = 24px)
+          const lineEndX = 150 + (radius - nodeRadius) * Math.cos(angleRad);
+          const lineEndY = 140 + (radius - nodeRadius) * Math.sin(angleRad);
+
+          const icons = [MessageSquare, Workflow, Eye, Database, Sparkles, Brain];
+          const Icon = icons[i];
+
+          return (
+            <div key={deg}>
+              {/* Connection line - shortened to not overlap with nodes */}
+              <svg
+                className="absolute inset-0 pointer-events-none"
+                style={{ width: '100%', height: '100%' }}
+              >
                 <line
-                  key={i}
-                  x1={center}
-                  y1={center}
-                  x2={x}
-                  y2={y}
-                  stroke="var(--accent-1)"
-                  strokeOpacity="0.25"
+                  x1={lineStartX}
+                  y1={lineStartY}
+                  x2={lineEndX}
+                  y2={lineEndY}
+                  stroke={i % 2 === 0 ? ACCENT_1 : ACCENT_2}
+                  strokeOpacity="0.3"
                   strokeWidth="1"
-                  className="transition-opacity duration-300 group-hover:stroke-opacity-40"
+                  strokeDasharray="4 4"
+                  className="transition-all duration-500"
                 />
-              );
-            })}
-          </svg>
+              </svg>
 
-          {/* CENTER CORE */}
-          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 select-none">
-            <div className="relative select-none">
-              <div className="absolute inset-0 rounded-2xl bg-[var(--accent-1)]/30 blur-xl animate-pulse-slow select-none" />
+              {/* Node */}
               <div
-                className="
-                  relative h-20 w-20 rounded-2xl
-                  flex items-center justify-center
-                  border
-                  select-none
-                "
+                className="absolute w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-125 cursor-pointer z-20 border backdrop-blur-sm"
                 style={{
-                  borderColor:
-                    'color-mix(in srgb, var(--accent-1) 50%, transparent)',
-                  backgroundImage: `linear-gradient(135deg, ${ACCENT_1}, ${ACCENT_2})`,
-                  userSelect: 'none',
+                  left: `${x - 24}px`,
+                  top: `${y - 24}px`,
+                  background: i % 2 === 0
+                    ? `${ACCENT_1}20`
+                    : `${ACCENT_2}20`,
+                  borderColor: i % 2 === 0 
+                    ? `color-mix(in srgb, ${ACCENT_1} 40%, transparent)` 
+                    : `color-mix(in srgb, ${ACCENT_2} 40%, transparent)`,
+                  boxShadow: `0 4px 12px ${i % 2 === 0 ? ACCENT_1 : ACCENT_2}40`,
                 }}
               >
-                <Brain size={36} color="white" />
+                <Icon size={20} style={{ color: i % 2 === 0 ? ACCENT_1 : ACCENT_2 }} />
               </div>
             </div>
-          </div>
-
-          {/* ORBITING NODES */}
-          {nodes.map((node, i) => {
-            const angle = (i * 360) / nodes.length;
-
-            return (
-              <div
-                key={node.id}
-                className="absolute left-1/2 top-1/2 select-none"
-                style={{
-                  transform: `
-                    translate(-50%, -50%)
-                    rotate(${angle}deg)
-                    translate(${radius}px)
-                  `,
-                  userSelect: 'none',
-                }}
-              >
-                <div
-                  className="
-                    h-10 w-10
-                    rounded-xl
-                    flex items-center justify-center
-                    border
-                    bg-[var(--surface)]
-                    transition-all duration-300
-                    hover:scale-110
-                    select-none
-                  "
-                  style={{
-                    borderColor:
-                      'color-mix(in srgb, var(--accent-1) 30%, var(--border))',
-                    userSelect: 'none',
-                  }}
-                >
-                  <node.icon size={16} style={{ color: ACCENT_1 }} />
-                </div>
-              </div>
-            );
-          })}
-        </div>
+          );
+        })}
       </div>
     </div>
   );

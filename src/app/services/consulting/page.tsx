@@ -6,7 +6,7 @@ import {
   Code,
   Brain,
   Globe,
-  Lightbulb,
+  HelpCircle,
   BarChart3,
   ShieldCheck,
   Zap,
@@ -51,11 +51,11 @@ const consultingAreas = [
 ];
 
 const additionalServices = [
-  { icon: Lightbulb, label: 'Technical strategy & planning' },
+  { icon: Target, label: 'Technical strategy & planning' },
   { icon: BarChart3, label: 'Architecture & system design' },
   { icon: ShieldCheck, label: 'Security & compliance review' },
   { icon: Zap, label: 'Performance optimization' },
-  { icon: Target, label: 'Technology stack selection' },
+  { icon: Code, label: 'Technology stack selection' },
   { icon: Users, label: 'Team guidance & mentoring' },
   { icon: FileCheck, label: 'Code review & audits' },
   { icon: TrendingUp, label: 'Scalability planning' },
@@ -264,112 +264,118 @@ export default function ConsultingPage() {
 }
 
 /* ======================================================
-   HERO INFOGRAPHIC — Consulting theme with interconnected nodes
+   HERO INFOGRAPHIC — Consulting Network
 ====================================================== */
 
 function ConsultingHeroInfographic() {
   return (
-    <div className="relative w-[320px] h-[320px] flex items-center justify-center">
-      {/* Simple ambient background */}
+    <div className="relative w-[320px] h-[320px] flex items-center justify-center group">
+      {/* Glow effect */}
       <div
-        className="absolute inset-0 -z-10 blur-xl opacity-60 pointer-events-none"
+        className="absolute -inset-8 rounded-3xl blur-3xl opacity-40 group-hover:opacity-60 transition-opacity duration-700 -z-10"
         style={{
-          background: `radial-gradient(circle at 65% 35%, ${ACCENT_1}22 0%, transparent 70%), radial-gradient(circle at 30% 70%, ${ACCENT_2}22 0%, transparent 60%)`,
+          background: `radial-gradient(circle at 50% 50%, ${ACCENT_1}40, ${ACCENT_2}30, transparent)`,
         }}
       />
 
-      {/* Container with transparent background */}
-      <div className="relative w-[280px] h-[280px] rounded-2xl bg-[var(--surface)]">
-        <div className="relative w-full h-full flex items-center justify-center select-none">
-          {/* Central hub with connecting lines */}
-          <div className="relative w-full h-full">
-        {/* Central circle */}
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+      {/* Container */}
+      <div
+        className="relative w-[300px] h-[280px] rounded-2xl border border-[var(--border)] overflow-hidden shadow-2xl backdrop-blur-sm transition-all duration-500 group-hover:scale-[1.02]"
+        style={{
+          background: 'color-mix(in srgb, var(--surface-strong) 95%, transparent)',
+        }}
+      >
+        {/* Central Question Node */}
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
           <div
-            className="
-              relative
-              w-24 h-24
-              rounded-2xl
-              border-2
-              flex items-center justify-center
-              bg-[var(--surface-strong)]
-            "
+            className="h-20 w-20 rounded-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 cursor-pointer border backdrop-blur-sm animate-slow-float"
             style={{
-              borderColor: `color-mix(in srgb, ${ACCENT_1} 50%, transparent)`,
-              boxShadow: `0 10px 38px -18px color-mix(in srgb, ${ACCENT_2} 35%, transparent)`,
+              borderColor: `color-mix(in srgb, white 20%, transparent)`,
+              boxShadow: `0 0 40px ${ACCENT_1}40`,
             }}
           >
-            <Lightbulb size={32} style={{ color: ACCENT_1 }} />
+            {/* Question mark text */}
+            <span className="text-5xl font-bold" style={{ color: 'var(--text)' }}>
+              ?
+            </span>
           </div>
         </div>
 
-        {/* Connecting lines and nodes */}
+        {/* Service Cards - 4 corners in simple layout */}
         {[
-          { icon: CreditCard, angle: 0, label: 'Payments' },
-          { icon: TrendingUp, angle: 60, label: 'Fintech' },
-          { icon: Globe, angle: 120, label: 'Web' },
-          { icon: Code, angle: 180, label: 'Apps' },
-          { icon: Brain, angle: 240, label: 'AI' },
-          { icon: FileCheck, angle: 300, label: 'Planning' },
+          { icon: CreditCard, label: 'Payments', position: 'top-4 left-4', colorType: 'accent2' },
+          { icon: Globe, label: 'Web & Apps', position: 'top-4 right-4', colorType: 'accent1' },
+          { icon: Brain, label: 'AI Solutions', position: 'bottom-4 left-4', colorType: 'gradient' },
+          { icon: FileCheck, label: 'Planning', position: 'bottom-4 right-4', colorType: 'accent2' },
         ].map((node, i) => {
-          const radius = 120;
-          const angleRad = (node.angle * Math.PI) / 180;
-          const x = Math.cos(angleRad) * radius;
-          const y = Math.sin(angleRad) * radius;
+          const Icon = node.icon;
+          
+          let bgStyle, borderColor, textColor, shadowColor;
+          
+          if (node.colorType === 'accent1') {
+            // Web & Apps - синий
+            bgStyle = `${ACCENT_1}20`;
+            borderColor = `color-mix(in srgb, ${ACCENT_1} 40%, transparent)`;
+            textColor = ACCENT_1;
+            shadowColor = `${ACCENT_1}30`;
+          } else if (node.colorType === 'accent2') {
+            // Payments, Planning - зелёный
+            bgStyle = `${ACCENT_2}20`;
+            borderColor = `color-mix(in srgb, ${ACCENT_2} 40%, transparent)`;
+            textColor = ACCENT_2;
+            shadowColor = `${ACCENT_2}30`;
+          } else {
+            // AI Solutions - градиент синий в зелёный с анимацией
+            bgStyle = `linear-gradient(135deg, ${ACCENT_1}30, ${ACCENT_2}30)`;
+            borderColor = `color-mix(in srgb, ${ACCENT_1} 40%, transparent)`;
+            textColor = ACCENT_1;
+            shadowColor = `${ACCENT_1}20, 0 6px 16px ${ACCENT_2}20`;
+          }
 
           return (
-            <div key={i} className="absolute left-1/2 top-1/2">
-              {/* Line */}
-              <svg
-                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-                width="240"
-                height="240"
-                style={{
-                  transform: 'translate(-50%, -50%)',
-                }}
-              >
-                <line
-                  x1="120"
-                  y1="120"
-                  x2={120 + x}
-                  y2={120 + y}
-                  stroke={ACCENT_1}
-                  strokeOpacity="0.2"
-                  strokeWidth="1"
-                />
-              </svg>
-
-              {/* Node */}
+            <div
+              key={i}
+              className={`absolute ${node.position} group/node`}
+            >
+              {/* Card */}
               <div
-                className="absolute"
+                className={`w-20 h-16 rounded-xl flex flex-col items-center justify-center gap-1 transition-all duration-300 hover:scale-110 cursor-pointer border backdrop-blur-sm ${
+                  node.colorType === 'gradient' ? 'animate-gradient-shift' : ''
+                }`}
                 style={{
-                  left: '50%',
-                  top: '50%',
-                  transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,
+                  background: bgStyle,
+                  backgroundSize: node.colorType === 'gradient' ? '200% 200%' : undefined,
+                  borderColor: borderColor,
+                  boxShadow: node.colorType === 'gradient' 
+                    ? `0 4px 12px ${shadowColor}`
+                    : `0 4px 12px ${shadowColor}`,
                 }}
               >
-                <div
-                  className="
-                    w-16 h-16
-                    rounded-xl
-                    border
-                    flex flex-col items-center justify-center
-                    bg-[var(--bg)]
-                    transition-all duration-300
-                    hover:scale-110
-                  "
-                  style={{
-                    borderColor: `color-mix(in srgb, ${ACCENT_1} 30%, var(--border))`,
-                  }}
-                >
-                  <node.icon size={20} style={{ color: ACCENT_1 }} />
-                </div>
+                <Icon size={20} style={{ color: textColor }} />
+                <span className="text-[9px] font-medium text-center px-1" style={{ color: textColor }}>
+                  {node.label}
+                </span>
               </div>
             </div>
           );
         })}
-          </div>
-        </div>
+
+        {/* Decorative connecting lines - shortened to not enter cards */}
+        <svg
+          className="absolute inset-0 pointer-events-none opacity-20"
+          style={{ width: '100%', height: '100%' }}
+        >
+          {/* Lines from center to corners, shortened to not overlap with boxes */}
+          {/* Top-left (Payments) - зелёный */}
+          <line x1="125" y1="115" x2="85" y2="70" stroke={ACCENT_2} strokeWidth="1" strokeOpacity="0.3" />
+          {/* Top-right (Web & Apps) - синий */}
+          <line x1="175" y1="115" x2="215" y2="70" stroke={ACCENT_1} strokeWidth="1" strokeOpacity="0.3" />
+          {/* Bottom-left (AI Solutions) - градиент эффект через два цвета */}
+          <line x1="125" y1="165" x2="85" y2="210" stroke={ACCENT_1} strokeWidth="1" strokeOpacity="0.2" />
+          <line x1="125" y1="165" x2="85" y2="210" stroke={ACCENT_2} strokeWidth="1" strokeOpacity="0.2" />
+          {/* Bottom-right (Planning) - зелёный */}
+          <line x1="175" y1="165" x2="215" y2="210" stroke={ACCENT_2} strokeWidth="1" strokeOpacity="0.3" />
+        </svg>
       </div>
     </div>
   );

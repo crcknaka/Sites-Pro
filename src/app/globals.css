@@ -259,6 +259,10 @@ body {
   }
 }
 
+.animate-gradient-shift {
+  animation: gradient-shift 6s ease infinite;
+}
+
 @keyframes particle-float {
   0%, 100% {
     transform: translateY(0) translateX(0);
