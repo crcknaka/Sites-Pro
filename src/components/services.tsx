@@ -154,7 +154,7 @@ export default function Services() {
 
         {/* PAYMENTS */}
         <div className="mt-20 text-center">
-          <p className="text-sm text-[var(--text-subtle)]">
+          <p className="text-sm text-[var(--text-muted)]">
             Flexible payment options for your convenience
           </p>
 

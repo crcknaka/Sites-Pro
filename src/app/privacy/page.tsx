@@ -26,7 +26,7 @@ export default function PrivacyPage() {
           Privacy Policy
         </h1>
 
-        <p className="mt-4 text-sm text-[var(--text-subtle)]">
+        <p className="mt-4 text-sm text-[var(--text-muted)]">
           Last updated: 28 December 2025
         </p>
 

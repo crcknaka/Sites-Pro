@@ -273,7 +273,11 @@ export default function Header() {
           </div>
 
           {/* MOBILE */}
-          <button onClick={() => setOpen(true)} className="cursor-pointer select-none md:hidden">
+          <button 
+            onClick={() => setOpen(true)} 
+            className="cursor-pointer select-none md:hidden"
+            aria-label="Open menu"
+          >
             <Menu className="h-6 w-6 text-[var(--fg)]" />
           </button>
         </div>
@@ -307,6 +311,7 @@ export default function Header() {
           <button
             onClick={() => setOpen(false)}
             className="cursor-pointer select-none active:scale-[0.96]"
+            aria-label="Close menu"
           >
             <X className="h-5 w-5 text-[var(--fg)]" />
           </button>

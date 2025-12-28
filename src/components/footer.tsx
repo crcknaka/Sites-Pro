@@ -70,7 +70,7 @@ export default function Footer() {
           </div>
 
           {/* RIGHT */}
-          <div className="text-sm text-[var(--text-subtle)] text-center md:text-right">
+          <div className="text-sm text-[var(--text-muted)] text-center md:text-right">
             <div>© 2025 Sites Pro. All rights reserved.</div>
             <div className="mt-2 flex flex-col md:flex-row gap-2 md:gap-4 justify-center md:justify-end">
               <Link

@@ -140,7 +140,7 @@ export default function ContactForm() {
 
       {/* Error */}
       {error && (
-        <p className="text-sm text-[var(--text-subtle)]">
+        <p className="text-sm text-[var(--text-muted)]">
           {error}
         </p>
       )}
@@ -183,7 +183,7 @@ const input = `
   px-4 py-3
   text-sm
   text-[var(--fg)]
-  placeholder:text-[var(--text-subtle)]
+  placeholder:text-[var(--text-muted)]
   focus:outline-none
   focus:border-[var(--accent-1)]
 `;

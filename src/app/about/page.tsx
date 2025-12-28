@@ -408,7 +408,7 @@ export default function AboutPage() {
             <ContactForm />
 
             {/* TRUST NOTE */}
-            <div className="mt-6 flex max-w-md items-start gap-3 text-xs text-[var(--text-subtle)]">
+            <div className="mt-6 flex max-w-md items-start gap-3 text-xs text-[var(--text-muted)]">
               <ShieldCheck
                 className="h-4 w-4 flex-shrink-0"
                 style={{ color: ACCENT_1 }}

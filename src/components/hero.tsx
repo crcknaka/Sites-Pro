@@ -85,7 +85,7 @@ export default function Hero() {
 
         {/* SOCIAL */}
         <div className="mt-10 sm:mt-16 flex flex-col items-center gap-3 sm:gap-4">
-          <span className="text-xs sm:text-sm text-[var(--text-subtle)]">
+          <span className="text-xs sm:text-sm text-[var(--text-muted)]">
             Connect with us:
           </span>
 

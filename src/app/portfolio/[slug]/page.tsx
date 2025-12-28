@@ -43,7 +43,7 @@ export default async function WorkCase({
           </Link>
 
           {/* META */}
-          <span className="mt-10 block text-xs uppercase tracking-widest text-[var(--text-subtle)]">
+          <span className="mt-10 block text-xs uppercase tracking-widest text-[var(--text-muted)]">
             {project.category}
           </span>
 
