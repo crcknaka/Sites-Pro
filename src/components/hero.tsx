@@ -51,7 +51,7 @@ export default function Hero() {
             }}
           >
             Digital
-          </span>
+          </span>{' '}
           <br className="hidden md:block" />
           Experiences
         </h1>

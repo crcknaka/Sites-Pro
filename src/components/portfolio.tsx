@@ -121,7 +121,7 @@ export default function Portfolio() {
 
 
         {/* GRID */}
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+        <div className="grid grid-cols-2 gap-4 sm:gap-6 md:gap-8 md:grid-cols-3">
           {displayedProjects.map((project) => (
             <ProjectCard
               key={project.slug}

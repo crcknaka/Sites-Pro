@@ -101,7 +101,7 @@ export default function Services() {
         </div>
 
         {/* CARDS */}
-        <div className="mt-20 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-20 grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-4">
           {services.map((service) => (
             <Link
               key={service.type}
@@ -110,7 +110,7 @@ export default function Services() {
             >
               <div
                 className="
-                  relative h-full rounded-3xl p-8
+                  relative h-full rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8
                   bg-[var(--surface)]
                   border border-[var(--border)]
                   overflow-hidden
@@ -134,16 +134,16 @@ export default function Services() {
                 />
 
                 {/* INFOGRAPHIC */}
-                <div className="mb-10 flex h-28 items-center justify-center animate-[slow-float_6s_ease-in-out_infinite]">
+                <div className="mb-6 sm:mb-8 md:mb-10 flex h-20 sm:h-24 md:h-28 items-center justify-center animate-[slow-float_6s_ease-in-out_infinite]">
                   <ServiceInfographic type={service.type} />
                 </div>
 
                 {/* TEXT */}
-                <h3 className="text-xl font-semibold">
+                <h3 className="text-base sm:text-lg md:text-xl font-semibold">
                   {service.title}
                 </h3>
 
-                <p className="mt-4 text-sm leading-relaxed text-[var(--text-muted)]">
+                <p className="mt-2 sm:mt-3 md:mt-4 text-xs sm:text-sm leading-relaxed text-[var(--text-muted)]">
                   {service.description}
                 </p>
               </div>

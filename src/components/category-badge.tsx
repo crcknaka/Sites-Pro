@@ -41,8 +41,8 @@ export function CategoryBadge({ category }: { category: Category }) {
     <span
       className={`
         inline-flex items-center
-        rounded-full px-3 py-1
-        text-xs font-medium tracking-wide
+        rounded-full px-2 sm:px-3 py-0.5 sm:py-1
+        text-[10px] sm:text-xs font-medium tracking-wide
         border
         ${style.bg}
         ${style.text}
