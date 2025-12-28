@@ -31,8 +31,14 @@ export function scrollToSection(id: string) {
     return true;
   };
 
-  // Try immediately and with short delays (simplified from 6 to 2 attempts)
-  performScroll();
-  setTimeout(() => performScroll(), 100);
+  // Try immediately
+  if (performScroll()) return;
+  
+  // Retry with delays for elements that may not be rendered yet
+  setTimeout(() => {
+    if (performScroll()) return;
+    // Final attempt for slower devices
+    setTimeout(() => performScroll(), 200);
+  }, 100);
 }
 

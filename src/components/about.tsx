@@ -39,7 +39,6 @@ export default function About() {
     <section
       id="about"
       className="
-        hidden md:block
         scroll-mt-24 relative
         py-20 sm:py-32 px-4 sm:px-6
         select-none
@@ -91,8 +90,8 @@ export default function About() {
           </div>
         </div>
 
-        {/* STEPS */}
-        <div className="relative mt-24 grid grid-cols-1 gap-12 md:grid-cols-3">
+        {/* STEPS - hidden on mobile, visible on desktop */}
+        <div className="hidden md:block relative mt-24 grid grid-cols-1 gap-12 md:grid-cols-3">
           {/* connector line */}
           <div
             className="absolute top-12 left-[10%] right-[10%] hidden h-px md:block"

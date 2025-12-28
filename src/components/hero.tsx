@@ -20,12 +20,17 @@ export default function Hero() {
       }
     };
 
-    // Handle hash on mount
-    handleHashScroll();
+    // Handle hash on mount with delay to ensure all components are rendered
+    const initialScrollTimer = setTimeout(() => {
+      handleHashScroll();
+    }, 300);
 
     // Handle hash changes (e.g., browser back/forward)
     window.addEventListener('hashchange', handleHashScroll);
-    return () => window.removeEventListener('hashchange', handleHashScroll);
+    return () => {
+      clearTimeout(initialScrollTimer);
+      window.removeEventListener('hashchange', handleHashScroll);
+    };
   }, []);
 
   return (
