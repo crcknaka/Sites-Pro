@@ -1,4 +1,12 @@
 import Link from 'next/link';
+import { 
+  CreditCard, 
+  Smartphone, 
+  Wallet, 
+  Building2, 
+  Coins, 
+  Bitcoin 
+} from 'lucide-react';
 
 /* brand accents via CSS vars */
 const ACCENT_1 = 'var(--accent-1)';
@@ -32,17 +40,17 @@ const services = [
 ];
 
 const payments = [
-  'Visa',
-  'Mastercard',
-  'Apple Pay',
-  'Google Pay',
-  'PayPal',
-  'SEPA',
-  'Bank Transfer',
-  'Wise',
-  'Revolut',
-  'Stripe',
-  'Crypto',
+  { name: 'Visa', icon: CreditCard },
+  { name: 'Mastercard', icon: CreditCard },
+  { name: 'Apple Pay', icon: Smartphone },
+  { name: 'Google Pay', icon: Smartphone },
+  { name: 'PayPal', icon: Wallet },
+  { name: 'SEPA', icon: Building2 },
+  { name: 'Bank Transfer', icon: Building2 },
+  { name: 'Wise', icon: Coins },
+  { name: 'Revolut', icon: Wallet },
+  { name: 'Stripe', icon: CreditCard },
+  { name: 'Crypto', icon: Bitcoin },
 ];
 
 export default function Services() {
@@ -150,32 +158,36 @@ export default function Services() {
           </p>
 
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            {payments.map((method) => (
-              <span
-                key={method}
-                className="
-                  inline-flex items-center
-                  rounded-full
-                  px-5 py-2
-                  text-sm
-                  bg-[var(--surface)]
-                  border border-[var(--border)]
-                  text-[var(--text-muted)]
-                  opacity-75
-                  transition-all duration-300
-                  cursor-default
-                  hover:opacity-100
-                  hover:text-[var(--fg)]
-                  hover:bg-[var(--surface-strong)]
-                  hover:border-[color-mix(in_srgb,var(--accent-1)_20%,var(--border))]
-                  hover:shadow-lg
-                  hover:shadow-[var(--accent-1)]/5
-                  hover:scale-105
-                "
-              >
-                {method}
-              </span>
-            ))}
+            {payments.map((method) => {
+              const Icon = method.icon;
+              return (
+                <span
+                  key={method.name}
+                  className="
+                    inline-flex items-center gap-2
+                    rounded-full
+                    px-5 py-2
+                    text-sm
+                    bg-[var(--surface)]
+                    border border-[var(--border)]
+                    text-[var(--text-muted)]
+                    opacity-75
+                    transition-all duration-300
+                    cursor-default
+                    hover:opacity-100
+                    hover:text-[var(--fg)]
+                    hover:bg-[var(--surface-strong)]
+                    hover:border-[color-mix(in_srgb,var(--accent-1)_20%,var(--border))]
+                    hover:shadow-lg
+                    hover:shadow-[var(--accent-1)]/5
+                    hover:scale-105
+                  "
+                >
+                  <Icon className="h-4 w-4" />
+                  {method.name}
+                </span>
+              );
+            })}
           </div>
         </div>
       </div>
