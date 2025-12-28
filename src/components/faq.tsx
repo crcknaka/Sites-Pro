@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ChevronDown } from 'lucide-react';
 
 /* brand accent via CSS var */
@@ -43,6 +43,29 @@ const faqs = [
 
 export default function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
+  const [visibleCount, setVisibleCount] = useState(4); // Desktop: 4, Mobile: 3
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Determine if mobile and set initial visible count
+  useEffect(() => {
+    const checkMobile = () => {
+      const mobile = window.innerWidth < 768; // Tailwind's 'md' breakpoint
+      setIsMobile(mobile);
+      setVisibleCount(mobile ? 3 : 4);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const handleLoadMore = () => {
+    const increment = isMobile ? 3 : 4;
+    setVisibleCount((prev) => Math.min(prev + increment, faqs.length));
+  };
+
+  const visibleFaqs = faqs.slice(0, visibleCount);
+  const hasMore = visibleCount < faqs.length;
 
   return (
     <section
@@ -81,7 +104,7 @@ export default function FAQ() {
 
         {/* LIST */}
         <div className="flex flex-col gap-3">
-          {faqs.map((item, i) => {
+          {visibleFaqs.map((item, i) => {
             const active = open === i;
 
             return (
@@ -115,7 +138,7 @@ export default function FAQ() {
                     style={{
                       color: active
                         ? ACCENT
-                        : 'var(--text-subtle)',
+                        : 'var(--text-muted)',
                     }}
                   />
                 </button>
@@ -130,6 +153,29 @@ export default function FAQ() {
             );
           })}
         </div>
+
+        {/* MORE BUTTON */}
+        {hasMore && (
+          <div className="mt-8 flex justify-center">
+            <button
+              onClick={handleLoadMore}
+              className="
+                cursor-pointer select-none
+                rounded-xl px-6 py-3
+                text-sm font-medium
+                border border-[var(--border)]
+                bg-[var(--surface)]
+                text-[var(--text-muted)]
+                hover:text-[var(--fg)]
+                hover:border-[var(--accent-1)]
+                hover:bg-[var(--surface-strong)]
+                transition-all
+              "
+            >
+              More
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );

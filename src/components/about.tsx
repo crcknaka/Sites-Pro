@@ -145,14 +145,21 @@ export default function About() {
         </div>
 
         {/* READ MORE */}
-        <div className="mt-12 text-center">
+        <div className="mt-12 flex justify-center">
           <Link
             href="/about"
             className="
               group inline-flex items-center gap-2
+              cursor-pointer select-none
+              rounded-xl px-6 py-3
               text-sm font-medium
-              text-[var(--accent-1)]
-              cursor-pointer
+              border border-[var(--border)]
+              bg-[var(--surface)]
+              text-[var(--text-muted)]
+              hover:text-[var(--fg)]
+              hover:border-[var(--accent-1)]
+              hover:bg-[var(--surface-strong)]
+              transition-all
             "
           >
             Read more

@@ -303,7 +303,7 @@ export const projects = [
   {
     slug: 'imun',
     title: 'Imun',
-    category: 'Informational',
+    category: ['Informational', 'Finance'] as any,
     description: 'Advanced payment technology for modern financial operations.',
     challenge: `
       Create a professional, trustworthy online presence that communicates

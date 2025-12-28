@@ -13,6 +13,7 @@ const CATEGORIES = [
   'Catalogue',
   'E-Commerce',
   'Informational',
+  'Finance',
 ] as const;
 
 export default function Portfolio() {
@@ -45,7 +46,10 @@ export default function Portfolio() {
   const filteredProjects =
     active === 'All'
       ? projects
-      : projects.filter((p) => p.category === active);
+      : projects.filter((p) => {
+          const categories = Array.isArray(p.category) ? p.category : [p.category];
+          return categories.includes(active);
+        });
 
   const displayedProjects = filteredProjects.slice(0, visibleCount);
   const hasMore = visibleCount < filteredProjects.length;

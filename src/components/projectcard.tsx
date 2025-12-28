@@ -5,7 +5,7 @@ import { CategoryBadge } from '@/components/category-badge';
 type Props = {
   slug: string;
   title: string;
-  category: string;
+  category: string | string[];
   description: string;
 };
 

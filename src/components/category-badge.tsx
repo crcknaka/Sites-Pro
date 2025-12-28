@@ -2,7 +2,8 @@ type Category =
   | 'Apps'
   | 'Catalogue'
   | 'E-Commerce'
-  | 'Informational';
+  | 'Informational'
+  | 'Finance';
 
 const styles: Record<
   Category,
@@ -32,24 +33,37 @@ const styles: Record<
     text: 'text-[var(--fg-muted)]',
     border: 'border-[var(--border)]',
   },
+  Finance: {
+    bg: 'bg-[#1F4FD8]/10',
+    text: 'text-[#1F4FD8]',
+    border: 'border-[#1F4FD8]/30',
+  },
 };
 
-export function CategoryBadge({ category }: { category: Category }) {
-  const style = styles[category];
+export function CategoryBadge({ category }: { category: Category | Category[] }) {
+  const categories = Array.isArray(category) ? category : [category];
 
   return (
-    <span
-      className={`
-        inline-flex items-center
-        rounded-full px-2 sm:px-3 py-0.5 sm:py-1
-        text-[10px] sm:text-xs font-medium tracking-wide
-        border
-        ${style.bg}
-        ${style.text}
-        ${style.border}
-      `}
-    >
-      {category}
-    </span>
+    <div className="flex flex-wrap gap-2">
+      {categories.map((cat, idx) => {
+        const style = styles[cat];
+        return (
+          <span
+            key={idx}
+            className={`
+              inline-flex items-center
+              rounded-full px-2 sm:px-3 py-0.5 sm:py-1
+              text-[10px] sm:text-xs font-medium tracking-wide
+              border
+              ${style.bg}
+              ${style.text}
+              ${style.border}
+            `}
+          >
+            {cat}
+          </span>
+        );
+      })}
+    </div>
   );
 }
