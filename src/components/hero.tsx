@@ -12,16 +12,50 @@ const ACCENT_2 = 'var(--accent-2)';
   helper: scroll to section (with URL hash update)
 ------------------------------------------------------- */
 function scrollToSection(id: string) {
-  const el = document.getElementById(id);
-  if (!el) return;
-
-  // Update URL hash
-  window.history.pushState(null, '', `#${id}`);
+  console.log('Scrolling to:', id); // Debug log
   
-  el.scrollIntoView({
-    behavior: 'smooth',
-    block: 'start',
-  });
+  const performScroll = () => {
+    const el = document.getElementById(id);
+    if (!el) {
+      console.warn('Element not found:', id); // Debug log
+      return false;
+    }
+
+    console.log('Element found, scrolling...'); // Debug log
+    
+    // Update URL hash
+    window.history.pushState(null, '', `#${id}`);
+    
+    // Method 1: Native scrollIntoView (most reliable)
+    el.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
+
+    // Method 2: Also try manual scroll as backup
+    setTimeout(() => {
+      const headerOffset = 100;
+      const elementPosition = el.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth',
+      });
+    }, 50);
+
+    return true;
+  };
+
+  // Immediate attempt
+  performScroll();
+  
+  // Additional attempts with delays (aggressive retry strategy)
+  setTimeout(() => performScroll(), 10);
+  setTimeout(() => performScroll(), 50);
+  setTimeout(() => performScroll(), 100);
+  setTimeout(() => performScroll(), 200);
+  setTimeout(() => performScroll(), 400);
 }
 
 export default function Hero() {
@@ -33,20 +67,46 @@ export default function Hero() {
       const hash = window.location.hash.slice(1); // Remove # symbol
       if (!hash) return;
 
-      // Use a small delay to ensure DOM is ready
-      const scrollToHash = () => {
+      console.log('Hash detected:', hash); // Debug log
+
+      const performScroll = () => {
         const el = document.getElementById(hash);
-        if (el) {
-          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (!el) {
+          console.warn('Hash element not found:', hash); // Debug log
+          return false;
         }
+
+        console.log('Hash element found, scrolling...'); // Debug log
+
+        // Method 1: Native scrollIntoView
+        el.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+
+        // Method 2: Manual scroll as backup
+        setTimeout(() => {
+          const headerOffset = 100;
+          const elementPosition = el.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+          
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth',
+          });
+        }, 50);
+
+        return true;
       };
 
-      // Try immediately and also with a delay
-      requestAnimationFrame(() => {
-        scrollToHash();
-        // Retry after a short delay in case page is still loading
-        setTimeout(scrollToHash, 100);
-      });
+      // Multiple attempts
+      setTimeout(() => performScroll(), 0);
+      setTimeout(() => performScroll(), 10);
+      setTimeout(() => performScroll(), 50);
+      setTimeout(() => performScroll(), 100);
+      setTimeout(() => performScroll(), 200);
+      setTimeout(() => performScroll(), 400);
+      setTimeout(() => performScroll(), 600);
     };
 
     // Handle hash on mount

@@ -54,9 +54,47 @@ export default function Header() {
 
   /* helpers */
   const scrollToSection = (id: string) => {
-    const el = document.getElementById(id);
-    if (!el) return;
-    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    console.log('Scrolling to:', id); // Debug log
+    
+    const performScroll = () => {
+      const el = document.getElementById(id);
+      if (!el) {
+        console.warn('Element not found:', id); // Debug log
+        return false;
+      }
+
+      console.log('Element found, scrolling...'); // Debug log
+      
+      // Method 1: Native scrollIntoView (most reliable)
+      el.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+
+      // Method 2: Also try manual scroll as backup
+      setTimeout(() => {
+        const headerOffset = 100;
+        const elementPosition = el.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth',
+        });
+      }, 50);
+
+      return true;
+    };
+
+    // Immediate attempt
+    performScroll();
+    
+    // Additional attempts with delays (aggressive retry strategy)
+    setTimeout(() => performScroll(), 10);
+    setTimeout(() => performScroll(), 50);
+    setTimeout(() => performScroll(), 100);
+    setTimeout(() => performScroll(), 200);
+    setTimeout(() => performScroll(), 400);
   };
 
   const onNavClick = (item: NavItem) => {
