@@ -209,6 +209,44 @@ body {
     animation: none !important;
   }
 }
+
+/* ======================================================
+   PERFORMANCE: DISABLE ANIMATIONS ON MOBILE
+====================================================== */
+@media (max-width: 768px) {
+  /* Disable all keyframe animations on mobile for better performance */
+  * {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+    transition-duration: 0.2s !important;
+  }
+  
+  /* Keep only essential transitions */
+  button, a, input, select, textarea {
+    transition-duration: 0.15s !important;
+  }
+  
+  /* Disable specific heavy animations */
+  .animate-orbit,
+  .animate-pulse-slow,
+  .animate-slow-float,
+  [class*="animate-"] {
+    animation: none !important;
+  }
+}
+
+/* Also disable for reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+    transition-duration: 0.2s !important;
+  }
+  
+  [class*="animate-"] {
+    animation: none !important;
+  }
+}
 @keyframes slow-float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-8px); }
