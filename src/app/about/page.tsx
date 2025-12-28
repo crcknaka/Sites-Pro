@@ -363,8 +363,8 @@ export default function AboutPage() {
         </div>
 
         <div className="grid grid-cols-1 gap-16 lg:grid-cols-2">
-          {/* LEFT INFO */}
-          <div className="space-y-10">
+          {/* LEFT INFO (on desktop, second on mobile) */}
+          <div className="space-y-10 order-2 lg:order-1">
             <InfoItem
               icon={Mail}
               title="Email"
@@ -403,8 +403,8 @@ export default function AboutPage() {
             </blockquote>
           </div>
 
-          {/* RIGHT: FORM + TRUST */}
-          <div className="flex flex-col">
+          {/* RIGHT: FORM + TRUST (on desktop, first on mobile) */}
+          <div className="flex flex-col order-1 lg:order-2">
             <ContactForm />
 
             {/* TRUST NOTE */}

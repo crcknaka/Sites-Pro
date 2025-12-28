@@ -46,8 +46,8 @@ export default function Contact() {
 
         {/* CONTENT */}
         <div className="mt-20 grid grid-cols-1 gap-16 lg:grid-cols-2">
-          {/* LEFT INFO */}
-          <div className="space-y-10">
+          {/* LEFT INFO (on desktop, second on mobile) */}
+          <div className="space-y-10 order-2 lg:order-1">
             <InfoItem
               icon={Mail}
               title="Email"
@@ -73,9 +73,9 @@ export default function Contact() {
                 text-[var(--text-muted)]
               "
             >
-              “We love hearing about new projects and challenges. Whether you
-              have a detailed brief or just a rough idea, we’re here to help
-              shape your digital future.”
+              "We love hearing about new projects and challenges. Whether you
+              have a detailed brief or just a rough idea, we're here to help
+              shape your digital future."
 
               <div
                 className="mt-4 font-medium not-italic"
@@ -86,8 +86,8 @@ export default function Contact() {
             </blockquote>
           </div>
 
-          {/* RIGHT: FORM + TRUST */}
-          <div className="flex flex-col">
+          {/* RIGHT: FORM + TRUST (on desktop, first on mobile) */}
+          <div className="flex flex-col order-1 lg:order-2">
             <ContactForm />
 
             {/* TRUST NOTE */}
