@@ -1,8 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ExternalLink, LayoutGrid } from 'lucide-react';
 import { projects } from '@/data/projects';
+import { PortfolioLightbox } from '@/components/portfolio-lightbox';
+import { CategoryBadge } from '@/components/category-badge';
+
+const ACCENT_1 = 'var(--accent-1)';
+const ACCENT_2 = 'var(--accent-2)';
 
 export default async function WorkCase({
   params,
@@ -18,45 +23,44 @@ export default async function WorkCase({
   const project = projects[index];
   const prev = projects[index - 1] ?? null;
   const next = projects[index + 1] ?? null;
+  const images = ((project as any).images || [project.image]).filter(Boolean);
 
   return (
-    <main
-      className="
-        mx-auto max-w-7xl px-6 py-32
-        text-[var(--fg)]
-      "
-    >
+    <main className="mx-auto max-w-7xl px-6 pt-32 pb-24 text-[var(--fg)]">
       {/* =========================
-         TWO-COLUMN LAYOUT
+         TWO COLUMN LAYOUT
       ========================= */}
-      <section className="grid grid-cols-1 gap-20 md:grid-cols-2">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-20">
         {/* =========================
            LEFT — CONTENT
         ========================= */}
-        <div>
-          {/* BACK TO PORTFOLIO LINK */}
-          <Link
-            href="/#portfolio"
-            className="inline-flex items-center gap-2 text-sm text-[var(--text-muted)] hover:text-[var(--fg)] transition-colors"
-          >
-            ← Back to portfolio
-          </Link>
+        <div className="lg:col-span-2 space-y-12 lg:space-y-10">
+          {/* Category Badge */}
+          <div className="mb-0">
+            <CategoryBadge category={project.category as any} />
+          </div>
 
-          {/* META */}
-          <span className="mt-10 block text-xs uppercase tracking-widest text-[var(--text-muted)]">
-            {project.category}
-          </span>
-
-          <h1 className="mt-4 text-4xl font-semibold tracking-tight">
+          {/* Title */}
+          <h1 className="
+            mt-1
+            text-4xl
+            font-semibold 
+            tracking-tight
+            md:text-5xl
+          ">
             {project.title}
           </h1>
 
-          <p className="mt-6 text-lg leading-relaxed text-[var(--text-muted)]">
+          {/* Description */}
+          <p className="
+            mt-6
+            text-base sm:text-lg
+            leading-relaxed
+            text-[var(--text-muted)]
+            max-w-3xl
+          ">
             {project.description}
           </p>
-
-          <div className="my-16 h-px bg-[var(--border)]" />
-
           {/* CHALLENGE */}
           {project.challenge && (
             <Section title="Challenge">
@@ -70,9 +74,20 @@ export default async function WorkCase({
           {project.solution && (
             <Section title="Solution">
               {Array.isArray(project.solution) ? (
-                <ul className="space-y-3 text-[var(--text-muted)]">
-                  {project.solution.map((item: string) => (
-                    <li key={item}>— {item}</li>
+                <ul className="space-y-3 text-[var(--text-muted)] leading-relaxed">
+                  {project.solution.map((item: string, idx: number) => (
+                    <li key={idx} className="flex items-start gap-3">
+                      <span 
+                        className="
+                          mt-1.5
+                          flex-shrink-0
+                          w-1.5 h-1.5
+                          rounded-full
+                        "
+                        style={{ background: ACCENT_1 }}
+                      />
+                      <span className="leading-relaxed">{item}</span>
+                    </li>
                   ))}
                 </ul>
               ) : (
@@ -94,110 +109,172 @@ export default async function WorkCase({
         </div>
 
         {/* =========================
-           RIGHT — STICKY VISUAL
+           RIGHT — IMAGES (Opposite to badge on desktop)
         ========================= */}
-        {((project as any).images || project.image) && (
-          <div className="relative">
-            <div className="sticky top-32 space-y-6">
-              {((project as any).images || [project.image]).map((img: string, idx: number) => (
-                <div
-                  key={idx}
-                  className="
-                    overflow-hidden rounded-3xl
-                    border border-[var(--border)]
-                    bg-[var(--surface)]
-                  "
-                >
-                  <Image
-                    src={img}
-                    alt={`${project.title} preview ${idx + 1}`}
-                    width={1200}
-                    height={900}
-                    className="w-full h-auto"
-                    priority={idx === 0}
-                  />
-                </div>
-              ))}
-            </div>
+        {images.length > 0 && (
+          <div className="lg:col-span-1 lg:pt-0 pt-12">
+            <PortfolioLightbox images={images} projectTitle={project.title} />
           </div>
         )}
-      </section>
+      </div>
 
       {/* =========================
-         CTA SECTION
+         PREV / NEXT / BACK (Before CTA)
       ========================= */}
-      <div className="mt-32 text-center">
-        <div className="mx-auto max-w-2xl">
-          <h3 className="text-2xl sm:text-3xl font-semibold mb-4">
+      <div className="
+        mt-16
+        flex flex-col sm:flex-row 
+        items-stretch sm:items-center 
+        justify-between 
+        gap-4 sm:gap-6
+        border-t border-[var(--border)] 
+        pt-8
+      ">
+        {prev ? (
+          <Link
+            href={`/portfolio/${prev.slug}`}
+            className="
+              group
+              flex items-center gap-3
+              px-4 py-3 sm:px-6 sm:py-4
+              rounded-xl
+              border border-[var(--border)]
+              bg-[var(--surface)]
+              text-sm sm:text-base font-medium
+              text-[var(--text-muted)]
+              hover:text-[var(--fg)]
+              hover:border-[var(--accent-1)]
+              transition-all
+              cursor-pointer select-none
+              flex-1 sm:flex-initial
+              justify-center sm:justify-start
+            "
+          >
+            <ArrowLeft className="h-4 w-4 sm:h-5 sm:w-5 transition-transform group-hover:-translate-x-1" />
+            <span className="truncate">{prev.title}</span>
+          </Link>
+        ) : (
+          <div className="flex-1 sm:flex-initial" />
+        )}
+
+        {/* Back Link - Center */}
+        <Link
+          href="/#portfolio"
+          className="
+            group
+            flex items-center justify-center gap-2
+            px-4 py-3 sm:px-6 sm:py-4
+            rounded-xl
+            border border-[var(--border)]
+            bg-[var(--surface)]
+            text-sm sm:text-base font-medium
+            text-[var(--text-muted)]
+            hover:text-[var(--fg)]
+            hover:border-[var(--accent-1)]
+            transition-all
+            cursor-pointer select-none
+            flex-1 sm:flex-initial
+          "
+        >
+          <LayoutGrid className="h-4 w-4 sm:h-5 sm:w-5 transition-transform group-hover:scale-110" />
+          <span>Back to portfolio</span>
+        </Link>
+
+        {next ? (
+          <Link
+            href={`/portfolio/${next.slug}`}
+            className="
+              group
+              flex items-center gap-3
+              px-4 py-3 sm:px-6 sm:py-4
+              rounded-xl
+              border border-[var(--border)]
+              bg-[var(--surface)]
+              text-sm sm:text-base font-medium
+              text-[var(--text-muted)]
+              hover:text-[var(--fg)]
+              hover:border-[var(--accent-1)]
+              transition-all
+              cursor-pointer select-none
+              flex-1 sm:flex-initial
+              justify-center sm:justify-end
+            "
+          >
+            <span className="truncate">{next.title}</span>
+            <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5 transition-transform group-hover:translate-x-1" />
+          </Link>
+        ) : (
+          <div className="flex-1 sm:flex-initial" />
+        )}
+      </div>
+
+      {/* =========================
+         CTA SECTION (Modern design)
+      ========================= */}
+      <div className="
+        mt-20
+        relative
+        overflow-hidden
+        rounded-3xl
+        border border-[var(--border)]
+        bg-[var(--surface)]
+        p-12 lg:p-16
+      ">
+        {/* Background gradient */}
+        <div 
+          className="
+            absolute inset-0 
+            opacity-5
+            pointer-events-none
+          "
+          style={{
+            background: `linear-gradient(135deg, ${ACCENT_1}, ${ACCENT_2})`,
+          }}
+        />
+        
+        <div className="relative text-center max-w-2xl mx-auto">
+          <h3 className="
+            text-2xl sm:text-3xl
+            font-semibold 
+            mb-4
+          ">
             Want a similar project?
           </h3>
-          <p className="text-[var(--text-muted)] mb-8">
+          <p className="
+            text-base sm:text-lg
+            text-[var(--text-muted)] 
+            mb-8
+            leading-relaxed
+          ">
             Let's discuss how we can bring your vision to life with the same quality and attention to detail.
           </p>
           <Link
             href="/#contact"
             className="
               inline-flex items-center justify-center gap-2
-              rounded-2xl px-8 py-4
-              text-sm font-medium text-black
+              rounded-2xl 
+              px-8 py-4
+              text-sm sm:text-base font-medium 
+              text-black
               transition-all duration-300
               hover:opacity-90 hover:scale-105
               active:scale-95
+              shadow-lg
             "
-            style={{ background: 'var(--accent-1)' }}
+            style={{ background: ACCENT_1 }}
           >
             Get in Touch
-           
+            <ExternalLink className="h-4 w-4" />
           </Link>
         </div>
       </div>
 
-      {/* =========================
-         PREV / NEXT
-      ========================= */}
-      <div className="mt-24 flex items-center justify-between gap-6 border-t border-[var(--border)] pt-8">
-        {prev ? (
-          <Link
-            href={`/portfolio/${prev.slug}`}
-            className="
-              group flex items-center gap-2
-              text-sm font-medium
-              text-[var(--text-muted)]
-              hover:text-[var(--fg)]
-              cursor-pointer select-none
-            "
-          >
-            <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
-            {prev.title}
-          </Link>
-        ) : (
-          <div />
-        )}
-
-        {next ? (
-          <Link
-            href={`/portfolio/${next.slug}`}
-            className="
-              group flex items-center gap-2
-              text-sm font-medium
-              text-[var(--text-muted)]
-              hover:text-[var(--fg)]
-              cursor-pointer select-none
-            "
-          >
-            {next.title}
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-          </Link>
-        ) : (
-          <div />
-        )}
-      </div>
     </main>
   );
 }
 
 /* =========================
-   SECTION
+   SECTION (Modern design)
 ========================= */
 
 function Section({
@@ -208,11 +285,18 @@ function Section({
   children: React.ReactNode;
 }) {
   return (
-    <section className="mb-16 max-w-xl">
-      <h2 className="text-2xl font-semibold">
+    <section>
+      <h2 
+        className="
+          text-2xl
+          font-semibold
+          mb-4
+          md:text-3xl
+        "
+      >
         {title}
       </h2>
-      <div className="mt-4">
+      <div>
         {children}
       </div>
     </section>
