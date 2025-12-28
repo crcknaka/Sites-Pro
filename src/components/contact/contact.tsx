@@ -12,7 +12,7 @@ export default function Contact() {
     <section
       id="contact"
       className="
-        relative scroll-mt-24 py-32 px-6
+        relative scroll-mt-24 py-20 sm:py-32 px-4 sm:px-6
         select-none
       "
     >

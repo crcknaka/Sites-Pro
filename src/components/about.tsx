@@ -40,7 +40,7 @@ export default function About() {
       id="about"
       className="
         scroll-mt-24 relative
-        py-32 px-6
+        py-20 sm:py-32 px-4 sm:px-6
         select-none
         text-[var(--fg)]
       "

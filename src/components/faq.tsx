@@ -48,7 +48,7 @@ export default function FAQ() {
     <section
       id="faq"
       className="
-        scroll-mt-24 relative px-6 py-32 select-none
+        scroll-mt-24 relative px-4 sm:px-6 py-20 sm:py-32 select-none
       "
     >
       <div className="mx-auto max-w-4xl">

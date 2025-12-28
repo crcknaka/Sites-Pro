@@ -42,7 +42,7 @@ export default function Portfolio() {
       id="portfolio"
       className="
         scroll-mt-24 relative
-        px-6 py-32
+        px-4 sm:px-6 py-20 sm:py-32
         select-none
         text-[var(--fg)]
       "

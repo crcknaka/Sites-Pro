@@ -1,62 +1,12 @@
 'use client';
 
 import { useEffect } from 'react';
-import Image from 'next/image';
 import { Linkedin, Send } from 'lucide-react';
+import { scrollToSection } from '@/utils/scroll';
 
 /* brand accents via CSS vars */
 const ACCENT_1 = 'var(--accent-1)';
 const ACCENT_2 = 'var(--accent-2)';
-
-/* -------------------------------------------------------
-  helper: scroll to section (with URL hash update)
-------------------------------------------------------- */
-function scrollToSection(id: string) {
-  console.log('Scrolling to:', id); // Debug log
-  
-  const performScroll = () => {
-    const el = document.getElementById(id);
-    if (!el) {
-      console.warn('Element not found:', id); // Debug log
-      return false;
-    }
-
-    console.log('Element found, scrolling...'); // Debug log
-    
-    // Update URL hash
-    window.history.pushState(null, '', `#${id}`);
-    
-    // Method 1: Native scrollIntoView (most reliable)
-    el.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start',
-    });
-
-    // Method 2: Also try manual scroll as backup
-    setTimeout(() => {
-      const headerOffset = 100;
-      const elementPosition = el.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-      
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth',
-      });
-    }, 50);
-
-    return true;
-  };
-
-  // Immediate attempt
-  performScroll();
-  
-  // Additional attempts with delays (aggressive retry strategy)
-  setTimeout(() => performScroll(), 10);
-  setTimeout(() => performScroll(), 50);
-  setTimeout(() => performScroll(), 100);
-  setTimeout(() => performScroll(), 200);
-  setTimeout(() => performScroll(), 400);
-}
 
 export default function Hero() {
   /* -------------------------------------------------------
@@ -64,49 +14,10 @@ export default function Hero() {
   ------------------------------------------------------- */
   useEffect(() => {
     const handleHashScroll = () => {
-      const hash = window.location.hash.slice(1); // Remove # symbol
-      if (!hash) return;
-
-      console.log('Hash detected:', hash); // Debug log
-
-      const performScroll = () => {
-        const el = document.getElementById(hash);
-        if (!el) {
-          console.warn('Hash element not found:', hash); // Debug log
-          return false;
-        }
-
-        console.log('Hash element found, scrolling...'); // Debug log
-
-        // Method 1: Native scrollIntoView
-        el.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start',
-        });
-
-        // Method 2: Manual scroll as backup
-        setTimeout(() => {
-          const headerOffset = 100;
-          const elementPosition = el.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-          
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth',
-          });
-        }, 50);
-
-        return true;
-      };
-
-      // Multiple attempts
-      setTimeout(() => performScroll(), 0);
-      setTimeout(() => performScroll(), 10);
-      setTimeout(() => performScroll(), 50);
-      setTimeout(() => performScroll(), 100);
-      setTimeout(() => performScroll(), 200);
-      setTimeout(() => performScroll(), 400);
-      setTimeout(() => performScroll(), 600);
+      const hash = window.location.hash.slice(1);
+      if (hash) {
+        scrollToSection(hash);
+      }
     };
 
     // Handle hash on mount
@@ -121,38 +32,17 @@ export default function Hero() {
     <section
       id="home"
       className="
-        relative min-h-screen
+        relative min-h-[100dvh] sm:min-h-screen
         flex items-center justify-center
-        px-6 select-none
+        pt-24 sm:pt-28 pb-12
+        px-4 sm:px-6 select-none
         text-[var(--fg)]
       "
     >
       {/* CONTENT */}
-      <div className="relative z-10 max-w-5xl text-center">
-        {/* LOGO (theme-safe) */}
-        <div className="mb-10 flex justify-center">
-          <div className="relative h-[92px] w-[92px]">
-            <Image
-              src="/logo-dark.svg"
-              alt="Sites Pro"
-              width={92}
-              height={92}
-              className="logo-dark absolute inset-0"
-              priority
-            />
-            <Image
-              src="/logo-light.svg"
-              alt="Sites Pro"
-              width={92}
-              height={92}
-              className="logo-light absolute inset-0"
-              priority
-            />
-          </div>
-        </div>
-
+      <div className="relative z-10 max-w-5xl text-center w-full">
         {/* HEADING */}
-        <h1 className="text-5xl md:text-7xl font-semibold tracking-tight leading-tight">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-semibold tracking-tight leading-tight px-2">
           We Build{' '}
           <span
             className="bg-clip-text text-transparent"
@@ -167,22 +57,24 @@ export default function Hero() {
         </h1>
 
         {/* SUBHEADING */}
-        <p className="mt-8 text-lg md:text-xl max-w-3xl mx-auto text-[var(--text-muted)]">
+        <p className="mt-6 sm:mt-8 text-base sm:text-lg md:text-xl max-w-3xl mx-auto text-[var(--text-muted)] px-2">
           Websites, Applications & Media — crafted with precision and passion.
         </p>
 
         {/* CREDO */}
-        <p className="mt-4 text-base font-medium text-[var(--accent-1)]">
+        <p className="mt-3 sm:mt-4 text-sm sm:text-base font-medium text-[var(--accent-1)]">
           Digital Done Right.
         </p>
 
         {/* CTA BUTTONS */}
-        <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <div className="mt-8 sm:mt-12 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 px-4">
           <button
             onClick={() => scrollToSection('contact')}
             className="
-              cursor-pointer inline-flex items-center justify-center gap-3
-              rounded-2xl px-9 py-4 font-medium text-black
+              w-full sm:w-auto
+              cursor-pointer inline-flex items-center justify-center gap-2 sm:gap-3
+              rounded-2xl px-6 sm:px-9 py-3 sm:py-4 
+              text-sm sm:text-base font-medium text-black
               transition hover:opacity-95
             "
             style={{ background: 'var(--accent-1)' }}
@@ -193,8 +85,10 @@ export default function Hero() {
           <button
             onClick={() => scrollToSection('services')}
             className="
+              w-full sm:w-auto
               cursor-pointer inline-flex items-center justify-center
-              rounded-2xl px-9 py-4 font-medium
+              rounded-2xl px-6 sm:px-9 py-3 sm:py-4
+              text-sm sm:text-base font-medium
               border border-[var(--border)]
               bg-[var(--surface)]
               text-[var(--fg)]
@@ -206,8 +100,8 @@ export default function Hero() {
         </div>
 
         {/* SOCIAL */}
-        <div className="mt-16 flex flex-col items-center gap-4">
-          <span className="text-sm text-[var(--text-subtle)]">
+        <div className="mt-10 sm:mt-16 flex flex-col items-center gap-3 sm:gap-4">
+          <span className="text-xs sm:text-sm text-[var(--text-subtle)]">
             Connect with us:
           </span>
 

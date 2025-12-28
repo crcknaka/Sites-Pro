@@ -59,7 +59,7 @@ export default function Services() {
       id="services"
       className="
         scroll-mt-24 relative
-        py-32 px-6
+        py-20 sm:py-32 px-4 sm:px-6
         bg-transparent
         text-[var(--fg)]
         select-none
