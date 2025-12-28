@@ -31,6 +31,20 @@ const services = [
   },
 ];
 
+const payments = [
+  'Visa',
+  'Mastercard',
+  'Apple Pay',
+  'Google Pay',
+  'PayPal',
+  'SEPA',
+  'Bank Transfer',
+  'Wise',
+  'Revolut',
+  'Stripe',
+  'Crypto',
+];
+
 export default function Services() {
   return (
     <section
@@ -127,6 +141,42 @@ export default function Services() {
               </div>
             </Link>
           ))}
+        </div>
+
+        {/* PAYMENTS */}
+        <div className="mt-20 text-center">
+          <p className="text-sm text-[var(--text-subtle)]">
+            Flexible payment options for your convenience
+          </p>
+
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            {payments.map((method) => (
+              <span
+                key={method}
+                className="
+                  inline-flex items-center
+                  rounded-full
+                  px-5 py-2
+                  text-sm
+                  bg-[var(--surface)]
+                  border border-[var(--border)]
+                  text-[var(--text-muted)]
+                  opacity-75
+                  transition-all duration-300
+                  cursor-default
+                  hover:opacity-100
+                  hover:text-[var(--fg)]
+                  hover:bg-[var(--surface-strong)]
+                  hover:border-[color-mix(in_srgb,var(--accent-1)_20%,var(--border))]
+                  hover:shadow-lg
+                  hover:shadow-[var(--accent-1)]/5
+                  hover:scale-105
+                "
+              >
+                {method}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     </section>
