@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowLeft, ArrowRight, ExternalLink, LayoutGrid } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ExternalLink, LayoutGrid, Facebook, Instagram, Music, Linkedin, Youtube } from 'lucide-react';
 import { projects } from '@/data/projects';
 import { PortfolioLightbox } from '@/components/portfolio-lightbox';
 import { CategoryBadge } from '@/components/category-badge';
@@ -105,6 +105,144 @@ export default async function WorkCase({
                 {project.result}
               </p>
             </Section>
+          )}
+
+          {/* LINKS */}
+          {(project.link || (project as any).facebook || (project as any).instagram || (project as any).tiktok || (project as any).linkedin || (project as any).youtube) && (
+            <div className="flex flex-wrap items-center gap-4">
+              {project.link && (
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="
+                    inline-flex items-center gap-2
+                    px-4 py-2
+                    rounded-xl
+                    border border-[var(--border)]
+                    bg-[var(--surface)]
+                    text-sm font-medium
+                    text-[var(--text-muted)]
+                    hover:text-[var(--fg)]
+                    hover:border-[var(--accent-1)]
+                    transition-all
+                  "
+                >
+                  <ExternalLink className="h-4 w-4" />
+                  <span>Visit Website</span>
+                </a>
+              )}
+              {(project as any).facebook && (
+                <a
+                  href={(project as any).facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="
+                    inline-flex items-center gap-2
+                    px-4 py-2
+                    rounded-xl
+                    border border-[var(--border)]
+                    bg-[var(--surface)]
+                    text-sm font-medium
+                    text-[var(--text-muted)]
+                    hover:text-[var(--fg)]
+                    hover:border-[var(--accent-1)]
+                    transition-all
+                  "
+                >
+                  <Facebook className="h-4 w-4" />
+                  <span>Facebook</span>
+                </a>
+              )}
+              {(project as any).instagram && (
+                <a
+                  href={(project as any).instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="
+                    inline-flex items-center gap-2
+                    px-4 py-2
+                    rounded-xl
+                    border border-[var(--border)]
+                    bg-[var(--surface)]
+                    text-sm font-medium
+                    text-[var(--text-muted)]
+                    hover:text-[var(--fg)]
+                    hover:border-[var(--accent-1)]
+                    transition-all
+                  "
+                >
+                  <Instagram className="h-4 w-4" />
+                  <span>Instagram</span>
+                </a>
+              )}
+              {(project as any).tiktok && (
+                <a
+                  href={(project as any).tiktok}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="
+                    inline-flex items-center gap-2
+                    px-4 py-2
+                    rounded-xl
+                    border border-[var(--border)]
+                    bg-[var(--surface)]
+                    text-sm font-medium
+                    text-[var(--text-muted)]
+                    hover:text-[var(--fg)]
+                    hover:border-[var(--accent-1)]
+                    transition-all
+                  "
+                >
+                  <Music className="h-4 w-4" />
+                  <span>TikTok</span>
+                </a>
+              )}
+              {(project as any).linkedin && (
+                <a
+                  href={(project as any).linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="
+                    inline-flex items-center gap-2
+                    px-4 py-2
+                    rounded-xl
+                    border border-[var(--border)]
+                    bg-[var(--surface)]
+                    text-sm font-medium
+                    text-[var(--text-muted)]
+                    hover:text-[var(--fg)]
+                    hover:border-[var(--accent-1)]
+                    transition-all
+                  "
+                >
+                  <Linkedin className="h-4 w-4" />
+                  <span>LinkedIn</span>
+                </a>
+              )}
+              {(project as any).youtube && (
+                <a
+                  href={(project as any).youtube}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="
+                    inline-flex items-center gap-2
+                    px-4 py-2
+                    rounded-xl
+                    border border-[var(--border)]
+                    bg-[var(--surface)]
+                    text-sm font-medium
+                    text-[var(--text-muted)]
+                    hover:text-[var(--fg)]
+                    hover:border-[var(--accent-1)]
+                    transition-all
+                  "
+                >
+                  <Youtube className="h-4 w-4" />
+                  <span>YouTube</span>
+                </a>
+              )}
+            </div>
           )}
         </div>
 

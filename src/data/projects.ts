@@ -5,7 +5,7 @@ export const projects = [
     category: 'E-Commerce',
     description: 'Premium e-commerce experience focused on aesthetics and performance.',
     challenge: `
-      Create a refined online presence that reflects the brand’s premium
+      Create a refined online presence that reflects the brand's premium
       positioning while maintaining excellent performance and usability.
     `,
     solution: [
@@ -19,6 +19,10 @@ export const projects = [
       and supports long-term growth.
     `,
     image: '/projects/screenshots/lepicur.jpg',
+    link: 'https://lepicur.com/',
+    facebook: 'https://www.facebook.com/lepicur/',
+    instagram: 'https://www.instagram.com/lepicur/',
+    linkedin: 'https://www.linkedin.com/company/crystalboutique/',
   },
 
   {
@@ -41,6 +45,9 @@ export const projects = [
       and efficient.
     `,
     image: '/projects/screenshots/masunglasses.jpg',
+    link: 'https://masunglasses.eu/',
+    facebook: 'https://www.facebook.com/masunglasses.eu/',
+    instagram: 'https://www.instagram.com/masunglasses.eu/',
   },
 
   {
@@ -63,6 +70,7 @@ export const projects = [
       distracting from content.
     `,
     image: '/projects/screenshots/sunachates.jpg',
+    facebook: 'https://www.facebook.com/sunachateskennel/',
   },
 
   {
@@ -83,6 +91,9 @@ export const projects = [
       A conversion-oriented e-commerce site that remains friendly and easy to use.
     `,
     image: '/projects/screenshots/pets-pro.jpg',
+    link: 'https://pets-pro.eu/',
+    instagram: 'https://www.instagram.com/pets_pro.eu',
+    tiktok: 'https://www.tiktok.com/@petspro.eu',
   },
 
   {
@@ -104,6 +115,10 @@ export const projects = [
       A dynamic yet controlled layout suitable for frequently changing content.
     `,
     image: '/projects/screenshots/onairemotions.jpg',
+    link: 'https://onairemotions.com/',
+    facebook: 'https://www.facebook.com/onairemotion',
+    instagram: 'https://www.instagram.com/onairemotions/',
+    tiktok: 'https://www.tiktok.com/@onairemotions.com',
   },
 
   {
@@ -124,6 +139,10 @@ export const projects = [
       A trustworthy and informative website that supports institutional goals.
     `,
     image: '/projects/screenshots/institut.jpg',
+    link: 'https://institutdefrancais-nice.com/',
+    facebook: 'https://www.facebook.com/institutdefrancaisnice',
+    instagram: 'https://www.instagram.com/institutdefrancais_nice',
+    tiktok: 'https://www.tiktok.com/@institutdefrancais_nice',
   },
 
   {
@@ -145,6 +164,7 @@ export const projects = [
       and credibility.
     `,
     image: '/projects/screenshots/goldberg.jpg',
+    link: 'https://goldberg.lv/',
   },
 
   {
@@ -185,6 +205,9 @@ export const projects = [
       A niche platform that supports both discovery and community engagement.
     `,
     image: '/projects/screenshots/euc-one.jpg',
+    link: 'https://euc.one/',
+    facebook: 'https://www.facebook.com/euconeofficial',
+    instagram: 'https://www.instagram.com/euc.one',
   },
 
   {
@@ -205,6 +228,9 @@ export const projects = [
       A focused utility app that delivers value instantly without friction.
     `,
     image: '/projects/screenshots/euc-calculator.jpg',
+    link: 'https://euc.one/calculator/',
+    facebook: 'https://www.facebook.com/euconeofficial',
+    instagram: 'https://www.instagram.com/euc.one',
   },
 
   {
@@ -225,6 +251,8 @@ export const projects = [
       A robust e-commerce platform capable of handling scale and complexity.
     `,
     image: '/projects/screenshots/ekobaltika.jpg',
+    link: 'https://ekobaltika.lv/lv/',
+    facebook: 'https://www.facebook.com/ekobaltika.lv',
   },
 
   {
@@ -245,6 +273,11 @@ export const projects = [
       A visually expressive store that still performs as a solid sales channel.
     `,
     image: '/projects/screenshots/bullulaivas.jpg',
+    link: 'https://www.bullulaivas.lv/',
+    facebook: 'https://www.facebook.com/bullulaivas/',
+    instagram: 'https://www.instagram.com/bullu_laivas/',
+    tiktok: 'https://www.tiktok.com/@bullu_laivas',
+    youtube: 'https://www.youtube.com/channel/UCDurFuw59Rdw3_vcfk6ZJJw',
   },
 
   {
@@ -289,6 +322,7 @@ export const projects = [
       fintech capabilities and builds confidence with enterprise clients.
     `,
     image: '/projects/screenshots/imun.jpg',
+    link: 'https://imungate.eu/',
   },
 
   {
@@ -321,5 +355,8 @@ export const projects = [
       '/projects/screenshots/wellton2.png',
       '/projects/screenshots/wellton.jpg',
     ],
+    link: 'https://shop.wellton.com/',
+    facebook: 'https://www.facebook.com/welltonhotels/',
+    instagram: 'https://www.instagram.com/wellton_hotels/',
   },
 ];
