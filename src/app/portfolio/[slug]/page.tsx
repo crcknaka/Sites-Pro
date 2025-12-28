@@ -107,29 +107,29 @@ export default async function WorkCase({
             </Section>
           )}
 
-          {/* LINKS */}
+          {/* SOCIAL LINKS */}
           {(project.link || (project as any).facebook || (project as any).instagram || (project as any).tiktok || (project as any).linkedin || (project as any).youtube) && (
-            <div className="flex flex-wrap items-center gap-4">
+            <div className="flex flex-wrap items-center gap-3">
               {project.link && (
                 <a
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="
-                    inline-flex items-center gap-2
-                    px-4 py-2
+                    inline-flex items-center justify-center
+                    w-10 h-10
                     rounded-xl
                     border border-[var(--border)]
                     bg-[var(--surface)]
-                    text-sm font-medium
                     text-[var(--text-muted)]
                     hover:text-[var(--fg)]
                     hover:border-[var(--accent-1)]
+                    hover:bg-[var(--surface-strong)]
                     transition-all
                   "
+                  aria-label="Visit Website"
                 >
-                  <ExternalLink className="h-4 w-4" />
-                  <span>Visit Website</span>
+                  <ExternalLink className="h-5 w-5" />
                 </a>
               )}
               {(project as any).facebook && (
@@ -138,20 +138,20 @@ export default async function WorkCase({
                   target="_blank"
                   rel="noopener noreferrer"
                   className="
-                    inline-flex items-center gap-2
-                    px-4 py-2
+                    inline-flex items-center justify-center
+                    w-10 h-10
                     rounded-xl
                     border border-[var(--border)]
                     bg-[var(--surface)]
-                    text-sm font-medium
                     text-[var(--text-muted)]
                     hover:text-[var(--fg)]
                     hover:border-[var(--accent-1)]
+                    hover:bg-[var(--surface-strong)]
                     transition-all
                   "
+                  aria-label="Facebook"
                 >
-                  <Facebook className="h-4 w-4" />
-                  <span>Facebook</span>
+                  <Facebook className="h-5 w-5" />
                 </a>
               )}
               {(project as any).instagram && (
@@ -160,20 +160,20 @@ export default async function WorkCase({
                   target="_blank"
                   rel="noopener noreferrer"
                   className="
-                    inline-flex items-center gap-2
-                    px-4 py-2
+                    inline-flex items-center justify-center
+                    w-10 h-10
                     rounded-xl
                     border border-[var(--border)]
                     bg-[var(--surface)]
-                    text-sm font-medium
                     text-[var(--text-muted)]
                     hover:text-[var(--fg)]
                     hover:border-[var(--accent-1)]
+                    hover:bg-[var(--surface-strong)]
                     transition-all
                   "
+                  aria-label="Instagram"
                 >
-                  <Instagram className="h-4 w-4" />
-                  <span>Instagram</span>
+                  <Instagram className="h-5 w-5" />
                 </a>
               )}
               {(project as any).tiktok && (
@@ -182,20 +182,20 @@ export default async function WorkCase({
                   target="_blank"
                   rel="noopener noreferrer"
                   className="
-                    inline-flex items-center gap-2
-                    px-4 py-2
+                    inline-flex items-center justify-center
+                    w-10 h-10
                     rounded-xl
                     border border-[var(--border)]
                     bg-[var(--surface)]
-                    text-sm font-medium
                     text-[var(--text-muted)]
                     hover:text-[var(--fg)]
                     hover:border-[var(--accent-1)]
+                    hover:bg-[var(--surface-strong)]
                     transition-all
                   "
+                  aria-label="TikTok"
                 >
-                  <Music className="h-4 w-4" />
-                  <span>TikTok</span>
+                  <Music className="h-5 w-5" />
                 </a>
               )}
               {(project as any).linkedin && (
@@ -204,20 +204,20 @@ export default async function WorkCase({
                   target="_blank"
                   rel="noopener noreferrer"
                   className="
-                    inline-flex items-center gap-2
-                    px-4 py-2
+                    inline-flex items-center justify-center
+                    w-10 h-10
                     rounded-xl
                     border border-[var(--border)]
                     bg-[var(--surface)]
-                    text-sm font-medium
                     text-[var(--text-muted)]
                     hover:text-[var(--fg)]
                     hover:border-[var(--accent-1)]
+                    hover:bg-[var(--surface-strong)]
                     transition-all
                   "
+                  aria-label="LinkedIn"
                 >
-                  <Linkedin className="h-4 w-4" />
-                  <span>LinkedIn</span>
+                  <Linkedin className="h-5 w-5" />
                 </a>
               )}
               {(project as any).youtube && (
@@ -226,20 +226,20 @@ export default async function WorkCase({
                   target="_blank"
                   rel="noopener noreferrer"
                   className="
-                    inline-flex items-center gap-2
-                    px-4 py-2
+                    inline-flex items-center justify-center
+                    w-10 h-10
                     rounded-xl
                     border border-[var(--border)]
                     bg-[var(--surface)]
-                    text-sm font-medium
                     text-[var(--text-muted)]
                     hover:text-[var(--fg)]
                     hover:border-[var(--accent-1)]
+                    hover:bg-[var(--surface-strong)]
                     transition-all
                   "
+                  aria-label="YouTube"
                 >
-                  <Youtube className="h-4 w-4" />
-                  <span>YouTube</span>
+                  <Youtube className="h-5 w-5" />
                 </a>
               )}
             </div>

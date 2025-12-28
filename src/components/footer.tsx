@@ -108,16 +108,20 @@ function SocialLink({
       target="_blank"
       aria-label={label}
       className="
-        flex h-10 w-10 items-center justify-center
-        rounded-full
-        bg-[var(--surface)]
+        inline-flex items-center justify-center
+        w-10 h-10
+        rounded-xl
         border border-[var(--border)]
-        transition
+        bg-[var(--surface)]
+        text-[var(--text-muted)]
+        hover:text-[var(--fg)]
+        hover:border-[var(--accent-1)]
         hover:bg-[var(--surface-strong)]
+        transition-all
         cursor-pointer
       "
     >
-      <Icon className="h-5 w-5 text-[var(--fg)]/80" />
+      <Icon className="h-5 w-5" />
     </Link>
   );
 }
