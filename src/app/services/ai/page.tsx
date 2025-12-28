@@ -116,7 +116,7 @@ export default function AIPage() {
             </p>
 
             <Link
-              href="#contact"
+              href="/#contact"
               className="
                 inline-block
                 mt-10
