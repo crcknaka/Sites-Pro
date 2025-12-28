@@ -27,7 +27,7 @@ export default function Contact() {
           </span>
 
           <h2 className="mt-4 text-4xl font-semibold tracking-tight md:text-5xl">
-            Let’s start your{' '}
+            Start your{' '}
             <span
               className="bg-clip-text text-transparent"
               style={{
