@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
+import ContactForm from '@/components/contact/contact-form';
 import {
   Lightbulb,
   Rocket,
@@ -6,6 +8,9 @@ import {
   ShieldCheck,
   Gauge,
   Layers,
+  Mail,
+  MapPin,
+  Clock,
 } from 'lucide-react';
 
 /* brand accents via CSS vars */
@@ -68,8 +73,16 @@ export default function AboutPage() {
     <main className="relative">
       {/* HERO */}
       <section className="mx-auto max-w-6xl px-6 pt-32 pb-24">
+        {/* BACK TO HOME LINK */}
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 text-sm text-[var(--text-muted)] hover:text-[var(--fg)] transition-colors"
+        >
+          ← Back Home
+        </Link>
+
         <span
-          className="text-sm font-medium tracking-widest uppercase"
+          className="mt-10 block text-sm font-medium tracking-widest uppercase"
           style={{ color: ACCENT_1 }}
         >
           About Sites Pro
@@ -191,10 +204,120 @@ export default function AboutPage() {
 
         <p className="text-lg leading-relaxed text-[var(--text-muted)]">
           Sites Pro is built for founders, startups, and teams who care about
-          quality, clarity, and long-term growth. We don’t chase trends — we
+          quality, clarity, and long-term growth. We don't chase trends — we
           design systems that last.
         </p>
       </section>
+
+      {/* CONTACT FORM */}
+      <section className="mx-auto max-w-7xl px-6 pb-32">
+        <div className="mb-20 text-center">
+          <h2 className="text-3xl font-semibold text-[var(--fg)]">
+            Ready to start your project?
+          </h2>
+          <p className="mt-4 text-lg text-[var(--text-muted)]">
+            Get in touch and let's build something great together.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 gap-16 lg:grid-cols-2">
+          {/* LEFT INFO */}
+          <div className="space-y-10">
+            <InfoItem
+              icon={Mail}
+              title="Email"
+              value="info@sitespro.org"
+              selectable
+            />
+            <InfoItem
+              icon={MapPin}
+              title="Location"
+              value="Europe — working globally"
+            />
+            <InfoItem
+              icon={Clock}
+              title="Response time"
+              value="Usually within 24 hours"
+            />
+
+            {/* QUOTE */}
+            <blockquote
+              className="
+                mt-12 border-l pl-6 text-sm
+                border-[var(--border)]
+                text-[var(--text-muted)]
+              "
+            >
+              "We love hearing about new projects and challenges. Whether you
+              have a detailed brief or just a rough idea, we're here to help
+              shape your digital future."
+
+              <div
+                className="mt-4 font-medium not-italic"
+                style={{ color: ACCENT_1 }}
+              >
+                — The Sites Pro Team
+              </div>
+            </blockquote>
+          </div>
+
+          {/* RIGHT: FORM + TRUST */}
+          <div className="flex flex-col">
+            <ContactForm />
+
+            {/* TRUST NOTE */}
+            <div className="mt-6 flex max-w-md items-start gap-3 text-xs text-[var(--text-subtle)]">
+              <ShieldCheck
+                className="h-4 w-4 flex-shrink-0"
+                style={{ color: ACCENT_1 }}
+              />
+              <p className="leading-relaxed">
+                Your information is used solely to respond to your inquiry.
+                We do not share your data with third parties and handle all
+                submissions in accordance with GDPR and privacy best practices.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
+  );
+}
+
+function InfoItem({
+  icon: Icon,
+  title,
+  value,
+  selectable,
+}: {
+  icon: any;
+  title: string;
+  value: string;
+  selectable?: boolean;
+}) {
+  return (
+    <div className="flex items-start gap-4">
+      <div
+        className="
+          flex h-11 w-11 items-center justify-center
+          rounded-xl
+          bg-[var(--surface)]
+          border border-[var(--border)]
+        "
+      >
+        <Icon className="h-5 w-5" style={{ color: ACCENT_1 }} />
+      </div>
+
+      <div>
+        <p className="font-medium text-[var(--fg)]">
+          {title}
+        </p>
+        <p
+          className={`mt-1 text-sm text-[var(--text-muted)]${selectable ? ' select-text' : ''}`}
+        >
+          {value}
+        </p>
+      </div>
+    </div>
   );
 }
