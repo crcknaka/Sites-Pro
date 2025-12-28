@@ -103,14 +103,15 @@ export default function ApplicationsPage() {
             <Link
               href="#contact"
               className="
-                inline-block mt-10
-                rounded-xl px-6 py-3
-                border border-[var(--border)]
-                bg-[var(--surface)]
-                font-medium
-                hover:bg-[var(--surface-strong)]
-                transition
+                inline-block
+                mt-10
+                cursor-pointer select-none
+                rounded-lg px-6 py-3 text-sm font-medium
+                text-black
+                transition-transform active:scale-[0.96]
+                hover:opacity-90
               "
+              style={{ background: ACCENT_1 }}
             >
               Start your project
             </Link>

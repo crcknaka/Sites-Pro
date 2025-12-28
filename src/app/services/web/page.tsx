@@ -103,14 +103,15 @@ export default function WebsitesPage() {
             <Link
               href="#contact"
               className="
-                inline-block mt-10
-                rounded-xl px-6 py-3
-                border border-[var(--border)]
-                bg-[var(--surface)]
-                font-medium
-                hover:bg-[var(--surface-strong)]
-                transition
+                inline-block
+                mt-10
+                cursor-pointer select-none
+                rounded-lg px-6 py-3 text-sm font-medium
+                text-black
+                transition-transform active:scale-[0.96]
+                hover:opacity-90
               "
+              style={{ background: ACCENT_1 }}
             >
               Start your project
             </Link>
@@ -259,43 +260,108 @@ export default function WebsitesPage() {
 
 function WebsiteHeroInfographic() {
   return (
-    <div className="relative w-[320px] h-[320px] flex items-center justify-center">
-      {/* ambient */}
+    <div className="relative w-[320px] h-[320px] flex items-center justify-center group">
+      {/* Glow effect */}
       <div
-        className="absolute inset-0 -z-10 blur-xl opacity-60 pointer-events-none "
+        className="absolute -inset-8 rounded-3xl blur-3xl opacity-40 group-hover:opacity-60 transition-opacity duration-700 -z-10"
         style={{
-          background: `radial-gradient(circle at 65% 35%, ${ACCENT_1}22 0%, transparent 70%), radial-gradient(circle at 30% 70%, ${ACCENT_2}22 0%, transparent 60%)`,
+          background: `radial-gradient(circle at 50% 50%, ${ACCENT_1}40, ${ACCENT_2}30, transparent)`,
         }}
       />
 
-      {/* browser */}
-      <div className="border-[var(--border)] bg-[var(--surface-strong)]  relative w-[280px] h-[280px] rounded-2xl bg-[var(--surface)] overflow-hidden">
-        <div className="h-10 border-b border-[var(--border)] flex items-center px-4 gap-2">
-          <span className="h-2 w-2 rounded-full bg-[var(--border)]" />
-          <span className="h-2 w-2 rounded-full bg-[var(--border)]" />
-          <span className="h-2 w-2 rounded-full bg-[var(--border)]" />
-          <div className="ml-4 h-2 w-32 rounded bg-[var(--border)]/60" />
+      {/* Browser window */}
+      <div 
+        className="relative w-[300px] h-[280px] rounded-2xl border border-[var(--border)] overflow-hidden shadow-2xl backdrop-blur-sm transition-all duration-500 group-hover:scale-[1.02] group-hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)]"
+        style={{
+          background: 'color-mix(in srgb, var(--surface-strong) 95%, transparent)',
+        }}
+      >
+        {/* Browser top bar with colored dots */}
+        <div className="h-11 border-b border-[var(--border)] flex items-center px-4 gap-2 bg-[var(--surface)]/40 backdrop-blur-sm">
+          <span className="h-3 w-3 rounded-full bg-red-500/70 transition-all duration-300 group-hover:bg-red-500" />
+          <span className="h-3 w-3 rounded-full bg-yellow-500/70 transition-all duration-300 group-hover:bg-yellow-500" />
+          <span className="h-3 w-3 rounded-full bg-green-500/70 transition-all duration-300 group-hover:bg-green-500" />
+          
+          {/* URL bar with gradient */}
+          <div 
+            className="ml-3 h-6 flex-1 rounded-lg px-3 flex items-center transition-all duration-300"
+            style={{
+              background: 'color-mix(in srgb, var(--surface) 80%, transparent)',
+              border: '1px solid var(--border)',
+            }}
+          >
+            <div 
+              className="h-1.5 w-8 rounded-full"
+              style={{
+                background: `linear-gradient(90deg, ${ACCENT_1}60, ${ACCENT_2}40)`,
+              }}
+            />
+            <div className="ml-2 h-1.5 w-24 rounded-full bg-[var(--border)]/50" />
+          </div>
         </div>
 
-        <div className="p-4 space-y-3">
-          <div className="h-3 w-1/3 rounded bg-[var(--accent-1)]/30" />
-          <div className="h-2 w-full rounded bg-[var(--border)]/40" />
-          <div className="h-2 w-4/5 rounded bg-[var(--border)]/30" />
+        {/* Browser content with modern layout */}
+        <div className="p-5 space-y-3">
+          {/* Hero section with gradient */}
+          <div 
+            className="h-12 rounded-xl p-3 space-y-1.5 transition-all duration-500 group-hover:shadow-lg"
+            style={{
+              background: `linear-gradient(135deg, ${ACCENT_1}15, ${ACCENT_2}10)`,
+              border: `1px solid ${ACCENT_1}30`,
+            }}
+          >
+            <div 
+              className="h-2.5 w-3/4 rounded-full animate-pulse"
+              style={{
+                background: `linear-gradient(90deg, ${ACCENT_1}, ${ACCENT_2})`,
+              }}
+            />
+            <div className="h-1.5 w-full rounded-full bg-[var(--border)]/40" />
+            <div className="h-1.5 w-5/6 rounded-full bg-[var(--border)]/30" />
+          </div>
 
-          <div className="grid grid-cols-3 gap-2 pt-4">
-            {[...Array(3)].map((_, i) => (
+          {/* Feature cards grid */}
+          <div className="grid grid-cols-3 gap-2.5">
+            {[0, 1, 2].map((i) => (
               <div
                 key={i}
-                className="aspect-video rounded-lg border border-[var(--border)] bg-[var(--bg)]"
+                className="aspect-square rounded-lg border border-[var(--border)] transition-all duration-300 hover:scale-105"
+                style={{
+                  background: i === 0 
+                    ? `${ACCENT_1}15`
+                    : i === 1
+                    ? `${ACCENT_2}15`
+                    : 'color-mix(in srgb, var(--surface) 60%, transparent)',
+                  borderColor: i === 0 
+                    ? `${ACCENT_1}40`
+                    : i === 1
+                    ? `${ACCENT_2}40`
+                    : 'var(--border)',
+                }}
               />
             ))}
           </div>
 
-          <div className="pt-4">
+          {/* Content rows */}
+          <div className="space-y-1.5">
+            <div className="h-1.5 w-full rounded-full bg-[var(--border)]/40" />
+            <div className="h-1.5 w-4/5 rounded-full bg-[var(--border)]/30" />
+            <div className="h-1.5 w-3/5 rounded-full bg-[var(--border)]/20" />
+          </div>
+
+          {/* CTA Button */}
+          <div className="flex gap-2">
             <div
-              className="h-8 w-24 rounded-lg"
+              className="h-8 flex-1 rounded-lg transition-all duration-500 group-hover:shadow-lg"
               style={{
-                backgroundImage: `linear-gradient(90deg, ${ACCENT_1}, ${ACCENT_2})`,
+                background: `linear-gradient(135deg, ${ACCENT_1}, ${ACCENT_2})`,
+              }}
+            />
+            <div
+              className="h-8 w-8 rounded-lg border transition-all duration-300"
+              style={{
+                background: 'color-mix(in srgb, var(--surface) 60%, transparent)',
+                borderColor: 'var(--border)',
               }}
             />
           </div>
