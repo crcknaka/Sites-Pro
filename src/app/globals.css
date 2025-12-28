@@ -179,37 +179,6 @@ body {
    HERO / ATMOSPHERE MOTION
 ====================================================== */
 
-@keyframes gradientFloat1 {
-  0% {
-    transform: translate(-50%, -50%) scale(1);
-  }
-  50% {
-    transform: translate(-46%, -54%) scale(1.08);
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(1);
-  }
-}
-
-@keyframes gradientFloat2 {
-  0% {
-    transform: translate(0, 0) scale(1);
-  }
-  50% {
-    transform: translate(-4%, 4%) scale(1.12);
-  }
-  100% {
-    transform: translate(0, 0) scale(1);
-  }
-}
-
-/* Disable atmosphere motion if user prefers */
-@media (prefers-reduced-motion: reduce) {
-  .atmosphere {
-    animation: none !important;
-  }
-}
-
 /* ======================================================
    PERFORMANCE: DISABLE ANIMATIONS ON MOBILE
 ====================================================== */
@@ -273,18 +242,6 @@ body {
    ENHANCED BACKGROUND ANIMATIONS
 ====================================================== */
 
-@keyframes blob-float {
-  0%, 100% {
-    transform: translate(0, 0) scale(1);
-  }
-  33% {
-    transform: translate(30px, -30px) scale(1.1);
-  }
-  66% {
-    transform: translate(-20px, 20px) scale(0.9);
-  }
-}
-
 @keyframes gradient-shift {
   0% {
     background-position: 0% 50%;
@@ -299,28 +256,6 @@ body {
 
 .animate-gradient-shift {
   animation: gradient-shift 6s ease infinite;
-}
-
-@keyframes particle-float {
-  0%, 100% {
-    transform: translateY(0) translateX(0);
-    opacity: 0.3;
-  }
-  50% {
-    transform: translateY(-20px) translateX(10px);
-    opacity: 0.6;
-  }
-}
-
-/* Enhanced visibility for both themes */
-:root {
-  --animation-opacity-dark: 0.4;
-  --animation-opacity-light: 0.6;
-}
-
-[data-theme="light"] {
-  --animation-opacity-dark: 0.6;
-  --animation-opacity-light: 0.8;
 }
 
 /* ======================================================
