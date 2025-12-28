@@ -210,8 +210,20 @@ function AppsInfographic() {
           background: 'color-mix(in srgb, var(--surface-strong) 95%, transparent)',
         }}
       >
-        {/* Screen content - without solid background */}
-        <div className="absolute inset-1 rounded-xl overflow-hidden p-1.5 space-y-1.5">
+        {/* Status bar */}
+        <div className="absolute top-0 left-0 right-0 h-3 flex items-center justify-between px-2 bg-[var(--surface)]/20">
+          <div className="text-[6px] opacity-60">9:41</div>
+          <div className="text-[6px] opacity-60">100%</div>
+        </div>
+
+        {/* Front camera (hole punch) */}
+        <div 
+          className="absolute top-1 left-1/2 -translate-x-1/2 h-1.5 w-1.5 rounded-full z-20"
+          style={{ background: '#000' }}
+        />
+
+        {/* Screen content - starts below camera */}
+        <div className="absolute inset-1 rounded-xl overflow-hidden pt-4 px-1.5 pb-1.5 space-y-1.5">
           {/* Header */}
           <div className="flex items-center gap-1.5">
             <div
