@@ -11,6 +11,9 @@ import {
   Mail,
   MapPin,
   Clock,
+  Briefcase,
+  FolderOpen,
+  ArrowRight,
 } from 'lucide-react';
 
 /* brand accents via CSS vars */
@@ -207,6 +210,145 @@ export default function AboutPage() {
           quality, clarity, and long-term growth. We don't chase trends — we
           design systems that last.
         </p>
+
+        {/* EXPLORE MORE SECTION */}
+        <div className="mt-20 grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Services Card */}
+          <div
+            className="
+              group relative overflow-hidden
+              rounded-3xl p-8
+              bg-[var(--surface)]
+              border border-[var(--border)]
+              hover:border-[var(--accent-1)]/40
+              transition-all duration-500
+              hover:shadow-2xl
+              hover:shadow-[var(--accent-1)]/10
+            "
+          >
+            {/* Accent gradient overlay */}
+            <div
+              className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+              style={{
+                background: `radial-gradient(circle at top left, ${ACCENT_1}08, transparent 60%)`,
+              }}
+            />
+
+            <div className="relative">
+              {/* Icon */}
+              <div
+                className="
+                  inline-flex h-14 w-14 items-center justify-center
+                  rounded-2xl
+                  bg-gradient-to-br
+                  transition-all duration-500
+                  group-hover:scale-110
+                "
+                style={{
+                  background: `linear-gradient(135deg, ${ACCENT_1}20, ${ACCENT_1}10)`,
+                }}
+              >
+                <Briefcase className="h-7 w-7" style={{ color: ACCENT_1 }} />
+              </div>
+
+              <h3 className="mt-6 text-xl font-semibold text-[var(--fg)]">
+                Explore Our Services
+              </h3>
+
+              <p className="mt-3 text-base text-[var(--text-muted)] leading-relaxed">
+                Discover what we do — from websites and applications to AI solutions and consulting.
+              </p>
+
+              <Link
+                href="/#services"
+                className="
+                  mt-8 inline-flex items-center gap-2
+                  rounded-xl px-6 py-3 text-sm font-medium
+                  text-[var(--fg)]
+                  bg-[var(--surface-strong)]
+                  border border-[var(--border)]
+                  hover:border-[var(--accent-1)]/60
+                  hover:shadow-lg
+                  hover:shadow-[var(--accent-1)]/20
+                  hover:scale-105
+                  active:scale-[0.98]
+                  transition-all duration-300
+                "
+              >
+                View Services
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Portfolio Card */}
+          <div
+            className="
+              group relative overflow-hidden
+              rounded-3xl p-8
+              bg-[var(--surface)]
+              border border-[var(--border)]
+              hover:border-[var(--accent-2)]/40
+              transition-all duration-500
+              hover:shadow-2xl
+              hover:shadow-[var(--accent-2)]/10
+            "
+          >
+            {/* Accent gradient overlay */}
+            <div
+              className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+              style={{
+                background: `radial-gradient(circle at top right, ${ACCENT_2}08, transparent 60%)`,
+              }}
+            />
+
+            <div className="relative">
+              {/* Icon */}
+              <div
+                className="
+                  inline-flex h-14 w-14 items-center justify-center
+                  rounded-2xl
+                  bg-gradient-to-br
+                  transition-all duration-500
+                  group-hover:scale-110
+                "
+                style={{
+                  background: `linear-gradient(135deg, ${ACCENT_2}20, ${ACCENT_2}10)`,
+                }}
+              >
+                <FolderOpen className="h-7 w-7" style={{ color: ACCENT_2 }} />
+              </div>
+
+              <h3 className="mt-6 text-xl font-semibold text-[var(--fg)]">
+                Browse Our Work
+              </h3>
+
+              <p className="mt-3 text-base text-[var(--text-muted)] leading-relaxed">
+                Check out our portfolio — real projects, real results, real impact.
+              </p>
+
+              <Link
+                href="/#portfolio"
+                className="
+                  mt-8 inline-flex items-center gap-2
+                  rounded-xl px-6 py-3 text-sm font-medium
+                  text-[var(--fg)]
+                  bg-[var(--surface-strong)]
+                  border border-[var(--border)]
+                  hover:border-[var(--accent-2)]/60
+                  hover:shadow-lg
+                  hover:shadow-[var(--accent-2)]/20
+                  hover:scale-105
+                  active:scale-[0.98]
+                  transition-all duration-300
+                "
+              >
+                View Portfolio
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* CONTACT FORM */}
