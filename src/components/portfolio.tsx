@@ -17,11 +17,25 @@ const CATEGORIES = [
 
 export default function Portfolio() {
   const [active, setActive] = useState<(typeof CATEGORIES)[number]>('All');
+  const [visibleCount, setVisibleCount] = useState(6);
 
   const filteredProjects =
     active === 'All'
       ? projects
       : projects.filter((p) => p.category === active);
+
+  const displayedProjects = filteredProjects.slice(0, visibleCount);
+  const hasMore = visibleCount < filteredProjects.length;
+
+  const loadMore = () => {
+    setVisibleCount((prev) => prev + 6);
+  };
+
+  // Reset visible count when filter changes
+  const handleCategoryChange = (category: (typeof CATEGORIES)[number]) => {
+    setActive(category);
+    setVisibleCount(6);
+  };
 
   return (
     <section
@@ -71,7 +85,7 @@ export default function Portfolio() {
     return (
       <button
         key={category}
-        onClick={() => setActive(category)}
+        onClick={() => handleCategoryChange(category)}
         className={`
           rounded-full px-5 py-2 text-sm font-medium
           transition-all duration-300
@@ -108,7 +122,7 @@ export default function Portfolio() {
 
         {/* GRID */}
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-          {filteredProjects.map((project) => (
+          {displayedProjects.map((project) => (
             <ProjectCard
               key={project.slug}
               slug={project.slug}
@@ -118,6 +132,32 @@ export default function Portfolio() {
             />
           ))}
         </div>
+
+        {/* MORE BUTTON */}
+        {hasMore && (
+          <div className="mt-12 flex justify-center">
+            <button
+              onClick={loadMore}
+              className="
+                rounded-lg px-8 py-3 text-sm font-medium
+                transition-all duration-300
+                border border-[var(--border)]
+                bg-[var(--surface)]
+                text-[var(--fg)]
+                opacity-75
+                hover:opacity-100
+                hover:bg-[var(--surface-strong)]
+                hover:border-[color-mix(in_srgb,var(--accent-1)_20%,var(--border))]
+                hover:shadow-lg
+                hover:shadow-[var(--accent-1)]/10
+                hover:scale-105
+                active:scale-[0.98]
+              "
+            >
+              More
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );
