@@ -39,8 +39,7 @@ export default function Contact() {
           </h2>
 
           <p className="mt-6 text-lg text-[var(--text-muted)]">
-            Ready to bring your digital vision to life? Drop us a message and
-            let’s create something meaningful together.
+          Let’s build something meaningful together.
           </p>
         </div>
 
