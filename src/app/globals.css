@@ -806,3 +806,37 @@ body {
 .animate-pulse-slow {
   animation: pulse-slow 4s ease-in-out infinite;
 }
+
+/* Orbit pulse animation for AI neural network */
+@keyframes orbit-pulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+/* Neural pulse animation - flickering effect */
+@keyframes neural-pulse {
+  0% {
+    opacity: 0.3;
+  }
+  20% {
+    opacity: 1;
+  }
+  40% {
+    opacity: 0.4;
+  }
+  60% {
+    opacity: 0.9;
+  }
+  80% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}

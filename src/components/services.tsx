@@ -134,7 +134,7 @@ export default function Services() {
 }
 
 /* ======================================================
-   INFOGRAPHICS — Product / Linear-inspired
+   INFOGRAPHICS — Modern & Interactive
 ====================================================== */
 
 function ServiceInfographic({ type }: { type: string }) {
@@ -146,189 +146,257 @@ function ServiceInfographic({ type }: { type: string }) {
 }
 
 /* ------------------------------------------------------
-   Websites — Browser / layout / content hierarchy
+   Websites — Modern Browser with Live Content
 ------------------------------------------------------ */
 function WebInfographic() {
   return (
-    <div
-      className="relative h-28 w-36 select-none"
-      style={{ userSelect: 'none' }}
-    >
+    <div className="relative h-32 w-36 select-none group">
+      {/* Glow effect */}
       <div
-        className="absolute inset-0 rounded-xl border border-[var(--border)] overflow-hidden select-none"
+        className="absolute -inset-4 rounded-2xl blur-2xl opacity-0 group-hover:opacity-50 transition-opacity duration-500 -z-10"
+        style={{ background: `radial-gradient(circle, ${ACCENT_1}40, transparent)` }}
+      />
+      
+      {/* Browser window */}
+      <div
+        className="absolute inset-0 rounded-2xl border border-[var(--border)] overflow-hidden shadow-xl backdrop-blur-sm transition-all duration-300 group-hover:border-[var(--accent-1)]/40 group-hover:scale-105"
         style={{
-          userSelect: 'none',
-          background: 'rgba(var(--surface-strong-rgb),0.88)',
+          background: 'color-mix(in srgb, var(--surface-strong) 95%, transparent)',
         }}
       >
-        {/* top bar */}
-        <div className="flex items-center gap-1.5 px-3 py-2 border-b border-[var(--border)] select-none">
-          <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent-1)]/70 select-none" />
-          <span className="h-1.5 w-1.5 rounded-full bg-[var(--border)] select-none" />
-          <span className="h-1.5 w-1.5 rounded-full bg-[var(--border)] select-none" />
-          <div className="ml-2 h-1.5 flex-1 rounded bg-[var(--border)]/60 select-none" />
+        {/* Browser top bar */}
+        <div className="flex items-center gap-1.5 px-3 py-2 border-b border-[var(--border)]/50 bg-[var(--surface)]/30">
+          <span className="h-1.5 w-1.5 rounded-full bg-red-500/60" />
+          <span className="h-1.5 w-1.5 rounded-full bg-yellow-500/60" />
+          <span className="h-1.5 w-1.5 rounded-full bg-green-500/60" />
+          <div className="ml-2 h-1.5 flex-1 rounded-full bg-[var(--border)]/40" />
         </div>
 
-        {/* content */}
-        <div className="p-2 space-y-2 select-none">
-          <div className="h-2 w-2/3 rounded bg-[var(--accent-1)]/30 select-none" />
-          <div className="h-1.5 w-full rounded bg-[var(--border)]/50 select-none" />
-          <div className="h-1.5 w-5/6 rounded bg-[var(--border)]/40 select-none" />
+        {/* Browser content with animations */}
+        <div className="p-2.5 space-y-2">
+          {/* Hero section */}
+          <div className="h-2.5 w-3/4 rounded bg-gradient-to-r from-[var(--accent-1)]/40 to-[var(--accent-2)]/30 animate-pulse-slow" />
+          <div className="h-1 w-full rounded bg-[var(--border)]/40" />
+          <div className="h-1 w-5/6 rounded bg-[var(--border)]/30" />
 
-          <div className="flex gap-1.5 pt-1 select-none">
-            <span className="h-6 w-6 rounded bg-[var(--accent-1)]/20 select-none" />
-            <span className="h-6 w-6 rounded bg-[var(--accent-2)]/20 select-none" />
-            <span className="h-6 w-6 rounded bg-[var(--border)]/30 select-none" />
+          {/* Card grid */}
+          <div className="flex gap-1.5 pt-2">
+            <span className="h-7 w-7 rounded-lg bg-[var(--accent-1)]/25 border border-[var(--accent-1)]/30 transition-transform hover:scale-110" />
+            <span className="h-7 w-7 rounded-lg bg-[var(--accent-2)]/25 border border-[var(--accent-2)]/30 transition-transform hover:scale-110" />
+            <span className="h-7 w-7 rounded-lg bg-[var(--border)]/20 border border-[var(--border)]/30" />
           </div>
         </div>
       </div>
-      <div
-        className="absolute -inset-3 rounded-full blur-xl -z-10 select-none"
-        style={{ background: 'rgba(var(--surface-strong-rgb),0.8)' }}
-      />
     </div>
   );
 }
 
 /* ------------------------------------------------------
-   Applications — App / system / cards
+   Applications — Simplified Mobile Phone
 ------------------------------------------------------ */
 function AppsInfographic() {
   return (
-    <div
-      className="relative h-28 w-20 select-none"
-      style={{ userSelect: 'none' }}
-    >
+    <div className="relative h-32 w-20 select-none group">
+      {/* Glow effect */}
       <div
-        className="absolute inset-0 rounded-2xl border border-[var(--border)] overflow-hidden select-none"
+        className="absolute -inset-4 rounded-full blur-2xl opacity-0 group-hover:opacity-50 transition-opacity duration-500 -z-10"
+        style={{ background: `radial-gradient(circle, ${ACCENT_2}40, transparent)` }}
+      />
+      
+      {/* Phone device - simplified */}
+      <div
+        className="absolute inset-0 rounded-2xl border border-[var(--border)] overflow-hidden shadow-xl backdrop-blur-sm transition-all duration-300 group-hover:border-[var(--accent-1)]/40 group-hover:scale-105"
         style={{
-          userSelect: 'none',
-          background: 'rgba(var(--surface-strong-rgb),0.88)',
+          background: 'color-mix(in srgb, var(--surface-strong) 95%, transparent)',
         }}
       >
-        <div className="absolute top-2 left-1/2 h-1 w-8 -translate-x-1/2 rounded bg-[var(--border)]/70 select-none" />
-
-        <div className="absolute inset-x-2 top-6 bottom-2 space-y-2 select-none">
-          <div className="flex items-center gap-1.5 select-none">
-            <span className="h-3 w-3 rounded-full bg-[var(--accent-1)]/40 select-none" />
-            <span className="h-1.5 flex-1 rounded bg-[var(--border)]/60 select-none" />
+        {/* Screen content - without solid background */}
+        <div className="absolute inset-1 rounded-xl overflow-hidden p-1.5 space-y-1.5">
+          {/* Header */}
+          <div className="flex items-center gap-1.5">
+            <div
+              className="h-4 w-4 rounded-lg shadow-md"
+              style={{ background: `linear-gradient(135deg, ${ACCENT_1}, ${ACCENT_2})` }}
+            />
+            <div className="flex-1 space-y-1">
+              <div className="h-1 w-full rounded-full bg-[var(--border)]/50" />
+              <div className="h-0.5 w-2/3 rounded-full bg-[var(--border)]/40" />
+            </div>
           </div>
 
-          <div className="space-y-1.5 select-none">
-            <div className="h-5 rounded-md bg-[var(--accent-1)]/20 border border-[var(--accent-1)]/20 select-none" />
-            <div className="h-5 rounded-md bg-[var(--border)]/30 select-none" />
-            <div className="h-5 rounded-md bg-[var(--border)]/20 select-none" />
+          {/* Content cards */}
+          <div className="space-y-1.5">
+            <div className="h-6 rounded-lg border border-[var(--accent-1)]/30" style={{ background: `${ACCENT_1}20` }} />
+            <div className="h-5 rounded-lg bg-[var(--surface)]/60 border border-[var(--border)]/30" />
+            <div className="h-5 rounded-lg bg-[var(--surface)]/50 border border-[var(--border)]/20" />
+            <div className="h-5 rounded-lg bg-[var(--surface)]/40 border border-[var(--border)]/15" />
+            <div className="h-5 rounded-lg bg-[var(--surface)]/30 border border-[var(--border)]/10" />
           </div>
         </div>
       </div>
-      <div
-        className="absolute -inset-3 rounded-full blur-xl -z-10 select-none"
-        style={{ background: 'rgba(var(--surface-strong-rgb),0.8)' }}
-      />
     </div>
   );
 }
 
 /* ------------------------------------------------------
-   AI & Automations — Intelligence network / signals
+   AI & Automations — Brain with Neural Network
 ------------------------------------------------------ */
 function AIInfographic() {
   return (
-    <div
-      className="relative h-28 w-28 select-none rounded-2xl border border-[var(--border)]"
-      style={{
-        userSelect: 'none',
-        background: 'rgba(var(--surface-strong-rgb),0.88)',
-      }}
-    >
+    <div className="relative h-28 w-28 select-none group">
+      {/* Glow effect */}
       <div
-        className="absolute left-1/2 top-1/2 h-10 w-10 -translate-x-1/2 -translate-y-1/2 rounded-xl bg-[var(--accent-1)]/25 border border-[var(--accent-1)]/40 flex items-center justify-center select-none"
-        style={{ userSelect: 'none' }}
+        className="absolute -inset-4 rounded-2xl blur-2xl opacity-0 group-hover:opacity-50 transition-opacity duration-500 -z-10"
+        style={{ background: `radial-gradient(circle, ${ACCENT_1}40, ${ACCENT_2}30, transparent)` }}
+      />
+
+      {/* Container */}
+      <div
+        className="absolute inset-0 rounded-2xl border border-[var(--border)] overflow-visible shadow-xl backdrop-blur-sm transition-all duration-300 group-hover:border-[var(--accent-1)]/40 group-hover:scale-105"
+        style={{
+          background: 'color-mix(in srgb, var(--surface-strong) 95%, transparent)',
+        }}
       >
-        <span className="h-4 w-4 rounded bg-[var(--accent-1)]/70 select-none" />
+
+      {/* Brain icon in center */}
+      <div
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10"
+      >
+        <svg
+          width="48"
+          height="48"
+          viewBox="0 0 24 24"
+          fill="none"
+          className="animate-pulse-slow"
+        >
+          {/* Brain icon */}
+          <path
+            d="M12 2C10.5 2 9.2 2.6 8.3 3.5C7.3 2.9 6.2 2.5 5 2.5C2.2 2.5 0 4.7 0 7.5C0 8.4 0.3 9.2 0.7 10C0.3 10.8 0 11.7 0 12.5C0 15.3 2.2 17.5 5 17.5C5.8 17.5 6.6 17.3 7.2 16.9C8 19.2 10.2 21 12.8 21C15.4 21 17.6 19.2 18.4 16.9C19 17.3 19.8 17.5 20.6 17.5C23.4 17.5 25.6 15.3 25.6 12.5C25.6 11.7 25.3 10.8 24.9 10C25.3 9.2 25.6 8.4 25.6 7.5C25.6 4.7 23.4 2.5 20.6 2.5C19.4 2.5 18.3 2.9 17.3 3.5C16.4 2.6 15.1 2 13.6 2H12Z"
+            fill={ACCENT_1}
+            fillOpacity="0.2"
+          />
+          <circle cx="8" cy="8" r="1.5" fill={ACCENT_1} />
+          <circle cx="16" cy="8" r="1.5" fill={ACCENT_1} />
+          <circle cx="12" cy="12" r="2" fill={ACCENT_2} />
+          <circle cx="8" cy="16" r="1.5" fill={ACCENT_2} />
+          <circle cx="16" cy="16" r="1.5" fill={ACCENT_2} />
+          
+          {/* Neural connections */}
+          <path d="M8 8 L12 12" stroke={ACCENT_1} strokeWidth="1" strokeOpacity="0.4" />
+          <path d="M16 8 L12 12" stroke={ACCENT_1} strokeWidth="1" strokeOpacity="0.4" />
+          <path d="M12 12 L8 16" stroke={ACCENT_2} strokeWidth="1" strokeOpacity="0.4" />
+          <path d="M12 12 L16 16" stroke={ACCENT_2} strokeWidth="1" strokeOpacity="0.4" />
+        </svg>
       </div>
 
-      {[0, 72, 144, 216, 288].map((deg, i) => (
+      {/* Animated neural connections around the circle */}
+      {[0, 60, 120, 180, 240, 300].map((deg, i) => (
         <div
           key={deg}
-          className="absolute left-1/2 top-1/2 select-none"
+          className="absolute left-1/2 top-1/2 neural-connection"
           style={{
             transform: `rotate(${deg}deg)`,
-            userSelect: 'none',
+            animation: `neural-pulse ${1.5 + i * 0.2}s ease-in-out infinite`,
+            animationDelay: `${i * 0.3}s`,
           }}
         >
-          <div className="absolute h-px w-8 bg-gradient-to-r from-[var(--accent-1)]/40 to-transparent select-none" />
-          <span
-            className="absolute h-2.5 w-2.5 rounded-full border border-[var(--accent-1)]/40 select-none"
+          {/* Connection line */}
+          <div
+            className="absolute h-px w-12 origin-left transition-all duration-300"
             style={{
-              transform: 'translateX(36px) translateY(-5px)',
-              background:
-                i === 0
-                  ? 'color-mix(in srgb, var(--accent-1) 60%, transparent)'
-                  : 'color-mix(in srgb, var(--accent-1) 30%, transparent)',
-              userSelect: 'none',
+              background: `linear-gradient(to right, ${i % 2 === 0 ? ACCENT_1 : ACCENT_2}60, transparent)`,
+            }}
+          />
+          
+          {/* Pulsing node */}
+          <div
+            className="absolute h-2.5 w-2.5 rounded-full border transition-all duration-300"
+            style={{
+              transform: 'translateX(44px) translateY(-5px)',
+              background: i % 2 === 0 ? `${ACCENT_1}` : `${ACCENT_2}`,
+              borderColor: i % 2 === 0 ? `${ACCENT_1}` : `${ACCENT_2}`,
+              opacity: 0.7,
+              boxShadow: `0 0 8px ${i % 2 === 0 ? ACCENT_1 : ACCENT_2}`,
             }}
           />
         </div>
       ))}
 
-      <div className="absolute inset-1 rounded-full border border-dashed border-[var(--accent-1)]/30 select-none" />
-      <div
-        className="absolute inset-4 rounded-full blur-xl -z-10 select-none"
-        style={{ background: 'rgba(var(--surface-strong-rgb),0.7)' }}
-      />
+      {/* Orbital rings */}
+      <div className="absolute inset-3 rounded-full border border-dashed border-[var(--accent-1)]/20 animate-spin-slow" />
+      <div className="absolute inset-6 rounded-full border border-dashed border-[var(--accent-2)]/15 animate-spin-reverse" />
+      </div>
     </div>
   );
 }
 
 /* ------------------------------------------------------
-   Consulting — Strategy / decision flow
+   Consulting — Strategic Flow Diagram
 ------------------------------------------------------ */
 function ConsultingInfographic() {
   return (
-    <div
-      className="relative h-24 w-36 select-none rounded-2xl border border-[var(--border)]"
-      style={{
-        userSelect: 'none',
-        background: 'rgba(var(--surface-strong-rgb),0.88)',
-      }}
-    >
-      <div className="absolute inset-1 flex items-center justify-center gap-3 select-none">
-        <div
-          className="h-6 w-6 rounded-lg bg-[var(--accent-1)]/30 border border-[var(--accent-1)]/40 flex items-center justify-center select-none"
-          style={{ userSelect: 'none' }}
-        >
-          <span className="h-2 w-2 rounded bg-[var(--accent-1)]/80 select-none" />
-        </div>
+    <div className="relative h-28 w-36 select-none group">
+      {/* Glow effect */}
+      <div
+        className="absolute -inset-4 rounded-2xl blur-2xl opacity-0 group-hover:opacity-50 transition-opacity duration-500 -z-10"
+        style={{ background: `linear-gradient(90deg, ${ACCENT_1}40, ${ACCENT_2}40)` }}
+      />
 
-        <div className="relative h-px w-6 bg-gradient-to-r from-[var(--accent-1)]/40 to-[var(--accent-1)]/20 select-none">
-          <span className="absolute right-0 top-1/2 -translate-y-1/2 border-l-[4px] border-l-[var(--accent-1)]/40 border-y-[3px] border-y-transparent select-none" />
-        </div>
+      {/* Container */}
+      <div
+        className="absolute inset-0 rounded-2xl border border-[var(--border)] overflow-hidden shadow-xl backdrop-blur-sm transition-all duration-300 group-hover:border-[var(--accent-1)]/40 group-hover:scale-105"
+        style={{
+          background: 'color-mix(in srgb, var(--surface-strong) 95%, transparent)',
+        }}
+      >
 
+      {/* Flow diagram */}
+      <div className="absolute inset-2 flex items-center justify-between gap-2">
+        {/* Start node */}
         <div
-          className="h-7 w-7 rotate-45 rounded-sm border border-[var(--accent-1)]/40 flex items-center justify-center select-none"
+          className="h-8 w-8 rounded-xl border border-[var(--accent-1)]/50 flex items-center justify-center transition-all duration-300 group-hover:scale-110"
           style={{
-            userSelect: 'none',
-            background: 'rgba(var(--surface-strong-rgb),0.88)',
+            background: `linear-gradient(135deg, color-mix(in srgb, ${ACCENT_1} 40%, transparent), color-mix(in srgb, ${ACCENT_1} 20%, transparent))`,
           }}
         >
-          <span className="-rotate-45 text-xs text-[var(--accent-1)]/80 select-none">?</span>
+          <div className="h-3 w-3 rounded-lg" style={{ background: ACCENT_1 }} />
         </div>
 
-        <div className="relative h-px w-6 bg-gradient-to-r from-[var(--accent-1)]/20 to-[var(--accent-2)]/40 select-none">
-          <span className="absolute right-0 top-1/2 -translate-y-1/2 border-l-[4px] border-l-[var(--accent-2)]/40 border-y-[3px] border-y-transparent select-none" />
+        {/* Arrow 1 */}
+        <div className="relative flex-1 h-px" style={{ background: `linear-gradient(to right, ${ACCENT_1}60, ${ACCENT_1}40)` }}>
+          <div className="absolute right-0 top-1/2 -translate-y-1/2 border-l-[4px] border-l-[var(--accent-1)] border-y-[3px] border-y-transparent" />
         </div>
 
+        {/* Decision node (diamond) */}
         <div
-          className="h-6 w-6 rounded-full bg-[var(--accent-2)]/40 border border-[var(--accent-2)]/50 flex items-center justify-center select-none"
-          style={{ userSelect: 'none' }}
+          className="h-9 w-9 rotate-45 rounded-lg border border-[var(--accent-1)]/40 flex items-center justify-center transition-all duration-300 group-hover:scale-110"
+          style={{
+            background: 'linear-gradient(135deg, var(--surface-strong), var(--surface))',
+          }}
         >
-          <span className="h-2 w-2 rounded-full bg-[var(--accent-2)]/90 select-none" />
+          <span className="-rotate-45 text-[0.65rem] font-bold" style={{ color: ACCENT_1 }}>?</span>
+        </div>
+
+        {/* Arrow 2 */}
+        <div className="relative flex-1 h-px" style={{ background: `linear-gradient(to right, ${ACCENT_1}40, ${ACCENT_2}60)` }}>
+          <div className="absolute right-0 top-1/2 -translate-y-1/2 border-l-[4px] border-l-[var(--accent-2)] border-y-[3px] border-y-transparent" />
+        </div>
+
+        {/* End node */}
+        <div
+          className="h-8 w-8 rounded-full border border-[var(--accent-2)]/50 flex items-center justify-center transition-all duration-300 group-hover:scale-110"
+          style={{
+            background: `linear-gradient(135deg, color-mix(in srgb, ${ACCENT_2} 50%, transparent), color-mix(in srgb, ${ACCENT_2} 25%, transparent))`,
+          }}
+        >
+          <div className="h-3 w-3 rounded-full" style={{ background: ACCENT_2 }} />
         </div>
       </div>
 
-      <div className="absolute left-1/2 top-3 h-4 w-px -translate-x-1/2 bg-gradient-to-b from-transparent to-[var(--border)]/40 select-none" />
-      <div className="absolute left-1/2 bottom-3 h-4 w-px -translate-x-1/2 bg-gradient-to-b from-[var(--border)]/40 to-transparent select-none" />
+      {/* Vertical connectors */}
+      <div className="absolute left-1/2 top-2 h-3 w-px -translate-x-1/2 bg-gradient-to-b from-transparent to-[var(--border)]/30" />
+      <div className="absolute left-1/2 bottom-2 h-3 w-px -translate-x-1/2 bg-gradient-to-b from-[var(--border)]/30 to-transparent" />
+      </div>
     </div>
   );
 }
