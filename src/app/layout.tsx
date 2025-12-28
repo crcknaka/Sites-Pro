@@ -19,6 +19,12 @@ export const metadata: Metadata = {
   authors: [{ name: 'Sites Pro' }],
   creator: 'Sites Pro',
   metadataBase: new URL('https://sitespro.org'),
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false,
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
