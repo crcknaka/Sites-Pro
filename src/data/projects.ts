@@ -3,7 +3,7 @@ export const projects = [
     slug: 'lepicur',
     title: 'Lepicur',
     category: 'Commerce',
-    description: 'Premium e-commerce experience focused on aesthetics and performance.',
+    description: 'Design-driven online store, crafted for speed and performance.',
     challenge: `
       Create a refined online presence that reflects the brand's premium
       positioning while maintaining excellent performance and usability.

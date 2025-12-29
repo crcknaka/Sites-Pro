@@ -167,11 +167,13 @@ export default function Portfolio() {
 </div>
 
 {/* CATEGORY DESCRIPTION */}
-<div className="mb-16 text-center">
-  <p className="text-sm text-[var(--text-muted)]">
-    {categoryDescriptions[active]}
-  </p>
-</div>
+{active !== 'All' && (
+  <div className="mb-16 text-center">
+    <p className="text-sm text-[var(--text-muted)]">
+      {categoryDescriptions[active]}
+    </p>
+  </div>
+)}
 
 
         {/* GRID */}
