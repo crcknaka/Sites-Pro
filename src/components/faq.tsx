@@ -43,25 +43,31 @@ const faqs = [
 
 export default function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
-  const [visibleCount, setVisibleCount] = useState(4); // Desktop: 4, Mobile: 3
   const [isMobile, setIsMobile] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(6);
+  const [isInitialized, setIsInitialized] = useState(false);
 
-  // Determine if mobile and set initial visible count
+  // Check if mobile on mount and resize
   useEffect(() => {
     const checkMobile = () => {
-      const mobile = window.innerWidth < 768; // Tailwind's 'md' breakpoint
+      const mobile = window.innerWidth < 768;
       setIsMobile(mobile);
-      setVisibleCount(mobile ? 3 : 4);
+      
+      // Set initial count only once
+      if (!isInitialized) {
+        setVisibleCount(mobile ? 3 : 4);
+        setIsInitialized(true);
+      }
     };
 
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
-  }, []);
+  }, [isInitialized]);
 
   const handleLoadMore = () => {
     const increment = isMobile ? 3 : 4;
-    setVisibleCount((prev) => Math.min(prev + increment, faqs.length));
+    setVisibleCount((prev) => prev + increment);
   };
 
   const visibleFaqs = faqs.slice(0, visibleCount);
