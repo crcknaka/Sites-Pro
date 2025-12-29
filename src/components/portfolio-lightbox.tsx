@@ -68,7 +68,7 @@ export function PortfolioLightbox({ images, projectTitle }: LightboxProps) {
 
   return (
     <>
-      {/* Images - Non-clickable on desktop (full size), clickable on mobile (lightbox) */}
+      {/* Images - Clickable on all devices (opens lightbox) */}
       <div className="lg:sticky lg:top-24 xl:top-32">
         <div className="grid grid-cols-2 lg:grid-cols-1 gap-3 sm:gap-4 lg:gap-5">
           {images.map((img, idx) => (
@@ -103,8 +103,9 @@ export function PortfolioLightbox({ images, projectTitle }: LightboxProps) {
                 </div>
               </button>
 
-              {/* Desktop: Non-clickable image, full size */}
-              <div
+              {/* Desktop: Clickable button with lightbox */}
+              <button
+                onClick={() => openLightbox(idx)}
                 className="
                   hidden lg:block
                   w-full
@@ -112,7 +113,13 @@ export function PortfolioLightbox({ images, projectTitle }: LightboxProps) {
                   rounded-2xl
                   border border-[var(--border)]
                   bg-[var(--surface)]
+                  transition-all duration-300
+                  hover:scale-[1.02] hover:border-[var(--accent-1)]
+                  active:scale-[0.98]
+                  cursor-pointer
+                  focus:outline-none focus:ring-2 focus:ring-[var(--accent-1)] focus:ring-offset-2
                 "
+                aria-label={`View ${projectTitle} image ${idx + 1} in fullscreen`}
               >
                 <div className="relative w-full">
                   <Image
@@ -124,7 +131,7 @@ export function PortfolioLightbox({ images, projectTitle }: LightboxProps) {
                     sizes="100%"
                   />
                 </div>
-              </div>
+              </button>
             </div>
           ))}
         </div>

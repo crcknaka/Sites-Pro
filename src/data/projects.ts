@@ -26,6 +26,116 @@ export const projects = [
   },
 
   {
+    slug: 'institut-de-francais-nice',
+    title: 'Institut De Français Nice',
+    category: 'Media',
+    description: 'Informational website for an educational institution.',
+    challenge: `
+      Communicate credibility, clarity, and international accessibility.
+    `,
+    solution: [
+      'Clear content hierarchy',
+      'Multilingual-ready structure',
+      'Editorial-style layouts',
+      'Accessible design choices',
+    ],
+    result: `
+      A trustworthy and informative website that supports institutional goals.
+    `,
+    image: '/projects/screenshots/institut.jpg',
+    link: 'https://institutdefrancais-nice.com/',
+    facebook: 'https://www.facebook.com/institutdefrancaisnice',
+    instagram: 'https://www.instagram.com/institutdefrancais_nice',
+    tiktok: 'https://www.tiktok.com/@institutdefrancais_nice',
+  },
+
+  {
+    slug: 'madsword-studios',
+    title: 'Madsword Studios',
+    category: 'Media',
+    description: 'Award-winning game development studio with 8+ years of experience, 160+ games developed, and 20M+ downloads.',
+    challenge: `
+      Showcase a game development studio's extensive portfolio and technical expertise
+      while highlighting achievements and capabilities across mobile, VR, and multiplayer
+      platforms to attract potential partners and clients.
+    `,
+    solution: [
+      'Comprehensive game portfolio showcase with filtering by platform',
+      'Highlighting 160+ games developed and 20M+ downloads',
+      'Emphasizing 8+ years of experience in AAA mobile, VR and multiplayer projects',
+      'Expertise in performance optimization, game servers, payments and cross-platform development',
+      'Clear presentation of studio capabilities and services',
+      'Professional design reflecting gaming industry standards',
+    ],
+    result: `
+      An impressive portfolio website that effectively communicates the studio's
+      track record and technical capabilities, attracting partnerships and showcasing
+      the breadth of game development expertise.
+    `,
+    image: '/projects/screenshots/madsword.jpg',
+    link: 'https://madswordstudios.com/',
+    facebook: 'https://www.facebook.com/MadSwordStudio/',
+    youtube: 'https://www.youtube.com/user/MadSwordStudio',
+  },
+
+
+  {
+    slug: 'sensora',
+    title: 'Sensora',
+    category: 'Media',
+    description: 'Intelligent and secure IT security services delivering quality solutions to crucial security issues.',
+    challenge: `
+      Build trust and credibility for a cybersecurity services provider while
+      clearly communicating expertise, certifications, and the comprehensive approach
+      to information security that helps clients make informed decisions.
+    `,
+    solution: [
+      'Group of professionals with unique real-life experience in different security areas',
+      'Quality solutions to crucial security issues revealing existing and potential risks',
+      'Team with genuine passion for information security and world-known certifications',
+      'Continuous knowledge updates from conferences, news sites, and private sources',
+      'Proactive client updates about latest vulnerabilities and security flaws',
+      'Comprehensive services: Cyber strategy, Security education platform, Testing, VR training',
+      'Clear 3-step process: Plan and Analyze, Evaluate and Manage, Remediate and Develop',
+      '24/7/365 support and professional consulting services',
+    ],
+    result: `
+      A professional cybersecurity platform that effectively communicates Sensora's
+      expertise and commitment to client security, building trust through transparency
+      and demonstrating the comprehensive approach to information security protection.
+    `,
+    image: '/projects/screenshots/sensora.jpg',
+    link: 'https://sensora.lv/',
+  },
+
+  {
+    slug: 'imun',
+    title: 'Imun',
+    category: ['Media', 'Finance'] as any,
+    description: 'Advanced payment technology for modern financial operations.',
+    challenge: `
+      Create a professional, trustworthy online presence that communicates
+      technical sophistication and security without overwhelming business clients
+      with complexity.
+    `,
+    solution: [
+      'Clean, professional design emphasizing security and reliability',
+      'Clear value proposition and service overview',
+      'Structured information architecture',
+      'Trust-building elements and compliance messaging',
+      'Scalable content structure for technical documentation',
+    ],
+    result: `
+      A credible and informative platform that effectively communicates Imun's
+      fintech capabilities and builds confidence with enterprise clients.
+    `,
+    image: '/projects/screenshots/imun.jpg',
+    link: 'https://imungate.eu/',
+  },
+
+
+
+  {
     slug: 'ma-sunglasses',
     title: 'Ma Sunglasses',
     category: 'Commerce',
@@ -121,29 +231,7 @@ export const projects = [
     tiktok: 'https://www.tiktok.com/@onairemotions.com',
   },
 
-  {
-    slug: 'institut-de-francais-nice',
-    title: 'Institut De Français Nice',
-    category: 'Media',
-    description: 'Informational website for an educational institution.',
-    challenge: `
-      Communicate credibility, clarity, and international accessibility.
-    `,
-    solution: [
-      'Clear content hierarchy',
-      'Multilingual-ready structure',
-      'Editorial-style layouts',
-      'Accessible design choices',
-    ],
-    result: `
-      A trustworthy and informative website that supports institutional goals.
-    `,
-    image: '/projects/screenshots/institut.jpg',
-    link: 'https://institutdefrancais-nice.com/',
-    facebook: 'https://www.facebook.com/institutdefrancaisnice',
-    instagram: 'https://www.instagram.com/institutdefrancais_nice',
-    tiktok: 'https://www.tiktok.com/@institutdefrancais_nice',
-  },
+
 
   {
     slug: 'goldberg',
@@ -165,6 +253,29 @@ export const projects = [
     `,
     image: '/projects/screenshots/goldberg.jpg',
     link: 'https://goldberg.lv/',
+  },
+
+  {
+    slug: 'barberly',
+    title: 'Barberly',
+    category: 'Media',
+    description: 'Where Style Meets Tradition. Experience the perfect blend of classic barbering techniques and modern style in the heart of the city.',
+    challenge: `
+      Create an elegant booking-focused website that reflects the premium
+      barbershop experience while making appointment scheduling simple and intuitive.
+    `,
+    solution: [
+      'Crafted grooming experiences tailored to your style',
+      'Streamlined booking system without payment complexity',
+      'Modern design that honors traditional barbering heritage',
+      'Clear service presentation and appointment flow',
+    ],
+    result: `
+      A sophisticated website that captures the essence of classic barbering
+      while providing a seamless booking experience for clients.
+    `,
+    image: '/projects/screenshots/barberly.jpg',
+    link: 'https://barberly.lv/',
   },
 
   {
@@ -234,6 +345,31 @@ export const projects = [
   },
 
   {
+    slug: 'gift-roulette',
+    title: 'Gift Roulette',
+    category: 'Apps',
+    description: 'Create and manage Secret Santa gift exchange events with ease.',
+    challenge: `
+      Simplify the organization of Secret Santa events by providing an intuitive
+      platform for creating events, managing participants, and coordinating gift
+      exchanges without complexity.
+    `,
+    solution: [
+      'Simple event creation with name, description, and date',
+      'Easy participant management with minimum requirements',
+      'Optional email notifications for admin links',
+      'Streamlined interface for quick event setup',
+      'Clear event details and participant tracking',
+    ],
+    result: `
+      A user-friendly app that makes organizing Secret Santa events effortless,
+      allowing users to focus on the fun of gift exchanges rather than logistics.
+    `,
+    image: '/projects/screenshots/gift-roulette.jpg',
+    link: 'https://gift-roulette.win/',
+  },
+
+  {
     slug: 'ekobaltika',
     title: 'Ekobaltika',
     category: 'Commerce',
@@ -300,29 +436,35 @@ export const projects = [
     image: '/projects/screenshots/annexedefrancais.jpg',
   },
 
+  
+
   {
-    slug: 'imun',
-    title: 'Imun',
-    category: ['Media', 'Finance'] as any,
-    description: 'Advanced payment technology for modern financial operations.',
+    slug: 'offshore-license',
+    title: 'Offshore License',
+    category: 'Finance',
+    description: 'Trustworthy turnkey partner for offshore and onshore business setup with offices in London, Hong Kong, Cyprus, Prague and Riga.',
     challenge: `
-      Create a professional, trustworthy online presence that communicates
-      technical sophistication and security without overwhelming business clients
-      with complexity.
+      Establish credibility and trust for a complex financial services provider
+      while clearly communicating expertise across multiple jurisdictions and
+      specialized licensing requirements.
     `,
     solution: [
-      'Clean, professional design emphasizing security and reliability',
-      'Clear value proposition and service overview',
-      'Structured information architecture',
-      'Trust-building elements and compliance messaging',
-      'Scalable content structure for technical documentation',
+      'Company formation and corporate services',
+      'Licensing for Forex, Crypto & ICO, Binaries, Financial intermediaries and Gambling',
+      'Assistance with banking and merchant services',
+      'Accounting and Audit services',
+      'Turnkey solution for Forex, Crypto & ICO, Binaries and Gambling platforms',
+      'Highlighting highly experienced staff and strong technological base',
+      'Emphasizing wide partner network and broad geographical presence',
+      'Clear service categorization and professional presentation',
     ],
     result: `
-      A credible and informative platform that effectively communicates Imun's
-      fintech capabilities and builds confidence with enterprise clients.
+      A professional platform that effectively communicates Offshore License's
+      comprehensive capabilities and international reach, building trust with
+      clients seeking complex financial and corporate services.
     `,
-    image: '/projects/screenshots/imun.jpg',
-    link: 'https://imungate.eu/',
+    image: '/projects/screenshots/offshorelicense.jpg',
+    link: 'https://www.offshorelicense.com/',
   },
 
   {
@@ -359,4 +501,62 @@ export const projects = [
     facebook: 'https://www.facebook.com/welltonhotels/',
     instagram: 'https://www.instagram.com/wellton_hotels/',
   },
+
+  {
+    slug: 'window-pros',
+    title: 'Bay Area Window Pros',
+    category: 'Media',
+    description: 'Factory authorized dealer and installer for windows and doors with 25+ years of experience.',
+    challenge: `
+      Build trust and credibility for a service-based business while showcasing
+      extensive product variety, manufacturer partnerships, and installation expertise
+      to convert visitors into qualified leads.
+    `,
+    solution: [
+      'Large variety of styles, sizes and colors to transform home design',
+      'Partnerships with highest quality manufacturers ensuring best dealer prices',
+      'Guaranteed customer service with extensive product knowledge',
+      'Team of installation experts with 20+ years of experience',
+      'Custom design approach meeting specific project requirements',
+      'HOA and city approval assistance for compliance',
+      'Clear 4-step process from quote to project completion',
+      'Trust-building credentials and statistics (5000+ jobs, 45,000+ windows installed)',
+    ],
+    result: `
+      A professional service website that effectively communicates expertise and
+      reliability, generating qualified leads through free quote requests while
+      building confidence in the installation process.
+    `,
+    image: '/projects/screenshots/windowspros.jpg',
+    link: 'https://bayareawindowpros.com/',
+  },
+
+  {
+    slug: 'aerial-platform',
+    title: 'Aerial Platform',
+    category: ['Apps', 'Commerce'] as any,
+    description: 'The premier marketplace connecting professional drone operators with clients who need exceptional aerial photography and videography services.',
+    challenge: `
+      Create a comprehensive marketplace platform that seamlessly connects drone
+      operators with clients, facilitating bookings, payments, and service delivery
+      while ensuring quality and trust on both sides of the transaction.
+    `,
+    solution: [
+      'Professional operator profiles with portfolios and ratings',
+      'Client-friendly booking system with service filtering',
+      'Secure payment processing and transaction management',
+      'Service categorization for different aerial photography needs',
+      'Review and rating system for quality assurance',
+      'Real-time availability and scheduling',
+      'Mobile-responsive design for on-the-go bookings',
+    ],
+    result: `
+      A modern marketplace platform that streamlines the connection between
+      professional drone operators and clients, making exceptional aerial
+      photography and videography services easily accessible. (Still in development.)
+    `,
+    image: '/projects/screenshots/aerial.jpg',
+   
+  },
+
 ];
