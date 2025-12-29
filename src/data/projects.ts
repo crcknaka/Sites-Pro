@@ -2,7 +2,7 @@ export const projects = [
   {
     slug: 'lepicur',
     title: 'Lepicur',
-    category: 'E-Commerce',
+    category: 'Commerce',
     description: 'Premium e-commerce experience focused on aesthetics and performance.',
     challenge: `
       Create a refined online presence that reflects the brand's premium
@@ -28,7 +28,7 @@ export const projects = [
   {
     slug: 'ma-sunglasses',
     title: 'Ma Sunglasses',
-    category: 'E-Commerce',
+    category: 'Commerce',
     description: 'Large-scale product catalogue for eyewear with advanced filtering.',
     challenge: `
       Present a wide assortment of products in a clear and user-friendly way
@@ -53,7 +53,7 @@ export const projects = [
   {
     slug: 'sunachates',
     title: 'Sunachates',
-    category: 'Catalogue',
+    category: 'Media',
     description: 'Boutique catalogue site with strong visual identity.',
     challenge: `
       Showcase products in a visually rich way while keeping the interface
@@ -76,7 +76,7 @@ export const projects = [
   {
     slug: 'pets-pro',
     title: 'Pets Pro',
-    category: 'E-Commerce',
+    category: 'Commerce',
     description: 'Online store for pet products with promotional focus.',
     challenge: `
       Balance promotional content with product clarity and trustworthiness.
@@ -99,7 +99,7 @@ export const projects = [
   {
     slug: 'on-air-emotions',
     title: 'On Air Emotions',
-    category: 'Catalogue',
+    category: 'Media',
     description: 'Event-oriented catalogue with dynamic content blocks.',
     challenge: `
       Present events and media content in a way that feels dynamic
@@ -124,7 +124,7 @@ export const projects = [
   {
     slug: 'institut-de-francais-nice',
     title: 'Institut De Français Nice',
-    category: 'Informational',
+    category: 'Media',
     description: 'Informational website for an educational institution.',
     challenge: `
       Communicate credibility, clarity, and international accessibility.
@@ -148,7 +148,7 @@ export const projects = [
   {
     slug: 'goldberg',
     title: 'Goldberg',
-    category: 'Informational',
+    category: 'Media',
     description: 'Product-focused informational site with clean presentation.',
     challenge: `
       Explain complex products clearly without overloading the user.
@@ -170,7 +170,7 @@ export const projects = [
   {
     slug: 'finnex',
     title: 'Finnex',
-    category: 'Catalogue',
+    category: 'Media',
     description: 'Product catalogue for a manufacturing-focused brand.',
     challenge: `
       Present industrial products in a clean and approachable manner.
@@ -190,7 +190,7 @@ export const projects = [
   {
     slug: 'euc-one',
     title: 'EUC.ONE',
-    category: 'Catalogue',
+    category: 'Media',
     description: 'Community-driven catalogue for electric unicycle riders.',
     challenge: `
       Combine community elements with structured product and content discovery.
@@ -236,7 +236,7 @@ export const projects = [
   {
     slug: 'ekobaltika',
     title: 'Ekobaltika',
-    category: 'E-Commerce',
+    category: 'Commerce',
     description: 'Large e-commerce catalogue for automotive and technical products.',
     challenge: `
       Organize a very broad product range without sacrificing usability.
@@ -258,7 +258,7 @@ export const projects = [
   {
     slug: 'bullu-laivas',
     title: 'Bullu Laivas',
-    category: 'E-Commerce',
+    category: 'Commerce',
     description: 'Lifestyle e-commerce site with strong visual storytelling.',
     challenge: `
       Combine lifestyle branding with commercial functionality.
@@ -283,7 +283,7 @@ export const projects = [
   {
     slug: 'annexe-de-francais',
     title: 'Annexe De Français',
-    category: 'Informational',
+    category: 'Media',
     description: 'Informational site for educational programs and courses.',
     challenge: `
       Present educational offerings clearly to an international audience.
@@ -303,7 +303,7 @@ export const projects = [
   {
     slug: 'imun',
     title: 'Imun',
-    category: ['Informational', 'Finance'] as any,
+    category: ['Media', 'Finance'] as any,
     description: 'Advanced payment technology for modern financial operations.',
     challenge: `
       Create a professional, trustworthy online presence that communicates
@@ -328,7 +328,7 @@ export const projects = [
   {
     slug: 'wellton',
     title: 'Wellton',
-    category: 'E-Commerce',
+    category: 'Commerce',
     description: 'Premium SPA vouchers for Wellton Hotels & Spa in Riga.',
     challenge: `
       Create an elegant and user-friendly platform for selling premium wellness

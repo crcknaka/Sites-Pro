@@ -1,8 +1,7 @@
 type Category =
   | 'Apps'
-  | 'Catalogue'
-  | 'E-Commerce'
-  | 'Informational'
+  | 'Commerce'
+  | 'Media'
   | 'Finance';
 
 const styles: Record<
@@ -18,18 +17,13 @@ const styles: Record<
     text: 'text-[color:var(--accent-2)]',
     border: 'border-[color:var(--accent-2)]/30',
   },
-  'E-Commerce': {
+  Commerce: {
     bg: 'bg-[color:var(--accent-1)]/10',
     text: 'text-[color:var(--accent-1)]',
     border: 'border-[color:var(--accent-1)]/30',
   },
-  Catalogue: {
+  Media: {
     bg: 'bg-[var(--surface-strong)]',
-    text: 'text-[var(--fg-muted)]',
-    border: 'border-[var(--border)]',
-  },
-  Informational: {
-    bg: 'bg-[var(--surface)]',
     text: 'text-[var(--fg-muted)]',
     border: 'border-[var(--border)]',
   },

@@ -10,9 +10,8 @@ const ACCENT = 'var(--accent-1)';
 const CATEGORIES = [
   'All',
   'Apps',
-  'Catalogue',
-  'E-Commerce',
-  'Informational',
+  'Commerce',
+  'Media',
   'Finance',
 ] as const;
 
