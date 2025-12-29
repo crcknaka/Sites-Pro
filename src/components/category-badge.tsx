@@ -1,8 +1,17 @@
+import { Smartphone, ShoppingCart, LayoutGrid, DollarSign } from 'lucide-react';
+
 type Category =
   | 'Apps'
   | 'Commerce'
   | 'Media'
   | 'Finance';
+
+const categoryIcons: Record<Category, typeof Smartphone> = {
+  Apps: Smartphone,
+  Commerce: ShoppingCart,
+  Media: LayoutGrid,
+  Finance: DollarSign,
+};
 
 const styles: Record<
   Category,
@@ -23,14 +32,14 @@ const styles: Record<
     border: 'border-[color:var(--accent-1)]/30',
   },
   Media: {
-    bg: 'bg-[var(--surface-strong)]',
-    text: 'text-[var(--fg-muted)]',
-    border: 'border-[var(--border)]',
+    bg: 'bg-[#6366F1]/10',
+    text: 'text-[#6366F1]',
+    border: 'border-[#6366F1]/30',
   },
   Finance: {
-    bg: 'bg-[#1F4FD8]/10',
-    text: 'text-[#1F4FD8]',
-    border: 'border-[#1F4FD8]/30',
+    bg: 'bg-[#3B82F6]/10',
+    text: 'text-[#3B82F6]',
+    border: 'border-[#3B82F6]/30',
   },
 };
 
@@ -41,11 +50,12 @@ export function CategoryBadge({ category }: { category: Category | Category[] })
     <div className="flex flex-wrap gap-2">
       {categories.map((cat, idx) => {
         const style = styles[cat];
+        const Icon = categoryIcons[cat];
         return (
           <span
             key={idx}
             className={`
-              inline-flex items-center
+              inline-flex items-center gap-1.5
               rounded-full px-2 sm:px-3 py-0.5 sm:py-1
               text-[10px] sm:text-xs font-medium tracking-wide
               border
@@ -54,6 +64,7 @@ export function CategoryBadge({ category }: { category: Category | Category[] })
               ${style.border}
             `}
           >
+            <Icon className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
             {cat}
           </span>
         );

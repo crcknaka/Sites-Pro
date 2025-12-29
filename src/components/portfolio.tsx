@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { Smartphone, ShoppingCart, LayoutGrid, DollarSign, Grid } from 'lucide-react';
 import { projects } from '@/data/projects';
 import ProjectCard from '@/components/projectcard';
 
@@ -14,6 +15,14 @@ const CATEGORIES = [
   'Media',
   'Finance',
 ] as const;
+
+const categoryIcons: Record<(typeof CATEGORIES)[number], typeof Grid> = {
+  All: Grid,
+  Apps: Smartphone,
+  Commerce: ShoppingCart,
+  Media: LayoutGrid,
+  Finance: DollarSign,
+};
 
 export default function Portfolio() {
   const [active, setActive] = useState<(typeof CATEGORIES)[number]>('All');
@@ -108,12 +117,14 @@ export default function Portfolio() {
 <div className="mb-16 flex flex-wrap justify-center gap-3">
   {CATEGORIES.map((category) => {
     const isActive = active === category;
+    const Icon = categoryIcons[category];
 
     return (
       <button
         key={category}
         onClick={() => handleCategoryChange(category)}
         className={`
+          inline-flex items-center gap-2
           rounded-full px-5 py-2 text-sm font-medium
           transition-all duration-300
           border
@@ -140,6 +151,7 @@ export default function Portfolio() {
           }
         `}
       >
+        <Icon className="h-4 w-4" />
         {category}
       </button>
     );

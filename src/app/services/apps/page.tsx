@@ -88,9 +88,9 @@ export default function ApplicationsPage() {
             </h1>
 
             <p className="mt-8 text-lg text-[var(--text-muted)] leading-relaxed max-w-xl">
-              We design and build custom web applications and platforms —
-              focused on architecture, performance and long-term scalability.
-              Built to grow with your business.
+            We design and build custom applications and digital platforms —
+focused on architecture, performance, and long-term scalability.
+Built to grow with your business.
             </p>
 
             <Link
