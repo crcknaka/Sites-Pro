@@ -24,6 +24,14 @@ const categoryIcons: Record<(typeof CATEGORIES)[number], typeof Grid> = {
   Finance: DollarSign,
 };
 
+const categoryDescriptions: Record<(typeof CATEGORIES)[number], string> = {
+  All: 'All projects',
+  Apps: 'Web apps, AI tools, interactive services',
+  Commerce: 'Online stores & transactional platforms',
+  Media: 'Content-driven sites & product showcases',
+  Finance: 'Fintech platforms & payments',
+};
+
 export default function Portfolio() {
   const [active, setActive] = useState<(typeof CATEGORIES)[number]>('All');
   const [isMobile, setIsMobile] = useState(false);
@@ -114,7 +122,7 @@ export default function Portfolio() {
         </div>
 
 {/* FILTERS */}
-<div className="mb-16 flex flex-wrap justify-center gap-3">
+<div className="mb-8 flex flex-wrap justify-center gap-3">
   {CATEGORIES.map((category) => {
     const isActive = active === category;
     const Icon = categoryIcons[category];
@@ -156,6 +164,13 @@ export default function Portfolio() {
       </button>
     );
   })}
+</div>
+
+{/* CATEGORY DESCRIPTION */}
+<div className="mb-16 text-center">
+  <p className="text-sm text-[var(--text-muted)]">
+    {categoryDescriptions[active]}
+  </p>
 </div>
 
 
