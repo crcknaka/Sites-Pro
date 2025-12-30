@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import {
-  Lightbulb,
+  Search,
+  Code,
   Rocket,
-  Sparkles,
   ArrowUpRight,
 } from 'lucide-react';
 
@@ -13,24 +13,24 @@ const ACCENT_2 = 'var(--accent-2)';
 const steps = [
   {
     step: 1,
-    title: 'Explore Ideas',
+    title: 'Discovery & Strategy',
     description:
-      'We dive deep into understanding your vision, goals, and challenges to create the perfect strategy.',
-    icon: Lightbulb,
+      'We align on goals, constraints and technical direction to define scope and priorities.',
+    icon: Search,
   },
   {
     step: 2,
-    title: 'Bring It to Life',
+    title: 'Design & Build',
     description:
-      'Our team transforms concepts into reality with cutting-edge technology and creative design.',
-    icon: Rocket,
+      'We design and build scalable products with a focus on architecture, performance and usability.',
+    icon: Code,
   },
   {
     step: 3,
-    title: 'Build & Polish',
+    title: 'Test, Launch & Scale',
     description:
-      'We refine every detail, ensuring your digital product exceeds expectations and delights users.',
-    icon: Sparkles,
+      'We prepare products for production, launch reliably and support long-term growth.',
+    icon: Rocket,
   },
 ];
 
@@ -68,9 +68,7 @@ export default function About() {
           </h2>
 
           <p className="mt-6 text-lg text-[var(--text-muted)]">
-            At Sites Pro, we believe in a collaborative approach that puts your
-            success first. Our proven process ensures exceptional results every
-            time.
+          We follow a structured, product-driven process focused on clarity, scalability and long-term results.
           </p>
         </div>
 

@@ -28,7 +28,7 @@ export const projects = [
   {
     slug: 'institut-de-francais-nice',
     title: 'Institut De Français Nice',
-    category: 'Media',
+    category: 'Websites',
     description: 'Informational website for an educational institution.',
     challenge: `
       Communicate credibility, clarity, and international accessibility.
@@ -52,7 +52,7 @@ export const projects = [
   {
     slug: 'madsword-studios',
     title: 'Madsword Studios',
-    category: 'Media',
+    category: 'Websites',
     description: 'Award-winning game development studio with 8+ years of experience, 160+ games developed, and 20M+ downloads.',
     challenge: `
       Showcase a game development studio's extensive portfolio and technical expertise
@@ -82,7 +82,7 @@ export const projects = [
   {
     slug: 'sensora',
     title: 'Sensora',
-    category: 'Media',
+    category: 'Websites',
     description: 'Intelligent and secure IT security services delivering quality solutions to crucial security issues.',
     challenge: `
       Build trust and credibility for a cybersecurity services provider while
@@ -111,7 +111,7 @@ export const projects = [
   {
     slug: 'imun',
     title: 'Imun',
-    category: ['Media', 'Finance'] as any,
+    category: ['Websites', 'Fintech'] as any,
     description: 'Advanced payment technology for modern financial operations.',
     challenge: `
       Create a professional, trustworthy online presence that communicates
@@ -163,7 +163,7 @@ export const projects = [
   {
     slug: 'sunachates',
     title: 'Sunachates',
-    category: 'Media',
+    category: 'Websites',
     description: 'Boutique catalogue site with strong visual identity.',
     challenge: `
       Showcase products in a visually rich way while keeping the interface
@@ -209,7 +209,7 @@ export const projects = [
   {
     slug: 'on-air-emotions',
     title: 'On Air Emotions',
-    category: 'Media',
+    category: 'Websites',
     description: 'Event-oriented catalogue with dynamic content blocks.',
     challenge: `
       Present events and media content in a way that feels dynamic
@@ -236,7 +236,7 @@ export const projects = [
   {
     slug: 'goldberg',
     title: 'Goldberg',
-    category: 'Media',
+    category: 'Websites',
     description: 'Product-focused informational site with clean presentation.',
     challenge: `
       Explain complex products clearly without overloading the user.
@@ -258,7 +258,7 @@ export const projects = [
   {
     slug: 'barberly',
     title: 'Barberly',
-    category: 'Media',
+    category: 'Websites',
     description: 'Where Style Meets Tradition. Experience the perfect blend of classic barbering techniques and modern style in the heart of the city.',
     challenge: `
       Create an elegant booking-focused website that reflects the premium
@@ -281,7 +281,7 @@ export const projects = [
   {
     slug: 'finnex',
     title: 'Finnex',
-    category: 'Media',
+    category: 'Websites',
     description: 'Product catalogue for a manufacturing-focused brand.',
     challenge: `
       Present industrial products in a clean and approachable manner.
@@ -301,7 +301,7 @@ export const projects = [
   {
     slug: 'euc-one',
     title: 'EUC.ONE',
-    category: 'Media',
+    category: 'Websites',
     description: 'Community-driven catalogue for electric unicycle riders.',
     challenge: `
       Combine community elements with structured product and content discovery.
@@ -419,7 +419,7 @@ export const projects = [
   {
     slug: 'annexe-de-francais',
     title: 'Annexe De Français',
-    category: 'Media',
+    category: 'Websites',
     description: 'Informational site for educational programs and courses.',
     challenge: `
       Present educational offerings clearly to an international audience.
@@ -441,7 +441,7 @@ export const projects = [
   {
     slug: 'offshore-license',
     title: 'Offshore License',
-    category: 'Finance',
+    category: 'Fintech',
     description: 'Trustworthy turnkey partner for offshore and onshore business setup with offices in London, Hong Kong, Cyprus, Prague and Riga.',
     challenge: `
       Establish credibility and trust for a complex financial services provider
@@ -505,7 +505,7 @@ export const projects = [
   {
     slug: 'window-pros',
     title: 'Bay Area Window Pros',
-    category: 'Media',
+    category: 'Websites',
     description: 'Factory authorized dealer and installer for windows and doors with 25+ years of experience.',
     challenge: `
       Build trust and credibility for a service-based business while showcasing

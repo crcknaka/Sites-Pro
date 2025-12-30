@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Smartphone, ShoppingCart, LayoutGrid, DollarSign, Grid } from 'lucide-react';
+import { Smartphone, ShoppingCart, Globe, Shield, Grid } from 'lucide-react';
 import { projects } from '@/data/projects';
 import ProjectCard from '@/components/projectcard';
 
@@ -10,26 +10,26 @@ const ACCENT = 'var(--accent-1)';
 
 const CATEGORIES = [
   'All',
-  'Apps',
+  'Websites',
   'Commerce',
-  'Media',
-  'Finance',
+  'Apps',
+  'Fintech',
 ] as const;
 
 const categoryIcons: Record<(typeof CATEGORIES)[number], typeof Grid> = {
   All: Grid,
   Apps: Smartphone,
   Commerce: ShoppingCart,
-  Media: LayoutGrid,
-  Finance: DollarSign,
+  Websites: Globe,
+  Fintech: Shield,
 };
 
 const categoryDescriptions: Record<(typeof CATEGORIES)[number], string> = {
   All: 'All projects',
   Apps: 'Web apps, AI tools, interactive services',
   Commerce: 'Online stores & transactional platforms',
-  Media: 'Content-driven sites & product showcases',
-  Finance: 'Fintech platforms & payments',
+  Websites: 'Content-driven sites & product showcases',
+  Fintech: 'Fintech platforms & payments',
 };
 
 export default function Portfolio() {

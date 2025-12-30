@@ -42,7 +42,7 @@ export default function Hero() {
 
         {/* SUBHEADING */}
         <p className="mt-6 sm:mt-8 text-base sm:text-lg md:text-xl max-w-3xl mx-auto text-[var(--text-muted)] px-2">
-          Websites, Applications & Media — crafted with precision and passion.
+        We design and build scalable websites, complex web applications and secure digital platforms — from early concept to production.
         </p>
 
         {/* CREDO */}

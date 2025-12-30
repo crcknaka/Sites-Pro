@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import ContactForm from '@/components/contact/contact-form';
 import {
-  Lightbulb,
+  Search,
+  Code,
   Rocket,
-  Sparkles,
   ShieldCheck,
   Gauge,
   Layers,
@@ -29,24 +29,24 @@ export const metadata: Metadata = {
 const steps = [
   {
     step: 1,
-    title: 'Explore Ideas',
+    title: 'Discovery & Strategy',
     description:
-      'We dive deep into your goals, challenges, and vision to define a clear product direction.',
-    icon: Lightbulb,
+      'We align on goals, constraints and technical direction to define scope and priorities.',
+    icon: Search,
   },
   {
     step: 2,
-    title: 'Bring It to Life',
+    title: 'Design & Build',
     description:
-      'Design and engineering work together to turn concepts into clean, scalable solutions.',
-    icon: Rocket,
+      'We design and build scalable products with a focus on architecture, performance and usability.',
+    icon: Code,
   },
   {
     step: 3,
-    title: 'Build & Polish',
+    title: 'Test, Launch & Scale',
     description:
-      'We refine, optimize, and test every detail until the product feels effortless.',
-    icon: Sparkles,
+      'We prepare products for production, launch reliably and support long-term growth.',
+    icon: Rocket,
   },
 ];
 
@@ -54,13 +54,13 @@ const principles = [
   {
     title: 'Product-first UX',
     description:
-      'Every decision is guided by clarity, hierarchy, and predictable user experience.',
+      'Every decision is driven by clarity, structure and predictable user behavior.',
     icon: Layers,
   },
   {
     title: 'Performance by default',
     description:
-      'Minimal JavaScript, native browser features, and fast-loading interfaces.',
+      'Minimal JavaScript, native browser features and fast-loading interfaces by default.',
     icon: Gauge,
   },
   {
@@ -170,7 +170,7 @@ export default function AboutPage() {
       {/* PRINCIPLES */}
       <section className="mx-auto max-w-6xl px-6 pb-32">
         <h2 className="text-2xl font-semibold text-[var(--fg)]">
-          Our principles
+        Principles & Approach
         </h2>
 
         <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-3">
@@ -206,9 +206,7 @@ export default function AboutPage() {
         <div className="mb-20 h-px bg-[var(--border)]" />
 
         <p className="text-lg leading-relaxed text-[var(--text-muted)]">
-          Sites Pro is built for founders, startups, and teams who care about
-          quality, clarity, and long-term growth. We don't chase trends — we
-          design systems that last.
+        Sites Pro is built for founders, startups and teams who value quality, clarity and long-term growth. We don’t chase trends — we design systems that last.
         </p>
 
         {/* EXPLORE MORE SECTION */}
@@ -256,7 +254,7 @@ export default function AboutPage() {
               </h3>
 
               <p className="mt-3 text-base text-[var(--text-muted)] leading-relaxed">
-                Discover what we do — from websites and applications to AI solutions and consulting.
+              Explore our services — from websites to web platforms and AI automations.
               </p>
 
               <Link
@@ -355,10 +353,10 @@ export default function AboutPage() {
       <section className="mx-auto max-w-7xl px-6 pb-32">
         <div className="mb-20 text-center">
           <h2 className="text-3xl font-semibold text-[var(--fg)]">
-            Ready to start your project?
+          Ready to start a project?
           </h2>
           <p className="mt-4 text-lg text-[var(--text-muted)]">
-            Get in touch and let's build something great together.
+          Get in touch and let’s discuss your idea.
           </p>
         </div>
 
@@ -390,9 +388,8 @@ export default function AboutPage() {
                 text-[var(--text-muted)]
               "
             >
-              "We love hearing about new projects and challenges. Whether you
-              have a detailed brief or just a rough idea, we're here to help
-              shape your digital future."
+              Tell us about your project or challenge.
+              We’ll help define the right direction and next steps..
 
               <div
                 className="mt-4 font-medium not-italic"

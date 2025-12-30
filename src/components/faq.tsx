@@ -8,8 +8,8 @@ const ACCENT = 'var(--accent-1)';
 
 const faqs = [
   {
-    q: 'What’s the typical timeline for building a website, app, or AI automation?',
-    a: 'There’s no one-size-fits-all answer — everything depends on your goals, scope, and how urgent the project is. We’re highly flexible and can adapt to your deadlines. A simple website can be delivered quickly, while more complex apps or AI automations naturally take longer. During our initial discussion, we align on priorities and define a timeline that works best for you.',
+    q: 'What’s the typical timeline for a project?',
+    a: 'There’s no fixed timeline — it depends on the scope, complexity and level of responsibility. A focused website can take a few weeks, while web platforms, fintech products or AI automations usually take longer due to architecture, integrations and testing. We define the timeline upfront during the discovery phase and align it with your priorities, so expectations are clear from day one.',
   },
   {
     q: 'What is your development process?',

@@ -16,19 +16,19 @@ const services = [
   {
     title: 'Websites',
     description:
-      'Modern, responsive websites that captivate your audience and drive conversions. From landing pages to complex web platforms.',
+      'High-performance websites built for growth. Scalable, fast and product-ready.',
     type: 'web',
   },
   {
-    title: 'Applications',
+    title: 'Web Platforms',
     description:
-      'Custom web and mobile applications built with cutting-edge technology. Scalable solutions for your business needs.',
-    type: 'apps',
+      'Product-grade web applications and platforms. Built for complexity, scale and long-term use.',
+    type: 'web-platforms',
   },
   {
     title: 'AI & Automations',
     description:
-      'Intelligent automation solutions powered by AI. Streamline workflows and enhance productivity with smart systems.',
+      'AI-powered automations for digital products and workflows. Reduce manual work and improve efficiency.',
     type: 'ai',
   },
   {
@@ -95,8 +95,7 @@ export default function Services() {
           </h2>
 
           <p className="mt-6 text-lg text-[var(--text-muted)]">
-            We deliver comprehensive digital solutions tailored to your unique
-            needs. From concept to launch, we’ve got you covered.
+          We design and build digital products — from high-performance websites to complex web platforms and automations.
           </p>
         </div>
 
@@ -202,7 +201,7 @@ export default function Services() {
 
 function ServiceInfographic({ type }: { type: string }) {
   if (type === 'web') return <WebInfographic />;
-  if (type === 'apps') return <AppsInfographic />;
+  if (type === 'web-platforms') return <AppsInfographic />;
   if (type === 'ai') return <AIInfographic />;
   if (type === 'consulting') return <ConsultingInfographic />;
   return null;
@@ -255,57 +254,66 @@ function WebInfographic() {
 }
 
 /* ------------------------------------------------------
-   Applications — Simplified Mobile Phone
+   Web Platforms — Dashboard/System View
 ------------------------------------------------------ */
 function AppsInfographic() {
   return (
-    <div className="relative h-32 w-20 select-none group">
+    <div className="relative h-32 w-36 select-none group">
       {/* Glow effect */}
       <div
-        className="absolute -inset-4 rounded-full blur-2xl opacity-0 group-hover:opacity-50 transition-opacity duration-500 -z-10"
+        className="absolute -inset-4 rounded-2xl blur-2xl opacity-0 group-hover:opacity-50 transition-opacity duration-500 -z-10"
         style={{ background: `radial-gradient(circle, ${ACCENT_2}40, transparent)` }}
       />
       
-      {/* Phone device - simplified */}
+      {/* Dashboard container */}
       <div
         className="absolute inset-0 rounded-2xl border border-[var(--border)] overflow-hidden shadow-xl backdrop-blur-sm transition-all duration-300 group-hover:border-[var(--accent-1)]/40 group-hover:scale-105"
         style={{
           background: 'color-mix(in srgb, var(--surface-strong) 95%, transparent)',
         }}
       >
-        {/* Status bar */}
-        <div className="absolute top-0 left-0 right-0 h-3 flex items-center justify-between px-2 bg-[var(--surface)]/20">
-          <div className="text-[6px] opacity-60">9:41</div>
-          <div className="text-[6px] opacity-60">100%</div>
+        {/* Top bar */}
+        <div className="absolute top-0 left-0 right-0 h-2.5 flex items-center gap-1 px-2 bg-[var(--surface)]/30 border-b border-[var(--border)]/30">
+          <span className="h-1 w-1 rounded-full bg-red-500/60" />
+          <span className="h-1 w-1 rounded-full bg-yellow-500/60" />
+          <span className="h-1 w-1 rounded-full bg-green-500/60" />
+          <div className="ml-1.5 h-1 flex-1 rounded-full bg-[var(--border)]/40" />
         </div>
 
-        {/* Front camera (hole punch) */}
-        <div 
-          className="absolute top-1 left-1/2 -translate-x-1/2 h-1.5 w-1.5 rounded-full z-20"
-          style={{ background: '#000' }}
-        />
-
-        {/* Screen content - starts below camera */}
-        <div className="absolute inset-1 rounded-xl overflow-hidden pt-4 px-1.5 pb-1.5 space-y-1.5">
-          {/* Header */}
+        {/* Dashboard content */}
+        <div className="absolute inset-0 pt-3.5 px-2 pb-2 space-y-1.5">
+          {/* Header section */}
           <div className="flex items-center gap-1.5">
             <div
-              className="h-4 w-4 rounded-lg shadow-md"
+              className="h-3 w-3 rounded-md shadow-sm"
               style={{ background: `linear-gradient(135deg, ${ACCENT_1}, ${ACCENT_2})` }}
             />
-            <div className="flex-1 space-y-1">
-              <div className="h-1 w-full rounded-full bg-[var(--border)]/50" />
+            <div className="flex-1 space-y-0.5">
+              <div className="h-0.5 w-full rounded-full bg-[var(--border)]/50" />
               <div className="h-0.5 w-2/3 rounded-full bg-[var(--border)]/40" />
             </div>
           </div>
 
-          {/* Content cards */}
-          <div className="space-y-1.5">
-            <div className="h-6 rounded-lg border border-[var(--accent-1)]/30" style={{ background: `${ACCENT_1}20` }} />
-            <div className="h-5 rounded-lg bg-[var(--surface)]/60 border border-[var(--border)]/30" />
-            <div className="h-5 rounded-lg bg-[var(--surface)]/50 border border-[var(--border)]/20" />
-            <div className="h-5 rounded-lg bg-[var(--surface)]/40 border border-[var(--border)]/15" />
-            <div className="h-5 rounded-lg bg-[var(--surface)]/30 border border-[var(--border)]/10" />
+          {/* Dashboard grid - 2 columns */}
+          <div className="grid grid-cols-2 gap-1">
+            {/* Left column - stats */}
+            <div className="space-y-1">
+              <div className="h-3 rounded-md border border-[var(--accent-1)]/30" style={{ background: `${ACCENT_1}15` }} />
+              <div className="h-2.5 rounded-md bg-[var(--surface)]/60 border border-[var(--border)]/30" />
+            </div>
+            
+            {/* Right column - chart/data */}
+            <div className="space-y-1">
+              <div className="h-3 rounded-md border border-[var(--accent-2)]/30" style={{ background: `${ACCENT_2}15` }} />
+              <div className="h-2.5 rounded-md bg-[var(--surface)]/50 border border-[var(--border)]/20" />
+            </div>
+          </div>
+
+          {/* Bottom section - data table/list */}
+          <div className="space-y-0.5">
+            <div className="h-1.5 rounded-sm bg-[var(--surface)]/60 border border-[var(--border)]/20" />
+            <div className="h-1.5 rounded-sm bg-[var(--surface)]/50 border border-[var(--border)]/15" />
+            <div className="h-1.5 rounded-sm bg-[var(--surface)]/40 border border-[var(--border)]/10" />
           </div>
         </div>
       </div>
@@ -318,7 +326,7 @@ function AppsInfographic() {
 ------------------------------------------------------ */
 function AIInfographic() {
   return (
-    <div className="relative h-28 w-28 select-none group">
+    <div className="relative h-32 w-36 select-none group">
       {/* Glow effect */}
       <div
         className="absolute -inset-4 rounded-2xl blur-2xl opacity-0 group-hover:opacity-50 transition-opacity duration-500 -z-10"
@@ -397,7 +405,7 @@ function AIInfographic() {
 ------------------------------------------------------ */
 function ConsultingInfographic() {
   return (
-    <div className="relative h-28 w-36 select-none group">
+    <div className="relative h-32 w-36 select-none group">
       {/* Glow effect */}
       <div
         className="absolute -inset-4 rounded-2xl blur-2xl opacity-0 group-hover:opacity-50 transition-opacity duration-500 -z-10"

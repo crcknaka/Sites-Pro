@@ -1,16 +1,16 @@
-import { Smartphone, ShoppingCart, LayoutGrid, DollarSign } from 'lucide-react';
+import { Smartphone, ShoppingCart, Globe, Shield } from 'lucide-react';
 
 type Category =
   | 'Apps'
   | 'Commerce'
-  | 'Media'
-  | 'Finance';
+  | 'Websites'
+  | 'Fintech';
 
 const categoryIcons: Record<Category, typeof Smartphone> = {
   Apps: Smartphone,
   Commerce: ShoppingCart,
-  Media: LayoutGrid,
-  Finance: DollarSign,
+  Websites: Globe,
+  Fintech: Shield,
 };
 
 const styles: Record<
@@ -31,12 +31,12 @@ const styles: Record<
     text: 'text-[color:var(--accent-1)]',
     border: 'border-[color:var(--accent-1)]/30',
   },
-  Media: {
+  Websites: {
     bg: 'bg-[#6366F1]/10',
     text: 'text-[#6366F1]',
     border: 'border-[#6366F1]/30',
   },
-  Finance: {
+  Fintech: {
     bg: 'bg-[#3B82F6]/10',
     text: 'text-[#3B82F6]',
     border: 'border-[#3B82F6]/30',

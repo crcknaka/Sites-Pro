@@ -19,34 +19,34 @@ const ACCENT_2 = 'var(--accent-2)';
 
 const techStack = [
   {
-    name: 'Frontend applications',
-    description: 'React, Next.js and modern UI architectures for complex user interfaces.',
+    name: 'Frontend platforms',
+    description: 'Modern web interfaces built with React, Next.js and scalable UI architectures.',
   },
   {
     name: 'Backend systems',
-    description: 'Node.js APIs, business logic, integrations and microservices.',
+    description: 'Node.js APIs, business logic, integrations and service-oriented backends.',
   },
   {
     name: 'Databases & storage',
-    description: 'PostgreSQL, MySQL, Redis and scalable data layers.',
+    description: 'PostgreSQL, MySQL, Redis and scalable data layers designed for growth.',
   },
   {
     name: 'Integrations & APIs',
-    description: 'Payment systems, third-party services and internal APIs.',
+    description: 'Payment providers, third-party services and internal APIs.',
   },
   {
     name: 'Security & reliability',
-    description: 'Authentication, permissions, data protection and stability.',
+    description: 'Authentication, access control, data protection and system stability.',
   },
   {
     name: 'Infrastructure & monitoring',
-    description: 'Cloud hosting, CI/CD pipelines and system observability.',
+    description: 'Cloud hosting, CI/CD pipelines and observability for production systems.',
   },
 ];
 
 const additionalServices = [
   { icon: Layers, label: 'System architecture & planning' },
-  { icon: Server, label: 'Backend & API development' },
+  { icon: Server, label: 'Frontend, backend & API development' },
   { icon: Database, label: 'Database design & optimization' },
   { icon: Plug, label: 'Third-party integrations' },
   { icon: ShieldCheck, label: 'Security & access control' },
@@ -57,7 +57,7 @@ const additionalServices = [
    PAGE
 ====================================================== */
 
-export default function ApplicationsPage() {
+export default function WebPlatformsPage() {
   return (
     <main className="bg-[var(--bg)] text-[var(--fg)]">
       {/* =====================================================
@@ -71,11 +71,11 @@ export default function ApplicationsPage() {
               className="block text-sm uppercase tracking-widest font-medium"
               style={{ color: ACCENT_1 }}
             >
-              Applications
+              Web Platforms
             </span>
 
             <h1 className="mt-6 text-4xl md:text-6xl font-semibold tracking-tight">
-              Scalable applications,
+              Scalable platforms
               <br />
               <span
                 className="bg-clip-text text-transparent"
@@ -88,9 +88,8 @@ export default function ApplicationsPage() {
             </h1>
 
             <p className="mt-8 text-lg text-[var(--text-muted)] leading-relaxed max-w-xl">
-            We design and build custom applications and digital platforms —
-focused on architecture, performance, and long-term scalability.
-Built to grow with your business.
+              We design and build custom web platforms and applications focused on architecture, performance and long-term scalability.
+              From internal tools and dashboards to complex, business-critical platforms — built to grow with your product and processes.
             </p>
 
             <Link
@@ -112,7 +111,7 @@ Built to grow with your business.
 
           {/* INFOGRAPHIC */}
           <div className="flex justify-center">
-            <ApplicationsHeroInfographic />
+            <WebPlatformsHeroInfographic />
           </div>
         </div>
       </section>
@@ -127,8 +126,7 @@ Built to grow with your business.
           </h2>
 
           <p className="mt-6 text-center text-[var(--text-muted)] max-w-3xl mx-auto">
-            We approach applications as systems — with clear architecture,
-            reliable infrastructure and room for future growth.
+            We approach platforms as systems, not standalone features — with clear architecture, reliable infrastructure and room for future evolution.
           </p>
 
           <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -170,13 +168,12 @@ Built to grow with your business.
         <div className="mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-20">
           <div>
             <h2 className="text-3xl font-semibold">
-              More than just code
+              More than just development
             </h2>
 
             <p className="mt-6 text-[var(--text-muted)] leading-relaxed">
-              Applications require careful planning, solid foundations
-              and continuous improvements. We support projects from
-              early architecture decisions to long-term scaling.
+              Web platforms require product thinking, solid foundations and continuous iteration.
+              We support platforms from early architectural decisions to long-term scaling and maintenance.
             </p>
           </div>
 
@@ -229,13 +226,13 @@ Built to grow with your business.
       >
         <div className="mx-auto max-w-4xl text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-semibold">
-            Let’s build your application
+            Let's build your platform
           </h2>
 
           <p className="mt-6 text-[var(--text-muted)] leading-relaxed">
             Tell us about your idea or existing system.
-            We’ll help design the right architecture
-            and turn it into a reliable, scalable application.
+            We'll help design the right architecture
+            and turn it into a reliable, scalable platform.
           </p>
         </div>
 
@@ -279,7 +276,7 @@ Built to grow with your business.
    HERO INFOGRAPHIC — Enhanced phone with app
 ====================================================== */
 
-function ApplicationsHeroInfographic() {
+function WebPlatformsHeroInfographic() {
   return (
     <div className="relative w-[320px] h-[320px] flex items-center justify-center group">
       {/* Glow effect */}
@@ -290,87 +287,112 @@ function ApplicationsHeroInfographic() {
         }}
       />
 
-      {/* Phone device */}
+      {/* Dashboard/Platform container */}
       <div
-        className="relative w-[160px] h-[300px] rounded-[2.5rem] border-[3px] border-[var(--border)] overflow-hidden shadow-2xl backdrop-blur-sm transition-all duration-500 group-hover:scale-[1.02]"
+        className="relative w-[300px] h-[280px] rounded-2xl border border-[var(--border)] overflow-hidden shadow-2xl backdrop-blur-sm transition-all duration-500 group-hover:scale-[1.02] group-hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)]"
         style={{
           background: 'color-mix(in srgb, var(--surface-strong) 95%, transparent)',
         }}
       >
-        {/* Status bar */}
-        <div className="absolute top-0 left-0 right-0 h-8 flex items-center justify-between px-3 bg-[var(--surface)]/20 backdrop-blur-sm text-[8px] opacity-70 z-20 select-none">
-          <span>9:41</span>
-          <span>100%</span>
+        {/* Browser top bar */}
+        <div className="h-11 border-b border-[var(--border)] flex items-center px-4 gap-2 bg-[var(--surface)]/40 backdrop-blur-sm">
+          <span className="h-3 w-3 rounded-full bg-red-500/70 transition-all duration-300 group-hover:bg-red-500" />
+          <span className="h-3 w-3 rounded-full bg-yellow-500/70 transition-all duration-300 group-hover:bg-yellow-500" />
+          <span className="h-3 w-3 rounded-full bg-green-500/70 transition-all duration-300 group-hover:bg-green-500" />
+          
+          {/* URL bar */}
+          <div 
+            className="ml-3 h-6 flex-1 rounded-lg px-3 flex items-center transition-all duration-300"
+            style={{
+              background: 'color-mix(in srgb, var(--surface) 80%, transparent)',
+              border: '1px solid var(--border)',
+            }}
+          >
+            <div 
+              className="h-1.5 w-8 rounded-full"
+              style={{
+                background: `linear-gradient(90deg, ${ACCENT_1}60, ${ACCENT_2}40)`,
+              }}
+            />
+            <div className="ml-2 h-1.5 w-24 rounded-full bg-[var(--border)]/50" />
+          </div>
         </div>
 
-        {/* Front camera */}
-        <div 
-          className="absolute top-2 left-1/2 -translate-x-1/2 h-3 w-3 rounded-full z-30"
-          style={{ background: '#000' }}
-        />
-
-        {/* Screen content */}
-        <div className="absolute inset-2 rounded-[2rem] overflow-hidden pt-9 px-3 pb-3 space-y-2">
-          {/* App header with icon - hoverable */}
-          <div className="flex items-center gap-2 p-2 rounded-xl transition-all duration-300 hover:bg-[var(--surface)]/30 cursor-pointer">
+        {/* Dashboard content */}
+        <div className="p-5 space-y-3">
+          {/* Header section with logo */}
+          <div className="flex items-center gap-3">
             <div
-              className="h-8 w-8 rounded-lg shadow-md flex items-center justify-center"
+              className="h-10 w-10 rounded-xl shadow-md flex items-center justify-center transition-all duration-300 group-hover:scale-110"
               style={{ background: `linear-gradient(135deg, ${ACCENT_1}, ${ACCENT_2})` }}
             >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                <rect x="4" y="4" width="16" height="16" rx="4" fill="white" fillOpacity="0.9" />
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <rect x="4" y="4" width="16" height="16" rx="3" fill="white" fillOpacity="0.9" />
               </svg>
             </div>
-            <div className="flex-1 space-y-1">
-              <div className="h-1.5 w-full rounded-full bg-[var(--border)]/50" />
-              <div className="h-1 w-2/3 rounded-full bg-[var(--border)]/40" />
+            <div className="flex-1 space-y-1.5">
+              <div 
+                className="h-2.5 w-3/4 rounded-full animate-pulse-slow"
+                style={{
+                  background: `linear-gradient(90deg, ${ACCENT_1}, ${ACCENT_2})`,
+                }}
+              />
+              <div className="h-1.5 w-full rounded-full bg-[var(--border)]/40" />
+              <div className="h-1.5 w-5/6 rounded-full bg-[var(--border)]/30" />
             </div>
           </div>
 
-          {/* Stats grid - hoverable */}
-          <div className="grid grid-cols-2 gap-2">
-            {[0, 1].map((i) => (
+          {/* Dashboard grid - metrics and charts */}
+          <div className="grid grid-cols-2 gap-3">
+            {[0, 1, 2, 3].map((i) => (
               <div
                 key={i}
-                className="p-2 rounded-lg border border-[var(--border)] transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer"
+                className="p-3 rounded-xl border transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer"
                 style={{
                   background: i === 0 
                     ? `${ACCENT_1}15`
-                    : `${ACCENT_2}15`,
+                    : i === 1
+                    ? `${ACCENT_2}15`
+                    : i === 2
+                    ? 'color-mix(in srgb, var(--surface) 60%, transparent)'
+                    : 'color-mix(in srgb, var(--surface) 50%, transparent)',
                   borderColor: i === 0 
                     ? `${ACCENT_1}40`
-                    : `${ACCENT_2}40`,
+                    : i === 1
+                    ? `${ACCENT_2}40`
+                    : 'var(--border)',
                 }}
               >
-                <div className="h-1 w-6 rounded-full bg-[var(--border)]/50 mb-1.5" />
+                <div className="h-1 w-8 rounded-full bg-[var(--border)]/50 mb-2" />
                 <div 
-                  className="h-2 w-8 rounded-full"
+                  className="h-4 w-full rounded-lg"
                   style={{
-                    background: i === 0 ? ACCENT_1 : ACCENT_2,
-                    opacity: 0.6,
+                    background: i === 0 
+                      ? `linear-gradient(90deg, ${ACCENT_1}60, ${ACCENT_1}30)`
+                      : i === 1
+                      ? `linear-gradient(90deg, ${ACCENT_2}60, ${ACCENT_2}30)`
+                      : 'color-mix(in srgb, var(--border) 30%, transparent)',
                   }}
                 />
               </div>
             ))}
           </div>
 
-          {/* Content cards - hoverable */}
+          {/* Data table/list section */}
           <div className="space-y-1.5">
-            {[0, 1, 2, 3].map((i) => (
+            {[0, 1, 2].map((i) => (
               <div
                 key={i}
-                className="h-10 rounded-lg border border-[var(--border)] bg-[var(--surface)]/60 transition-all duration-300 hover:bg-[var(--surface)]/80 hover:scale-[1.02] hover:border-[var(--accent-1)]/30 cursor-pointer p-2 flex items-center gap-2"
+                className="h-8 rounded-lg border border-[var(--border)] bg-[var(--surface)]/60 transition-all duration-300 hover:bg-[var(--surface)]/80 hover:scale-[1.01] hover:border-[var(--accent-1)]/30 cursor-pointer p-2 flex items-center gap-2"
               >
                 <div 
-                  className="h-5 w-5 rounded-md"
+                  className="h-4 w-4 rounded-md"
                   style={{
                     background: i === 0 
                       ? `${ACCENT_1}30`
                       : i === 1
                       ? `${ACCENT_2}30`
-                      : i === 2
-                      ? 'color-mix(in srgb, var(--surface) 70%, transparent)'
-                      : 'color-mix(in srgb, var(--surface) 60%, transparent)',
+                      : 'color-mix(in srgb, var(--surface) 70%, transparent)',
                   }}
                 />
                 <div className="flex-1 space-y-1">
@@ -380,20 +402,9 @@ function ApplicationsHeroInfographic() {
               </div>
             ))}
           </div>
-
-          {/* Bottom action button - hoverable */}
-          <div className="pt-1">
-            <div
-              className="h-8 rounded-lg transition-all duration-500 hover:shadow-lg hover:scale-[1.02] cursor-pointer flex items-center justify-center"
-              style={{
-                background: `linear-gradient(135deg, ${ACCENT_1}, ${ACCENT_2})`,
-              }}
-            >
-              <div className="h-1 w-6 rounded-full bg-white/80" />
-            </div>
-          </div>
         </div>
       </div>
     </div>
   );
 }
+

@@ -17,8 +17,8 @@ type NavItem =
 const navItems: NavItem[] = [
   { label: 'Home', type: 'section', target: 'home' },
   { label: 'Services', type: 'section', target: 'services' },
-  { label: 'About', type: 'section', target: 'about' },
   { label: 'Portfolio', type: 'section', target: 'portfolio' },
+  { label: 'About', type: 'section', target: 'about' },
   { label: 'FAQ', type: 'section', target: 'faq' },
   { label: 'Contact', type: 'section', target: 'contact' },
 ];
@@ -128,9 +128,12 @@ export default function Header() {
       return;
     }
 
-    const link = navRef.current.querySelector<HTMLElement>(
-      `a[data-key="${CSS.escape(active)}"]`
+    // Find the link by data-key attribute
+    const links = navRef.current.querySelectorAll<HTMLElement>('a[data-key]');
+    const link = Array.from(links).find(
+      (el) => el.getAttribute('data-key') === active
     );
+
     if (!link) {
       setVisible(false);
       return;

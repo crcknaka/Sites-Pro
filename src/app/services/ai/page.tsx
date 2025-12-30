@@ -19,61 +19,56 @@ const ACCENT_2 = 'var(--accent-2)';
 
 const techStack = [
   {
-    name: 'OpenAI & Anthropic APIs',
-    description: 'GPT-4, Claude for intelligent conversations',
+    name: 'LLM integrations',
+    description: 'OpenAI and Anthropic APIs for intelligent assistants, automation and data processing.',
   },
   {
-    name: 'LangChain & Vector DBs',
-    description: 'Advanced RAG and knowledge retrieval',
+    name: 'Knowledge & retrieval systems',
+    description: 'RAG pipelines, vector databases and structured knowledge layers.',
   },
   {
-    name: 'Computer Vision',
-    description: 'Image recognition and processing',
+    name: 'Workflow automation',
+    description: 'n8n, Zapier and custom pipelines for reliable process automation.',
   },
   {
-    name: 'n8n & Zapier workflows',
-    description: 'No-code automation pipelines',
+    name: 'Document & data processing',
+    description: 'Extraction, classification and transformation of structured and unstructured data.',
   },
   {
-    name: 'Custom ML models',
-    description: 'Tailored solutions for unique problems',
+    name: 'Custom ML solutions',
+    description: 'Tailored models and logic for domain-specific problems.',
   },
   {
-    name: 'Real-time data processing',
-    description: 'Streaming analytics and insights',
+    name: 'Real-time data handling',
+    description: 'Streaming data, analysis and system-level insights.',
   },
 ];
 
 const useCases = [
   {
     icon: MessageSquare,
-    title: 'Intelligent Chatbots',
-    description: '24/7 customer support with human-like responses',
+    title: 'Internal assistants & tools',
+    description: 'AI features inside dashboards and platforms',
   },
   {
     icon: Workflow,
-    title: 'Workflow Automation',
-    description: 'Eliminate repetitive tasks and reduce errors',
+    title: 'Workflow automation',
+    description: 'Removing repetitive tasks and operational bottlenecks',
   },
   {
     icon: Eye,
-    title: 'Document Processing',
-    description: 'Extract data from invoices, contracts, forms',
+    title: 'Document processing',
+    description: 'Invoices, contracts, forms and reports',
   },
   {
     icon: Database,
-    title: 'Data Analysis',
-    description: 'Turn raw data into actionable insights',
-  },
-  {
-    icon: Brain,
-    title: 'Predictive Analytics',
-    description: 'Forecast trends and make smarter decisions',
+    title: 'Data analysis & insights',
+    description: 'Turning raw data into actionable information',
   },
   {
     icon: Sparkles,
-    title: 'Content Generation',
-    description: 'Automated reports, summaries, and more',
+    title: 'Reporting & summarization',
+    description: 'Automated summaries, reports and internal documentation',
   },
 ];
 
@@ -95,17 +90,25 @@ export default function AIPage() {
               className="block text-sm uppercase tracking-widest font-medium"
               style={{ color: ACCENT_1 }}
             >
-              Intelligent Solutions
+              AI & Automations
             </span>
 
             <h1 className="mt-6 text-4xl md:text-6xl font-semibold tracking-tight">
-              AI & Automations
+              Intelligent automation
+              <br />
+              <span
+                className="bg-clip-text text-transparent"
+                style={{
+                  backgroundImage: `linear-gradient(90deg, ${ACCENT_1}, ${ACCENT_2})`,
+                }}
+              >
+                built into real systems
+              </span>
             </h1>
 
-            <p className="mt-6 text-lg text-[var(--text-muted)] leading-relaxed max-w-xl">
-              Intelligent automation solutions powered by AI.
-              Streamline workflows and enhance productivity
-              with smart systems.
+            <p className="mt-8 text-lg text-[var(--text-muted)] leading-relaxed max-w-xl">
+              We design and implement AI-powered automations integrated into digital products and business workflows.
+              Focused on reducing manual work, improving efficiency and enabling smarter decision-making.
             </p>
 
             <Link
@@ -138,11 +141,11 @@ export default function AIPage() {
       <section className="px-6 py-32 bg-[var(--surface)]">
         <div className="mx-auto max-w-6xl">
           <h2 className="text-3xl font-semibold text-center">
-            Technology stack
+            Technology & approach
           </h2>
 
           <p className="mt-6 text-center text-[var(--text-muted)] max-w-3xl mx-auto">
-            Cutting-edge AI tools and frameworks for intelligent automation
+            We use AI where it creates real operational value, not for experimentation or hype.
           </p>
 
           <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -183,12 +186,11 @@ export default function AIPage() {
             </span>
 
             <h2 className="mt-4 text-3xl md:text-4xl font-semibold">
-              AI that works for you
+              Use cases
             </h2>
 
             <p className="mt-4 text-[var(--text-muted)] max-w-2xl mx-auto">
-              From automating mundane tasks to generating insights,
-              AI transforms how you work.
+              AI is most effective when embedded into existing systems and workflows.
             </p>
           </div>
 
@@ -309,8 +311,8 @@ function AIHeroInfographic() {
           </div>
         </div>
 
-        {/* Neural Connection Nodes - 6 around the center */}
-        {[0, 60, 120, 180, 240, 300].map((deg, i) => {
+        {/* Neural Connection Nodes - 5 around the center */}
+        {[0, 72, 144, 216, 288].map((deg, i) => {
           const radius = 100;
           const angleRad = (deg * Math.PI) / 180;
           const x = 150 + radius * Math.cos(angleRad);
@@ -326,7 +328,7 @@ function AIHeroInfographic() {
           const lineEndX = 150 + (radius - nodeRadius) * Math.cos(angleRad);
           const lineEndY = 140 + (radius - nodeRadius) * Math.sin(angleRad);
 
-          const icons = [MessageSquare, Workflow, Eye, Database, Sparkles, Brain];
+          const icons = [MessageSquare, Workflow, Eye, Database, Sparkles];
           const Icon = icons[i];
 
           return (

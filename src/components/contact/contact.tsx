@@ -72,9 +72,8 @@ export default function Contact() {
                 text-[var(--text-muted)]
               "
             >
-              "We love hearing about new projects and challenges. Whether you
-              have a detailed brief or just a rough idea, we're here to help
-              shape your digital future."
+              Tell us about your project or challenge.
+              We’ll help define the right direction and next steps.
 
               <div
                 className="mt-4 font-medium not-italic"

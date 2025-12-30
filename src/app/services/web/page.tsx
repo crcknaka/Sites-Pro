@@ -20,7 +20,7 @@ const ACCENT_2 = 'var(--accent-2)';
 const techStack = [
   {
     name: 'Node.js / Next.js / React',
-    description: 'Modern frameworks for fast, scalable and future-proof websites.',
+    description: 'Modern frameworks for fast, scalable and future-proof web products.',
   },
   {
     name: 'TypeScript & modern tooling',
@@ -28,29 +28,28 @@ const techStack = [
   },
   {
     name: 'WordPress & WooCommerce',
-    description: 'Optimized CMS and e-commerce solutions for smaller budgets.',
+    description: 'Optimized CMS and commerce solutions for projects where flexibility and budget matter.',
   },
   {
     name: 'Headless CMS',
-    description: 'Flexible content management with modern frontends.',
+    description: 'Flexible content management with modern, scalable frontends.',
   },
   {
     name: 'SEO & performance optimization',
-    description: 'Core Web Vitals, accessibility and search visibility.',
+    description: 'Core Web Vitals, accessibility and search visibility built in from day one.',
   },
   {
     name: 'Hosting, CI/CD & monitoring',
-    description: 'Stable infrastructure and smooth deployments.',
+    description: 'Stable infrastructure, smooth deployments and ongoing reliability.',
   },
 ];
 
 const additionalServices = [
-  { icon: Palette, label: 'UI / UX design' },
-  { icon: Brush, label: 'Branding & visual identity' },
-  { icon: FileText, label: 'Content & copywriting' },
-  { icon: Share2, label: 'Social media & SMM' },
-  { icon: BarChart3, label: 'Analytics & tracking' },
-  { icon: Headphones, label: 'Ongoing support & improvements' },
+  { icon: Palette, label: 'UI / UX design focused on clarity and usability' },
+  { icon: Brush, label: 'Branding & visual identity aligned with product goals' },
+  { icon: FileText, label: 'Content & copywriting that supports conversion' },
+  { icon: BarChart3, label: 'Analytics & tracking for informed decisions' },
+  { icon: Headphones, label: 'Ongoing support & improvements as your product grows' },
 ];
 
 /* ======================================================
@@ -88,9 +87,8 @@ export default function WebsitesPage() {
             </h1>
 
             <p className="mt-8 text-lg text-[var(--text-muted)] leading-relaxed max-w-xl">
-              We build fast, reliable and scalable websites — from high-end
-              custom platforms to optimized CMS solutions. Always focused on
-              performance, usability and real business results.
+              We design and build high-performance websites as a foundation for long-term growth.
+              From marketing and corporate websites to product-ready platforms — always focused on speed, clarity and real business outcomes.
             </p>
 
             <Link
@@ -127,8 +125,7 @@ export default function WebsitesPage() {
           </h2>
 
           <p className="mt-6 text-center text-[var(--text-muted)] max-w-3xl mx-auto">
-            We choose technologies based on project complexity, scalability
-            requirements and budget — not trends.
+            We choose technologies based on product complexity, scalability needs and long-term maintainability — not trends.
           </p>
 
           <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -174,9 +171,8 @@ export default function WebsitesPage() {
             </h2>
 
             <p className="mt-6 text-[var(--text-muted)] leading-relaxed">
-              A successful website is not only about code.
-              We provide everything needed to launch, grow
-              and continuously improve your digital presence.
+              A website is not a one-off deliverable — it's a living product.
+              We support the full lifecycle, from initial launch to continuous improvement.
             </p>
           </div>
 
