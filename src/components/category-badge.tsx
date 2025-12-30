@@ -1,4 +1,4 @@
-import { Smartphone, ShoppingCart, Globe, Shield } from 'lucide-react';
+import { Layers, ShoppingCart, Globe, Shield } from 'lucide-react';
 
 type Category =
   | 'Apps'
@@ -6,8 +6,8 @@ type Category =
   | 'Websites'
   | 'Fintech';
 
-const categoryIcons: Record<Category, typeof Smartphone> = {
-  Apps: Smartphone,
+const categoryIcons: Record<Category, typeof Layers> = {
+  Apps: Layers,
   Commerce: ShoppingCart,
   Websites: Globe,
   Fintech: Shield,

@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Linkedin, Send } from 'lucide-react';
@@ -8,9 +9,26 @@ import { Linkedin, Send } from 'lucide-react';
 const ACCENT_1 = 'var(--accent-1)';
 const ACCENT_2 = 'var(--accent-2)';
 
+const animatedWords = ['platforms', 'applications', 'systems'];
+
 export default function Hero() {
   const pathname = usePathname();
   const isHome = pathname === '/';
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsVisible(false);
+      
+      setTimeout(() => {
+        setCurrentIndex((prev) => (prev + 1) % animatedWords.length);
+        setIsVisible(true);
+      }, 500); // Half of transition duration
+    }, 2500); // 2.5 seconds interval
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <section
@@ -27,22 +45,41 @@ export default function Hero() {
       <div className="relative z-10 max-w-5xl text-center w-full">
         {/* HEADING */}
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-semibold tracking-tight leading-tight px-2">
-          We Build{' '}
+          Product-grade{' '}
           <span
             className="bg-clip-text text-transparent"
             style={{
               backgroundImage: `linear-gradient(90deg, ${ACCENT_1}, ${ACCENT_2})`,
             }}
           >
-            Digital
+            websites
           </span>{' '}
           <br className="hidden md:block" />
-          Experiences
+          and web{' '}
+          <span className="relative inline-block min-w-[140px] sm:min-w-[180px] md:min-w-[220px]">
+            {animatedWords.map((word, index) => (
+              <span
+                key={word}
+                className="bg-clip-text text-transparent absolute left-0 top-0 whitespace-nowrap"
+                style={{
+                  backgroundImage: `linear-gradient(90deg, ${ACCENT_1}, ${ACCENT_2})`,
+                  opacity: currentIndex === index && isVisible ? 1 : 0,
+                  filter: currentIndex === index && isVisible ? 'blur(0px)' : 'blur(4px)',
+                  transition: 'opacity 1s ease-in-out, filter 1s ease-in-out',
+                  pointerEvents: 'none',
+                }}
+              >
+                {word}
+              </span>
+            ))}
+            {/* Invisible placeholder to maintain width */}
+            <span className="invisible whitespace-nowrap">{animatedWords[0]}</span>
+          </span>
         </h1>
 
         {/* SUBHEADING */}
         <p className="mt-6 sm:mt-8 text-base sm:text-lg md:text-xl max-w-3xl mx-auto text-[var(--text-muted)] px-2">
-        We design and build scalable websites, complex web applications and secure digital platforms — from early concept to production.
+        We design and build scalable websites, web applications and secure digital platforms — from concept to production.
         </p>
 
         {/* CREDO */}

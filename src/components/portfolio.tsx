@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Smartphone, ShoppingCart, Globe, Shield, Grid } from 'lucide-react';
+import { Layers, ShoppingCart, Globe, Shield, Grid } from 'lucide-react';
 import { projects } from '@/data/projects';
 import ProjectCard from '@/components/projectcard';
 
@@ -18,7 +18,7 @@ const CATEGORIES = [
 
 const categoryIcons: Record<(typeof CATEGORIES)[number], typeof Grid> = {
   All: Grid,
-  Apps: Smartphone,
+  Apps: Layers,
   Commerce: ShoppingCart,
   Websites: Globe,
   Fintech: Shield,
