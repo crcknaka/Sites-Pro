@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     default: 'Sites Pro — Digital Done Right',
     template: '%s | Sites Pro',
   },
-  description: 'Professional web development, applications, AI automations, and technical consulting. We build modern, scalable digital experiences that drive results.',
+  description: 'Product-grade websites, web platforms and AI automations. Built for scalability, performance and long-term growth.',
   keywords: ['web development', 'application development', 'AI automation', 'technical consulting', 'fintech solutions', 'digital agency'],
   authors: [{ name: 'Sites Pro' }],
   creator: 'Sites Pro',
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://sitespro.org',
     title: 'Sites Pro — Digital Done Right',
-    description: 'Professional web development, applications, AI automations, and technical consulting. We build modern, scalable digital experiences that drive results.',
+    description: 'Product-grade websites, web platforms and AI automations. Built for scalability, performance and long-term growth.',
     siteName: 'Sites Pro',
     images: [
       {
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Sites Pro — Digital Done Right',
-    description: 'Professional web development, applications, AI automations, and technical consulting. We build modern, scalable digital experiences.',
+    description: 'Product-grade websites, web platforms and AI automations. Built for scalability, performance and long-term growth.',
     images: ['/og-image.jpg'],
   },
   robots: {
