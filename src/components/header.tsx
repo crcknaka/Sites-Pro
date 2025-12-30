@@ -20,7 +20,6 @@ const navItems: NavItem[] = [
   { label: 'Portfolio', type: 'section', target: 'portfolio' },
   { label: 'About', type: 'section', target: 'about' },
   { label: 'FAQ', type: 'section', target: 'faq' },
-  { label: 'Contact', type: 'section', target: 'contact' },
 ];
 
 const SPRING = {
@@ -326,27 +325,35 @@ export default function Header() {
       <aside
         className={`
           fixed right-4 top-4 z-[70]
-          w-[48%] max-w-[240px]
+          w-[48%] max-w-[280px]
           rounded-3xl border border-[var(--border)]
           bg-[var(--surface)]
           backdrop-blur-xl
+          shadow-2xl
           transition
           ${open ? 'translate-x-0 opacity-100' : 'pointer-events-none translate-x-6 opacity-0'}
         `}
       >
-        <div className="flex justify-end px-4 pt-4">
+        {/* Header with Theme Toggle and Close Button */}
+        <div className="flex items-center justify-between px-5 pt-5">
+          <ThemeToggle />
           <button
             onClick={() => setOpen(false)}
-            className="cursor-pointer select-none active:scale-[0.96]"
+            className="
+              cursor-pointer select-none
+              p-2 rounded-lg
+              hover:bg-[var(--surface-strong)]
+              transition-colors
+              active:scale-[0.96]
+            "
             aria-label="Close menu"
           >
             <X className="h-5 w-5 text-[var(--fg)]" />
           </button>
         </div>
 
-        <nav className="flex flex-col items-end gap-3 px-6 pb-6 pt-4 text-sm">
-          <ThemeToggle />
-
+        {/* Navigation */}
+        <nav className="flex flex-col items-center gap-2 px-5 pt-6 pb-5">
           {navItems.map((item) => {
             // Fixed: Navigate to home with hash for sections from any page
             const href = item.type === 'section' 
@@ -361,20 +368,50 @@ export default function Header() {
                 href={href}
                 onClick={() => setOpen(false)}
                 className={`
-                  w-full text-right
+                  w-full
+                  text-center
                   cursor-pointer select-none
-                  rounded-lg px-2 py-2
-                  transition transition-transform
-                  active:scale-[0.96]
-                  hover:bg-[var(--surface-strong)]
-                  ${isActive ? 'text-[var(--fg)]' : 'text-[var(--text-muted)]'}
+                  rounded-xl px-4 py-2.5
+                  text-sm font-medium
+                  transition-all
+                  active:scale-[0.98]
+                  ${
+                    isActive
+                      ? 'text-[var(--fg)] bg-[var(--surface-strong)]'
+                      : 'text-[var(--text-muted)] hover:bg-[var(--surface-strong)] hover:text-[var(--fg)]'
+                  }
                 `}
-                style={isActive ? { color: ACCENT } : undefined}
+                style={isActive ? { 
+                  color: ACCENT,
+                  border: `1px solid ${ACCENT}40`
+                } : undefined}
               >
                 {item.label}
               </Link>
             );
           })}
+
+          {/* CTA Button */}
+          <div className="w-full pt-4">
+            <Link
+              href={isHome ? "#contact" : "/#contact"}
+              onClick={() => setOpen(false)}
+              className="
+                w-full
+                block
+                text-center
+                cursor-pointer select-none
+                rounded-xl px-4 py-3
+                text-sm font-medium text-black
+                transition-all
+                active:scale-[0.98]
+                hover:opacity-90
+              "
+              style={{ background: ACCENT }}
+            >
+              Get Started
+            </Link>
+          </div>
         </nav>
       </aside>
     </>
