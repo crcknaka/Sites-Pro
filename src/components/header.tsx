@@ -20,6 +20,7 @@ const navItems: NavItem[] = [
   { label: 'Portfolio', type: 'section', target: 'portfolio' },
   { label: 'About', type: 'section', target: 'about' },
   { label: 'FAQ', type: 'section', target: 'faq' },
+  { label: 'Contact', type: 'section', target: 'contact' },
 ];
 
 const SPRING = {
