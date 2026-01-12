@@ -34,18 +34,18 @@ const categoryDescriptions: Record<(typeof CATEGORIES)[number], string> = {
 export default function Portfolio() {
   const [active, setActive] = useState<(typeof CATEGORIES)[number]>('All');
   const isMobile = useIsMobile();
-  const [visibleCount, setVisibleCount] = useState(6);
+  const [visibleCount, setVisibleCount] = useState(8);
   const [isInitialized, setIsInitialized] = useState(false);
 
   // Set initial count based on screen size
   useEffect(() => {
     if (!isInitialized) {
-      setVisibleCount(isMobile ? 4 : 6);
+      setVisibleCount(isMobile ? 4 : 8);
       setIsInitialized(true);
     }
   }, [isMobile, isInitialized]);
 
-  const getInitialCount = () => (isMobile ? 4 : 6);
+  const getInitialCount = () => (isMobile ? 4 : 8);
 
   const filteredProjects =
     active === 'All'
@@ -59,7 +59,7 @@ export default function Portfolio() {
   const hasMore = visibleCount < filteredProjects.length;
 
   const loadMore = () => {
-    const increment = isMobile ? 4 : 6;
+    const increment = isMobile ? 4 : 8;
     setVisibleCount((prev) => prev + increment);
   };
 
