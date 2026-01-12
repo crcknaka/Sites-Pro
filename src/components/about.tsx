@@ -5,10 +5,7 @@ import {
   Rocket,
   ArrowUpRight,
 } from 'lucide-react';
-
-/* brand accents via CSS vars */
-const ACCENT_1 = 'var(--accent-1)';
-const ACCENT_2 = 'var(--accent-2)';
+import { ACCENT_1, ACCENT_2 } from '@/lib';
 
 const steps = [
   {
@@ -72,7 +69,59 @@ export default function About() {
           </p>
         </div>
 
-        {/* STEPS - hidden on mobile, visible on desktop */}
+        {/* STEPS - Mobile: vertical list, Desktop: horizontal grid */}
+
+        {/* Mobile version - vertical cards */}
+        <div className="md:hidden mt-12 space-y-4">
+          {steps.map((step) => {
+            const Icon = step.icon;
+
+            return (
+              <div
+                key={step.step}
+                className="
+                  flex items-start gap-4 p-4
+                  rounded-xl
+                  bg-[var(--surface)]
+                  border border-[var(--border)]
+                "
+              >
+                <div
+                  className="
+                    relative shrink-0 h-12 w-12 rounded-lg
+                    flex items-center justify-center
+                    bg-[var(--surface-strong)]
+                    border border-[var(--border)]
+                    text-[var(--text-muted)]
+                  "
+                >
+                  <Icon className="h-5 w-5" />
+                  <span
+                    className="
+                      absolute -top-1.5 -right-1.5 h-5 w-5 rounded-full
+                      flex items-center justify-center
+                      text-xs font-semibold text-black
+                    "
+                    style={{ background: ACCENT_1 }}
+                  >
+                    {step.step}
+                  </span>
+                </div>
+
+                <div>
+                  <h3 className="text-base font-semibold mb-1">
+                    {step.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed text-[var(--text-muted)]">
+                    {step.description}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Desktop version - horizontal grid */}
         <div className="hidden md:grid relative mt-24 grid-cols-3 gap-8 lg:gap-12">
           {/* connector line */}
           <div

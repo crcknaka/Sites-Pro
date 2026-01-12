@@ -3,9 +3,7 @@
 import { useState, useEffect } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { useIsMobile } from '@/hooks';
-
-/* brand accent via CSS var */
-const ACCENT = 'var(--accent-1)';
+import { ACCENT } from '@/lib';
 
 const faqs = [
   {
@@ -140,12 +138,19 @@ export default function FAQ() {
                   />
                 </button>
 
-                {/* ANSWER */}
-                {active && (
-                  <div className="px-6 pb-6 text-sm leading-relaxed text-[var(--text-muted)]">
-                    {item.a}
+                {/* ANSWER with smooth animation */}
+                <div
+                  className={`
+                    grid transition-all duration-300 ease-out
+                    ${active ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}
+                  `}
+                >
+                  <div className="overflow-hidden">
+                    <div className="px-6 pb-6 text-sm leading-relaxed text-[var(--text-muted)]">
+                      {item.a}
+                    </div>
                   </div>
-                )}
+                </div>
               </div>
             );
           })}

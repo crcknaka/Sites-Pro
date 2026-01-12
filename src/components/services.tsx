@@ -1,16 +1,13 @@
 import Link from 'next/link';
-import { 
-  CreditCard, 
-  Smartphone, 
-  Wallet, 
-  Building2, 
-  Coins, 
-  Bitcoin 
+import {
+  CreditCard,
+  Smartphone,
+  Wallet,
+  Building2,
+  Coins,
+  Bitcoin
 } from 'lucide-react';
-
-/* brand accents via CSS vars */
-const ACCENT_1 = 'var(--accent-1)';
-const ACCENT_2 = 'var(--accent-2)';
+import { ACCENT_1, ACCENT_2 } from '@/lib';
 
 const services = [
   {

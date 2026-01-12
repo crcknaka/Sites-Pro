@@ -5,9 +5,7 @@ import { Layers, ShoppingCart, Globe, Shield, Grid } from 'lucide-react';
 import { projects } from '@/data/projects';
 import ProjectCard from '@/components/projectcard';
 import { useIsMobile } from '@/hooks';
-
-/* brand accent via CSS var */
-const ACCENT = 'var(--accent-1)';
+import { ACCENT } from '@/lib';
 
 const CATEGORIES = [
   'All',

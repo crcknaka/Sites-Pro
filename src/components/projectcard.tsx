@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import { CategoryBadge } from '@/components/category-badge';
+import { ACCENT } from '@/lib';
 
 type Props = {
   slug: string;
@@ -8,9 +9,6 @@ type Props = {
   category: string | string[];
   description: string;
 };
-
-/* brand accent via CSS var */
-const ACCENT = 'var(--accent-1)';
 
 export default function ProjectCard({
   slug,

@@ -6,9 +6,7 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import { ThemeToggle } from '@/components/theme/theme-toggle';
-
-/* brand accent */
-const ACCENT = 'var(--accent-1)';
+import { ACCENT } from '@/lib';
 
 type NavItem =
   | { label: string; type: 'section'; target: string }

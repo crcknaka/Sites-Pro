@@ -8,10 +8,7 @@ import {
   Database,
   Sparkles,
 } from 'lucide-react';
-
-/* brand accents */
-const ACCENT_1 = 'var(--accent-1)';
-const ACCENT_2 = 'var(--accent-2)';
+import { ACCENT_1, ACCENT_2 } from '@/lib';
 
 /* ======================================================
    DATA
@@ -82,18 +79,18 @@ export default function AIPage() {
       {/* =====================================================
           HERO
       ====================================================== */}
-      <section className="px-6 pt-40 pb-32">
-        <div className="mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+      <section className="px-4 sm:px-6 pt-24 sm:pt-40 pb-16 sm:pb-32">
+        <div className="mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-20 items-center">
           {/* TEXT */}
           <div>
             <span
-              className="block text-sm uppercase tracking-widest font-medium"
+              className="block text-xs sm:text-sm uppercase tracking-widest font-medium"
               style={{ color: ACCENT_1 }}
             >
               AI & Automations
             </span>
 
-            <h1 className="mt-6 text-4xl md:text-6xl font-semibold tracking-tight">
+            <h1 className="mt-4 sm:mt-6 text-3xl sm:text-4xl md:text-6xl font-semibold tracking-tight">
               Intelligent automation
               <br />
               <span
@@ -106,7 +103,7 @@ export default function AIPage() {
               </span>
             </h1>
 
-            <p className="mt-8 text-lg text-[var(--text-muted)] leading-relaxed max-w-xl">
+            <p className="mt-5 sm:mt-8 text-base sm:text-lg text-[var(--text-muted)] leading-relaxed max-w-xl">
               We design and implement AI-powered automations integrated into digital products and business workflows.
               Focused on reducing manual work, improving efficiency and enabling smarter decision-making.
             </p>
@@ -115,9 +112,9 @@ export default function AIPage() {
               href="/#contact"
               className="
                 inline-block
-                mt-10
+                mt-6 sm:mt-10
                 cursor-pointer select-none
-                rounded-lg px-6 py-3 text-sm font-medium
+                rounded-lg px-5 sm:px-6 py-2.5 sm:py-3 text-sm font-medium
                 text-black
                 transition-transform active:scale-[0.96]
                 hover:opacity-90
@@ -128,8 +125,8 @@ export default function AIPage() {
             </Link>
           </div>
 
-          {/* INFOGRAPHIC */}
-          <div className="flex justify-center">
+          {/* INFOGRAPHIC - hidden on mobile */}
+          <div className="hidden lg:flex justify-center">
             <AIHeroInfographic />
           </div>
         </div>
@@ -138,30 +135,30 @@ export default function AIPage() {
       {/* =====================================================
           TECHNOLOGY STACK
       ====================================================== */}
-      <section className="px-6 py-32 bg-[var(--surface)]">
+      <section className="px-4 sm:px-6 py-16 sm:py-32 bg-[var(--surface)]">
         <div className="mx-auto max-w-6xl">
-          <h2 className="text-3xl font-semibold text-center">
+          <h2 className="text-2xl sm:text-3xl font-semibold text-center">
             Technology & approach
           </h2>
 
-          <p className="mt-6 text-center text-[var(--text-muted)] max-w-3xl mx-auto">
+          <p className="mt-4 sm:mt-6 text-center text-sm sm:text-base text-[var(--text-muted)] max-w-3xl mx-auto">
             We use AI where it creates real operational value, not for experimentation or hype.
           </p>
 
-          <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="mt-10 sm:mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {techStack.map((tech) => (
               <div
                 key={tech.name}
-                className="rounded-2xl p-6 border border-[var(--border)] bg-[var(--bg)]"
+                className="rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-[var(--border)] bg-[var(--bg)]"
               >
                 <div className="flex items-start gap-3">
                   <span
-                    className="mt-2 h-2 w-2 rounded-full"
+                    className="mt-1.5 sm:mt-2 h-2 w-2 rounded-full shrink-0"
                     style={{ backgroundColor: ACCENT_1 }}
                   />
                   <div>
-                    <h3 className="font-medium">{tech.name}</h3>
-                    <p className="mt-1 text-sm text-[var(--text-muted)]">
+                    <h3 className="font-medium text-sm sm:text-base">{tech.name}</h3>
+                    <p className="mt-1 text-xs sm:text-sm text-[var(--text-muted)]">
                       {tech.description}
                     </p>
                   </div>
@@ -175,45 +172,46 @@ export default function AIPage() {
       {/* =====================================================
           USE CASES
       ====================================================== */}
-      <section className="px-6 py-32">
+      <section className="px-4 sm:px-6 py-16 sm:py-32">
         <div className="mx-auto max-w-6xl">
-          <div className="text-center mb-16">
+          <div className="text-center mb-10 sm:mb-16">
             <span
-              className="text-sm uppercase tracking-widest font-medium"
+              className="text-xs sm:text-sm uppercase tracking-widest font-medium"
               style={{ color: ACCENT_1 }}
             >
               Use Cases
             </span>
 
-            <h2 className="mt-4 text-3xl md:text-4xl font-semibold">
+            <h2 className="mt-3 sm:mt-4 text-2xl sm:text-3xl md:text-4xl font-semibold">
               Use cases
             </h2>
 
-            <p className="mt-4 text-[var(--text-muted)] max-w-2xl mx-auto">
+            <p className="mt-3 sm:mt-4 text-sm sm:text-base text-[var(--text-muted)] max-w-2xl mx-auto">
               AI is most effective when embedded into existing systems and workflows.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {useCases.map((item) => (
               <div
                 key={item.title}
-                className="rounded-2xl p-6 border border-[var(--border)] bg-[var(--surface)]"
+                className="rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-[var(--border)] bg-[var(--surface)]"
               >
                 <div
                   className="
-                    h-12 w-12 mb-6
-                    rounded-xl
+                    h-10 w-10 sm:h-12 sm:w-12 mb-4 sm:mb-6
+                    rounded-lg sm:rounded-xl
                     flex items-center justify-center
                     border border-[var(--border)]
                     bg-[var(--bg)]
                   "
                 >
-                  <item.icon size={22} style={{ color: ACCENT_1 }} />
+                  <item.icon size={18} className="sm:hidden" style={{ color: ACCENT_1 }} />
+                  <item.icon size={22} className="hidden sm:block" style={{ color: ACCENT_1 }} />
                 </div>
 
-                <h3 className="font-semibold">{item.title}</h3>
-                <p className="mt-2 text-sm text-[var(--text-muted)]">
+                <h3 className="font-semibold text-sm sm:text-base">{item.title}</h3>
+                <p className="mt-2 text-xs sm:text-sm text-[var(--text-muted)]">
                   {item.description}
                 </p>
               </div>
@@ -227,15 +225,15 @@ export default function AIPage() {
       ====================================================== */}
       <section
         id="contact"
-        className="px-6 py-40 bg-[var(--surface-strong)] border-t border-[var(--border)]"
+        className="px-4 sm:px-6 py-20 sm:py-40 bg-[var(--surface-strong)] border-t border-[var(--border)]"
       >
-        <div className="mx-auto max-w-4xl text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-semibold">
+        <div className="mx-auto max-w-4xl text-center mb-10 sm:mb-16">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold">
             Ready to automate your business?
           </h2>
 
-          <p className="mt-6 text-[var(--text-muted)] leading-relaxed">
-            Let’s explore how AI can transform your operations.
+          <p className="mt-4 sm:mt-6 text-sm sm:text-base text-[var(--text-muted)] leading-relaxed">
+            Let's explore how AI can transform your operations.
           </p>
         </div>
 
@@ -245,7 +243,7 @@ export default function AIPage() {
       </section>
 
       {/* BACK TO SERVICES */}
-      <section className="px-6 py-16">
+      <section className="px-4 sm:px-6 py-10 sm:py-16">
         <div className="mx-auto max-w-6xl">
           <div className="flex justify-center">
             <Link
@@ -253,11 +251,11 @@ export default function AIPage() {
               className="
                 group
                 flex items-center justify-center gap-2
-                px-6 py-4
+                px-5 sm:px-6 py-3 sm:py-4
                 rounded-xl
                 border border-[var(--border)]
                 bg-[var(--surface)]
-                text-sm sm:text-base font-medium
+                text-sm font-medium
                 text-[var(--text-muted)]
                 hover:text-[var(--fg)]
                 hover:border-[var(--accent-1)]

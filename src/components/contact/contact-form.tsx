@@ -4,9 +4,7 @@ import { useEffect, useState, useTransition } from 'react';
 import { Turnstile } from '@marsidev/react-turnstile';
 import { SendHorizontal, CheckCircle } from 'lucide-react';
 import { sendContactMessage } from './contact-actions';
-
-/* brand accent via CSS var */
-const ACCENT = 'var(--accent-1)';
+import { ACCENT } from '@/lib';
 
 export default function ContactForm() {
   const [success, setSuccess] = useState(false);

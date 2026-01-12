@@ -2,10 +2,7 @@
 
 import ContactForm from './contact-form';
 import { Mail, MapPin, Clock, ShieldCheck, type LucideIcon } from 'lucide-react';
-
-/* brand accents via CSS vars */
-const ACCENT_1 = 'var(--accent-1)';
-const ACCENT_2 = 'var(--accent-2)';
+import { ACCENT_1, ACCENT_2 } from '@/lib';
 
 export default function Contact() {
   return (

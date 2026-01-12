@@ -6,7 +6,6 @@ import {
   Code,
   Brain,
   Globe,
-  HelpCircle,
   BarChart3,
   ShieldCheck,
   Zap,
@@ -14,10 +13,7 @@ import {
   Users,
   FileCheck,
 } from 'lucide-react';
-
-/* brand accents */
-const ACCENT_1 = 'var(--accent-1)';
-const ACCENT_2 = 'var(--accent-2)';
+import { ACCENT_1, ACCENT_2 } from '@/lib';
 
 /* ======================================================
    DATA
@@ -71,18 +67,18 @@ export default function ConsultingPage() {
       {/* =====================================================
           HERO
       ====================================================== */}
-      <section className="px-6 pt-40 pb-32">
-        <div className="mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+      <section className="px-4 sm:px-6 pt-24 sm:pt-40 pb-16 sm:pb-32">
+        <div className="mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-20 items-center">
           {/* TEXT */}
           <div>
             <span
-              className="block text-sm uppercase tracking-widest font-medium"
+              className="block text-xs sm:text-sm uppercase tracking-widest font-medium"
               style={{ color: ACCENT_1 }}
             >
               Consulting
             </span>
 
-            <h1 className="mt-6 text-4xl md:text-6xl font-semibold tracking-tight">
+            <h1 className="mt-4 sm:mt-6 text-3xl sm:text-4xl md:text-6xl font-semibold tracking-tight">
               Expert guidance for
               <br />
               <span
@@ -95,7 +91,7 @@ export default function ConsultingPage() {
               </span>
             </h1>
 
-            <p className="mt-8 text-lg text-[var(--text-muted)] leading-relaxed max-w-xl">
+            <p className="mt-5 sm:mt-8 text-base sm:text-lg text-[var(--text-muted)] leading-relaxed max-w-xl">
               Strategic consulting for payment systems, fintech solutions,
               website and app development, AI integration, and project planning.
               Get expert guidance to make the right technical decisions.
@@ -105,9 +101,9 @@ export default function ConsultingPage() {
               href="/#contact"
               className="
                 inline-block
-                mt-10
+                mt-6 sm:mt-10
                 cursor-pointer select-none
-                rounded-lg px-6 py-3 text-sm font-medium
+                rounded-lg px-5 sm:px-6 py-2.5 sm:py-3 text-sm font-medium
                 text-black
                 transition-transform active:scale-[0.96]
                 hover:opacity-90
@@ -118,8 +114,8 @@ export default function ConsultingPage() {
             </Link>
           </div>
 
-          {/* INFOGRAPHIC */}
-          <div className="flex justify-center">
+          {/* INFOGRAPHIC - hidden on mobile */}
+          <div className="hidden lg:flex justify-center">
             <ConsultingHeroInfographic />
           </div>
         </div>
@@ -128,23 +124,23 @@ export default function ConsultingPage() {
       {/* =====================================================
           CONSULTING AREAS
       ====================================================== */}
-      <section className="px-6 py-32 bg-[var(--surface)]">
+      <section className="px-4 sm:px-6 py-16 sm:py-32 bg-[var(--surface)]">
         <div className="mx-auto max-w-6xl">
-          <h2 className="text-3xl font-semibold text-center">
+          <h2 className="text-2xl sm:text-3xl font-semibold text-center">
             Consulting areas
           </h2>
 
-          <p className="mt-6 text-center text-[var(--text-muted)] max-w-3xl mx-auto">
+          <p className="mt-4 sm:mt-6 text-center text-sm sm:text-base text-[var(--text-muted)] max-w-3xl mx-auto">
             We provide expert guidance across multiple domains — from payment
             integrations and fintech to web development, applications, AI and project planning.
           </p>
 
-          <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="mt-10 sm:mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {consultingAreas.map((area) => (
               <div
                 key={area.name}
                 className="
-                  rounded-2xl p-6
+                  rounded-xl sm:rounded-2xl p-4 sm:p-6
                   border border-[var(--border)]
                   bg-[var(--bg)]
                 "
@@ -152,15 +148,15 @@ export default function ConsultingPage() {
                 <div className="flex items-start gap-3">
                   {/* DOT */}
                   <span
-                    className="mt-2 h-2 w-2 rounded-full"
+                    className="mt-1.5 sm:mt-2 h-2 w-2 rounded-full shrink-0"
                     style={{ backgroundColor: ACCENT_1 }}
                   />
 
                   <div>
-                    <h3 className="font-medium">
+                    <h3 className="font-medium text-sm sm:text-base">
                       {area.name}
                     </h3>
-                    <p className="mt-1 text-sm text-[var(--text-muted)]">
+                    <p className="mt-1 text-xs sm:text-sm text-[var(--text-muted)]">
                       {area.description}
                     </p>
                   </div>
@@ -174,14 +170,14 @@ export default function ConsultingPage() {
       {/* =====================================================
           WHAT WE DO
       ====================================================== */}
-      <section className="px-6 py-32">
-        <div className="mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-20">
+      <section className="px-4 sm:px-6 py-16 sm:py-32">
+        <div className="mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-20">
           <div>
-            <h2 className="text-3xl font-semibold">
+            <h2 className="text-2xl sm:text-3xl font-semibold">
               Strategic technical guidance
             </h2>
 
-            <p className="mt-6 text-[var(--text-muted)] leading-relaxed">
+            <p className="mt-4 sm:mt-6 text-sm sm:text-base text-[var(--text-muted)] leading-relaxed">
               Whether you're planning a new project, integrating payment systems,
               building fintech solutions, or need guidance on web/app/AI development,
               we provide expert consulting to help you make informed decisions
@@ -190,33 +186,39 @@ export default function ConsultingPage() {
           </div>
 
           {/* SERVICES WITH ICONS */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-6">
             {additionalServices.map((service) => (
               <div
                 key={service.label}
                 className="
-                  flex items-center gap-4
-                  rounded-2xl p-6
+                  flex items-center gap-3 sm:gap-4
+                  rounded-xl sm:rounded-2xl p-4 sm:p-6
                   border border-[var(--border)]
                   bg-[var(--surface)]
                 "
               >
                 <div
                   className="
-                    h-10 w-10
-                    rounded-xl
+                    h-9 w-9 sm:h-10 sm:w-10 shrink-0
+                    rounded-lg sm:rounded-xl
                     flex items-center justify-center
                     border border-[var(--border)]
                     bg-[var(--bg)]
                   "
                 >
                   <service.icon
+                    size={16}
+                    className="sm:hidden"
+                    style={{ color: ACCENT_1 }}
+                  />
+                  <service.icon
                     size={18}
+                    className="hidden sm:block"
                     style={{ color: ACCENT_1 }}
                   />
                 </div>
 
-                <p className="text-sm font-medium">
+                <p className="text-xs sm:text-sm font-medium">
                   {service.label}
                 </p>
               </div>
@@ -231,17 +233,17 @@ export default function ConsultingPage() {
       <section
         id="contact"
         className="
-          px-6 py-40
+          px-4 sm:px-6 py-20 sm:py-40
           bg-[var(--surface-strong)]
           border-t border-[var(--border)]
         "
       >
-        <div className="mx-auto max-w-4xl text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-semibold">
+        <div className="mx-auto max-w-4xl text-center mb-10 sm:mb-16">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold">
             Let's discuss your project
           </h2>
 
-          <p className="mt-6 text-[var(--text-muted)] leading-relaxed">
+          <p className="mt-4 sm:mt-6 text-sm sm:text-base text-[var(--text-muted)] leading-relaxed">
             Tell us about your project, challenges or goals.
             We'll provide expert guidance on payment systems, fintech solutions,
             development strategies, AI integration, or any technical consulting needs.
@@ -254,7 +256,7 @@ export default function ConsultingPage() {
       </section>
 
       {/* BACK TO SERVICES */}
-      <section className="px-6 py-16">
+      <section className="px-4 sm:px-6 py-10 sm:py-16">
         <div className="mx-auto max-w-6xl">
           <div className="flex justify-center">
             <Link
@@ -262,11 +264,11 @@ export default function ConsultingPage() {
               className="
                 group
                 flex items-center justify-center gap-2
-                px-6 py-4
+                px-5 sm:px-6 py-3 sm:py-4
                 rounded-xl
                 border border-[var(--border)]
                 bg-[var(--surface)]
-                text-sm sm:text-base font-medium
+                text-sm font-medium
                 text-[var(--text-muted)]
                 hover:text-[var(--fg)]
                 hover:border-[var(--accent-1)]

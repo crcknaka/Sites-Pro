@@ -8,10 +8,7 @@ import {
   ShieldCheck,
   Headphones,
 } from 'lucide-react';
-
-/* brand accents */
-const ACCENT_1 = 'var(--accent-1)';
-const ACCENT_2 = 'var(--accent-2)';
+import { ACCENT_1, ACCENT_2 } from '@/lib';
 
 /* ======================================================
    DATA
@@ -63,18 +60,18 @@ export default function WebPlatformsPage() {
       {/* =====================================================
           HERO
       ====================================================== */}
-      <section className="px-6 pt-40 pb-32">
-        <div className="mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+      <section className="px-4 sm:px-6 pt-24 sm:pt-40 pb-16 sm:pb-32">
+        <div className="mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-20 items-center">
           {/* TEXT */}
           <div>
             <span
-              className="block text-sm uppercase tracking-widest font-medium"
+              className="block text-xs sm:text-sm uppercase tracking-widest font-medium"
               style={{ color: ACCENT_1 }}
             >
               Web Platforms
             </span>
 
-            <h1 className="mt-6 text-4xl md:text-6xl font-semibold tracking-tight">
+            <h1 className="mt-4 sm:mt-6 text-3xl sm:text-4xl md:text-6xl font-semibold tracking-tight">
               Scalable platforms
               <br />
               <span
@@ -87,7 +84,7 @@ export default function WebPlatformsPage() {
               </span>
             </h1>
 
-            <p className="mt-8 text-lg text-[var(--text-muted)] leading-relaxed max-w-xl">
+            <p className="mt-5 sm:mt-8 text-base sm:text-lg text-[var(--text-muted)] leading-relaxed max-w-xl">
               We design and build custom web platforms and applications focused on architecture, performance and long-term scalability.
               From internal tools and dashboards to complex, business-critical platforms — built to grow with your product and processes.
             </p>
@@ -96,9 +93,9 @@ export default function WebPlatformsPage() {
               href="/#contact"
               className="
                 inline-block
-                mt-10
+                mt-6 sm:mt-10
                 cursor-pointer select-none
-                rounded-lg px-6 py-3 text-sm font-medium
+                rounded-lg px-5 sm:px-6 py-2.5 sm:py-3 text-sm font-medium
                 text-black
                 transition-transform active:scale-[0.96]
                 hover:opacity-90
@@ -109,8 +106,8 @@ export default function WebPlatformsPage() {
             </Link>
           </div>
 
-          {/* INFOGRAPHIC */}
-          <div className="flex justify-center">
+          {/* INFOGRAPHIC - hidden on mobile */}
+          <div className="hidden lg:flex justify-center">
             <WebPlatformsHeroInfographic />
           </div>
         </div>
@@ -119,22 +116,22 @@ export default function WebPlatformsPage() {
       {/* =====================================================
           TECHNOLOGY & ARCHITECTURE
       ====================================================== */}
-      <section className="px-6 py-32 bg-[var(--surface)]">
+      <section className="px-4 sm:px-6 py-16 sm:py-32 bg-[var(--surface)]">
         <div className="mx-auto max-w-6xl">
-          <h2 className="text-3xl font-semibold text-center">
+          <h2 className="text-2xl sm:text-3xl font-semibold text-center">
             Architecture & technology
           </h2>
 
-          <p className="mt-6 text-center text-[var(--text-muted)] max-w-3xl mx-auto">
+          <p className="mt-4 sm:mt-6 text-center text-sm sm:text-base text-[var(--text-muted)] max-w-3xl mx-auto">
             We approach platforms as systems, not standalone features — with clear architecture, reliable infrastructure and room for future evolution.
           </p>
 
-          <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="mt-10 sm:mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {techStack.map((tech) => (
               <div
                 key={tech.name}
                 className="
-                  rounded-2xl p-6
+                  rounded-xl sm:rounded-2xl p-4 sm:p-6
                   border border-[var(--border)]
                   bg-[var(--bg)]
                 "
@@ -142,15 +139,15 @@ export default function WebPlatformsPage() {
                 <div className="flex items-start gap-3">
                   {/* DOT */}
                   <span
-                    className="mt-2 h-2 w-2 rounded-full"
+                    className="mt-1.5 sm:mt-2 h-2 w-2 rounded-full shrink-0"
                     style={{ backgroundColor: ACCENT_1 }}
                   />
 
                   <div>
-                    <h3 className="font-medium">
+                    <h3 className="font-medium text-sm sm:text-base">
                       {tech.name}
                     </h3>
-                    <p className="mt-1 text-sm text-[var(--text-muted)]">
+                    <p className="mt-1 text-xs sm:text-sm text-[var(--text-muted)]">
                       {tech.description}
                     </p>
                   </div>
@@ -164,47 +161,53 @@ export default function WebPlatformsPage() {
       {/* =====================================================
           WHAT WE DO
       ====================================================== */}
-      <section className="px-6 py-32">
-        <div className="mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-20">
+      <section className="px-4 sm:px-6 py-16 sm:py-32">
+        <div className="mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-20">
           <div>
-            <h2 className="text-3xl font-semibold">
+            <h2 className="text-2xl sm:text-3xl font-semibold">
               More than just development
             </h2>
 
-            <p className="mt-6 text-[var(--text-muted)] leading-relaxed">
+            <p className="mt-4 sm:mt-6 text-sm sm:text-base text-[var(--text-muted)] leading-relaxed">
               Web platforms require product thinking, solid foundations and continuous iteration.
               We support platforms from early architectural decisions to long-term scaling and maintenance.
             </p>
           </div>
 
           {/* SERVICES WITH ICONS */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-6">
             {additionalServices.map((service) => (
               <div
                 key={service.label}
                 className="
-                  flex items-center gap-4
-                  rounded-2xl p-6
+                  flex items-center gap-3 sm:gap-4
+                  rounded-xl sm:rounded-2xl p-4 sm:p-6
                   border border-[var(--border)]
                   bg-[var(--surface)]
                 "
               >
                 <div
                   className="
-                    h-10 w-10
-                    rounded-xl
+                    h-9 w-9 sm:h-10 sm:w-10 shrink-0
+                    rounded-lg sm:rounded-xl
                     flex items-center justify-center
                     border border-[var(--border)]
                     bg-[var(--bg)]
                   "
                 >
                   <service.icon
+                    size={16}
+                    className="sm:hidden"
+                    style={{ color: ACCENT_1 }}
+                  />
+                  <service.icon
                     size={18}
+                    className="hidden sm:block"
                     style={{ color: ACCENT_1 }}
                   />
                 </div>
 
-                <p className="text-sm font-medium">
+                <p className="text-xs sm:text-sm font-medium">
                   {service.label}
                 </p>
               </div>
@@ -219,17 +222,17 @@ export default function WebPlatformsPage() {
       <section
         id="contact"
         className="
-          px-6 py-40
+          px-4 sm:px-6 py-20 sm:py-40
           bg-[var(--surface-strong)]
           border-t border-[var(--border)]
         "
       >
-        <div className="mx-auto max-w-4xl text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-semibold">
+        <div className="mx-auto max-w-4xl text-center mb-10 sm:mb-16">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold">
             Let's build your platform
           </h2>
 
-          <p className="mt-6 text-[var(--text-muted)] leading-relaxed">
+          <p className="mt-4 sm:mt-6 text-sm sm:text-base text-[var(--text-muted)] leading-relaxed">
             Tell us about your idea or existing system.
             We'll help design the right architecture
             and turn it into a reliable, scalable platform.
@@ -242,7 +245,7 @@ export default function WebPlatformsPage() {
       </section>
 
       {/* BACK TO SERVICES */}
-      <section className="px-6 py-16">
+      <section className="px-4 sm:px-6 py-10 sm:py-16">
         <div className="mx-auto max-w-6xl">
           <div className="flex justify-center">
             <Link
@@ -250,11 +253,11 @@ export default function WebPlatformsPage() {
               className="
                 group
                 flex items-center justify-center gap-2
-                px-6 py-4
+                px-5 sm:px-6 py-3 sm:py-4
                 rounded-xl
                 border border-[var(--border)]
                 bg-[var(--surface)]
-                text-sm sm:text-base font-medium
+                text-sm font-medium
                 text-[var(--text-muted)]
                 hover:text-[var(--fg)]
                 hover:border-[var(--accent-1)]
