@@ -5,15 +5,17 @@ import { Inter } from 'next/font/google';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 import ScrollToTop from '@/components/scroll-to-top';
-import AnimatedBackground from '@/components/animated-background';
+import {
+  OrganizationJsonLd,
+  WebsiteJsonLd,
+  ServicesJsonLd,
+} from '@/components/json-ld';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
 };
 
 export const metadata: Metadata = {
@@ -77,23 +79,19 @@ export default function RootLayout({
       className="overflow-x-hidden"
       suppressHydrationWarning
     >
-      {/* 
-        IMPORTANT:
-        - background lives on html
-        - body is transparent
-      */}
+      <head>
+        <OrganizationJsonLd />
+        <WebsiteJsonLd />
+        <ServicesJsonLd />
+      </head>
       <body
         className={`
           ${inter.className}
           antialiased
           overflow-x-hidden
-          bg-transparent
+          bg-[var(--bg)]
         `}
       >
-        {/* Atmospheric layers (below everything) */}
-        <AnimatedBackground />
-
-        {/* UI */}
         <Header />
 
         <main className="relative min-h-screen">
