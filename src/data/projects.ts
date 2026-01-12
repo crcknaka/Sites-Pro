@@ -1,4 +1,24 @@
-export const projects = [
+export type ProjectCategory = 'Websites' | 'Commerce' | 'Apps' | 'Fintech';
+
+export interface Project {
+  slug: string;
+  title: string;
+  category: ProjectCategory | ProjectCategory[];
+  description: string;
+  challenge?: string;
+  solution?: string | string[];
+  result?: string;
+  image: string;
+  images?: string[];
+  link?: string;
+  facebook?: string;
+  instagram?: string;
+  linkedin?: string;
+  tiktok?: string;
+  youtube?: string;
+}
+
+export const projects: Project[] = [
   {
     slug: 'lepicur',
     title: 'Lepicur',
@@ -111,7 +131,7 @@ export const projects = [
   {
     slug: 'imun',
     title: 'Imun',
-    category: ['Websites', 'Fintech'] as any,
+    category: ['Websites', 'Fintech'] ,
     description: 'Advanced payment technology for modern financial operations.',
     challenge: `
       Create a professional, trustworthy online presence that communicates
@@ -534,7 +554,7 @@ export const projects = [
   {
     slug: 'aerial-platform',
     title: 'Aerial Platform',
-    category: ['Apps', 'Commerce'] as any,
+    category: ['Apps', 'Commerce'] ,
     description: 'The premier marketplace connecting professional drone operators with clients who need exceptional aerial photography and videography services.',
     challenge: `
       Create a comprehensive marketplace platform that seamlessly connects drone

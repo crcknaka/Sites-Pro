@@ -1,7 +1,7 @@
 'use client';
 
 import ContactForm from './contact-form';
-import { Mail, MapPin, Clock, ShieldCheck } from 'lucide-react';
+import { Mail, MapPin, Clock, ShieldCheck, type LucideIcon } from 'lucide-react';
 
 /* brand accents via CSS vars */
 const ACCENT_1 = 'var(--accent-1)';
@@ -113,7 +113,7 @@ function InfoItem({
   value,
   selectable,
 }: {
-  icon: any;
+  icon: LucideIcon;
   title: string;
   value: string;
   selectable?: boolean;

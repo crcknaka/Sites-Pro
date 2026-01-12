@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Layers, ShoppingCart, Globe, Shield, Grid } from 'lucide-react';
 import { projects } from '@/data/projects';
 import ProjectCard from '@/components/projectcard';
+import { useIsMobile } from '@/hooks';
 
 /* brand accent via CSS var */
 const ACCENT = 'var(--accent-1)';
@@ -34,29 +35,18 @@ const categoryDescriptions: Record<(typeof CATEGORIES)[number], string> = {
 
 export default function Portfolio() {
   const [active, setActive] = useState<(typeof CATEGORIES)[number]>('All');
-  const [isMobile, setIsMobile] = useState(false);
+  const isMobile = useIsMobile();
   const [visibleCount, setVisibleCount] = useState(6);
   const [isInitialized, setIsInitialized] = useState(false);
 
-  // Check if mobile on mount and resize
+  // Set initial count based on screen size
   useEffect(() => {
-    const checkMobile = () => {
-      const mobile = window.innerWidth < 768;
-      setIsMobile(mobile);
-      
-      // Set initial count only once
-      if (!isInitialized) {
-        setVisibleCount(mobile ? 4 : 6);
-        setIsInitialized(true);
-      }
-    };
+    if (!isInitialized) {
+      setVisibleCount(isMobile ? 4 : 6);
+      setIsInitialized(true);
+    }
+  }, [isMobile, isInitialized]);
 
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, [isInitialized]);
-  
-  // Determine initial count based on screen size
   const getInitialCount = () => (isMobile ? 4 : 6);
 
   const filteredProjects =

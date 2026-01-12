@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { ChevronDown } from 'lucide-react';
+import { useIsMobile } from '@/hooks';
 
 /* brand accent via CSS var */
 const ACCENT = 'var(--accent-1)';
@@ -43,27 +44,17 @@ const faqs = [
 
 export default function FAQ() {
   const [open, setOpen] = useState<number | null>(null);
-  const [isMobile, setIsMobile] = useState(false);
-  const [visibleCount, setVisibleCount] = useState(6);
+  const isMobile = useIsMobile();
+  const [visibleCount, setVisibleCount] = useState(4);
   const [isInitialized, setIsInitialized] = useState(false);
 
-  // Check if mobile on mount and resize
+  // Set initial count based on screen size
   useEffect(() => {
-    const checkMobile = () => {
-      const mobile = window.innerWidth < 768;
-      setIsMobile(mobile);
-      
-      // Set initial count only once
-      if (!isInitialized) {
-        setVisibleCount(mobile ? 3 : 4);
-        setIsInitialized(true);
-      }
-    };
-
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, [isInitialized]);
+    if (!isInitialized) {
+      setVisibleCount(isMobile ? 3 : 4);
+      setIsInitialized(true);
+    }
+  }, [isMobile, isInitialized]);
 
   const handleLoadMore = () => {
     const increment = isMobile ? 3 : 4;
