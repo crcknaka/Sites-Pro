@@ -92,73 +92,39 @@ export function PortfolioLightbox({ images, projectTitle }: LightboxProps) {
     <>
       {/* Images - Clickable on all devices (opens lightbox) */}
       <div className="lg:sticky lg:top-24 xl:top-32">
-        <div className="grid grid-cols-2 lg:grid-cols-1 gap-3 sm:gap-4 lg:gap-5">
+        <div className="grid grid-cols-2 lg:grid-cols-1 gap-2 sm:gap-3 lg:gap-4">
           {images.map((img, idx) => (
-            <div key={idx}>
-              {/* Mobile: Clickable button with lightbox */}
-              <button
-                onClick={() => openLightbox(idx)}
-                className="
-                  lg:hidden
-                  w-full
-                  overflow-hidden 
-                  rounded-xl sm:rounded-2xl
-                  border border-[var(--border)]
-                  bg-[var(--surface)]
-                  transition-all duration-300
-                  hover:scale-[1.02] hover:border-[var(--accent-1)]
-                  active:scale-[0.98]
-                  cursor-pointer
-                  focus:outline-none focus:ring-2 focus:ring-[var(--accent-1)] focus:ring-offset-2
-                "
-                aria-label={`View ${projectTitle} image ${idx + 1} in fullscreen`}
-              >
-                <div className="relative w-full">
-                  <Image
-                    src={img}
-                    alt={`${projectTitle} preview ${idx + 1}`}
-                    width={800}
-                    height={1200}
-                    className="w-full h-auto"
-                    sizes="50vw"
-                    placeholder="blur"
-                    blurDataURL={blurDataURL}
-                  />
-                </div>
-              </button>
-
-              {/* Desktop: Clickable button with lightbox */}
-              <button
-                onClick={() => openLightbox(idx)}
-                className="
-                  hidden lg:block
-                  w-full
-                  overflow-hidden 
-                  rounded-2xl
-                  border border-[var(--border)]
-                  bg-[var(--surface)]
-                  transition-all duration-300
-                  hover:scale-[1.02] hover:border-[var(--accent-1)]
-                  active:scale-[0.98]
-                  cursor-pointer
-                  focus:outline-none focus:ring-2 focus:ring-[var(--accent-1)] focus:ring-offset-2
-                "
-                aria-label={`View ${projectTitle} image ${idx + 1} in fullscreen`}
-              >
-                <div className="relative w-full">
-                  <Image
-                    src={img}
-                    alt={`${projectTitle} preview ${idx + 1}`}
-                    width={1200}
-                    height={1600}
-                    className="w-full h-auto"
-                    sizes="33vw"
-                    placeholder="blur"
-                    blurDataURL={blurDataURL}
-                  />
-                </div>
-              </button>
-            </div>
+            <button
+              key={idx}
+              onClick={() => openLightbox(idx)}
+              className="
+                w-full
+                overflow-hidden
+                rounded-lg sm:rounded-xl lg:rounded-2xl
+                border border-[var(--border)]
+                bg-[var(--surface)]
+                transition-all duration-300
+                hover:scale-[1.02] hover:border-[var(--accent-1)]
+                hover:shadow-lg hover:shadow-[var(--accent-1)]/10
+                active:scale-[0.98]
+                cursor-pointer
+                focus:outline-none focus:ring-2 focus:ring-[var(--accent-1)] focus:ring-offset-2
+              "
+              aria-label={`View ${projectTitle} image ${idx + 1} in fullscreen`}
+            >
+              <div className="relative w-full aspect-[4/5] sm:aspect-[3/4] lg:aspect-auto">
+                <Image
+                  src={img}
+                  alt={`${projectTitle} preview ${idx + 1}`}
+                  width={800}
+                  height={1000}
+                  className="w-full h-full object-cover object-top lg:h-auto lg:object-contain"
+                  sizes="(max-width: 1024px) 50vw, 33vw"
+                  placeholder="blur"
+                  blurDataURL={blurDataURL}
+                />
+              </div>
+            </button>
           ))}
         </div>
       </div>

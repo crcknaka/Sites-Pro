@@ -514,8 +514,8 @@ export const projects: Project[] = [
     `,
     image: '/projects/screenshots/wellton.jpg',
     images: [
-      '/projects/screenshots/wellton2.png',
       '/projects/screenshots/wellton.jpg',
+      '/projects/screenshots/wellton2.png',
     ],
     link: 'https://shop.wellton.com/',
     facebook: 'https://www.facebook.com/welltonhotels/',

@@ -1,13 +1,19 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowLeft, ArrowRight, ExternalLink, LayoutGrid, Facebook, Instagram, Music, Linkedin, Youtube } from 'lucide-react';
+import { ArrowLeft, ArrowRight, LayoutGrid, Facebook, Instagram, Music, Linkedin, Youtube, Target, Lightbulb, Trophy, ExternalLink } from 'lucide-react';
 import { projects } from '@/data/projects';
 import { PortfolioLightbox } from '@/components/portfolio-lightbox';
 import { CategoryBadge } from '@/components/category-badge';
 
 const ACCENT_1 = 'var(--accent-1)';
 const ACCENT_2 = 'var(--accent-2)';
+
+const sectionIcons = {
+  Challenge: Target,
+  Solution: Lightbulb,
+  Result: Trophy,
+};
 
 export default async function WorkCase({
   params,
@@ -26,35 +32,56 @@ export default async function WorkCase({
   const images = ((project as any).images || [project.image]).filter(Boolean);
 
   return (
-    <main className="mx-auto max-w-7xl px-6 pt-32 pb-24 text-[var(--fg)]">
+    <main className="mx-auto max-w-7xl px-4 sm:px-6 pt-24 sm:pt-32 pb-16 sm:pb-24 text-[var(--fg)]">
+      {/* =========================
+         HERO IMAGE (Mobile first)
+      ========================= */}
+      {images.length > 0 && (
+        <div className="lg:hidden mb-8">
+          <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] rounded-xl sm:rounded-2xl overflow-hidden border border-[var(--border)]">
+            <Image
+              src={images[0]}
+              alt={project.title}
+              fill
+              className="object-cover object-top"
+              sizes="100vw"
+              priority
+            />
+          </div>
+          {images.length > 1 && (
+            <p className="mt-3 text-center text-xs text-[var(--text-muted)]">
+              Tap images below to view gallery ({images.length} images)
+            </p>
+          )}
+        </div>
+      )}
+
       {/* =========================
          TWO COLUMN LAYOUT
       ========================= */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-20">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-16">
         {/* =========================
            LEFT — CONTENT
         ========================= */}
-        <div className="lg:col-span-2 space-y-12 lg:space-y-10">
+        <div className="lg:col-span-2 space-y-6 sm:space-y-8">
           {/* Category Badge */}
-          <div className="mb-0">
+          <div>
             <CategoryBadge category={project.category as any} />
           </div>
 
           {/* Title */}
           <h1 className="
-            mt-1
-            text-4xl
-            font-semibold 
+            text-2xl sm:text-3xl md:text-4xl lg:text-5xl
+            font-semibold
             tracking-tight
-            md:text-5xl
+            leading-tight
           ">
             {project.title}
           </h1>
 
           {/* Description */}
           <p className="
-            mt-6
-            text-base sm:text-lg
+            text-sm sm:text-base md:text-lg
             leading-relaxed
             text-[var(--text-muted)]
             max-w-3xl
@@ -247,11 +274,19 @@ export default async function WorkCase({
         </div>
 
         {/* =========================
-           RIGHT — IMAGES (Opposite to badge on desktop)
+           RIGHT — IMAGES (Desktop sidebar)
         ========================= */}
         {images.length > 0 && (
-          <div className="lg:col-span-1 lg:pt-0 pt-12">
-            <PortfolioLightbox images={images} projectTitle={project.title} />
+          <div className="lg:col-span-1">
+            {/* Desktop: sidebar gallery */}
+            <div className="hidden lg:block">
+              <PortfolioLightbox images={images} projectTitle={project.title} />
+            </div>
+            {/* Mobile: horizontal scrollable gallery */}
+            <div className="lg:hidden mt-8">
+              <h3 className="text-sm font-medium text-[var(--text-muted)] mb-4">Project Gallery</h3>
+              <PortfolioLightbox images={images} projectTitle={project.title} />
+            </div>
           </div>
         )}
       </div>
@@ -260,108 +295,133 @@ export default async function WorkCase({
          PREV / NEXT / BACK (Before CTA)
       ========================= */}
       <div className="
-        mt-16
-        flex flex-col sm:flex-row 
-        items-stretch sm:items-center 
-        justify-between 
-        gap-4 sm:gap-6
-        border-t border-[var(--border)] 
-        pt-8
+        mt-12 sm:mt-16
+        border-t border-[var(--border)]
+        pt-6 sm:pt-8
       ">
-        {prev ? (
+        {/* Back button - always visible on top on mobile */}
+        <div className="flex justify-center mb-4 sm:hidden">
           <Link
-            href={`/portfolio/${prev.slug}`}
+            href="/#portfolio"
             className="
               group
-              flex items-center gap-3
-              px-4 py-3 sm:px-6 sm:py-4
-              rounded-xl
+              inline-flex items-center justify-center gap-2
+              px-5 py-2.5
+              rounded-full
               border border-[var(--border)]
               bg-[var(--surface)]
-              text-sm sm:text-base font-medium
+              text-xs font-medium
               text-[var(--text-muted)]
               hover:text-[var(--fg)]
               hover:border-[var(--accent-1)]
               transition-all
-              cursor-pointer select-none
-              flex-1 sm:flex-initial
-              justify-center sm:justify-start
+              active:scale-95
             "
           >
-            <ArrowLeft className="h-4 w-4 sm:h-5 sm:w-5 transition-transform group-hover:-translate-x-1" />
-            <span className="truncate">{prev.title}</span>
+            <LayoutGrid className="h-3.5 w-3.5" />
+            <span>All projects</span>
           </Link>
-        ) : (
-          <div className="flex-1 sm:flex-initial" />
-        )}
+        </div>
 
-        {/* Back Link - Center */}
-        <Link
-          href="/#portfolio"
-          className="
-            group
-            flex items-center justify-center gap-2
-            px-4 py-3 sm:px-6 sm:py-4
-            rounded-xl
-            border border-[var(--border)]
-            bg-[var(--surface)]
-            text-sm sm:text-base font-medium
-            text-[var(--text-muted)]
-            hover:text-[var(--fg)]
-            hover:border-[var(--accent-1)]
-            transition-all
-            cursor-pointer select-none
-            flex-1 sm:flex-initial
-          "
-        >
-          <LayoutGrid className="h-4 w-4 sm:h-5 sm:w-5 transition-transform group-hover:scale-110" />
-          <span>Back to portfolio</span>
-        </Link>
+        {/* Navigation row */}
+        <div className="flex items-center justify-between gap-3 sm:gap-4">
+          {prev ? (
+            <Link
+              href={`/portfolio/${prev.slug}`}
+              className="
+                group
+                flex items-center gap-2 sm:gap-3
+                px-3 sm:px-5 py-2.5 sm:py-3
+                rounded-xl
+                border border-[var(--border)]
+                bg-[var(--surface)]
+                text-xs sm:text-sm font-medium
+                text-[var(--text-muted)]
+                hover:text-[var(--fg)]
+                hover:border-[var(--accent-1)]
+                hover:bg-[var(--surface-strong)]
+                transition-all
+                active:scale-95
+                max-w-[45%] sm:max-w-none
+              "
+            >
+              <ArrowLeft className="h-4 w-4 flex-shrink-0 transition-transform group-hover:-translate-x-1" />
+              <span className="truncate hidden sm:inline">{prev.title}</span>
+              <span className="sm:hidden">Prev</span>
+            </Link>
+          ) : (
+            <div />
+          )}
 
-        {next ? (
+          {/* Back Link - Center (desktop only) */}
           <Link
-            href={`/portfolio/${next.slug}`}
+            href="/#portfolio"
             className="
+              hidden sm:flex
               group
-              flex items-center gap-3
-              px-4 py-3 sm:px-6 sm:py-4
+              items-center justify-center gap-2
+              px-5 py-3
               rounded-xl
               border border-[var(--border)]
               bg-[var(--surface)]
-              text-sm sm:text-base font-medium
+              text-sm font-medium
               text-[var(--text-muted)]
               hover:text-[var(--fg)]
               hover:border-[var(--accent-1)]
+              hover:bg-[var(--surface-strong)]
               transition-all
-              cursor-pointer select-none
-              flex-1 sm:flex-initial
-              justify-center sm:justify-end
             "
           >
-            <span className="truncate">{next.title}</span>
-            <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5 transition-transform group-hover:translate-x-1" />
+            <LayoutGrid className="h-4 w-4 transition-transform group-hover:scale-110" />
+            <span>All projects</span>
           </Link>
-        ) : (
-          <div className="flex-1 sm:flex-initial" />
-        )}
+
+          {next ? (
+            <Link
+              href={`/portfolio/${next.slug}`}
+              className="
+                group
+                flex items-center gap-2 sm:gap-3
+                px-3 sm:px-5 py-2.5 sm:py-3
+                rounded-xl
+                border border-[var(--border)]
+                bg-[var(--surface)]
+                text-xs sm:text-sm font-medium
+                text-[var(--text-muted)]
+                hover:text-[var(--fg)]
+                hover:border-[var(--accent-1)]
+                hover:bg-[var(--surface-strong)]
+                transition-all
+                active:scale-95
+                max-w-[45%] sm:max-w-none
+              "
+            >
+              <span className="truncate hidden sm:inline">{next.title}</span>
+              <span className="sm:hidden">Next</span>
+              <ArrowRight className="h-4 w-4 flex-shrink-0 transition-transform group-hover:translate-x-1" />
+            </Link>
+          ) : (
+            <div />
+          )}
+        </div>
       </div>
 
       {/* =========================
          CTA SECTION (Modern design)
       ========================= */}
       <div className="
-        mt-20
+        mt-12 sm:mt-20
         relative
         overflow-hidden
-        rounded-3xl
+        rounded-2xl sm:rounded-3xl
         border border-[var(--border)]
         bg-[var(--surface)]
-        p-12 lg:p-16
+        p-6 sm:p-10 lg:p-16
       ">
         {/* Background gradient */}
-        <div 
+        <div
           className="
-            absolute inset-0 
+            absolute inset-0
             opacity-5
             pointer-events-none
           "
@@ -369,19 +429,19 @@ export default async function WorkCase({
             background: `linear-gradient(135deg, ${ACCENT_1}, ${ACCENT_2})`,
           }}
         />
-        
+
         <div className="relative text-center max-w-2xl mx-auto">
           <h3 className="
-            text-2xl sm:text-3xl
-            font-semibold 
-            mb-4
+            text-xl sm:text-2xl md:text-3xl
+            font-semibold
+            mb-3 sm:mb-4
           ">
             Want a similar project?
           </h3>
           <p className="
-            text-base sm:text-lg
-            text-[var(--text-muted)] 
-            mb-8
+            text-sm sm:text-base md:text-lg
+            text-[var(--text-muted)]
+            mb-6 sm:mb-8
             leading-relaxed
           ">
             Let's discuss how we can bring your vision to life with the same quality and attention to detail.
@@ -390,9 +450,9 @@ export default async function WorkCase({
             href="/#contact"
             className="
               inline-flex items-center justify-center gap-2
-              rounded-2xl 
-              px-8 py-4
-              text-sm sm:text-base font-medium 
+              rounded-xl sm:rounded-2xl
+              px-6 sm:px-8 py-3 sm:py-4
+              text-sm sm:text-base font-medium
               text-black
               transition-all duration-300
               hover:opacity-90 hover:scale-105
@@ -402,7 +462,7 @@ export default async function WorkCase({
             style={{ background: ACCENT_1 }}
           >
             Get in Touch
-            <ExternalLink className="h-4 w-4" />
+            <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
       </div>
@@ -422,19 +482,39 @@ function Section({
   title: string;
   children: React.ReactNode;
 }) {
+  const Icon = sectionIcons[title as keyof typeof sectionIcons];
+
   return (
-    <section>
-      <h2 
-        className="
-          text-2xl
-          font-semibold
-          mb-4
-          md:text-3xl
-        "
-      >
-        {title}
-      </h2>
-      <div>
+    <section className="
+      relative
+      p-4 sm:p-6
+      rounded-xl sm:rounded-2xl
+      bg-[var(--surface)]
+      border border-[var(--border)]
+    ">
+      <div className="flex items-center gap-3 mb-4">
+        {Icon && (
+          <div
+            className="
+              flex items-center justify-center
+              w-8 h-8 sm:w-10 sm:h-10
+              rounded-xl
+              bg-[var(--accent-1)]/10
+            "
+          >
+            <Icon className="h-4 w-4 sm:h-5 sm:w-5 text-[var(--accent-1)]" />
+          </div>
+        )}
+        <h2
+          className="
+            text-lg sm:text-xl md:text-2xl
+            font-semibold
+          "
+        >
+          {title}
+        </h2>
+      </div>
+      <div className="text-sm sm:text-base">
         {children}
       </div>
     </section>
