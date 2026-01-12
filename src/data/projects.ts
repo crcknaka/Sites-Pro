@@ -576,7 +576,37 @@ export const projects: Project[] = [
       photography and videography services easily accessible. (Still in development.)
     `,
     image: '/projects/screenshots/aerial.jpg',
-   
+
+  },
+
+  {
+    slug: 'senso-projects',
+    title: 'Senso Projects',
+    category: 'Websites',
+    description: 'Complete design solutions from initial concept to final installation, handling every aspect of interior transformation with expertise and care.',
+    challenge: `
+      Create a professional website for an interior design and renovation company
+      that showcases their comprehensive service offerings, international expertise,
+      and structured project approach while building trust with potential clients.
+    `,
+    solution: [
+      'Interior design services with 3D visualization and rendering',
+      'Full renovation and demolition project implementation',
+      'Professional electrical installation by certified electricians',
+      'Expert plumbing works from design consultation to installation',
+      'Custom furniture including kitchens, wardrobes, and built-ins',
+      'Finishing works: painting, plastering, floor restoration, lighting',
+      'Clear 5-step process from consultation to implementation',
+      'International expertise with specialized services in Italy',
+    ],
+    result: `
+      A sophisticated website that effectively communicates Senso Projects'
+      comprehensive interior design and renovation capabilities, highlighting
+      their structured approach and international experience to attract
+      discerning clients seeking quality transformations.
+    `,
+    image: '/projects/screenshots/sensoprojects.jpg',
+    link: 'https://www.sensoprojects.com/',
   },
 
 ];
