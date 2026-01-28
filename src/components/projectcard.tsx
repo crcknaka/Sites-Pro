@@ -45,6 +45,8 @@ export default function ProjectCard({
             className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
           />
+          {/* Dark overlay - lightens on hover */}
+          <div className="absolute inset-0 bg-black/30 transition-opacity duration-300 group-hover:opacity-0" />
           {/* Gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-[var(--surface)]/80 via-transparent to-transparent opacity-60" />
         </div>
