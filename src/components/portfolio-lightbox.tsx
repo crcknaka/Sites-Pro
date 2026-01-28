@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import Image from 'next/image';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -34,6 +34,12 @@ interface LightboxProps {
 export function PortfolioLightbox({ images, projectTitle }: LightboxProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const galleryRef = useRef<HTMLDivElement>(null);
+
+  // Minimum swipe distance
+  const minSwipeDistance = 50;
 
   // Prevent body scroll when lightbox is open
   useEffect(() => {
@@ -47,17 +53,17 @@ export function PortfolioLightbox({ images, projectTitle }: LightboxProps) {
     };
   }, [isOpen]);
 
-  // Keyboard navigation
+  // Keyboard navigation for gallery (when not in lightbox)
   useEffect(() => {
-    if (!isOpen) return;
-
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        setIsOpen(false);
-      } else if (e.key === 'ArrowLeft' && currentIndex > 0) {
-        setCurrentIndex(currentIndex - 1);
-      } else if (e.key === 'ArrowRight' && currentIndex < images.length - 1) {
-        setCurrentIndex(currentIndex + 1);
+      if (isOpen) {
+        if (e.key === 'Escape') {
+          setIsOpen(false);
+        } else if (e.key === 'ArrowLeft' && currentIndex > 0) {
+          setCurrentIndex(currentIndex - 1);
+        } else if (e.key === 'ArrowRight' && currentIndex < images.length - 1) {
+          setCurrentIndex(currentIndex + 1);
+        }
       }
     };
 
@@ -65,8 +71,7 @@ export function PortfolioLightbox({ images, projectTitle }: LightboxProps) {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, currentIndex, images.length]);
 
-  const openLightbox = (index: number) => {
-    setCurrentIndex(index);
+  const openLightbox = () => {
     setIsOpen(true);
   };
 
@@ -74,15 +79,38 @@ export function PortfolioLightbox({ images, projectTitle }: LightboxProps) {
     setIsOpen(false);
   };
 
-  const nextImage = () => {
+  const nextImage = useCallback(() => {
     if (currentIndex < images.length - 1) {
       setCurrentIndex(currentIndex + 1);
     }
-  };
+  }, [currentIndex, images.length]);
 
-  const prevImage = () => {
+  const prevImage = useCallback(() => {
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
+    }
+  }, [currentIndex]);
+
+  // Touch handlers for swipe
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe) {
+      nextImage();
+    } else if (isRightSwipe) {
+      prevImage();
     }
   };
 
@@ -90,42 +118,151 @@ export function PortfolioLightbox({ images, projectTitle }: LightboxProps) {
 
   return (
     <>
-      {/* Images - Clickable on all devices (opens lightbox) */}
+      {/* Gallery Container */}
       <div className="lg:sticky lg:top-24 xl:top-32">
-        <div className="grid grid-cols-2 lg:grid-cols-1 gap-2 sm:gap-3 lg:gap-4">
-          {images.map((img, idx) => (
+        <div className="relative">
+          {/* Main Image with Swipe */}
+          <div
+            ref={galleryRef}
+            className="relative overflow-hidden rounded-xl lg:rounded-2xl border border-[var(--border)] bg-[var(--surface)]"
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
+          >
+            {/* Main Image - Clickable to open lightbox */}
             <button
-              key={idx}
-              onClick={() => openLightbox(idx)}
+              onClick={openLightbox}
               className="
-                w-full
-                overflow-hidden
-                rounded-lg sm:rounded-xl lg:rounded-2xl
-                border border-[var(--border)]
-                bg-[var(--surface)]
-                transition-all duration-300
-                hover:scale-[1.02] hover:border-[var(--accent-1)]
-                hover:shadow-lg hover:shadow-[var(--accent-1)]/10
-                active:scale-[0.98]
+                w-full block
                 cursor-pointer
                 focus:outline-none focus:ring-2 focus:ring-[var(--accent-1)] focus:ring-offset-2
               "
-              aria-label={`View ${projectTitle} image ${idx + 1} in fullscreen`}
+              aria-label={`View ${projectTitle} image ${currentIndex + 1} in fullscreen`}
             >
-              <div className="relative w-full aspect-[4/5] sm:aspect-[3/4] lg:aspect-auto">
+              <div className="relative w-full aspect-[4/5] sm:aspect-[3/4] lg:aspect-[4/5]">
                 <Image
-                  src={img}
-                  alt={`${projectTitle} preview ${idx + 1}`}
-                  width={800}
-                  height={1000}
-                  className="w-full h-full object-cover object-top lg:h-auto lg:object-contain"
-                  sizes="(max-width: 1024px) 50vw, 33vw"
+                  src={images[currentIndex]}
+                  alt={`${projectTitle} preview ${currentIndex + 1}`}
+                  fill
+                  className="object-cover object-top transition-transform duration-300"
+                  sizes="(max-width: 1024px) 100vw, 33vw"
                   placeholder="blur"
                   blurDataURL={blurDataURL}
+                  priority={currentIndex === 0}
                 />
               </div>
             </button>
-          ))}
+
+            {/* Navigation Arrows - Desktop */}
+            {images.length > 1 && (
+              <>
+                {currentIndex > 0 && (
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      prevImage();
+                    }}
+                    className="
+                      absolute left-2 top-1/2 -translate-y-1/2
+                      hidden sm:flex items-center justify-center
+                      w-10 h-10
+                      rounded-full
+                      bg-black/40 hover:bg-black/60
+                      backdrop-blur-sm
+                      text-white
+                      transition-all
+                      hover:scale-110
+                      active:scale-95
+                    "
+                    aria-label="Previous image"
+                  >
+                    <ChevronLeft className="h-5 w-5" />
+                  </button>
+                )}
+
+                {currentIndex < images.length - 1 && (
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      nextImage();
+                    }}
+                    className="
+                      absolute right-2 top-1/2 -translate-y-1/2
+                      hidden sm:flex items-center justify-center
+                      w-10 h-10
+                      rounded-full
+                      bg-black/40 hover:bg-black/60
+                      backdrop-blur-sm
+                      text-white
+                      transition-all
+                      hover:scale-110
+                      active:scale-95
+                    "
+                    aria-label="Next image"
+                  >
+                    <ChevronRight className="h-5 w-5" />
+                  </button>
+                )}
+              </>
+            )}
+
+            {/* Image Counter Badge */}
+            {images.length > 1 && (
+              <div
+                className="
+                  absolute bottom-3 right-3
+                  px-3 py-1
+                  rounded-full
+                  bg-black/50 backdrop-blur-sm
+                  text-white text-xs font-medium
+                "
+              >
+                {currentIndex + 1} / {images.length}
+              </div>
+            )}
+
+            {/* Swipe Hint - Mobile only, shows briefly */}
+            {images.length > 1 && (
+              <div className="absolute bottom-3 left-3 sm:hidden">
+                <div className="flex items-center gap-1 px-2 py-1 rounded-full bg-black/50 backdrop-blur-sm text-white/70 text-xs">
+                  <ChevronLeft className="h-3 w-3" />
+                  <span>swipe</span>
+                  <ChevronRight className="h-3 w-3" />
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Thumbnails */}
+          {images.length > 1 && (
+            <div className="mt-2 sm:mt-3 flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
+              {images.map((img, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setCurrentIndex(idx)}
+                  className={`
+                    relative flex-shrink-0
+                    w-14 h-14 sm:w-16 sm:h-16
+                    rounded-lg overflow-hidden
+                    border-2 transition-all duration-200
+                    ${idx === currentIndex
+                      ? 'border-[var(--accent-1)] ring-2 ring-[var(--accent-1)]/30'
+                      : 'border-[var(--border)] hover:border-[var(--accent-1)]/50 opacity-60 hover:opacity-100'
+                    }
+                  `}
+                  aria-label={`View image ${idx + 1}`}
+                >
+                  <Image
+                    src={img}
+                    alt={`${projectTitle} thumbnail ${idx + 1}`}
+                    fill
+                    className="object-cover object-top"
+                    sizes="64px"
+                  />
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
@@ -139,6 +276,9 @@ export function PortfolioLightbox({ images, projectTitle }: LightboxProps) {
             p-4 sm:p-8
           "
           onClick={closeLightbox}
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
         >
           {/* Close Button */}
           <button
@@ -229,12 +369,46 @@ export function PortfolioLightbox({ images, projectTitle }: LightboxProps) {
             {currentIndex + 1} / {images.length}
           </div>
 
+          {/* Thumbnail Strip in Lightbox */}
+          {images.length > 1 && (
+            <div className="absolute bottom-16 sm:bottom-20 left-1/2 -translate-x-1/2 flex gap-2 max-w-[90vw] overflow-x-auto pb-1">
+              {images.map((img, idx) => (
+                <button
+                  key={idx}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setCurrentIndex(idx);
+                  }}
+                  className={`
+                    relative flex-shrink-0
+                    w-12 h-12 sm:w-14 sm:h-14
+                    rounded-lg overflow-hidden
+                    border-2 transition-all duration-200
+                    ${idx === currentIndex
+                      ? 'border-white ring-2 ring-white/30'
+                      : 'border-white/30 hover:border-white/60 opacity-50 hover:opacity-100'
+                    }
+                  `}
+                  aria-label={`View image ${idx + 1}`}
+                >
+                  <Image
+                    src={img}
+                    alt={`${projectTitle} thumbnail ${idx + 1}`}
+                    fill
+                    className="object-cover object-top"
+                    sizes="56px"
+                  />
+                </button>
+              ))}
+            </div>
+          )}
+
           {/* Image Container */}
           <div
             className="
               relative w-full h-full
               flex items-center justify-center
-              max-w-7xl max-h-[90vh]
+              max-w-7xl max-h-[70vh] sm:max-h-[75vh]
             "
             onClick={(e) => e.stopPropagation()}
           >
@@ -245,7 +419,7 @@ export function PortfolioLightbox({ images, projectTitle }: LightboxProps) {
               height={1080}
               className="
                 w-auto h-auto
-                max-w-full max-h-[90vh]
+                max-w-full max-h-[70vh] sm:max-h-[75vh]
                 object-contain
                 rounded-lg
               "
@@ -259,4 +433,3 @@ export function PortfolioLightbox({ images, projectTitle }: LightboxProps) {
     </>
   );
 }
-

@@ -16,6 +16,7 @@ export interface Project {
   linkedin?: string;
   tiktok?: string;
   youtube?: string;
+  googlePlay?: string;
 }
 
 export const projects: Project[] = [
@@ -607,6 +608,40 @@ export const projects: Project[] = [
     `,
     image: '/projects/screenshots/sensoprojects.jpg',
     link: 'https://www.sensoprojects.com/',
+  },
+
+  {
+    slug: 'reppy',
+    title: 'Reppy',
+    category: 'Apps',
+    description: 'Free, offline-first workout tracker that puts you in control. Track exercises, sets, reps, and weights — even without internet.',
+    challenge: `
+      Most fitness apps are bloated with ads, require constant internet connection,
+      and lock basic features behind paywalls. Users lose their workout data when
+      switching devices or lose motivation without seeing their progress.
+    `,
+    solution: [
+      'Offline-first architecture for uninterrupted training anywhere',
+      'Track exercises, sets, reps, and weights without internet',
+      'Share workouts with friends and view detailed progress charts',
+      'Export your data anytime — you own your fitness history',
+      'No ads, no subscriptions, no data selling',
+      'Cross-device sync when online, always available offline',
+    ],
+    result: `
+      A clean, fast fitness companion that works anywhere. Your data syncs across
+      devices when online, stays available when offline, and belongs to you.
+      Train smarter, track progress, and stay motivated — completely free.
+    `,
+    image: '/projects/screenshots/reppy/feature-graphic.png',
+    images: [
+      '/projects/screenshots/reppy/feature-graphic.png',
+      '/projects/screenshots/reppy/workout-list.png',
+      '/projects/screenshots/reppy/workout-detail.png',
+      '/projects/screenshots/reppy/workouts.png',
+      '/projects/screenshots/reppy/progress.png',
+    ],
+    googlePlay: '',
   },
 
 ];

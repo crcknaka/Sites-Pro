@@ -1,7 +1,6 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowLeft, ArrowRight, LayoutGrid, Facebook, Instagram, Music, Linkedin, Youtube, Target, Lightbulb, Trophy, ExternalLink } from 'lucide-react';
+import { ArrowLeft, ArrowRight, LayoutGrid, Facebook, Instagram, Music, Linkedin, Youtube, Target, Lightbulb, Trophy, ExternalLink, Play } from 'lucide-react';
 import { projects } from '@/data/projects';
 import { PortfolioLightbox } from '@/components/portfolio-lightbox';
 import { CategoryBadge } from '@/components/category-badge';
@@ -34,25 +33,11 @@ export default async function WorkCase({
   return (
     <main className="mx-auto max-w-7xl px-4 sm:px-6 pt-24 sm:pt-32 pb-16 sm:pb-24 text-[var(--fg)]">
       {/* =========================
-         HERO IMAGE (Mobile first)
+         IMAGE GALLERY (Mobile - at top)
       ========================= */}
       {images.length > 0 && (
         <div className="lg:hidden mb-8">
-          <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] rounded-xl sm:rounded-2xl overflow-hidden border border-[var(--border)]">
-            <Image
-              src={images[0]}
-              alt={project.title}
-              fill
-              className="object-cover object-top"
-              sizes="100vw"
-              priority
-            />
-          </div>
-          {images.length > 1 && (
-            <p className="mt-3 text-center text-xs text-[var(--text-muted)]">
-              Tap images below to view gallery ({images.length} images)
-            </p>
-          )}
+          <PortfolioLightbox images={images} projectTitle={project.title} />
         </div>
       )}
 
@@ -135,7 +120,7 @@ export default async function WorkCase({
           )}
 
           {/* SOCIAL LINKS */}
-          {(project.link || (project as any).facebook || (project as any).instagram || (project as any).tiktok || (project as any).linkedin || (project as any).youtube) && (
+          {(project.link || (project as any).facebook || (project as any).instagram || (project as any).tiktok || (project as any).linkedin || (project as any).youtube || (project as any).googlePlay) && (
             <div className="flex flex-wrap items-center gap-3">
               {project.link && (
                 <a
@@ -269,6 +254,28 @@ export default async function WorkCase({
                   <Youtube className="h-5 w-5" />
                 </a>
               )}
+              {(project as any).googlePlay && (
+                <a
+                  href={(project as any).googlePlay}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="
+                    inline-flex items-center justify-center
+                    w-10 h-10
+                    rounded-xl
+                    border border-[var(--border)]
+                    bg-[var(--surface)]
+                    text-[var(--text-muted)]
+                    hover:text-[var(--fg)]
+                    hover:border-[var(--accent-1)]
+                    hover:bg-[var(--surface-strong)]
+                    transition-all
+                  "
+                  aria-label="Google Play"
+                >
+                  <Play className="h-5 w-5" />
+                </a>
+              )}
             </div>
           )}
         </div>
@@ -276,17 +283,10 @@ export default async function WorkCase({
         {/* =========================
            RIGHT — IMAGES (Desktop sidebar)
         ========================= */}
+        {/* Desktop: sidebar gallery */}
         {images.length > 0 && (
-          <div className="lg:col-span-1">
-            {/* Desktop: sidebar gallery */}
-            <div className="hidden lg:block">
-              <PortfolioLightbox images={images} projectTitle={project.title} />
-            </div>
-            {/* Mobile: horizontal scrollable gallery */}
-            <div className="lg:hidden mt-8">
-              <h3 className="text-sm font-medium text-[var(--text-muted)] mb-4">Project Gallery</h3>
-              <PortfolioLightbox images={images} projectTitle={project.title} />
-            </div>
+          <div className="lg:col-span-1 hidden lg:block">
+            <PortfolioLightbox images={images} projectTitle={project.title} />
           </div>
         )}
       </div>
