@@ -71,7 +71,7 @@ export default function Footer() {
 
           {/* RIGHT */}
           <div className="text-sm text-[var(--text-muted)] text-center md:text-right">
-            <div>© {new Date().getFullYear()} Sites Pro. All rights reserved.</div>
+            <div>© {new Date().getFullYear()} SIA SitesPro. All rights reserved.</div>
             <div className="mt-2 flex flex-col md:flex-row gap-2 md:gap-4 justify-center md:justify-end">
               <Link
                 href="/privacy"

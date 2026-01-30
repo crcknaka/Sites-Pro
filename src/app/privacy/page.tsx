@@ -19,7 +19,7 @@ export default function PrivacyPage() {
         </h1>
 
         <p className="mt-4 text-sm text-[var(--text-muted)]">
-          Last updated: 28 December 2025
+          Last updated: 30 January 2026
         </p>
 
         <div className="mt-8 space-y-8 text-[var(--text-muted)] leading-relaxed">
@@ -28,11 +28,12 @@ export default function PrivacyPage() {
           </p>
 
           <Section title="1. Who We Are">
-            <p>This website is operated by a private individual based in the European Union (Latvia).</p>
-            <p className="mt-4">Website: <a href="https://sitespro.org" className="text-[var(--accent-1)] hover:underline">https://sitespro.org</a></p>
-            <p>Contact email: <a href="mailto:info@sitespro.org" className="text-[var(--accent-1)] hover:underline">info@sitespro.org</a></p>
-            <p>LinkedIn: <a href="https://www.linkedin.com/company/sites-pro/" target="_blank" rel="noreferrer" className="text-[var(--accent-1)] hover:underline">https://www.linkedin.com/company/sites-pro/</a></p>
-            <p className="mt-4">For the purposes of the General Data Protection Regulation (GDPR), the operator of this website acts as the Data Controller.</p>
+            <p>This website is operated by <strong>SIA SitesPro</strong>, a company registered in Latvia, European Union.</p>
+            <p className="mt-4"><strong className="text-[var(--fg)]">Company:</strong> SIA SitesPro</p>
+            <p><strong className="text-[var(--fg)]">Website:</strong> <a href="https://sitespro.org" className="text-[var(--accent-1)] hover:underline">https://sitespro.org</a></p>
+            <p><strong className="text-[var(--fg)]">Contact email:</strong> <a href="mailto:info@sitespro.org" className="text-[var(--accent-1)] hover:underline">info@sitespro.org</a></p>
+            <p><strong className="text-[var(--fg)]">LinkedIn:</strong> <a href="https://www.linkedin.com/company/sites-pro/" target="_blank" rel="noreferrer" className="text-[var(--accent-1)] hover:underline">https://www.linkedin.com/company/sites-pro/</a></p>
+            <p className="mt-4">For the purposes of the General Data Protection Regulation (GDPR), SIA SitesPro acts as the Data Controller.</p>
           </Section>
 
           <Section title="2. What Personal Data We Collect">
@@ -101,7 +102,7 @@ export default function PrivacyPage() {
               <li>Withdraw consent at any time</li>
             </ul>
             <p className="mt-4">
-              To exercise any of these rights, contact us at: <a href="mailto:info@sitespro.org" className="text-[var(--accent-1)] hover:underline">info@sitespro.org</a>
+              To exercise any of these rights, contact SIA SitesPro at: <a href="mailto:info@sitespro.org" className="text-[var(--accent-1)] hover:underline">info@sitespro.org</a>
             </p>
           </Section>
 
