@@ -110,6 +110,7 @@ export default function HeroBackground() {
       const mx = mouseRef.current.x;
       const my = mouseRef.current.y;
       const scroll = scrollRef.current;
+      const revealRadius = 300;
       const mouseRadius = 200;
       const connectRadius = 150;
 
@@ -205,43 +206,50 @@ export default function HeroBackground() {
         }
       }
 
-      // Draw dots
-      for (const dot of dots) {
-        const dy = dot.y - parallaxY;
-        const dxMouse = dot.x - mx;
-        const dyMouse = dy - my;
-        const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
+      // Draw dots — only visible near mouse
+      if (mx > -500) {
+        for (const dot of dots) {
+          const dy = dot.y - parallaxY;
+          const dxMouse = dot.x - mx;
+          const dyMouse = dy - my;
+          const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
 
-        let opacity = dot.opacity;
-        let radius = dot.radius;
-        let isAccent = false;
+          // Skip dots outside reveal radius
+          if (distMouse > revealRadius) continue;
 
-        if (distMouse < mouseRadius) {
-          const proximity = 1 - distMouse / mouseRadius;
-          opacity = Math.min(opacity + proximity * 0.6, 0.9);
-          radius = dot.radius + proximity * 2;
-          isAccent = true;
-        }
+          // Reveal factor: 0 at edge, 1 at center
+          const reveal = 1 - distMouse / revealRadius;
+          let opacity = dot.opacity * reveal;
+          let radius = dot.radius;
+          let isAccent = false;
 
-        ctx.beginPath();
-        ctx.arc(dot.x, dy, radius, 0, Math.PI * 2);
+          if (distMouse < mouseRadius) {
+            const proximity = 1 - distMouse / mouseRadius;
+            opacity = Math.min(opacity + proximity * 0.6, 0.9);
+            radius = dot.radius + proximity * 2;
+            isAccent = true;
+          }
 
-        if (isAccent) {
-          ctx.fillStyle = `rgba(${accentRGB.r},${accentRGB.g},${accentRGB.b},${opacity})`;
-        } else if (dark) {
-          ctx.fillStyle = `rgba(255,255,255,${Math.min(opacity * 2.5, 0.7)})`;
-        } else {
-          ctx.fillStyle = `rgba(16,24,41,${opacity * 0.6})`;
-        }
-        ctx.fill();
-
-        // Glow on accent dots
-        if (isAccent && distMouse < mouseRadius * 0.6) {
-          const glowAlpha = (1 - distMouse / (mouseRadius * 0.6)) * 0.3;
           ctx.beginPath();
-          ctx.arc(dot.x, dy, radius + 3, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(${accentRGB.r},${accentRGB.g},${accentRGB.b},${glowAlpha})`;
+          ctx.arc(dot.x, dy, radius, 0, Math.PI * 2);
+
+          if (isAccent) {
+            ctx.fillStyle = `rgba(${accentRGB.r},${accentRGB.g},${accentRGB.b},${opacity})`;
+          } else if (dark) {
+            ctx.fillStyle = `rgba(255,255,255,${opacity * 1.5})`;
+          } else {
+            ctx.fillStyle = `rgba(16,24,41,${opacity * 0.8})`;
+          }
           ctx.fill();
+
+          // Glow on accent dots
+          if (isAccent && distMouse < mouseRadius * 0.6) {
+            const glowAlpha = (1 - distMouse / (mouseRadius * 0.6)) * 0.3;
+            ctx.beginPath();
+            ctx.arc(dot.x, dy, radius + 3, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(${accentRGB.r},${accentRGB.g},${accentRGB.b},${glowAlpha})`;
+            ctx.fill();
+          }
         }
       }
 
