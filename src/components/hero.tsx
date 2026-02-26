@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Linkedin, Send, ArrowRight, Briefcase } from 'lucide-react';
 import { ACCENT_1, ACCENT_2 } from '@/lib';
+import HeroBackground from './hero-background';
 
 const animatedWords = ['platforms', 'applications', 'systems'];
 
@@ -31,13 +32,16 @@ export default function Hero() {
     <section
       id="home"
       className="
-        relative min-h-[100dvh] sm:min-h-screen
+        relative min-h-[70dvh] sm:min-h-[75vh]
         flex items-center justify-center
         pt-20 sm:pt-24 pb-8 sm:pb-12
         px-4 sm:px-6 select-none
         text-[var(--fg)]
       "
     >
+      {/* DOT GRID BACKGROUND */}
+      <HeroBackground />
+
       {/* CONTENT */}
       <div className="relative z-10 max-w-5xl text-center w-full">
         {/* HEADING */}
