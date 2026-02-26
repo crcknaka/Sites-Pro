@@ -83,13 +83,13 @@ export default function HeroBackground() {
     };
 
     const checkDark = () => {
-      isDarkRef.current = document.documentElement.classList.contains("dark");
+      isDarkRef.current = document.documentElement.dataset.theme !== "light";
     };
 
     const observer = new MutationObserver(checkDark);
     observer.observe(document.documentElement, {
       attributes: true,
-      attributeFilter: ["class"],
+      attributeFilter: ["data-theme"],
     });
 
     resize();
@@ -229,7 +229,7 @@ export default function HeroBackground() {
         if (isAccent) {
           ctx.fillStyle = `rgba(${accentRGB.r},${accentRGB.g},${accentRGB.b},${opacity})`;
         } else if (dark) {
-          ctx.fillStyle = `rgba(255,255,255,${opacity})`;
+          ctx.fillStyle = `rgba(255,255,255,${Math.min(opacity * 2.5, 0.7)})`;
         } else {
           ctx.fillStyle = `rgba(16,24,41,${opacity * 0.6})`;
         }

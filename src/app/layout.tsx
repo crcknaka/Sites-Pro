@@ -80,6 +80,11 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('theme');if(t){document.documentElement.dataset.theme=t}else{var d=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.dataset.theme=d}}catch(e){document.documentElement.dataset.theme='dark'}})()`,
+          }}
+        />
         <OrganizationJsonLd />
         <WebsiteJsonLd />
         <ServicesJsonLd />
