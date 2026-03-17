@@ -183,22 +183,17 @@ body {
    PERFORMANCE: DISABLE ANIMATIONS ON MOBILE & TABLETS
 ====================================================== */
 @media (max-width: 1024px) {
-  /* Disable all keyframe animations on mobile and tablets for better performance */
-  * {
-    animation-duration: 0s !important;
-    animation-delay: 0s !important;
-    transition-duration: 0.2s !important;
-  }
-  
-  /* Keep only essential transitions */
-  button, a, input, select, textarea {
-    transition-duration: 0.15s !important;
-  }
-  
-  /* Disable specific heavy animations */
+  /* Disable heavy keyframe animations on mobile/tablets for better performance */
+  /* Keep transitions intact so hover effects, hero word fade, FAQ accordion work */
   .animate-orbit,
   .animate-pulse-slow,
   .animate-slow-float,
+  .animate-float,
+  .animate-float-slow,
+  .animate-float-delayed,
+  .animate-spin-slow,
+  .animate-spin-reverse,
+  .animate-gradient-shift,
   [class*="animate-"] {
     animation: none !important;
   }

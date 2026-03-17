@@ -42,6 +42,13 @@ export default function About() {
         text-[var(--fg)]
       "
     >
+      {/* Ambient glow */}
+      <div
+        className="absolute inset-0 -z-10 blur-3xl opacity-30 pointer-events-none"
+        style={{
+          background: `radial-gradient(circle at 70% 50%, ${ACCENT_1}15 0%, transparent 60%), radial-gradient(circle at 30% 50%, ${ACCENT_2}10 0%, transparent 60%)`,
+        }}
+      />
       <div className="mx-auto max-w-7xl">
         {/* HEADER */}
         <div className="mx-auto max-w-3xl text-center">
@@ -131,9 +138,9 @@ export default function About() {
                 linear-gradient(
                   90deg,
                   transparent,
+                  color-mix(in srgb, var(--accent-1) 55%, transparent),
                   color-mix(in srgb, var(--accent-1) 35%, transparent),
-                  color-mix(in srgb, var(--accent-1) 20%, transparent),
-                  color-mix(in srgb, var(--accent-1) 35%, transparent),
+                  color-mix(in srgb, var(--accent-1) 55%, transparent),
                   transparent
                 )
               `,

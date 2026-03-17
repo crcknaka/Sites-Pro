@@ -5,7 +5,7 @@ import { Layers, ShoppingCart, Globe, Shield, Grid, ChevronDown } from 'lucide-r
 import { projects } from '@/data/projects';
 import ProjectCard from '@/components/projectcard';
 import { useIsMobile } from '@/hooks';
-import { ACCENT } from '@/lib';
+import { ACCENT, ACCENT_1, ACCENT_2 } from '@/lib';
 
 const CATEGORIES = [
   'All',
@@ -96,7 +96,7 @@ export default function Portfolio() {
             <span
               className="bg-clip-text text-transparent"
               style={{
-                backgroundImage: `linear-gradient(90deg, ${ACCENT}, ${ACCENT})`,
+                backgroundImage: `linear-gradient(90deg, ${ACCENT_1}, ${ACCENT_2})`,
               }}
             >
               Portfolio

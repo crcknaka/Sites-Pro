@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { useIsMobile } from '@/hooks';
-import { ACCENT } from '@/lib';
+import { ACCENT, ACCENT_1, ACCENT_2 } from '@/lib';
 
 const faqs = [
   {
@@ -84,7 +84,7 @@ export default function FAQ() {
             <span
               className="bg-clip-text text-transparent"
               style={{
-                backgroundImage: `linear-gradient(90deg, ${ACCENT}, ${ACCENT})`,
+                backgroundImage: `linear-gradient(90deg, ${ACCENT_1}, ${ACCENT_2})`,
               }}
             >
               Questions
@@ -174,7 +174,7 @@ export default function FAQ() {
                 transition-all
               "
             >
-              More
+              Load more
             </button>
           </div>
         )}

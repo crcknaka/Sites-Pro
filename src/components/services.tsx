@@ -5,7 +5,8 @@ import {
   Wallet,
   Building2,
   Coins,
-  Bitcoin
+  Bitcoin,
+  ArrowUpRight,
 } from 'lucide-react';
 import { ACCENT_1, ACCENT_2 } from '@/lib';
 
@@ -143,6 +144,11 @@ export default function Services() {
                 <p className="text-xs sm:text-sm leading-relaxed text-[var(--text-muted)] line-clamp-3 sm:line-clamp-none">
                   {service.description}
                 </p>
+
+                {/* CTA */}
+                <div className="mt-auto pt-4 flex items-center gap-1 text-xs font-medium opacity-50 group-hover:opacity-100 transition-opacity duration-300" style={{ color: 'var(--accent-1)' }}>
+                  Learn more <ArrowUpRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </div>
               </div>
             </Link>
           ))}

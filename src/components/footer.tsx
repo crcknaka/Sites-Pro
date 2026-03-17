@@ -4,7 +4,7 @@ import { LinkedinIcon, Send, type LucideIcon } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="relative mt-32">
+    <footer className="relative">
       {/* TOP DIVIDER */}
       <div
         className="h-px w-full"

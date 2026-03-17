@@ -13,6 +13,13 @@ export default function Contact() {
         select-none
       "
     >
+      {/* Ambient glow */}
+      <div
+        className="absolute inset-0 -z-10 blur-3xl opacity-30 pointer-events-none"
+        style={{
+          background: `radial-gradient(circle at 30% 50%, ${ACCENT_1}15 0%, transparent 60%), radial-gradient(circle at 70% 50%, ${ACCENT_2}10 0%, transparent 60%)`,
+        }}
+      />
       <div className="mx-auto max-w-7xl">
         {/* HEADER */}
         <div className="mx-auto max-w-3xl text-center">
@@ -64,7 +71,7 @@ export default function Contact() {
             {/* QUOTE */}
             <blockquote
               className="
-                mt-12 border-l pl-6 text-sm
+                border-l pl-6 text-sm
                 border-[var(--border)]
                 text-[var(--text-muted)]
               "
