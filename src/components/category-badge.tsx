@@ -32,14 +32,14 @@ const styles: Record<
     border: 'border-[color:var(--accent-1)]/30',
   },
   Websites: {
-    bg: 'bg-[#6366F1]/10',
-    text: 'text-[#6366F1]',
-    border: 'border-[#6366F1]/30',
+    bg: 'bg-[color:var(--accent-2)]/15',
+    text: 'text-[color:var(--accent-2)]',
+    border: 'border-[color:var(--accent-2)]/25',
   },
   Fintech: {
-    bg: 'bg-[#3B82F6]/10',
-    text: 'text-[#3B82F6]',
-    border: 'border-[#3B82F6]/30',
+    bg: 'bg-[color:var(--accent-1)]/15',
+    text: 'text-[color:var(--accent-1)]',
+    border: 'border-[color:var(--accent-1)]/25',
   },
 };
 

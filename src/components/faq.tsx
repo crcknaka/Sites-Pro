@@ -109,7 +109,7 @@ export default function FAQ() {
                   rounded-2xl border transition
                   ${
                     active
-                      ? 'border-[var(--border)] bg-[var(--surface-strong)]'
+                      ? 'border-[var(--accent-1)]/30 bg-[var(--surface-strong)]'
                       : 'border-[var(--border)] bg-[var(--surface)]'
                   }
                 `}

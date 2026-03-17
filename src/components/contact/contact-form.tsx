@@ -4,7 +4,7 @@ import { useEffect, useState, useTransition } from 'react';
 import { Turnstile } from '@marsidev/react-turnstile';
 import { SendHorizontal, CheckCircle } from 'lucide-react';
 import { sendContactMessage } from './contact-actions';
-import { ACCENT } from '@/lib';
+import { ACCENT, ACCENT_1 } from '@/lib';
 
 export default function ContactForm() {
   const [success, setSuccess] = useState(false);
@@ -60,10 +60,11 @@ export default function ContactForm() {
           className="
             mb-6 flex h-14 w-14 items-center justify-center
             rounded-full
-            bg-[var(--surface-strong)]
+            border border-[var(--accent-1)]/30
           "
+          style={{ background: `color-mix(in srgb, ${ACCENT_1} 12%, transparent)` }}
         >
-          <CheckCircle className="h-7 w-7 text-[var(--fg)]/70" />
+          <CheckCircle className="h-7 w-7" style={{ color: ACCENT_1 }} />
         </div>
 
         <h3 className="text-xl font-semibold text-[var(--fg)]">
@@ -158,7 +159,7 @@ export default function ContactForm() {
       >
         {isPending ? (
           <span className="flex items-center gap-2">
-            <span className="h-3 w-3 rounded-full bg-black/60" />
+            <span className="h-4 w-4 rounded-full border-2 border-black/20 border-t-black/70 animate-spin" />
             Sending…
           </span>
         ) : (

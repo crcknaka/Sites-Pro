@@ -99,10 +99,9 @@ export default function About() {
                     flex items-center justify-center
                     bg-[var(--surface-strong)]
                     border border-[var(--border)]
-                    text-[var(--text-muted)]
                   "
                 >
-                  <Icon className="h-5 w-5" />
+                  <Icon className="h-5 w-5" style={{ color: ACCENT_1 }} />
                   <span
                     className="
                       absolute -top-1.5 -right-1.5 h-5 w-5 rounded-full
@@ -161,8 +160,6 @@ export default function About() {
                     flex items-center justify-center
                     bg-[var(--surface-strong)] backdrop-blur-sm
                     border border-[var(--border)]
-                    text-[var(--text-muted)]
-                    hover:text-[var(--fg)]
                     hover:border-[var(--accent-1)]
                     hover:bg-[var(--surface-strong)]
                     transition-all duration-300
@@ -171,7 +168,7 @@ export default function About() {
                     backgroundColor: 'color-mix(in srgb, var(--bg) 95%, var(--surface-strong))',
                   }}
                 >
-                  <Icon className="h-10 w-10" />
+                  <Icon className="h-10 w-10" style={{ color: ACCENT_1 }} />
 
                   <span
                     className="

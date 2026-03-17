@@ -1,6 +1,20 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { LinkedinIcon, Send, type LucideIcon } from 'lucide-react';
+import { ACCENT_1 } from '@/lib';
+
+const navServices = [
+  { label: 'Websites', href: '/services/web' },
+  { label: 'Web Platforms', href: '/services/web-platforms' },
+  { label: 'AI & Automations', href: '/services/ai' },
+  { label: 'Consulting', href: '/services/consulting' },
+];
+
+const navCompany = [
+  { label: 'About', href: '/#about' },
+  { label: 'Portfolio', href: '/#portfolio' },
+  { label: 'FAQ', href: '/#faq' },
+  { label: 'Contact', href: '/#contact' },
+];
 
 export default function Footer() {
   return (
@@ -9,84 +23,101 @@ export default function Footer() {
       <div
         className="h-px w-full"
         style={{
-          background:
-            'linear-gradient(90deg, transparent, var(--border), transparent)',
+          background: 'linear-gradient(90deg, transparent, var(--border), transparent)',
         }}
       />
 
-      {/* FOOTER SURFACE */}
       <div className="bg-[var(--surface)] backdrop-blur-xl">
-        <div
-          className="
-            mx-auto max-w-7xl
-            px-6 py-12
-            flex flex-col gap-8
-            md:flex-row md:items-center md:justify-between
-          "
-        >
-          {/* LEFT — LOGO + TEXT */}
-          <div
-            className="
-              flex flex-col items-center gap-3
-              md:flex-row md:items-center md:gap-4
-            "
-          >
-            {/* LOGO (70x70, theme-safe) */}
-            <div className="relative h-[70px] w-[70px]">
-              <Image
-                src="/logo-dark.svg"
-                alt="Sites Pro"
-                width={70}
-                height={70}
-                className="logo-dark absolute inset-0"
-              />
-              <Image
-                src="/logo-light.svg"
-                alt="Sites Pro"
-                width={70}
-                height={70}
-                className="logo-light absolute inset-0"
-              />
+        <div className="mx-auto max-w-7xl px-6 py-12 lg:py-16">
+
+          {/* MAIN GRID — 3 nav columns */}
+          <div className="grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-3">
+
+            {/* SERVICES */}
+            <div>
+              <p className="mb-4 text-xs font-semibold uppercase tracking-widest" style={{ color: ACCENT_1 }}>
+                Services
+              </p>
+              <ul className="space-y-3">
+                {navServices.map((item) => (
+                  <li key={item.href}>
+                    <Link href={item.href} className="text-sm text-[var(--text-muted)] hover:text-[var(--fg)] transition-colors">
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
 
-            {/* TEXT */}
-            <span className="text-sm font-medium text-[var(--text-muted)] text-center md:text-left">
-              Digital Done Right.
-            </span>
+            {/* COMPANY */}
+            <div>
+              <p className="mb-4 text-xs font-semibold uppercase tracking-widest" style={{ color: ACCENT_1 }}>
+                Company
+              </p>
+              <ul className="space-y-3">
+                {navCompany.map((item) => (
+                  <li key={item.href}>
+                    <Link href={item.href} className="text-sm text-[var(--text-muted)] hover:text-[var(--fg)] transition-colors">
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* CONTACT */}
+            <div className="col-span-2 lg:col-span-1">
+              <p className="mb-4 text-xs font-semibold uppercase tracking-widest" style={{ color: ACCENT_1 }}>
+                Contact
+              </p>
+              <div className="grid grid-cols-2 items-start lg:block">
+                <ul className="space-y-3">
+                  <li>
+                    <a
+                      href="mailto:info@sitespro.org"
+                      className="text-sm text-[var(--text-muted)] hover:text-[var(--fg)] transition-colors select-text"
+                    >
+                      info@sitespro.org
+                    </a>
+                  </li>
+                  <li className="text-sm text-[var(--text-muted)]">
+                    Europe — working globally
+                  </li>
+                </ul>
+
+                <div className="flex items-center gap-3 lg:mt-5">
+                  <SocialLink
+                    href="https://www.linkedin.com/company/sites-pro/"
+                    icon={LinkedinIcon}
+                    label="Sites Pro on LinkedIn"
+                  />
+                  <SocialLink
+                    href="https://t.me/IljaFinTech"
+                    icon={Send}
+                    label="IljaFinTech on Telegram"
+                  />
+                </div>
+              </div>
+            </div>
+
           </div>
 
-          {/* CENTER — SOCIALS */}
-          <div className="flex items-center gap-4 justify-center md:justify-start">
-            <SocialLink
-              href="https://www.linkedin.com/company/sites-pro/"
-              icon={LinkedinIcon}
-              label="Sites Pro on LinkedIn"
-            />
-            <SocialLink
-              href="https://t.me/IljaFinTech"
-              icon={Send}
-              label="IljaFinTech on Telegram"
-            />
-          </div>
-
-          {/* RIGHT */}
-          <div className="text-sm text-[var(--text-muted)] text-center md:text-right">
-            <div>© {new Date().getFullYear()} SIA SitesPro. All rights reserved.</div>
-            <div className="mt-2 flex flex-col md:flex-row gap-2 md:gap-4 justify-center md:justify-end">
-              <Link
-                href="/privacy"
-                className="text-xs text-[var(--text-muted)] hover:text-[var(--fg)] transition-colors underline"
-              >
+          {/* BOTTOM BAR */}
+          <div
+            className="mt-12 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[var(--text-muted)]"
+            style={{ borderTop: '1px solid var(--border)' }}
+          >
+            <span>© {new Date().getFullYear()} SIA SitesPro. All rights reserved.</span>
+            <div className="flex items-center gap-4">
+              <Link href="/privacy" className="hover:text-[var(--fg)] transition-colors underline">
                 Privacy Policy
               </Link>
-              <Link
-                href="/legal"
-                className="text-xs text-[var(--text-muted)] hover:text-[var(--fg)] transition-colors underline"
-              >
+              <Link href="/legal" className="hover:text-[var(--fg)] transition-colors underline">
                 Legal Notice
               </Link>
             </div>
           </div>
+
         </div>
       </div>
     </footer>
