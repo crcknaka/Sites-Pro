@@ -28,7 +28,6 @@ export async function sendContactMessage(formData: FormData) {
   const verifyData = await verifyRes.json();
 
   if (!verifyData.success) {
-    console.error('Turnstile failed:', verifyData);
     throw new Error('Captcha verification failed');
   }
 
