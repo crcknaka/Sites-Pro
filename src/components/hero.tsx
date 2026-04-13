@@ -34,7 +34,7 @@ export default function Hero() {
       className="
         relative min-h-[85dvh] sm:min-h-[80vh]
         flex items-center justify-center
-        pt-28 sm:pt-32 pb-8 sm:pb-12
+        pt-36 sm:pt-32 pb-8 sm:pb-12
         px-4 sm:px-6 select-none
         text-[var(--fg)]
       "

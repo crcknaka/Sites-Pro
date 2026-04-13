@@ -21,6 +21,34 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    slug: 'bodybar',
+    title: 'BodyBar',
+    category: 'Commerce',
+    description: 'A space of strength, grace and femininity — combining ballet, strength training and stretching into one refined method.',
+    challenge: `
+      Create a premium digital experience that captures the elegance and energy
+      of the BodyBar method while handling protected video content, integrated
+      payments, and full client-side content management.
+    `,
+    solution: [
+      'Custom design with refined typography and graceful visual language',
+      'Framer Motion animations for smooth, elegant page transitions',
+      'Protected video delivery for exclusive training content',
+      'Integrated payment systems for memberships and class bookings',
+      'Custom-built admin panel for the client to manage content independently',
+      'Mobile-first approach reflecting the on-the-go fitness audience',
+    ],
+    result: `
+      A beautifully crafted platform that embodies BodyBar's philosophy of
+      confidence, energy and harmony — giving clients a seamless experience
+      from discovery to booking, while keeping content secure and easy to manage.
+    `,
+    image: '/projects/screenshots/bodybar.jpg',
+    link: 'https://bodybar.lv/',
+    instagram: 'https://www.instagram.com/bodybar.lv/',
+  },
+
+  {
     slug: 'lepicur',
     title: 'Lepicur',
     category: 'Commerce',
@@ -642,6 +670,33 @@ export const projects: Project[] = [
       '/projects/screenshots/reppy/progress.png',
     ],
     googlePlay: '',
+  },
+
+  {
+    slug: 'balticaqua',
+    title: 'BalticAqua',
+    category: 'Websites',
+    description: 'Professional water purification, softening and filtration systems with 20+ years of experience across Latvia.',
+    challenge: `
+      Establish a strong digital presence for a well-established water treatment
+      company, clearly communicating decades of expertise and a wide range of
+      services while making it easy for customers to find the right solution.
+    `,
+    solution: [
+      'Custom-built admin panel for independent content management',
+      'Clear service categorization: purification, softening, filtration',
+      'Trust-building elements highlighting 20+ years of industry experience',
+      'Latvia-wide service coverage with installation and maintenance info',
+      'Mobile-optimized layout for on-the-go customer inquiries',
+      'SEO-friendly structure for local search visibility',
+    ],
+    result: `
+      A professional, easy-to-manage website that reinforces BalticAqua's
+      market authority and makes it simple for customers across Latvia to
+      explore solutions and request service.
+    `,
+    image: '/projects/screenshots/balticaqua.jpg',
+    link: 'https://balticaqua.lv/',
   },
 
 ];
