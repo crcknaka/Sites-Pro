@@ -7,8 +7,14 @@ import {
   Coins,
   Bitcoin,
   ArrowUpRight,
+  Brain,
+  Sparkles,
+  Workflow,
+  Database,
 } from 'lucide-react';
 import { ACCENT_1, ACCENT_2 } from '@/lib';
+import SectionHeader from './section-header';
+import Reveal from './reveal';
 
 const services = [
   {
@@ -71,96 +77,62 @@ export default function Services() {
         }}
       />
       <div className="mx-auto max-w-7xl">
-        {/* HEADING */}
-        <div className="mx-auto max-w-3xl text-center">
-          <span
-            className="text-sm font-medium tracking-widest uppercase"
-            style={{ color: ACCENT_1 }}
-          >
-            What we do
-          </span>
-
-          <h2 className="mt-4 text-4xl font-semibold tracking-tight md:text-5xl">
-            Our{' '}
-            <span
-              className="bg-clip-text text-transparent"
-              style={{
-                backgroundImage: `linear-gradient(90deg, ${ACCENT_1}, ${ACCENT_2})`,
-              }}
-            >
-              Services
-            </span>
-          </h2>
-
-          <p className="mt-6 text-lg text-[var(--text-muted)]">
-          We design and build digital products — from high-performance websites to complex web platforms and automations.
-          </p>
-        </div>
+        <SectionHeader
+          eyebrow="What we do"
+          title="Our"
+          highlight="Services"
+          subtitle="We design and build digital products — from high-performance websites to complex web platforms and automations."
+        />
 
         {/* CARDS */}
-        <div className="mt-20 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
-          {services.map((service) => (
-            <Link
-              key={service.type}
-              href={`/services/${service.type}`}
-              className="group block"
-            >
-              <div
-                className="
-                  relative h-full min-h-[220px] sm:min-h-0 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8
-                  bg-[var(--surface)]
-                  border border-[var(--border)]
-                  overflow-hidden
-                  transition-all duration-300 ease-out
-                  hover:-translate-y-0.5
-                  hover:bg-[var(--surface-strong)]
-                  hover:border-[color-mix(in_srgb,var(--accent-1)_25%,var(--border))]
-                  flex flex-col
-                "
-              >
-                {/* Accent line */}
-                <span
+        <div className="mt-14 sm:mt-20 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
+          {services.map((service, i) => (
+            <Reveal key={service.type} delay={i * 90}>
+              <Link href={`/services/${service.type}`} className="group block h-full">
+                <div
                   className="
-                    absolute top-6 bottom-6 left-0 w-px
-                    opacity-40 transition-opacity duration-300
-                    group-hover:opacity-80
+                    card-premium card-topline
+                    h-full min-h-[220px] sm:min-h-0
+                    rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-7
+                    overflow-hidden
+                    flex flex-col
                   "
-                  style={{
-                    background:
-                      'linear-gradient(180deg, transparent, var(--accent-1), transparent)',
-                  }}
-                />
+                >
+                  {/* INFOGRAPHIC */}
+                  <div className="mb-6 sm:mb-8 flex h-32 items-center justify-center lg:animate-[slow-float_6s_ease-in-out_infinite]">
+                    <ServiceInfographic type={service.type} />
+                  </div>
 
-                {/* INFOGRAPHIC */}
-                <div className="mb-6 sm:mb-8 md:mb-10 flex h-28 sm:h-28 md:h-32 items-center justify-center lg:animate-[slow-float_6s_ease-in-out_infinite]">
-                  <ServiceInfographic type={service.type} />
+                  {/* TEXT */}
+                  <h3 className="font-display text-base sm:text-lg md:text-xl font-semibold mb-2 sm:mb-3">
+                    {service.title}
+                  </h3>
+
+                  <p className="text-xs sm:text-sm leading-relaxed text-[var(--text-muted)]">
+                    {service.description}
+                  </p>
+
+                  {/* CTA */}
+                  <div
+                    className="mt-auto pt-4 flex items-center gap-1 text-xs font-medium opacity-60 group-hover:opacity-100 transition-opacity duration-300"
+                    style={{ color: 'var(--accent-1)' }}
+                  >
+                    Learn more{' '}
+                    <ArrowUpRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </div>
                 </div>
-
-                {/* TEXT */}
-                <h3 className="text-base sm:text-lg md:text-xl font-semibold mb-2 sm:mb-3">
-                  {service.title}
-                </h3>
-
-                <p className="text-xs sm:text-sm leading-relaxed text-[var(--text-muted)] line-clamp-3 sm:line-clamp-none">
-                  {service.description}
-                </p>
-
-                {/* CTA */}
-                <div className="mt-auto pt-4 flex items-center gap-1 text-xs font-medium opacity-50 group-hover:opacity-100 transition-opacity duration-300" style={{ color: 'var(--accent-1)' }}>
-                  Learn more <ArrowUpRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </div>
-              </div>
-            </Link>
+              </Link>
+            </Reveal>
           ))}
         </div>
 
         {/* PAYMENTS */}
-        <div className="mt-20 text-center">
+        <Reveal className="mt-16 sm:mt-20 text-center">
           <p className="text-sm text-[var(--text-muted)]">
             Flexible payment options for your convenience
           </p>
 
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
+          <div className="mt-6 sm:mt-8 flex flex-wrap justify-center gap-2 sm:gap-3">
             {payments.map((method) => {
               const Icon = method.icon;
               return (
@@ -169,37 +141,32 @@ export default function Services() {
                   className="
                     inline-flex items-center gap-2
                     rounded-full
-                    px-5 py-2
-                    text-sm
+                    px-4 sm:px-5 py-2
+                    text-xs sm:text-sm
                     bg-[var(--surface)]
-                    border border-[var(--border)]
+                    border border-[var(--border-soft)]
                     text-[var(--text-muted)]
-                    opacity-75
                     transition-all duration-300
                     cursor-default
-                    hover:opacity-100
                     hover:text-[var(--fg)]
                     hover:bg-[var(--surface-strong)]
-                    hover:border-[color-mix(in_srgb,var(--accent-1)_20%,var(--border))]
-                    hover:shadow-lg
-                    hover:shadow-[var(--accent-1)]/5
-                    hover:scale-105
+                    hover:border-[color-mix(in_srgb,var(--accent-1)_25%,var(--border))]
                   "
                 >
-                  <Icon className="h-4 w-4" />
+                  <Icon className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                   {method.name}
                 </span>
               );
             })}
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
 }
 
 /* ======================================================
-   INFOGRAPHICS — Modern & Interactive
+   INFOGRAPHICS — one shared window-frame language
 ====================================================== */
 
 function ServiceInfographic({ type }: { type: string }) {
@@ -210,298 +177,295 @@ function ServiceInfographic({ type }: { type: string }) {
   return null;
 }
 
-/* ------------------------------------------------------
-   Websites — Modern Browser with Live Content
------------------------------------------------------- */
-function WebInfographic() {
+/* Shared window frame: every card infographic lives in the same
+   browser-style container so the section reads as one system. */
+function MiniWindow({
+  glow,
+  children,
+}: {
+  glow: string;
+  children: React.ReactNode;
+}) {
   return (
-    <div className="relative h-32 w-36 select-none group">
+    <div className="relative h-32 w-40 select-none">
       {/* Glow effect */}
       <div
         className="absolute -inset-4 rounded-2xl blur-2xl opacity-0 group-hover:opacity-50 transition-opacity duration-500 -z-10"
-        style={{ background: `radial-gradient(circle, ${ACCENT_1}40, transparent)` }}
+        style={{ background: `radial-gradient(circle, ${glow}, transparent)` }}
       />
-      
-      {/* Browser window */}
+
+      {/* Window */}
       <div
-        className="absolute inset-0 rounded-2xl border border-[var(--border)] overflow-hidden shadow-xl backdrop-blur-sm transition-all duration-300 group-hover:border-[var(--accent-1)]/40 group-hover:scale-105"
+        className="absolute inset-0 rounded-xl border border-[var(--border)] overflow-hidden shadow-xl backdrop-blur-sm transition-all duration-300 group-hover:border-[var(--accent-1)]/40 group-hover:scale-[1.04]"
         style={{
           background: 'color-mix(in srgb, var(--surface-strong) 95%, transparent)',
         }}
       >
-        {/* Browser top bar */}
-        <div className="flex items-center gap-1.5 px-3 py-2 border-b border-[var(--border)]/50 bg-[var(--surface)]/30">
-          <span className="h-1.5 w-1.5 rounded-full bg-red-500/60" />
-          <span className="h-1.5 w-1.5 rounded-full bg-yellow-500/60" />
-          <span className="h-1.5 w-1.5 rounded-full bg-green-500/60" />
+        {/* Chrome bar */}
+        <div className="flex items-center gap-1.5 px-3 py-1.5 border-b border-[var(--border)]/50 bg-[var(--surface)]/30">
+          <span className="h-1.5 w-1.5 rounded-full bg-[#ff5f57]/70" />
+          <span className="h-1.5 w-1.5 rounded-full bg-[#febc2e]/70" />
+          <span className="h-1.5 w-1.5 rounded-full bg-[#28c840]/70" />
           <div className="ml-2 h-1.5 flex-1 rounded-full bg-[var(--border)]/40" />
         </div>
 
-        {/* Browser content with animations */}
-        <div className="p-2.5 space-y-2">
-          {/* Hero section */}
-          <div className="h-2.5 w-3/4 rounded bg-gradient-to-r from-[var(--accent-1)]/40 to-[var(--accent-2)]/30 animate-pulse-slow" />
-          <div className="h-1 w-full rounded bg-[var(--border)]/40" />
-          <div className="h-1 w-5/6 rounded bg-[var(--border)]/30" />
-
-          {/* Card grid */}
-          <div className="flex gap-1.5 pt-2">
-            <span className="h-7 w-7 rounded-lg bg-[var(--accent-1)]/25 border border-[var(--accent-1)]/30 transition-transform hover:scale-110" />
-            <span className="h-7 w-7 rounded-lg bg-[var(--accent-2)]/25 border border-[var(--accent-2)]/30 transition-transform hover:scale-110" />
-            <span className="h-7 w-7 rounded-lg bg-[var(--border)]/20 border border-[var(--border)]/30" />
-          </div>
-        </div>
+        {/* Content */}
+        <div className="relative h-[calc(100%-21px)]">{children}</div>
       </div>
     </div>
   );
 }
 
 /* ------------------------------------------------------
-   Web Platforms — Dashboard/System View
+   Websites — landing page layout
+------------------------------------------------------ */
+function WebInfographic() {
+  return (
+    <MiniWindow glow={`${ACCENT_1}40`}>
+      <div className="p-2.5 space-y-2">
+        {/* Hero block */}
+        <div
+          className="rounded-md p-1.5 space-y-1"
+          style={{
+            background: `linear-gradient(135deg, ${ACCENT_1}12, ${ACCENT_2}08)`,
+            border: `1px solid ${ACCENT_1}25`,
+          }}
+        >
+          <div
+            className="h-1.5 w-3/4 rounded-full"
+            style={{ background: `linear-gradient(90deg, ${ACCENT_1}, ${ACCENT_2})` }}
+          />
+          <div className="h-1 w-full rounded-full bg-[var(--border)]/40" />
+        </div>
+
+        {/* Card grid */}
+        <div className="flex gap-1.5">
+          <span
+            className="h-7 flex-1 rounded-md border transition-transform"
+            style={{ background: `${ACCENT_1}18`, borderColor: `${ACCENT_1}30` }}
+          />
+          <span
+            className="h-7 flex-1 rounded-md border transition-transform"
+            style={{ background: `${ACCENT_2}18`, borderColor: `${ACCENT_2}30` }}
+          />
+          <span className="h-7 flex-1 rounded-md bg-[var(--border)]/15 border border-[var(--border)]/30" />
+        </div>
+
+        {/* Text lines + CTA */}
+        <div className="space-y-1">
+          <div className="h-1 w-full rounded-full bg-[var(--border)]/40" />
+          <div className="h-1 w-5/6 rounded-full bg-[var(--border)]/30" />
+        </div>
+        <div className="flex gap-1.5">
+          <div
+            className="h-3.5 w-12 rounded-md"
+            style={{ background: `linear-gradient(90deg, ${ACCENT_1}, ${ACCENT_2})` }}
+          />
+          <div className="h-3.5 w-3.5 rounded-md border border-[var(--border)]/50 bg-[var(--surface)]/50" />
+        </div>
+      </div>
+    </MiniWindow>
+  );
+}
+
+/* ------------------------------------------------------
+   Web Platforms — dashboard layout
 ------------------------------------------------------ */
 function AppsInfographic() {
   return (
-    <div className="relative h-32 w-36 select-none group">
-      {/* Glow effect */}
-      <div
-        className="absolute -inset-4 rounded-2xl blur-2xl opacity-0 group-hover:opacity-50 transition-opacity duration-500 -z-10"
-        style={{ background: `radial-gradient(circle, ${ACCENT_2}40, transparent)` }}
-      />
-      
-      {/* Dashboard container */}
-      <div
-        className="absolute inset-0 rounded-2xl border border-[var(--border)] overflow-hidden shadow-xl backdrop-blur-sm transition-all duration-300 group-hover:border-[var(--accent-1)]/40 group-hover:scale-105"
-        style={{
-          background: 'color-mix(in srgb, var(--surface-strong) 95%, transparent)',
-        }}
-      >
-        {/* Top bar */}
-        <div className="absolute top-0 left-0 right-0 h-2.5 flex items-center gap-1 px-2 bg-[var(--surface)]/30 border-b border-[var(--border)]/30">
-          <span className="h-1 w-1 rounded-full bg-red-500/60" />
-          <span className="h-1 w-1 rounded-full bg-yellow-500/60" />
-          <span className="h-1 w-1 rounded-full bg-green-500/60" />
-          <div className="ml-1.5 h-1 flex-1 rounded-full bg-[var(--border)]/40" />
+    <MiniWindow glow={`${ACCENT_2}40`}>
+      <div className="flex h-full">
+        {/* Sidebar */}
+        <div className="w-6 border-r border-[var(--border)]/40 p-1 space-y-1">
+          <div
+            className="h-4 w-full rounded"
+            style={{ background: `${ACCENT_1}20`, border: `1px solid ${ACCENT_1}35` }}
+          />
+          <div className="h-4 w-full rounded bg-[var(--surface)]/60 border border-[var(--border)]/30" />
+          <div className="h-4 w-full rounded bg-[var(--surface)]/60 border border-[var(--border)]/20" />
         </div>
 
-        {/* Dashboard content */}
-        <div className="absolute inset-0 pt-3.5 px-2 pb-2 space-y-1.5">
-          {/* Header section */}
-          <div className="flex items-center gap-1.5">
-            <div
-              className="h-3 w-3 rounded-md shadow-sm"
-              style={{ background: `linear-gradient(135deg, ${ACCENT_1}, ${ACCENT_2})` }}
-            />
-            <div className="flex-1 space-y-0.5">
-              <div className="h-0.5 w-full rounded-full bg-[var(--border)]/50" />
-              <div className="h-0.5 w-2/3 rounded-full bg-[var(--border)]/40" />
-            </div>
-          </div>
-
-          {/* Dashboard grid - 2 columns */}
+        {/* Main */}
+        <div className="flex-1 p-1.5 space-y-1.5">
+          {/* Metric cards */}
           <div className="grid grid-cols-2 gap-1">
-            {/* Left column - stats */}
-            <div className="space-y-1">
-              <div className="h-3 rounded-md border border-[var(--accent-1)]/30" style={{ background: `${ACCENT_1}15` }} />
-              <div className="h-2.5 rounded-md bg-[var(--surface)]/60 border border-[var(--border)]/30" />
-            </div>
-            
-            {/* Right column - chart/data */}
-            <div className="space-y-1">
-              <div className="h-3 rounded-md border border-[var(--accent-2)]/30" style={{ background: `${ACCENT_2}15` }} />
-              <div className="h-2.5 rounded-md bg-[var(--surface)]/50 border border-[var(--border)]/20" />
-            </div>
+            <div
+              className="h-4 rounded-md border"
+              style={{ background: `${ACCENT_1}15`, borderColor: `${ACCENT_1}30` }}
+            />
+            <div
+              className="h-4 rounded-md border"
+              style={{ background: `${ACCENT_2}15`, borderColor: `${ACCENT_2}30` }}
+            />
           </div>
 
-          {/* Bottom section - data table/list */}
+          {/* Bar chart */}
+          <div
+            className="h-9 rounded-md px-1.5 pt-1.5 flex items-end gap-0.5"
+            style={{ border: `1px solid ${ACCENT_1}15`, background: `linear-gradient(180deg, ${ACCENT_1}06, transparent)` }}
+          >
+            {[40, 65, 50, 80, 60, 90, 70].map((h, i) => (
+              <div
+                key={i}
+                className="flex-1 rounded-t-sm"
+                style={{
+                  height: `${h}%`,
+                  background: `linear-gradient(180deg, ${i % 2 === 0 ? ACCENT_1 : ACCENT_2}70, ${i % 2 === 0 ? ACCENT_1 : ACCENT_2}20)`,
+                }}
+              />
+            ))}
+          </div>
+
+          {/* Table rows */}
           <div className="space-y-0.5">
             <div className="h-1.5 rounded-sm bg-[var(--surface)]/60 border border-[var(--border)]/20" />
             <div className="h-1.5 rounded-sm bg-[var(--surface)]/50 border border-[var(--border)]/15" />
-            <div className="h-1.5 rounded-sm bg-[var(--surface)]/40 border border-[var(--border)]/10" />
           </div>
         </div>
       </div>
-    </div>
+    </MiniWindow>
   );
 }
 
 /* ------------------------------------------------------
-   AI & Automations — Brain with Neural Network
+   AI & Automations — neural hub
 ------------------------------------------------------ */
 function AIInfographic() {
-  return (
-    <div className="relative h-32 w-36 select-none group">
-      {/* Glow effect */}
-      <div
-        className="absolute -inset-4 rounded-2xl blur-2xl opacity-0 group-hover:opacity-50 transition-opacity duration-500 -z-10"
-        style={{ background: `radial-gradient(circle, ${ACCENT_1}40, ${ACCENT_2}30, transparent)` }}
-      />
+  const nodes = [
+    { Icon: Sparkles, x: '16%', y: '22%' },
+    { Icon: Workflow, x: '84%', y: '22%' },
+    { Icon: Database, x: '16%', y: '78%' },
+    { Icon: Smartphone, x: '84%', y: '78%' },
+  ];
 
-      {/* Container */}
-      <div
-        className="absolute inset-0 rounded-2xl border border-[var(--border)] overflow-visible shadow-xl backdrop-blur-sm transition-all duration-300 group-hover:border-[var(--accent-1)]/40 group-hover:scale-105"
-        style={{
-          background: 'color-mix(in srgb, var(--surface-strong) 95%, transparent)',
-        }}
-      >
-        {/* Central pulsing node */}
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-          <div
-            className="h-6 w-6 rounded-full animate-pulse-slow"
-            style={{
-              background: `linear-gradient(135deg, ${ACCENT_1}, ${ACCENT_2})`,
-              boxShadow: `0 0 20px ${ACCENT_1}80`,
-            }}
-          />
+  return (
+    <MiniWindow glow={`${ACCENT_1}40`}>
+      <div className="relative h-full w-full">
+        {/* Connection lines */}
+        <svg className="absolute inset-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+          {[
+            { x2: 16, y2: 22 },
+            { x2: 84, y2: 22 },
+            { x2: 16, y2: 78 },
+            { x2: 84, y2: 78 },
+          ].map((line, i) => (
+            <line
+              key={i}
+              x1="50"
+              y1="50"
+              x2={line.x2}
+              y2={line.y2}
+              stroke={i % 2 === 0 ? ACCENT_1 : ACCENT_2}
+              strokeWidth="0.8"
+              strokeOpacity="0.35"
+              strokeDasharray="3 3"
+              style={{
+                animation: `neural-pulse ${2 + i * 0.4}s ease-in-out infinite`,
+                animationDelay: `${i * 0.3}s`,
+              }}
+            />
+          ))}
+        </svg>
+
+        {/* Central node */}
+        <div
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-9 w-9 rounded-xl flex items-center justify-center"
+          style={{
+            background: `linear-gradient(135deg, ${ACCENT_1}, ${ACCENT_2})`,
+            boxShadow: `0 0 16px ${ACCENT_1}60`,
+          }}
+        >
+          <Brain className="h-5 w-5 text-white" />
         </div>
 
-        {/* Animated neural connections with visible lines to center */}
-        {[0, 60, 120, 180, 240, 300].map((deg, i) => (
-          <div key={deg}>
-            {/* Connection line from node to center */}
-            <div
-              className="absolute left-1/2 top-1/2"
-              style={{
-                transform: `rotate(${deg}deg)`,
-                transformOrigin: 'center',
-              }}
-            >
-              {/* Thin dashed line connecting to center */}
-              <div
-                className="absolute h-px w-[25px] origin-left"
-                style={{
-                  transform: 'translateX(12px)',
-                  background: `repeating-linear-gradient(
-                    to right,
-                    ${i % 2 === 0 ? ACCENT_1 : ACCENT_2} 0px,
-                    ${i % 2 === 0 ? ACCENT_1 : ACCENT_2} 3px,
-                    transparent 3px,
-                    transparent 6px
-                  )`,
-                  opacity: 0.4,
-                  animation: `neural-pulse ${2.0 + i * 0.3}s ease-in-out infinite`,
-                  animationDelay: `${i * 0.4}s`,
-                }}
-              />
-              
-              {/* Outer node */}
-              <div
-                className="absolute h-3 w-3 rounded-full border-2"
-                style={{
-                  transform: 'translateX(37px) translateY(-6px)',
-                  background: i % 2 === 0 ? ACCENT_1 : ACCENT_2,
-                  borderColor: i % 2 === 0 ? ACCENT_1 : ACCENT_2,
-                  boxShadow: `0 0 10px ${i % 2 === 0 ? ACCENT_1 : ACCENT_2}`,
-                  animation: `neural-pulse ${2.0 + i * 0.3}s ease-in-out infinite`,
-                  animationDelay: `${i * 0.4}s`,
-                }}
-              />
-            </div>
+        {/* Satellite nodes */}
+        {nodes.map(({ Icon, x, y }, i) => (
+          <div
+            key={i}
+            className="absolute h-6 w-6 -translate-x-1/2 -translate-y-1/2 rounded-lg border flex items-center justify-center"
+            style={{
+              left: x,
+              top: y,
+              background: i % 2 === 0 ? `${ACCENT_1}15` : `${ACCENT_2}15`,
+              borderColor: i % 2 === 0 ? `${ACCENT_1}35` : `${ACCENT_2}35`,
+            }}
+          >
+            <Icon className="h-3 w-3" style={{ color: i % 2 === 0 ? ACCENT_1 : ACCENT_2 }} />
           </div>
         ))}
       </div>
-    </div>
+    </MiniWindow>
   );
 }
 
 /* ------------------------------------------------------
-   Consulting — Strategic Flow Diagram
+   Consulting — strategy flow
 ------------------------------------------------------ */
 function ConsultingInfographic() {
   return (
-    <div className="relative h-32 w-36 select-none group">
-      {/* Glow effect */}
-      <div
-        className="absolute -inset-4 rounded-2xl blur-2xl opacity-0 group-hover:opacity-50 transition-opacity duration-500 -z-10"
-        style={{ background: `linear-gradient(90deg, ${ACCENT_1}40, ${ACCENT_2}40)` }}
-      />
+    <MiniWindow glow={`${ACCENT_2}40`}>
+      <div className="absolute inset-2.5 flex items-center justify-between gap-1.5">
+        {/* Start node */}
+        <div
+          className="h-7 w-7 shrink-0 rounded-full flex items-center justify-center"
+          style={{
+            background: `linear-gradient(135deg, ${ACCENT_1}40, ${ACCENT_1}20)`,
+            border: `1.5px solid ${ACCENT_1}55`,
+          }}
+        >
+          <div className="h-2 w-2 rounded-full" style={{ background: ACCENT_1 }} />
+        </div>
 
-      {/* Container */}
-      <div
-        className="absolute inset-0 rounded-2xl border border-[var(--border)] overflow-hidden shadow-xl backdrop-blur-sm transition-all duration-300 group-hover:border-[var(--accent-1)]/40 group-hover:scale-105"
-        style={{
-          background: 'color-mix(in srgb, var(--surface-strong) 95%, transparent)',
-        }}
-      >
-        {/* Flow diagram */}
-        <div className="absolute inset-3 flex items-center justify-between gap-2">
-          {/* Start node */}
-          <div
-            className="h-10 w-10 rounded-full flex items-center justify-center transition-all duration-300"
-            style={{
-              background: `linear-gradient(135deg, ${ACCENT_1}50, ${ACCENT_1}30)`,
-              border: `2px solid ${ACCENT_1}60`,
-              boxShadow: `0 0 8px ${ACCENT_1}40`,
-            }}
-          >
-            <div className="h-3 w-3 rounded-full" style={{ background: ACCENT_1 }} />
-          </div>
+        {/* Dashed connector */}
+        <Connector color={ACCENT_1} />
 
-          {/* Arrow 1 - thinner dashed */}
-          <div 
-            className="relative flex-1 h-px" 
-            style={{ 
-              background: `repeating-linear-gradient(
-                to right,
-                ${ACCENT_1} 0px,
-                ${ACCENT_1} 3px,
-                transparent 3px,
-                transparent 6px
-              )`, 
-              opacity: 0.5 
-            }}
+        {/* Question node */}
+        <div
+          className="h-11 w-11 shrink-0 rounded-xl flex items-center justify-center"
+          style={{
+            background: `linear-gradient(135deg, ${ACCENT_1}30, ${ACCENT_2}20)`,
+            border: `1.5px solid ${ACCENT_1}45`,
+            boxShadow: `0 0 12px ${ACCENT_1}35`,
+          }}
+        >
+          <span
+            className="font-display text-lg font-bold text-gradient"
           >
-            <div className="absolute right-0 top-1/2 -translate-y-1/2 border-l-[3px] border-l-[var(--accent-1)] border-y-[2px] border-y-transparent opacity-50" />
-          </div>
+            ?
+          </span>
+        </div>
 
-          {/* Question node with icon */}
-          <div
-            className="h-16 w-16 rounded-xl flex items-center justify-center transition-all duration-300"
-            style={{
-              background: `linear-gradient(135deg, ${ACCENT_1}40, ${ACCENT_2}30)`,
-              border: `2px solid ${ACCENT_1}50`,
-              boxShadow: `0 0 12px ${ACCENT_1}50`,
-            }}
-          >
-            {/* Question mark icon */}
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-              <path
-                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"
-                fill={ACCENT_1}
-                fillOpacity="0.9"
-              />
-            </svg>
-          </div>
+        {/* Dashed connector */}
+        <Connector color={ACCENT_2} />
 
-          {/* Arrow 2 - thinner dashed */}
-          <div 
-            className="relative flex-1 h-px" 
-            style={{ 
-              background: `repeating-linear-gradient(
-                to right,
-                ${ACCENT_2} 0px,
-                ${ACCENT_2} 3px,
-                transparent 3px,
-                transparent 6px
-              )`, 
-              opacity: 0.5 
-            }}
-          >
-            <div className="absolute right-0 top-1/2 -translate-y-1/2 border-l-[3px] border-l-[var(--accent-2)] border-y-[2px] border-y-transparent opacity-50" />
-          </div>
-
-          {/* End node */}
-          <div
-            className="h-10 w-10 rounded-full flex items-center justify-center transition-all duration-300"
-            style={{
-              background: `linear-gradient(135deg, ${ACCENT_2}50, ${ACCENT_2}30)`,
-              border: `2px solid ${ACCENT_2}60`,
-              boxShadow: `0 0 8px ${ACCENT_2}40`,
-            }}
-          >
-            <div className="h-3 w-3 rounded-full" style={{ background: ACCENT_2 }} />
-          </div>
+        {/* End node */}
+        <div
+          className="h-7 w-7 shrink-0 rounded-full flex items-center justify-center"
+          style={{
+            background: `linear-gradient(135deg, ${ACCENT_2}40, ${ACCENT_2}20)`,
+            border: `1.5px solid ${ACCENT_2}55`,
+          }}
+        >
+          <div className="h-2 w-2 rounded-full" style={{ background: ACCENT_2 }} />
         </div>
       </div>
+    </MiniWindow>
+  );
+}
+
+function Connector({ color }: { color: string }) {
+  return (
+    <div
+      className="relative flex-1 h-px"
+      style={{
+        background: `repeating-linear-gradient(to right, ${color} 0px, ${color} 3px, transparent 3px, transparent 6px)`,
+        opacity: 0.5,
+      }}
+    >
+      <div
+        className="absolute right-0 top-1/2 -translate-y-1/2 border-y-[2px] border-y-transparent border-l-[3px]"
+        style={{ borderLeftColor: color, opacity: 0.7 }}
+      />
     </div>
   );
 }

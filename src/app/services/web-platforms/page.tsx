@@ -9,6 +9,7 @@ import {
   Headphones,
 } from 'lucide-react';
 import { ACCENT_1, ACCENT_2 } from '@/lib';
+import { WebPlatformInfographic } from '@/components/service-infographic';
 
 /* ======================================================
    DATA
@@ -71,7 +72,7 @@ export default function WebPlatformsPage() {
               Web Platforms
             </span>
 
-            <h1 className="mt-4 sm:mt-6 text-3xl sm:text-4xl md:text-6xl font-semibold tracking-tight">
+            <h1 className="font-display mt-4 sm:mt-6 text-3xl sm:text-4xl md:text-6xl font-semibold tracking-tight">
               Scalable platforms
               <br />
               <span
@@ -91,16 +92,7 @@ export default function WebPlatformsPage() {
 
             <Link
               href="/#contact"
-              className="
-                inline-block
-                mt-6 sm:mt-10
-                cursor-pointer select-none
-                rounded-lg px-5 sm:px-6 py-2.5 sm:py-3 text-sm font-medium
-                text-black
-                transition-transform active:scale-[0.96]
-                hover:opacity-90
-              "
-              style={{ background: ACCENT_1 }}
+              className="btn-primary mt-6 sm:mt-10 !text-sm"
             >
               Start your project
             </Link>
@@ -108,7 +100,7 @@ export default function WebPlatformsPage() {
 
           {/* INFOGRAPHIC - hidden on mobile */}
           <div className="hidden lg:flex justify-center">
-            <WebPlatformsHeroInfographic />
+            <WebPlatformInfographic />
           </div>
         </div>
       </section>
@@ -118,7 +110,7 @@ export default function WebPlatformsPage() {
       ====================================================== */}
       <section className="px-4 sm:px-6 py-16 sm:py-32 bg-[var(--surface)]">
         <div className="mx-auto max-w-6xl">
-          <h2 className="text-2xl sm:text-3xl font-semibold text-center">
+          <h2 className="font-display text-2xl sm:text-3xl font-semibold text-center">
             Architecture & technology
           </h2>
 
@@ -164,7 +156,7 @@ export default function WebPlatformsPage() {
       <section className="px-4 sm:px-6 py-16 sm:py-32">
         <div className="mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-20">
           <div>
-            <h2 className="text-2xl sm:text-3xl font-semibold">
+            <h2 className="font-display text-2xl sm:text-3xl font-semibold">
               More than just development
             </h2>
 
@@ -228,7 +220,7 @@ export default function WebPlatformsPage() {
         "
       >
         <div className="mx-auto max-w-4xl text-center mb-10 sm:mb-16">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-semibold">
             Let's build your platform
           </h2>
 
@@ -272,142 +264,6 @@ export default function WebPlatformsPage() {
         </div>
       </section>
     </main>
-  );
-}
-
-/* ======================================================
-   HERO INFOGRAPHIC — Enhanced phone with app
-====================================================== */
-
-function WebPlatformsHeroInfographic() {
-  return (
-    <div className="relative w-[320px] h-[320px] flex items-center justify-center group">
-      {/* Glow effect */}
-      <div
-        className="absolute -inset-8 rounded-3xl blur-3xl opacity-40 group-hover:opacity-60 transition-opacity duration-700 -z-10"
-        style={{
-          background: `radial-gradient(circle at 50% 50%, ${ACCENT_2}40, ${ACCENT_1}30, transparent)`,
-        }}
-      />
-
-      {/* Dashboard/Platform container */}
-      <div
-        className="relative w-[300px] h-[280px] rounded-2xl border border-[var(--border)] overflow-hidden shadow-2xl backdrop-blur-sm transition-all duration-500 group-hover:scale-[1.02] group-hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)]"
-        style={{
-          background: 'color-mix(in srgb, var(--surface-strong) 95%, transparent)',
-        }}
-      >
-        {/* Browser top bar */}
-        <div className="h-11 border-b border-[var(--border)] flex items-center px-4 gap-2 bg-[var(--surface)]/40 backdrop-blur-sm">
-          <span className="h-3 w-3 rounded-full bg-red-500/70 transition-all duration-300 group-hover:bg-red-500" />
-          <span className="h-3 w-3 rounded-full bg-yellow-500/70 transition-all duration-300 group-hover:bg-yellow-500" />
-          <span className="h-3 w-3 rounded-full bg-green-500/70 transition-all duration-300 group-hover:bg-green-500" />
-          
-          {/* URL bar */}
-          <div 
-            className="ml-3 h-6 flex-1 rounded-lg px-3 flex items-center transition-all duration-300"
-            style={{
-              background: 'color-mix(in srgb, var(--surface) 80%, transparent)',
-              border: '1px solid var(--border)',
-            }}
-          >
-            <div 
-              className="h-1.5 w-8 rounded-full"
-              style={{
-                background: `linear-gradient(90deg, ${ACCENT_1}60, ${ACCENT_2}40)`,
-              }}
-            />
-            <div className="ml-2 h-1.5 w-24 rounded-full bg-[var(--border)]/50" />
-          </div>
-        </div>
-
-        {/* Dashboard content */}
-        <div className="p-5 space-y-3">
-          {/* Header section with logo */}
-          <div className="flex items-center gap-3">
-            <div
-              className="h-10 w-10 rounded-xl shadow-md flex items-center justify-center transition-all duration-300 group-hover:scale-110"
-              style={{ background: `linear-gradient(135deg, ${ACCENT_1}, ${ACCENT_2})` }}
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                <rect x="4" y="4" width="16" height="16" rx="3" fill="white" fillOpacity="0.9" />
-              </svg>
-            </div>
-            <div className="flex-1 space-y-1.5">
-              <div 
-                className="h-2.5 w-3/4 rounded-full animate-pulse-slow"
-                style={{
-                  background: `linear-gradient(90deg, ${ACCENT_1}, ${ACCENT_2})`,
-                }}
-              />
-              <div className="h-1.5 w-full rounded-full bg-[var(--border)]/40" />
-              <div className="h-1.5 w-5/6 rounded-full bg-[var(--border)]/30" />
-            </div>
-          </div>
-
-          {/* Dashboard grid - metrics and charts */}
-          <div className="grid grid-cols-2 gap-3">
-            {[0, 1, 2, 3].map((i) => (
-              <div
-                key={i}
-                className="p-3 rounded-xl border transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer"
-                style={{
-                  background: i === 0 
-                    ? `${ACCENT_1}15`
-                    : i === 1
-                    ? `${ACCENT_2}15`
-                    : i === 2
-                    ? 'color-mix(in srgb, var(--surface) 60%, transparent)'
-                    : 'color-mix(in srgb, var(--surface) 50%, transparent)',
-                  borderColor: i === 0 
-                    ? `${ACCENT_1}40`
-                    : i === 1
-                    ? `${ACCENT_2}40`
-                    : 'var(--border)',
-                }}
-              >
-                <div className="h-1 w-8 rounded-full bg-[var(--border)]/50 mb-2" />
-                <div 
-                  className="h-4 w-full rounded-lg"
-                  style={{
-                    background: i === 0 
-                      ? `linear-gradient(90deg, ${ACCENT_1}60, ${ACCENT_1}30)`
-                      : i === 1
-                      ? `linear-gradient(90deg, ${ACCENT_2}60, ${ACCENT_2}30)`
-                      : 'color-mix(in srgb, var(--border) 30%, transparent)',
-                  }}
-                />
-              </div>
-            ))}
-          </div>
-
-          {/* Data table/list section */}
-          <div className="space-y-1.5">
-            {[0, 1, 2].map((i) => (
-              <div
-                key={i}
-                className="h-8 rounded-lg border border-[var(--border)] bg-[var(--surface)]/60 transition-all duration-300 hover:bg-[var(--surface)]/80 hover:scale-[1.01] hover:border-[var(--accent-1)]/30 cursor-pointer p-2 flex items-center gap-2"
-              >
-                <div 
-                  className="h-4 w-4 rounded-md"
-                  style={{
-                    background: i === 0 
-                      ? `${ACCENT_1}30`
-                      : i === 1
-                      ? `${ACCENT_2}30`
-                      : 'color-mix(in srgb, var(--surface) 70%, transparent)',
-                  }}
-                />
-                <div className="flex-1 space-y-1">
-                  <div className="h-1 w-full rounded-full bg-[var(--border)]/50" />
-                  <div className="h-0.5 w-3/4 rounded-full bg-[var(--border)]/30" />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
   );
 }
 

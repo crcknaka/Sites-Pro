@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { LinkedinIcon, Send, type LucideIcon } from 'lucide-react';
 import { ACCENT_1 } from '@/lib';
 
@@ -30,8 +31,37 @@ export default function Footer() {
       <div className="bg-[var(--surface)] backdrop-blur-xl">
         <div className="mx-auto max-w-7xl px-6 py-12 lg:py-16">
 
-          {/* MAIN GRID — 3 nav columns */}
-          <div className="grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-3">
+          {/* MAIN GRID — brand + 3 nav columns */}
+          <div className="grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
+
+            {/* BRAND */}
+            <div className="col-span-2 lg:col-span-1">
+              <Link href="/" aria-label="Go to home" className="relative inline-block h-[56px] w-[56px] select-none">
+                <Image
+                  src="/logo-dark.svg"
+                  alt="Sites Pro"
+                  width={56}
+                  height={56}
+                  className="logo-dark absolute inset-0"
+                />
+                <Image
+                  src="/logo-light.svg"
+                  alt="Sites Pro"
+                  width={56}
+                  height={56}
+                  className="logo-light absolute inset-0"
+                />
+              </Link>
+
+              <p className="mt-4 max-w-xs text-sm leading-relaxed text-[var(--text-muted)]">
+                Product-grade websites, web platforms and AI automations —
+                built to scale.
+              </p>
+
+              <p className="mt-3 text-sm font-medium" style={{ color: ACCENT_1 }}>
+                Digital Done Right.
+              </p>
+            </div>
 
             {/* SERVICES */}
             <div>

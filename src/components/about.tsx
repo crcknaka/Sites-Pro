@@ -6,6 +6,8 @@ import {
   ArrowUpRight,
 } from 'lucide-react';
 import { ACCENT_1, ACCENT_2 } from '@/lib';
+import SectionHeader from './section-header';
+import Reveal from './reveal';
 
 const steps = [
   {
@@ -50,79 +52,54 @@ export default function About() {
         }}
       />
       <div className="mx-auto max-w-7xl">
-        {/* HEADER */}
-        <div className="mx-auto max-w-3xl text-center">
-          <span
-            className="text-sm font-medium tracking-widest uppercase"
-            style={{ color: ACCENT_1 }}
-          >
-            About Us
-          </span>
-
-          <h2 className="mt-4 text-4xl font-semibold tracking-tight md:text-5xl">
-            How We{' '}
-            <span
-              className="bg-clip-text text-transparent"
-              style={{
-                backgroundImage: `linear-gradient(90deg, ${ACCENT_1}, ${ACCENT_2})`,
-              }}
-            >
-              Work
-            </span>
-          </h2>
-
-          <p className="mt-6 text-lg text-[var(--text-muted)]">
-          We follow a structured, product-driven process focused on clarity, scalability and long-term results.
-          </p>
-        </div>
+        <SectionHeader
+          eyebrow="About us"
+          title="How We"
+          highlight="Work"
+          subtitle="We follow a structured, product-driven process focused on clarity, scalability and long-term results."
+        />
 
         {/* STEPS - Mobile: vertical list, Desktop: horizontal grid */}
 
         {/* Mobile version - vertical cards */}
         <div className="md:hidden mt-12 space-y-4">
-          {steps.map((step) => {
+          {steps.map((step, i) => {
             const Icon = step.icon;
 
             return (
-              <div
-                key={step.step}
-                className="
-                  flex items-start gap-4 p-4
-                  rounded-xl
-                  bg-[var(--surface)]
-                  border border-[var(--border)]
-                "
-              >
-                <div
-                  className="
-                    relative shrink-0 h-12 w-12 rounded-lg
-                    flex items-center justify-center
-                    bg-[var(--surface-strong)]
-                    border border-[var(--border)]
-                  "
-                >
-                  <Icon className="h-5 w-5" style={{ color: ACCENT_1 }} />
-                  <span
+              <Reveal key={step.step} delay={i * 80}>
+                <div className="card-premium card-topline flex items-start gap-4 p-4 rounded-2xl">
+                  <div
                     className="
-                      absolute -top-1.5 -right-1.5 h-5 w-5 rounded-full
+                      relative shrink-0 h-12 w-12 rounded-xl
                       flex items-center justify-center
-                      text-xs font-semibold text-black
+                      bg-[var(--surface-strong)]
+                      border border-[var(--border)]
                     "
-                    style={{ background: ACCENT_1 }}
                   >
-                    {step.step}
-                  </span>
-                </div>
+                    <Icon className="h-5 w-5" style={{ color: ACCENT_1 }} />
+                    <span
+                      className="
+                        absolute -top-1.5 -right-1.5 h-5 w-5 rounded-full
+                        flex items-center justify-center
+                        text-xs font-semibold text-black
+                      "
+                      style={{ background: `linear-gradient(135deg, ${ACCENT_1}, color-mix(in srgb, ${ACCENT_1} 65%, ${ACCENT_2}))` }}
+                    >
+                      {step.step}
+                    </span>
+                  </div>
 
-                <div>
-                  <h3 className="text-base font-semibold mb-1">
-                    {step.title}
-                  </h3>
-                  <p className="text-sm leading-relaxed text-[var(--text-muted)]">
-                    {step.description}
-                  </p>
+                  <div>
+                    <h3 className="font-display text-base font-semibold mb-1">
+                      {step.title}
+                    </h3>
+                    <p className="text-sm leading-relaxed text-[var(--text-muted)]">
+                      {step.description}
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </Reveal>
             );
           })}
         </div>
@@ -137,31 +114,32 @@ export default function About() {
                 linear-gradient(
                   90deg,
                   transparent,
-                  color-mix(in srgb, var(--accent-1) 55%, transparent),
-                  color-mix(in srgb, var(--accent-1) 35%, transparent),
-                  color-mix(in srgb, var(--accent-1) 55%, transparent),
+                  color-mix(in srgb, var(--accent-1) 55%, transparent) 25%,
+                  color-mix(in srgb, var(--accent-2) 45%, transparent) 75%,
                   transparent
                 )
               `,
             }}
           />
 
-          {steps.map((step) => {
+          {steps.map((step, i) => {
             const Icon = step.icon;
 
             return (
-              <div
+              <Reveal
                 key={step.step}
+                delay={i * 120}
                 className="relative flex flex-col items-center text-center px-4"
               >
                 <div
                   className="
-                    relative z-10 mb-6 h-24 w-24 rounded-xl
+                    relative z-10 mb-6 h-24 w-24 rounded-2xl
                     flex items-center justify-center
-                    bg-[var(--surface-strong)] backdrop-blur-sm
+                    backdrop-blur-sm
                     border border-[var(--border)]
                     hover:border-[var(--accent-1)]
-                    hover:bg-[var(--surface-strong)]
+                    hover:shadow-lg hover:shadow-[var(--accent-1)]/10
+                    hover:-translate-y-1
                     transition-all duration-300
                   "
                   style={{
@@ -177,46 +155,31 @@ export default function About() {
                       text-sm font-semibold text-black
                       shadow-lg
                     "
-                    style={{ background: ACCENT_1 }}
+                    style={{ background: `linear-gradient(135deg, ${ACCENT_1}, color-mix(in srgb, ${ACCENT_1} 65%, ${ACCENT_2}))` }}
                   >
                     {step.step}
                   </span>
                 </div>
 
-                <h3 className="text-xl font-semibold mb-3">
+                <h3 className="font-display text-xl font-semibold mb-3">
                   {step.title}
                 </h3>
 
                 <p className="text-sm leading-relaxed text-[var(--text-muted)] max-w-sm">
                   {step.description}
                 </p>
-              </div>
+              </Reveal>
             );
           })}
         </div>
 
         {/* READ MORE */}
-        <div className="mt-12 flex justify-center">
-          <Link
-            href="/about"
-            className="
-              group inline-flex items-center gap-2
-              cursor-pointer select-none
-              rounded-xl px-6 py-3
-              text-sm font-medium
-              border border-[var(--border)]
-              bg-[var(--surface)]
-              text-[var(--text-muted)]
-              hover:text-[var(--fg)]
-              hover:border-[var(--accent-1)]
-              hover:bg-[var(--surface-strong)]
-              transition-all
-            "
-          >
+        <Reveal className="mt-12 flex justify-center">
+          <Link href="/about" className="btn-secondary group text-sm">
             Read more
             <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </Link>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

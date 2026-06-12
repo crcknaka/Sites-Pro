@@ -3,7 +3,9 @@
 import { useState, useEffect } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { useIsMobile } from '@/hooks';
-import { ACCENT, ACCENT_1, ACCENT_2 } from '@/lib';
+import { ACCENT } from '@/lib';
+import SectionHeader from './section-header';
+import Reveal from './reveal';
 
 const faqs = [
   {
@@ -70,35 +72,16 @@ export default function FAQ() {
       "
     >
       <div className="mx-auto max-w-4xl">
-        {/* HEADER */}
-        <div className="mb-20 text-center">
-          <span
-            className="text-sm font-medium tracking-widest uppercase"
-            style={{ color: ACCENT }}
-          >
-            FAQ
-          </span>
-
-          <h2 className="mt-4 text-4xl font-semibold tracking-tight md:text-5xl">
-            Frequently Asked{' '}
-            <span
-              className="bg-clip-text text-transparent"
-              style={{
-                backgroundImage: `linear-gradient(90deg, ${ACCENT_1}, ${ACCENT_2})`,
-              }}
-            >
-              Questions
-            </span>
-          </h2>
-
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--text-muted)]">
-            Got questions? We’ve got answers. If you don’t find what you’re
-            looking for, feel free to reach out.
-          </p>
-        </div>
+        <SectionHeader
+          eyebrow="FAQ"
+          title="Frequently Asked"
+          highlight="Questions"
+          subtitle="Got questions? We’ve got answers. If you don’t find what you’re looking for, feel free to reach out."
+          className="mb-14 sm:mb-20"
+        />
 
         {/* LIST */}
-        <div className="flex flex-col gap-3">
+        <Reveal className="flex flex-col gap-3">
           {visibleFaqs.map((item, i) => {
             const active = open === i;
 
@@ -106,11 +89,11 @@ export default function FAQ() {
               <div
                 key={i}
                 className={`
-                  rounded-2xl border transition
+                  rounded-2xl border transition-all duration-300
                   ${
                     active
-                      ? 'border-[var(--accent-1)]/30 bg-[var(--surface-strong)]'
-                      : 'border-[var(--border)] bg-[var(--surface)]'
+                      ? 'border-[var(--accent-1)]/30 bg-[var(--surface-strong)] shadow-lg shadow-[var(--accent-1)]/5'
+                      : 'border-[var(--border-soft)] bg-[var(--surface)] hover:border-[var(--border)]'
                   }
                 `}
               >
@@ -154,26 +137,12 @@ export default function FAQ() {
               </div>
             );
           })}
-        </div>
+        </Reveal>
 
         {/* MORE BUTTON */}
         {hasMore && (
           <div className="mt-8 flex justify-center">
-            <button
-              onClick={handleLoadMore}
-              className="
-                cursor-pointer select-none
-                rounded-xl px-6 py-3
-                text-sm font-medium
-                border border-[var(--border)]
-                bg-[var(--surface)]
-                text-[var(--text-muted)]
-                hover:text-[var(--fg)]
-                hover:border-[var(--accent-1)]
-                hover:bg-[var(--surface-strong)]
-                transition-all
-              "
-            >
+            <button onClick={handleLoadMore} className="btn-secondary text-sm">
               Load more
             </button>
           </div>

@@ -3,6 +3,8 @@
 import ContactForm from './contact-form';
 import { Mail, MapPin, Clock, ShieldCheck, type LucideIcon } from 'lucide-react';
 import { ACCENT_1, ACCENT_2 } from '@/lib';
+import SectionHeader from '../section-header';
+import Reveal from '../reveal';
 
 export default function Contact() {
   return (
@@ -21,36 +23,17 @@ export default function Contact() {
         }}
       />
       <div className="mx-auto max-w-7xl">
-        {/* HEADER */}
-        <div className="mx-auto max-w-3xl text-center">
-          <span
-            className="text-sm font-medium tracking-widest uppercase"
-            style={{ color: ACCENT_1 }}
-          >
-            Get in touch
-          </span>
-
-          <h2 className="mt-4 text-4xl font-semibold tracking-tight md:text-5xl">
-            Start your{' '}
-            <span
-              className="bg-clip-text text-transparent"
-              style={{
-                backgroundImage: `linear-gradient(90deg, ${ACCENT_1}, ${ACCENT_2})`,
-              }}
-            >
-              project
-            </span>
-          </h2>
-
-          <p className="mt-6 text-lg text-[var(--text-muted)]">
-          Let’s build something meaningful together.
-          </p>
-        </div>
+        <SectionHeader
+          eyebrow="Get in touch"
+          title="Start your"
+          highlight="project"
+          subtitle="Let’s build something meaningful together."
+        />
 
         {/* CONTENT */}
-        <div className="mt-20 grid grid-cols-1 gap-16 lg:grid-cols-2">
+        <div className="mt-14 sm:mt-20 grid grid-cols-1 gap-12 sm:gap-16 lg:grid-cols-2">
           {/* LEFT INFO (on desktop, second on mobile) */}
-          <div className="space-y-10 order-2 lg:order-1">
+          <Reveal className="space-y-8 sm:space-y-10 order-2 lg:order-1" delay={100}>
             <InfoItem
               icon={Mail}
               title="Email"
@@ -86,10 +69,10 @@ export default function Contact() {
                 — The Sites Pro Team
               </div>
             </blockquote>
-          </div>
+          </Reveal>
 
           {/* RIGHT: FORM + TRUST (on desktop, first on mobile) */}
-          <div className="flex flex-col order-1 lg:order-2">
+          <Reveal className="flex flex-col order-1 lg:order-2">
             <ContactForm />
 
             {/* TRUST NOTE */}
@@ -104,7 +87,7 @@ export default function Contact() {
                 submissions in accordance with GDPR and privacy best practices.
               </p>
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

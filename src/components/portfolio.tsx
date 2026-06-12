@@ -5,7 +5,8 @@ import { Layers, ShoppingCart, Globe, Shield, Grid, ChevronDown } from 'lucide-r
 import { projects } from '@/data/projects';
 import ProjectCard from '@/components/projectcard';
 import { useIsMobile } from '@/hooks';
-import { ACCENT, ACCENT_1, ACCENT_2 } from '@/lib';
+import SectionHeader from './section-header';
+import Reveal from './reveal';
 
 const CATEGORIES = [
   'All',
@@ -82,32 +83,13 @@ export default function Portfolio() {
       {/* subtle section surface - removed to show animation */}
 
       <div className="mx-auto max-w-7xl">
-        {/* HEADER */}
-        <div className="mx-auto mb-14 max-w-3xl text-center">
-          <span
-            className="text-sm font-medium tracking-widest uppercase"
-            style={{ color: ACCENT }}
-          >
-            Portfolio
-          </span>
-
-          <h2 className="mt-4 text-4xl font-semibold tracking-tight md:text-5xl">
-            Selected{' '}
-            <span
-              className="bg-clip-text text-transparent"
-              style={{
-                backgroundImage: `linear-gradient(90deg, ${ACCENT_1}, ${ACCENT_2})`,
-              }}
-            >
-              Portfolio
-            </span>
-          </h2>
-
-          <p className="mt-6 text-lg text-[var(--text-muted)]">
-            A selection of projects where strategy, design, and technology
-            come together to create meaningful digital experiences.
-          </p>
-        </div>
+        <SectionHeader
+          eyebrow="Portfolio"
+          title="Selected"
+          highlight="Work"
+          subtitle="A selection of projects where strategy, design, and technology come together to create meaningful digital experiences."
+          className="mb-14"
+        />
 
         {/* FILTERS */}
         <div className="mb-10 sm:mb-12">
@@ -166,15 +148,16 @@ export default function Portfolio() {
 
         {/* GRID */}
         <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
-          {displayedProjects.map((project) => (
-            <ProjectCard
-              key={project.slug}
-              slug={project.slug}
-              title={project.title}
-              category={project.category}
-              description={project.description}
-              image={project.image}
-            />
+          {displayedProjects.map((project, i) => (
+            <Reveal key={project.slug} delay={(i % 4) * 70}>
+              <ProjectCard
+                slug={project.slug}
+                title={project.title}
+                category={project.category}
+                description={project.description}
+                image={project.image}
+              />
+            </Reveal>
           ))}
         </div>
 

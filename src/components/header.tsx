@@ -209,19 +209,19 @@ export default function Header() {
           }}
         />
 
-        <div className="relative mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
+        <div className="relative mx-auto flex h-16 sm:h-20 max-w-7xl items-center justify-between px-4 sm:px-6">
           {/* LOGO */}
           <Link
             href="/"
             aria-label="Go to home"
-            className="relative block h-[70px] w-[70px] select-none"
+            className="relative block h-[54px] w-[54px] sm:h-[70px] sm:w-[70px] select-none"
           >
             <Image
               src="/logo-dark.svg"
               alt="Logo"
               width={70}
               height={70}
-              className="logo-dark absolute inset-0"
+              className="logo-dark absolute inset-0 h-full w-full"
               priority
             />
             <Image
@@ -229,7 +229,7 @@ export default function Header() {
               alt="Logo"
               width={70}
               height={70}
-              className="logo-light absolute inset-0"
+              className="logo-light absolute inset-0 h-full w-full"
               priority
             />
           </Link>
@@ -285,13 +285,7 @@ export default function Header() {
 
             <Link
               href={isHome ? "#contact" : "/#contact"}
-              className="
-                cursor-pointer select-none
-                rounded-lg px-4 py-2 text-sm font-medium
-                text-black
-                transition-transform active:scale-[0.96]
-              "
-              style={{ background: ACCENT }}
+              className="btn-primary !px-4 !py-2 !text-sm"
             >
               Get Started
             </Link>
@@ -395,18 +389,7 @@ export default function Header() {
             <Link
               href={isHome ? "#contact" : "/#contact"}
               onClick={() => setOpen(false)}
-              className="
-                w-full
-                block
-                text-center
-                cursor-pointer select-none
-                rounded-xl px-4 py-3
-                text-sm font-medium text-black
-                transition-all
-                active:scale-[0.98]
-                hover:opacity-90
-              "
-              style={{ background: ACCENT }}
+              className="btn-primary w-full !text-sm"
             >
               Get Started
             </Link>

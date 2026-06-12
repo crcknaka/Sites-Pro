@@ -80,7 +80,7 @@ export default function AboutPage() {
           About Sites Pro
         </span>
 
-        <h1 className="mt-3 sm:mt-4 text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight">
+        <h1 className="font-display mt-3 sm:mt-4 text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight">
           How we build{' '}
           <span
             className="bg-clip-text text-transparent"
@@ -219,7 +219,7 @@ export default function AboutPage() {
 
       {/* PRINCIPLES */}
       <section className="mx-auto max-w-6xl px-4 sm:px-6 pb-20 sm:pb-32">
-        <h2 className="text-xl sm:text-2xl font-semibold text-[var(--fg)]">
+        <h2 className="font-display text-xl sm:text-2xl font-semibold text-[var(--fg)]">
         Principles & Approach
         </h2>
 
@@ -442,7 +442,7 @@ export default function AboutPage() {
       {/* CONTACT FORM */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 pb-20 sm:pb-32">
         <div className="mb-10 sm:mb-20 text-center">
-          <h2 className="text-2xl sm:text-3xl font-semibold text-[var(--fg)]">
+          <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[var(--fg)]">
           Ready to start a project?
           </h2>
           <p className="mt-3 sm:mt-4 text-base sm:text-lg text-[var(--text-muted)]">

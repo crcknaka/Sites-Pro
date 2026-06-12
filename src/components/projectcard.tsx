@@ -22,17 +22,11 @@ export default function ProjectCard({
     <Link
       href={`/portfolio/${slug}`}
       className="
-        group relative block cursor-pointer select-none
+        card-premium
+        group block cursor-pointer select-none
+        h-full
         rounded-xl sm:rounded-2xl
-        bg-[var(--surface)]
-        border border-[var(--border)]
-        transition-all duration-300
         overflow-hidden
-        hover:bg-[var(--surface-strong)]
-        hover:border-[color-mix(in_srgb,var(--accent-1)_20%,var(--border))]
-        hover:shadow-xl
-        hover:shadow-[var(--accent-1)]/10
-        hover:scale-[1.02]
       "
     >
       {/* Image */}
@@ -58,7 +52,7 @@ export default function ProjectCard({
         <CategoryBadge category={category as any} />
 
         {/* Title */}
-        <h3 className="mt-2 text-sm sm:text-base font-semibold text-[var(--fg)] line-clamp-1 sm:line-clamp-2">
+        <h3 className="font-display mt-2 text-sm sm:text-base font-semibold text-[var(--fg)] line-clamp-1 sm:line-clamp-2">
           {title}
         </h3>
 

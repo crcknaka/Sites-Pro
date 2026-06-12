@@ -23,39 +23,52 @@ html {
 /* -------- DEFAULT (DARK) -------- */
 :root {
   /* base */
-  --bg: #0a0a0a;
-  --fg: #ededed;
+  --bg: #09090b;
+  --fg: #f2f3f1;
 
   /* surfaces */
   --surface: rgba(255, 255, 255, 0.04);
   --surface-strong: rgba(255, 255, 255, 0.08);
   --border: rgba(255, 255, 255, 0.12);
+  --border-soft: rgba(255, 255, 255, 0.07);
 
   /* accents (brand – stable) */
   --accent-1: #8fd759;
   --accent-2: #27d6ff;
 
   /* text */
-  --text-muted: rgba(255, 255, 255, 0.6);
-  --text-subtle: rgba(255, 255, 255, 0.4);
+  --text-muted: rgba(242, 243, 241, 0.62);
+  --text-subtle: rgba(242, 243, 241, 0.4);
 
   /* effects */
   --glow-soft: rgba(143, 215, 89, 0.25);
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 32px -16px rgba(0, 0, 0, 0.5);
+  --shadow-card-hover: 0 1px 2px rgba(0, 0, 0, 0.4), 0 24px 48px -16px rgba(0, 0, 0, 0.55);
+
+  /* ambient page tint */
+  --page-tint-1: rgba(143, 215, 89, 0.05);
+  --page-tint-2: rgba(39, 214, 255, 0.04);
 }
 
 /* -------- LIGHT THEME -------- */
 [data-theme="light"] {
-  --bg: #ffffff;
-  --fg: #0a0a0a;
+  --bg: #fafbfa;
+  --fg: #101410;
 
-  --surface: rgba(0, 0, 0, 0.04);
-  --surface-strong: rgba(0, 0, 0, 0.08);
-  --border: rgba(0, 0, 0, 0.12);
+  --surface: rgba(16, 20, 16, 0.035);
+  --surface-strong: rgba(16, 20, 16, 0.07);
+  --border: rgba(16, 20, 16, 0.12);
+  --border-soft: rgba(16, 20, 16, 0.07);
 
-  --text-muted: rgba(0, 0, 0, 0.6);
-  --text-subtle: rgba(0, 0, 0, 0.4);
+  --text-muted: rgba(16, 20, 16, 0.62);
+  --text-subtle: rgba(16, 20, 16, 0.4);
 
   --glow-soft: rgba(143, 215, 89, 0.18);
+  --shadow-card: 0 1px 2px rgba(16, 20, 16, 0.05), 0 12px 32px -18px rgba(16, 20, 16, 0.14);
+  --shadow-card-hover: 0 1px 2px rgba(16, 20, 16, 0.05), 0 24px 48px -18px rgba(16, 20, 16, 0.18);
+
+  --page-tint-1: rgba(143, 215, 89, 0.07);
+  --page-tint-2: rgba(39, 214, 255, 0.05);
 }
 
 /* ======================================================
@@ -78,7 +91,11 @@ html {
 */
 
 html {
-  background: var(--bg);
+  background:
+    radial-gradient(1100px 500px at 15% -5%, var(--page-tint-1), transparent 60%),
+    radial-gradient(1100px 500px at 85% 8%, var(--page-tint-2), transparent 60%),
+    var(--bg);
+  background-attachment: fixed;
   min-height: 100%;
   height: 100%;
   /* Hide scrollbar but keep scrolling functionality */
@@ -606,6 +623,190 @@ body {
   50% {
     opacity: 1;
     transform: scale(1.15);
+  }
+}
+
+/* ======================================================
+   PREMIUM DESIGN SYSTEM UTILITIES
+====================================================== */
+
+/* Text selection in brand color */
+::selection {
+  background: color-mix(in srgb, var(--accent-1) 30%, transparent);
+  color: var(--fg);
+}
+
+/* Visible keyboard focus */
+:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--accent-1) 70%, transparent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Display typography for headings */
+.font-display {
+  font-family: var(--font-display), var(--font-sans, 'Inter'), system-ui, sans-serif;
+  letter-spacing: -0.025em;
+}
+
+/* Brand gradient text */
+.text-gradient {
+  background-image: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Section eyebrow label */
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-1);
+}
+
+.section-eyebrow::before,
+.section-eyebrow::after {
+  content: '';
+  height: 1px;
+  width: 1.5rem;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--accent-1) 60%, transparent));
+}
+
+.section-eyebrow::after {
+  background: linear-gradient(90deg, color-mix(in srgb, var(--accent-1) 60%, transparent), transparent);
+}
+
+/* Primary CTA button */
+.btn-primary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 0.875rem;
+  padding: 0.875rem 1.75rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #0a120a;
+  background: linear-gradient(135deg, var(--accent-1), color-mix(in srgb, var(--accent-1) 72%, var(--accent-2)));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    0 8px 24px -8px color-mix(in srgb, var(--accent-1) 55%, transparent);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+}
+
+.btn-primary:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    0 14px 32px -8px color-mix(in srgb, var(--accent-1) 60%, transparent);
+}
+
+.btn-primary:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Secondary / ghost button */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 0.875rem;
+  padding: 0.875rem 1.75rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--fg);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(8px);
+  transition: all 0.25s ease;
+}
+
+.btn-secondary:hover {
+  background: var(--surface-strong);
+  border-color: color-mix(in srgb, var(--accent-1) 35%, var(--border));
+  transform: translateY(-1px);
+}
+
+.btn-secondary:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Premium card surface */
+.card-premium {
+  position: relative;
+  border-radius: 1.25rem;
+  background: linear-gradient(160deg, var(--surface-strong), var(--surface) 55%);
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-card);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.card-premium:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--accent-1) 25%, var(--border));
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* Hairline gradient on top edge of cards */
+.card-topline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 1.25rem;
+  right: 1.25rem;
+  height: 1px;
+  border-radius: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--accent-1) 45%, transparent) 30%,
+    color-mix(in srgb, var(--accent-2) 45%, transparent) 70%,
+    transparent
+  );
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+.card-topline:hover::before {
+  opacity: 1;
+}
+
+/* ======================================================
+   SCROLL REVEAL
+====================================================== */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0s);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }
 

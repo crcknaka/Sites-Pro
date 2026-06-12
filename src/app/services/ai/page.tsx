@@ -9,6 +9,7 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { ACCENT_1, ACCENT_2 } from '@/lib';
+import { AIInfographic } from '@/components/service-infographic';
 
 /* ======================================================
    DATA
@@ -90,7 +91,7 @@ export default function AIPage() {
               AI & Automations
             </span>
 
-            <h1 className="mt-4 sm:mt-6 text-3xl sm:text-4xl md:text-6xl font-semibold tracking-tight">
+            <h1 className="font-display mt-4 sm:mt-6 text-3xl sm:text-4xl md:text-6xl font-semibold tracking-tight">
               Intelligent automation
               <br />
               <span
@@ -110,16 +111,7 @@ export default function AIPage() {
 
             <Link
               href="/#contact"
-              className="
-                inline-block
-                mt-6 sm:mt-10
-                cursor-pointer select-none
-                rounded-lg px-5 sm:px-6 py-2.5 sm:py-3 text-sm font-medium
-                text-black
-                transition-transform active:scale-[0.96]
-                hover:opacity-90
-              "
-              style={{ background: ACCENT_1 }}
+              className="btn-primary mt-6 sm:mt-10 !text-sm"
             >
               Start your project
             </Link>
@@ -127,7 +119,7 @@ export default function AIPage() {
 
           {/* INFOGRAPHIC - hidden on mobile */}
           <div className="hidden lg:flex justify-center">
-            <AIHeroInfographic />
+            <AIInfographic />
           </div>
         </div>
       </section>
@@ -137,7 +129,7 @@ export default function AIPage() {
       ====================================================== */}
       <section className="px-4 sm:px-6 py-16 sm:py-32 bg-[var(--surface)]">
         <div className="mx-auto max-w-6xl">
-          <h2 className="text-2xl sm:text-3xl font-semibold text-center">
+          <h2 className="font-display text-2xl sm:text-3xl font-semibold text-center">
             Technology & approach
           </h2>
 
@@ -182,7 +174,7 @@ export default function AIPage() {
               Use Cases
             </span>
 
-            <h2 className="mt-3 sm:mt-4 text-2xl sm:text-3xl md:text-4xl font-semibold">
+            <h2 className="font-display mt-3 sm:mt-4 text-2xl sm:text-3xl md:text-4xl font-semibold">
               Use cases
             </h2>
 
@@ -228,7 +220,7 @@ export default function AIPage() {
         className="px-4 sm:px-6 py-20 sm:py-40 bg-[var(--surface-strong)] border-t border-[var(--border)]"
       >
         <div className="mx-auto max-w-4xl text-center mb-10 sm:mb-16">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-semibold">
             Ready to automate your business?
           </h2>
 
@@ -273,103 +265,3 @@ export default function AIPage() {
   );
 }
 
-/* ======================================================
-   HERO INFOGRAPHIC — AI Neural Network
-====================================================== */
-
-function AIHeroInfographic() {
-  return (
-    <div className="relative w-[320px] h-[320px] flex items-center justify-center group">
-      {/* Glow effect */}
-      <div
-        className="absolute -inset-8 rounded-3xl blur-3xl opacity-40 group-hover:opacity-60 transition-opacity duration-700 -z-10"
-        style={{
-          background: `radial-gradient(circle at 50% 50%, ${ACCENT_1}40, ${ACCENT_2}30, transparent)`,
-        }}
-      />
-
-      {/* Container */}
-      <div
-        className="relative w-[300px] h-[280px] rounded-2xl border border-[var(--border)] overflow-hidden shadow-2xl backdrop-blur-sm transition-all duration-500 group-hover:scale-[1.02]"
-        style={{
-          background: 'color-mix(in srgb, var(--surface-strong) 95%, transparent)',
-        }}
-      >
-        {/* Central Brain Node */}
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-          <div
-            className="h-20 w-20 rounded-2xl flex items-center justify-center animate-pulse-slow transition-all duration-300 hover:scale-110 cursor-pointer border backdrop-blur-sm"
-            style={{
-              background: `linear-gradient(135deg, ${ACCENT_1}, ${ACCENT_2})`,
-              borderColor: `color-mix(in srgb, white 20%, transparent)`,
-              boxShadow: `0 0 40px ${ACCENT_1}60`,
-            }}
-          >
-            <Brain size={40} color="white" />
-          </div>
-        </div>
-
-        {/* Neural Connection Nodes - 5 around the center */}
-        {[0, 72, 144, 216, 288].map((deg, i) => {
-          const radius = 100;
-          const angleRad = (deg * Math.PI) / 180;
-          const x = 150 + radius * Math.cos(angleRad);
-          const y = 140 + radius * Math.sin(angleRad);
-
-          // Calculate line start point (from edge of center circle)
-          const centerRadius = 50; // half of h-20 w-20 (80px / 2 = 40px) + some padding
-          const lineStartX = 150 + centerRadius * Math.cos(angleRad);
-          const lineStartY = 140 + centerRadius * Math.sin(angleRad);
-
-          // Calculate line end point (to edge of outer node)
-          const nodeRadius = 24; // half of h-12 w-12 (48px / 2 = 24px)
-          const lineEndX = 150 + (radius - nodeRadius) * Math.cos(angleRad);
-          const lineEndY = 140 + (radius - nodeRadius) * Math.sin(angleRad);
-
-          const icons = [MessageSquare, Workflow, Eye, Database, Sparkles];
-          const Icon = icons[i];
-
-          return (
-            <div key={deg}>
-              {/* Connection line - shortened to not overlap with nodes */}
-              <svg
-                className="absolute inset-0 pointer-events-none"
-                style={{ width: '100%', height: '100%' }}
-              >
-                <line
-                  x1={lineStartX}
-                  y1={lineStartY}
-                  x2={lineEndX}
-                  y2={lineEndY}
-                  stroke={i % 2 === 0 ? ACCENT_1 : ACCENT_2}
-                  strokeOpacity="0.3"
-                  strokeWidth="1"
-                  strokeDasharray="4 4"
-                  className="transition-all duration-500"
-                />
-              </svg>
-
-              {/* Node */}
-              <div
-                className="absolute w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-125 cursor-pointer z-20 border backdrop-blur-sm"
-                style={{
-                  left: `${x - 24}px`,
-                  top: `${y - 24}px`,
-                  background: i % 2 === 0
-                    ? `${ACCENT_1}20`
-                    : `${ACCENT_2}20`,
-                  borderColor: i % 2 === 0 
-                    ? `color-mix(in srgb, ${ACCENT_1} 40%, transparent)` 
-                    : `color-mix(in srgb, ${ACCENT_2} 40%, transparent)`,
-                  boxShadow: `0 4px 12px ${i % 2 === 0 ? ACCENT_1 : ACCENT_2}40`,
-                }}
-              >
-                <Icon size={20} style={{ color: i % 2 === 0 ? ACCENT_1 : ACCENT_2 }} />
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
