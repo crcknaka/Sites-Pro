@@ -7,6 +7,7 @@ import {
   Eye,
   Database,
   Sparkles,
+  Bot,
 } from 'lucide-react';
 import { ACCENT_1, ACCENT_2 } from '@/lib';
 import { AIInfographic } from '@/components/service-infographic';
@@ -16,6 +17,10 @@ import { AIInfographic } from '@/components/service-infographic';
 ====================================================== */
 
 const techStack = [
+  {
+    name: 'Conversational AI & chatbots',
+    description: 'Chatbots of any complexity — from FAQ assistants to advanced agents integrated with your systems.',
+  },
   {
     name: 'LLM integrations',
     description: 'OpenAI and Anthropic APIs for intelligent assistants, automation and data processing.',
@@ -43,6 +48,11 @@ const techStack = [
 ];
 
 const useCases = [
+  {
+    icon: Bot,
+    title: 'Chatbots of any complexity',
+    description: 'From simple FAQ bots to advanced AI assistants with custom logic and integrations',
+  },
   {
     icon: MessageSquare,
     title: 'Internal assistants & tools',
