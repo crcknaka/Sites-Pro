@@ -7,6 +7,7 @@ import { projects, SERVICE_LABELS } from '@/data/projects';
 import { PortfolioLightbox } from '@/components/portfolio-lightbox';
 import { CategoryBadge } from '@/components/category-badge';
 import { ProjectJsonLd, BreadcrumbJsonLd } from '@/components/json-ld';
+import { TechIcon } from '@/components/tech-icons';
 
 const ACCENT_1 = 'var(--accent-1)';
 const ACCENT_2 = 'var(--accent-2)';
@@ -162,11 +163,13 @@ export default async function WorkCase({
                     <span
                       key={item}
                       className="
+                        inline-flex items-center gap-1.5
                         rounded-full border border-[var(--border)]
-                        bg-[var(--surface)] px-3 py-1
-                        text-xs text-[var(--text-muted)]
+                        bg-[var(--surface)] py-1 pl-2 pr-3
+                        text-xs text-[var(--fg)]
                       "
                     >
+                      <TechIcon name={item} className="h-3.5 w-3.5 shrink-0" />
                       {item}
                     </span>
                   ))}
