@@ -124,7 +124,7 @@ export function PortfolioLightbox({ images, projectTitle }: LightboxProps) {
           {/* Main Image with Swipe */}
           <div
             ref={galleryRef}
-            className="relative overflow-hidden rounded-xl lg:rounded-2xl border border-[var(--border)] bg-[var(--surface)]"
+            className="group relative overflow-hidden rounded-xl lg:rounded-2xl border border-[var(--border)] bg-[var(--surface)]"
             onTouchStart={onTouchStart}
             onTouchMove={onTouchMove}
             onTouchEnd={onTouchEnd}
@@ -173,6 +173,8 @@ export function PortfolioLightbox({ images, projectTitle }: LightboxProps) {
                       transition-all
                       hover:scale-110
                       active:scale-95
+                      opacity-0 group-hover:opacity-100 focus-visible:opacity-100
+                      [@media(hover:none)]:opacity-100
                     "
                     aria-label="Previous image"
                   >
@@ -197,6 +199,8 @@ export function PortfolioLightbox({ images, projectTitle }: LightboxProps) {
                       transition-all
                       hover:scale-110
                       active:scale-95
+                      opacity-0 group-hover:opacity-100 focus-visible:opacity-100
+                      [@media(hover:none)]:opacity-100
                     "
                     aria-label="Next image"
                   >
