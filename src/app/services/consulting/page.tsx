@@ -16,6 +16,7 @@ import {
 import type { Metadata } from 'next';
 import { ACCENT_1, ACCENT_2 } from '@/lib';
 import { ConsultingInfographic } from '@/components/service-infographic';
+import ServiceCases from '@/components/service-cases';
 import {
   ServiceJsonLd,
   BreadcrumbJsonLd,
@@ -247,6 +248,8 @@ export default function ConsultingPage() {
           </div>
         </div>
       </section>
+
+      <ServiceCases service="consulting" />
 
       {/* =====================================================
           CONTACT

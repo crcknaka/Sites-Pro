@@ -1,5 +1,15 @@
 export type ProjectCategory = 'Websites' | 'Commerce' | 'Apps' | 'Fintech';
 
+/** Keys of the service pages under /services — used to cross-link cases and services. */
+export type ServiceKey = 'web' | 'web-platforms' | 'ai' | 'consulting';
+
+export const SERVICE_LABELS: Record<ServiceKey, string> = {
+  web: 'Website Development',
+  'web-platforms': 'Web Platform Development',
+  ai: 'AI & Automations',
+  consulting: 'Digital Consulting',
+};
+
 export interface Project {
   slug: string;
   title: string;
@@ -12,6 +22,10 @@ export interface Project {
   images?: string[];
   /** Square brand mark, shown next to the title on the case page. */
   logo?: string;
+  /** Platform and stack the project actually runs on, shown as chips. */
+  tech?: string[];
+  /** Service pages this case belongs to — drives cross-linking in both directions. */
+  services?: ServiceKey[];
   link?: string;
   facebook?: string;
   instagram?: string;
@@ -26,6 +40,8 @@ export const projects: Project[] = [
     slug: 'vadi',
     title: 'Vadi',
     category: 'Fintech',
+    tech: ['Next.js', 'React', 'VID EDS API', 'Multilingual (LV/EN/RU)'],
+    services: ['web-platforms', 'consulting'],
     description: 'Accounting SaaS for Latvian sole traders, micro-enterprises and small companies — invoices, payroll, taxes and VID EDS declarations in one system that tells you what is due, when and how much.',
     challenge: `
       Latvian bookkeeping punishes anyone without an accountant: VAT, payroll
@@ -79,7 +95,9 @@ export const projects: Project[] = [
     slug: 'bodybar',
     title: 'BodyBar',
     category: 'Commerce',
-    description: 'A space of strength, grace and femininity — combining ballet, strength training and stretching into one refined method.',
+    tech: ['Next.js', 'React', 'Framer Motion', 'Online payments', 'Custom admin panel'],
+    services: ['web-platforms'],
+    description: 'Membership platform for the BodyBar method — barre, stretching and women’s plastique — with protected video courses, online payments and an admin panel the client runs alone.',
     challenge: `
       Create a premium digital experience that captures the elegance and energy
       of the BodyBar method while handling protected video content, integrated
@@ -99,6 +117,11 @@ export const projects: Project[] = [
       from discovery to booking, while keeping content secure and easy to manage.
     `,
     image: '/projects/screenshots/bodybar.jpg',
+    images: [
+      '/projects/screenshots/bodybar.jpg',
+      '/projects/screenshots/bodybar-2.jpg',
+      '/projects/screenshots/bodybar-3.jpg',
+    ],
     logo: '/projects/logos/bodybar.png',
     link: 'https://bodybar.lv/',
     instagram: 'https://www.instagram.com/bodybar.lv/',
@@ -108,7 +131,9 @@ export const projects: Project[] = [
     slug: 'lepicur',
     title: 'Lepicur',
     category: 'Commerce',
-    description: 'Design-driven online store, crafted for speed and performance.',
+    tech: ['WordPress', 'WooCommerce'],
+    services: ['web'],
+    description: 'Luxury crystal tableware and home interior boutique — Baccarat, Christofle, Daum, Lalique and Bernardaud — in a design-led storefront built for slow, considered browsing.',
     challenge: `
       Create a refined online presence that reflects the brand's premium
       positioning while maintaining excellent performance and usability.
@@ -124,6 +149,11 @@ export const projects: Project[] = [
       and supports long-term growth.
     `,
     image: '/projects/screenshots/lepicur.jpg',
+    images: [
+      '/projects/screenshots/lepicur.jpg',
+      '/projects/screenshots/lepicur-2.jpg',
+      '/projects/screenshots/lepicur-3.jpg',
+    ],
     logo: '/projects/logos/lepicur.png',
     link: 'https://lepicur.com/',
     facebook: 'https://www.facebook.com/lepicur/',
@@ -135,7 +165,9 @@ export const projects: Project[] = [
     slug: 'institut-de-francais-nice',
     title: 'Institut De Français Nice',
     category: 'Websites',
-    description: 'Informational website for an educational institution.',
+    tech: ['WordPress', 'WooCommerce', 'Multilingual'],
+    services: ['web'],
+    description: 'Site for the Institut de Français language school in Nice — immersive programme structure, daily schedules and pricing by course length, with enrolment handled online.',
     challenge: `
       Communicate credibility, clarity, and international accessibility.
     `,
@@ -149,6 +181,11 @@ export const projects: Project[] = [
       A trustworthy and informative website that supports institutional goals.
     `,
     image: '/projects/screenshots/institut.jpg',
+    images: [
+      '/projects/screenshots/institut.jpg',
+      '/projects/screenshots/institut-de-francais-nice-2.jpg',
+      '/projects/screenshots/institut-de-francais-nice-3.jpg',
+    ],
     logo: '/projects/logos/institut-de-francais-nice.png',
     link: 'https://institutdefrancais-nice.com/',
     facebook: 'https://www.facebook.com/institutdefrancaisnice',
@@ -160,7 +197,8 @@ export const projects: Project[] = [
     slug: 'madsword-studios',
     title: 'Madsword Studios',
     category: 'Websites',
-    description: 'Award-winning game development studio with 8+ years of experience, 160+ games developed, and 20M+ downloads.',
+    services: ['web'],
+    description: 'Studio site for a mobile and VR game developer — a growing catalogue of iOS, Android and browser titles from TowerHex to Rigglebox VR, plus partnership and hiring sections.',
     challenge: `
       Showcase a game development studio's extensive portfolio and technical expertise
       while highlighting achievements and capabilities across mobile, VR, and multiplayer
@@ -180,6 +218,11 @@ export const projects: Project[] = [
       the breadth of game development expertise.
     `,
     image: '/projects/screenshots/madsword.jpg',
+    images: [
+      '/projects/screenshots/madsword.jpg',
+      '/projects/screenshots/madsword-studios-2.jpg',
+      '/projects/screenshots/madsword-studios-3.jpg',
+    ],
     logo: '/projects/logos/madsword-studios.png',
     link: 'https://madswordstudios.com/',
     facebook: 'https://www.facebook.com/MadSwordStudio/',
@@ -191,7 +234,8 @@ export const projects: Project[] = [
     slug: 'sensora',
     title: 'Sensora',
     category: 'Websites',
-    description: 'Intelligent and secure IT security services delivering quality solutions to crucial security issues.',
+    services: ['web'],
+    description: 'Site for a Latvian cyber-security company — IT security services, cyber strategy, penetration testing and a security education platform, framed for a corporate buyer.',
     challenge: `
       Build trust and credibility for a cybersecurity services provider while
       clearly communicating expertise, certifications, and the comprehensive approach
@@ -213,6 +257,11 @@ export const projects: Project[] = [
       and demonstrating the comprehensive approach to information security protection.
     `,
     image: '/projects/screenshots/sensora.jpg',
+    images: [
+      '/projects/screenshots/sensora.jpg',
+      '/projects/screenshots/sensora-2.jpg',
+      '/projects/screenshots/sensora-3.jpg',
+    ],
     link: 'https://sensora.lv/',
   },
 
@@ -220,24 +269,31 @@ export const projects: Project[] = [
     slug: 'imun',
     title: 'Imun',
     category: ['Websites', 'Fintech'] ,
-    description: 'Advanced payment technology for modern financial operations.',
+    tech: ['React', 'Vite'],
+    services: ['web', 'consulting'],
+    description: 'Marketing site for a payment gateway provider — open banking, online acquiring, alternative payment methods and payouts, presented with a compliance-first tone.',
     challenge: `
       Create a professional, trustworthy online presence that communicates
       technical sophistication and security without overwhelming business clients
       with complexity.
     `,
     solution: [
+      'Product structured around the four things merchants actually buy: open banking, online acquiring, alternative payment methods and payouts',
       'Clean, professional design emphasizing security and reliability',
-      'Clear value proposition and service overview',
-      'Structured information architecture',
-      'Trust-building elements and compliance messaging',
-      'Scalable content structure for technical documentation',
+      'Trust-building elements and compliance messaging throughout the funnel',
+      'Structured information architecture that scales into technical documentation',
+      'Fast single-page build so a technical audience never waits on a page load',
     ],
     result: `
       A credible and informative platform that effectively communicates Imun's
       fintech capabilities and builds confidence with enterprise clients.
     `,
     image: '/projects/screenshots/imun.jpg',
+    images: [
+      '/projects/screenshots/imun.jpg',
+      '/projects/screenshots/imun-2.jpg',
+      '/projects/screenshots/imun-3.jpg',
+    ],
     logo: '/projects/logos/imun.png',
     link: 'https://imungate.eu/',
   },
@@ -248,7 +304,8 @@ export const projects: Project[] = [
     slug: 'ma-sunglasses',
     title: 'Ma Sunglasses',
     category: 'Commerce',
-    description: 'Large-scale product catalogue for eyewear with advanced filtering.',
+    services: ['web'],
+    description: 'Online sunglasses store built around a large catalogue — filterable browsing, clear product presentation and a checkout tuned for fast, repeat purchases.',
     challenge: `
       Present a wide assortment of products in a clear and user-friendly way
       without overwhelming the customer.
@@ -264,7 +321,6 @@ export const projects: Project[] = [
       and efficient.
     `,
     image: '/projects/screenshots/masunglasses.jpg',
-    link: 'https://masunglasses.eu/',
     facebook: 'https://www.facebook.com/masunglasses.eu/',
     instagram: 'https://www.instagram.com/masunglasses.eu/',
   },
@@ -273,7 +329,8 @@ export const projects: Project[] = [
     slug: 'sunachates',
     title: 'Sunachates',
     category: 'Websites',
-    description: 'Boutique catalogue site with strong visual identity.',
+    services: ['web'],
+    description: 'Boutique catalogue site with a strong visual identity — image-led layouts, a consistent editorial rhythm and a responsive grid that keeps the products in front.',
     challenge: `
       Showcase products in a visually rich way while keeping the interface
       clean and easy to explore.
@@ -296,7 +353,9 @@ export const projects: Project[] = [
     slug: 'pets-pro',
     title: 'Pets Pro',
     category: 'Commerce',
-    description: 'Online store for pet products with promotional focus.',
+    tech: ['WordPress', 'WooCommerce', 'Multilingual', 'Mailchimp'],
+    services: ['web'],
+    description: 'Pet supplies store with a multilingual catalogue — clothing, beds, toys and care products, with featured categories and a favourites list on the storefront.',
     challenge: `
       Balance promotional content with product clarity and trustworthiness.
     `,
@@ -310,6 +369,10 @@ export const projects: Project[] = [
       A conversion-oriented e-commerce site that remains friendly and easy to use.
     `,
     image: '/projects/screenshots/pets-pro.jpg',
+    images: [
+      '/projects/screenshots/pets-pro.jpg',
+      '/projects/screenshots/pets-pro-2.jpg',
+    ],
     logo: '/projects/logos/pets-pro.png',
     link: 'https://pets-pro.eu/',
     instagram: 'https://www.instagram.com/pets_pro.eu',
@@ -321,7 +384,8 @@ export const projects: Project[] = [
     slug: 'on-air-emotions',
     title: 'On Air Emotions',
     category: 'Websites',
-    description: 'Event-oriented catalogue with dynamic content blocks.',
+    services: ['web'],
+    description: 'Event agency catalogue built from modular content blocks — a flexible CMS structure that lets the team reshape their offering without touching the design.',
     challenge: `
       Present events and media content in a way that feels dynamic
       but remains structured.
@@ -348,21 +412,34 @@ export const projects: Project[] = [
     slug: 'goldberg',
     title: 'Goldberg',
     category: 'Websites',
-    description: 'Product-focused informational site with clean presentation.',
+    tech: ['WordPress', 'WooCommerce', 'Multilingual'],
+    services: ['web'],
+    description: 'Dental supplies catalogue for a Baltic distributor — endodontics, therapy, hygiene, orthodontics, implantology and instruments, organised so doctors find parts fast.',
     challenge: `
-      Explain complex products clearly without overloading the user.
+      A dental supplies distributor sells to an audience that knows exactly what
+      it needs — a specific scaler tip, a probe, a particular brand of composite.
+      The catalogue had to stay scannable across a wide technical range and three
+      Baltic markets, without turning into a wall of part numbers, and the team
+      had to be able to keep it current without a developer.
     `,
     solution: [
-      'Section-based storytelling',
-      'Clear product categorization',
-      'Visual explanations',
-      'Minimal distractions',
+      'Category-first navigation across endodontics, therapy, hygiene, orthodontics, implantology and instruments',
+      'Product cards that lead with the manufacturer reference, so professionals recognise the item at a glance',
+      'Featured and popular product rows on the storefront for the fast-moving range',
+      'Multilingual store covering the three Baltic markets the distributor serves',
+      'WooCommerce back office so the client adds products, prices and categories independently',
+      'Restrained, clinical visual language that keeps attention on the products',
     ],
     result: `
-      A clear and professional presentation that improves understanding
-      and credibility.
+      A professional catalogue where a dentist gets from the homepage to the exact
+      consumable in a couple of clicks, and where the distributor can expand the
+      range across markets without touching the design or calling us.
     `,
     image: '/projects/screenshots/goldberg.jpg',
+    images: [
+      '/projects/screenshots/goldberg.jpg',
+      '/projects/screenshots/goldberg-2.jpg',
+    ],
     logo: '/projects/logos/goldberg.png',
     link: 'https://goldberg.lv/',
     facebook: 'https://www.facebook.com/goldberg.lv',
@@ -374,6 +451,7 @@ export const projects: Project[] = [
     slug: 'barberly',
     title: 'Barberly',
     category: 'Websites',
+    services: ['web'],
     description: 'Where Style Meets Tradition. Experience the perfect blend of classic barbering techniques and modern style in the heart of the city.',
     challenge: `
       Create an elegant booking-focused website that reflects the premium
@@ -390,14 +468,14 @@ export const projects: Project[] = [
       while providing a seamless booking experience for clients.
     `,
     image: '/projects/screenshots/barberly.jpg',
-    link: 'https://barberly.lv/',
   },
 
   {
     slug: 'finnex',
     title: 'Finnex',
     category: 'Websites',
-    description: 'Product catalogue for a manufacturing-focused brand.',
+    services: ['web'],
+    description: 'Product catalogue for a manufacturing-focused brand — a simple visual language, fast-loading pages and navigation that keeps a wide range easy to scan.',
     challenge: `
       Present industrial products in a clean and approachable manner.
     `,
@@ -417,7 +495,9 @@ export const projects: Project[] = [
     slug: 'euc-one',
     title: 'EUC.ONE',
     category: 'Websites',
-    description: 'Community-driven catalogue for electric unicycle riders.',
+    tech: ['Vite', 'Progressive Web App', 'Interactive maps'],
+    services: ['web-platforms'],
+    description: 'Platform for electric unicycle riders — community content, routes and model data in an installable web app built to be used on a phone, mid-ride.',
     challenge: `
       Combine community elements with structured product and content discovery.
     `,
@@ -431,6 +511,11 @@ export const projects: Project[] = [
       A niche platform that supports both discovery and community engagement.
     `,
     image: '/projects/screenshots/euc-one.jpg',
+    images: [
+      '/projects/screenshots/euc-one.jpg',
+      '/projects/screenshots/euc-one-2.jpg',
+      '/projects/screenshots/euc-one-3.jpg',
+    ],
     logo: '/projects/logos/euc-one.png',
     link: 'https://euc.one/',
     facebook: 'https://www.facebook.com/euconeofficial',
@@ -441,7 +526,9 @@ export const projects: Project[] = [
     slug: 'euc-calculator',
     title: 'EUC Calculator',
     category: 'Apps',
-    description: 'Interactive web application for EUC performance calculations.',
+    tech: ['Vite', 'Progressive Web App', 'Client-side calculations'],
+    services: ['web-platforms'],
+    description: 'Interactive calculator for electric unicycle performance — a dark, data-first interface where inputs and results stay separated and every figure updates instantly.',
     challenge: `
       Deliver a complex calculation tool in a simple and intuitive interface.
     `,
@@ -455,6 +542,11 @@ export const projects: Project[] = [
       A focused utility app that delivers value instantly without friction.
     `,
     image: '/projects/screenshots/euc-calculator.jpg',
+    images: [
+      '/projects/screenshots/euc-calculator.jpg',
+      '/projects/screenshots/euc-calculator-2.jpg',
+      '/projects/screenshots/euc-calculator-3.jpg',
+    ],
     logo: '/projects/logos/euc-calculator.png',
     link: 'https://euc.one/calculator/',
     facebook: 'https://www.facebook.com/euconeofficial',
@@ -465,7 +557,8 @@ export const projects: Project[] = [
     slug: 'gift-roulette',
     title: 'Gift Roulette',
     category: 'Apps',
-    description: 'Create and manage Secret Santa gift exchange events with ease.',
+    services: ['web-platforms'],
+    description: 'Secret Santa organiser — create an event, manage participants, draw names automatically and share admin links by email, with nothing to install and no account to join.',
     challenge: `
       Simplify the organization of Secret Santa events by providing an intuitive
       platform for creating events, managing participants, and coordinating gift
@@ -483,14 +576,15 @@ export const projects: Project[] = [
       allowing users to focus on the fun of gift exchanges rather than logistics.
     `,
     image: '/projects/screenshots/gift-roulette.jpg',
-    link: 'https://gift-roulette.win/',
   },
 
   {
     slug: 'ekobaltika',
     title: 'Ekobaltika',
     category: 'Commerce',
-    description: 'Large e-commerce catalogue for automotive and technical products.',
+    tech: ['WordPress', 'WooCommerce', 'Multilingual'],
+    services: ['web'],
+    description: 'Laser cleaning of metal surfaces and CNC milling for wood and polymers, plus a tools web shop — services and products in one site, serving customers across Latvia.',
     challenge: `
       Organize a very broad product range without sacrificing usability.
     `,
@@ -504,6 +598,11 @@ export const projects: Project[] = [
       A robust e-commerce platform capable of handling scale and complexity.
     `,
     image: '/projects/screenshots/ekobaltika.jpg',
+    images: [
+      '/projects/screenshots/ekobaltika.jpg',
+      '/projects/screenshots/ekobaltika-2.jpg',
+      '/projects/screenshots/ekobaltika-3.jpg',
+    ],
     logo: '/projects/logos/ekobaltika.png',
     link: 'https://ekobaltika.lv/lv/',
     facebook: 'https://www.facebook.com/ekobaltika.lv',
@@ -513,7 +612,9 @@ export const projects: Project[] = [
     slug: 'bullu-laivas',
     title: 'Bullu Laivas',
     category: 'Commerce',
-    description: 'Lifestyle e-commerce site with strong visual storytelling.',
+    tech: ['WordPress', 'WooCommerce', 'Multilingual'],
+    services: ['web'],
+    description: 'SUP and watersports shop — boards, paddles, wetsuits, clothing and gift cards, with a catalogue built for a seasonal range that turns over fast every summer.',
     challenge: `
       Combine lifestyle branding with commercial functionality.
     `,
@@ -527,6 +628,11 @@ export const projects: Project[] = [
       A visually expressive store that still performs as a solid sales channel.
     `,
     image: '/projects/screenshots/bullulaivas.jpg',
+    images: [
+      '/projects/screenshots/bullulaivas.jpg',
+      '/projects/screenshots/bullu-laivas-2.jpg',
+      '/projects/screenshots/bullu-laivas-3.jpg',
+    ],
     logo: '/projects/logos/bullu-laivas.png',
     link: 'https://www.bullulaivas.lv/',
     facebook: 'https://www.facebook.com/bullulaivas/',
@@ -539,7 +645,8 @@ export const projects: Project[] = [
     slug: 'annexe-de-francais',
     title: 'Annexe De Français',
     category: 'Websites',
-    description: 'Informational site for educational programs and courses.',
+    services: ['web'],
+    description: 'Informational site for a French language school’s programmes and courses — clear content sections, trust-focused design and typography built for long reading.',
     challenge: `
       Present educational offerings clearly to an international audience.
     `,
@@ -561,6 +668,8 @@ export const projects: Project[] = [
     slug: 'offshore-license',
     title: 'Offshore License',
     category: 'Fintech',
+    tech: ['Bitrix', 'Multilingual'],
+    services: ['web', 'consulting'],
     description: 'Trustworthy turnkey partner for offshore and onshore business setup with offices in London, Hong Kong, Cyprus, Prague and Riga.',
     challenge: `
       Establish credibility and trust for a complex financial services provider
@@ -583,6 +692,11 @@ export const projects: Project[] = [
       clients seeking complex financial and corporate services.
     `,
     image: '/projects/screenshots/offshorelicense.jpg',
+    images: [
+      '/projects/screenshots/offshorelicense.jpg',
+      '/projects/screenshots/offshore-license-2.jpg',
+      '/projects/screenshots/offshore-license-3.jpg',
+    ],
     link: 'https://www.offshorelicense.com/',
     facebook: 'https://www.facebook.com/OffshorelicenseLTD/',
     linkedin: 'https://www.linkedin.com/company/offshorelicense-ltd',
@@ -592,7 +706,9 @@ export const projects: Project[] = [
     slug: 'wellton',
     title: 'Wellton',
     category: 'Commerce',
-    description: 'Premium SPA vouchers for Wellton Hotels & Spa in Riga.',
+    tech: ['WordPress', 'WooCommerce', 'Multilingual'],
+    services: ['web'],
+    description: 'Gift card shop for Wellton Hotels & Spa in Riga — SPA zones, massages and memberships sold as vouchers, with a purchase flow that still feels like giving a gift.',
     challenge: `
       Create an elegant and user-friendly platform for selling premium wellness
       vouchers that balances the luxurious brand identity with straightforward
@@ -617,6 +733,7 @@ export const projects: Project[] = [
     images: [
       '/projects/screenshots/wellton.jpg',
       '/projects/screenshots/wellton2.png',
+      '/projects/screenshots/wellton-2.jpg',
     ],
     logo: '/projects/logos/wellton.png',
     link: 'https://shop.wellton.com/',
@@ -628,7 +745,9 @@ export const projects: Project[] = [
     slug: 'window-pros',
     title: 'Bay Area Window Pros',
     category: 'Websites',
-    description: 'Factory authorized dealer and installer for windows and doors with 25+ years of experience.',
+    tech: ['OctoberCMS', 'Laravel'],
+    services: ['web'],
+    description: 'Window and door replacement across the Bay Area — a factory-authorised dealer’s catalogue by brand, material and style, with financing options and free estimates.',
     challenge: `
       Build trust and credibility for a service-based business while showcasing
       extensive product variety, manufacturer partnerships, and installation expertise
@@ -650,6 +769,11 @@ export const projects: Project[] = [
       building confidence in the installation process.
     `,
     image: '/projects/screenshots/windowspros.jpg',
+    images: [
+      '/projects/screenshots/windowspros.jpg',
+      '/projects/screenshots/window-pros-2.jpg',
+      '/projects/screenshots/window-pros-3.jpg',
+    ],
     link: 'https://bayareawindowpros.com/',
   },
 
@@ -657,6 +781,7 @@ export const projects: Project[] = [
     slug: 'aerial-platform',
     title: 'Aerial Platform',
     category: ['Apps', 'Commerce'] ,
+    services: ['web-platforms'],
     description: 'The premier marketplace connecting professional drone operators with clients who need exceptional aerial photography and videography services.',
     challenge: `
       Create a comprehensive marketplace platform that seamlessly connects drone
@@ -685,6 +810,8 @@ export const projects: Project[] = [
     slug: 'senso-projects',
     title: 'Senso Projects',
     category: 'Websites',
+    tech: ['React', 'Vite'],
+    services: ['web'],
     description: 'Complete design solutions from initial concept to final installation, handling every aspect of interior transformation with expertise and care.',
     challenge: `
       Create a professional website for an interior design and renovation company
@@ -708,6 +835,10 @@ export const projects: Project[] = [
       discerning clients seeking quality transformations.
     `,
     image: '/projects/screenshots/sensoprojects.jpg',
+    images: [
+      '/projects/screenshots/sensoprojects.jpg',
+      '/projects/screenshots/senso-projects-2.jpg',
+    ],
     link: 'https://www.sensoprojects.com/',
   },
 
@@ -715,6 +846,8 @@ export const projects: Project[] = [
     slug: 'reppy',
     title: 'Reppy',
     category: 'Apps',
+    tech: ['Mobile app', 'Offline-first architecture', 'Cross-device sync'],
+    services: ['web-platforms'],
     description: 'Free, offline-first workout tracker that puts you in control. Track exercises, sets, reps, and weights — even without internet.',
     challenge: `
       Most fitness apps are bloated with ads, require constant internet connection,
@@ -749,7 +882,9 @@ export const projects: Project[] = [
     slug: 'balticaqua',
     title: 'BalticAqua',
     category: 'Websites',
-    description: 'Professional water purification, softening and filtration systems with 20+ years of experience across Latvia.',
+    tech: ['Next.js', 'React', 'Multilingual'],
+    services: ['web'],
+    description: 'Kinetico water treatment systems for homes and businesses in Latvia — softeners, drinking water filters and full filtration, sold with installation and consultation.',
     challenge: `
       Establish a strong digital presence for a well-established water treatment
       company, clearly communicating decades of expertise and a wide range of
@@ -769,6 +904,11 @@ export const projects: Project[] = [
       explore solutions and request service.
     `,
     image: '/projects/screenshots/balticaqua.jpg',
+    images: [
+      '/projects/screenshots/balticaqua.jpg',
+      '/projects/screenshots/balticaqua-2.jpg',
+      '/projects/screenshots/balticaqua-3.jpg',
+    ],
     logo: '/projects/logos/balticaqua.png',
     link: 'https://balticaqua.lv/',
   },

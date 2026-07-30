@@ -11,6 +11,7 @@ import {
 import type { Metadata } from 'next';
 import { ACCENT_1, ACCENT_2 } from '@/lib';
 import { WebPlatformInfographic } from '@/components/service-infographic';
+import ServiceCases from '@/components/service-cases';
 import {
   ServiceJsonLd,
   BreadcrumbJsonLd,
@@ -238,6 +239,8 @@ export default function WebPlatformsPage() {
           </div>
         </div>
       </section>
+
+      <ServiceCases service="web-platforms" />
 
       {/* =====================================================
           CONTACT

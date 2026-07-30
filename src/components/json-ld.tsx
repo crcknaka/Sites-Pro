@@ -284,6 +284,15 @@ export function ProjectJsonLd({ project }: { project: Project }) {
         image: `${SITE_URL}${project.image}`,
         genre: categories,
         inLanguage: 'en',
+        ...(project.tech?.length ? { keywords: project.tech.join(', ') } : {}),
+        ...(project.services?.length
+          ? {
+              about: project.services.map((key) => ({
+                '@type': 'Service',
+                '@id': `${SITE_URL}/services/${key}#service`,
+              })),
+            }
+          : {}),
         creator: { '@id': ORG_ID },
         publisher: { '@id': ORG_ID },
         ...(sameAs.length ? { sameAs } : {}),

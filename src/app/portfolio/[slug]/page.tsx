@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, ArrowRight, LayoutGrid, Facebook, Instagram, Music, Linkedin, Youtube, Target, Lightbulb, Trophy, ExternalLink, Play } from 'lucide-react';
-import { projects } from '@/data/projects';
+import { projects, SERVICE_LABELS } from '@/data/projects';
 import { PortfolioLightbox } from '@/components/portfolio-lightbox';
 import { CategoryBadge } from '@/components/category-badge';
 import { ProjectJsonLd, BreadcrumbJsonLd } from '@/components/json-ld';
@@ -149,6 +149,53 @@ export default async function WorkCase({
           ">
             {project.description}
           </p>
+
+          {/* STACK + SERVICES */}
+          {(project.tech?.length || project.services?.length) && (
+            <div className="space-y-4">
+              {project.tech && project.tech.length > 0 && (
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="text-xs uppercase tracking-wider text-[var(--text-muted)]">
+                    Built with
+                  </span>
+                  {project.tech.map((item) => (
+                    <span
+                      key={item}
+                      className="
+                        rounded-full border border-[var(--border)]
+                        bg-[var(--surface)] px-3 py-1
+                        text-xs text-[var(--text-muted)]
+                      "
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              )}
+
+              {project.services && project.services.length > 0 && (
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="text-xs uppercase tracking-wider text-[var(--text-muted)]">
+                    Service
+                  </span>
+                  {project.services.map((key) => (
+                    <Link
+                      key={key}
+                      href={`/services/${key}`}
+                      className="
+                        rounded-full border border-[var(--accent-1)]/30
+                        bg-[var(--accent-1)]/10 px-3 py-1
+                        text-xs font-medium text-[var(--accent-1)]
+                        transition-colors hover:bg-[var(--accent-1)]/20
+                      "
+                    >
+                      {SERVICE_LABELS[key]}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
           {/* CHALLENGE */}
           {project.challenge && (
             <Section title="Challenge">

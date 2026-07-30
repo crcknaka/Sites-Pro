@@ -12,6 +12,7 @@ import {
 import type { Metadata } from 'next';
 import { ACCENT_1, ACCENT_2 } from '@/lib';
 import { AIInfographic } from '@/components/service-infographic';
+import ServiceCases from '@/components/service-cases';
 import {
   ServiceJsonLd,
   BreadcrumbJsonLd,
@@ -248,6 +249,8 @@ export default function AIPage() {
           </div>
         </div>
       </section>
+
+      <ServiceCases service="ai" />
 
       {/* =====================================================
           CONTACT
