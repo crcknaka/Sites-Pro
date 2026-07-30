@@ -7,8 +7,31 @@ import {
   BarChart3,
   Headphones,
 } from 'lucide-react';
+import type { Metadata } from 'next';
 import { ACCENT_1, ACCENT_2 } from '@/lib';
 import { WebsiteInfographic } from '@/components/service-infographic';
+import {
+  ServiceJsonLd,
+  BreadcrumbJsonLd,
+  SERVICE_DEFINITIONS,
+} from '@/components/json-ld';
+
+const service = SERVICE_DEFINITIONS.find((s) => s.path === '/services/web')!;
+
+export const metadata: Metadata = {
+  title: 'Website Development Services',
+  description:
+    'High-performance website development with Next.js, React and headless CMS. Fast, accessible and SEO-ready websites built as a foundation for long-term growth.',
+  alternates: {
+    canonical: '/services/web',
+  },
+  openGraph: {
+    url: '/services/web',
+    title: 'Website Development Services | Sites Pro',
+    description:
+      'Websites that perform, scale and convert — built with Next.js, React and modern CMS platforms.',
+  },
+};
 
 /* ======================================================
    DATA
@@ -56,6 +79,10 @@ const additionalServices = [
 export default function WebsitesPage() {
   return (
     <main className="bg-[var(--bg)] text-[var(--fg)]">
+      <ServiceJsonLd service={service} />
+      <BreadcrumbJsonLd
+        items={[{ name: 'Website Development', path: '/services/web' }]}
+      />
       {/* =====================================================
           HERO
       ====================================================== */}

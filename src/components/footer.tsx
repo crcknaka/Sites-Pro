@@ -11,8 +11,8 @@ const navServices = [
 ];
 
 const navCompany = [
-  { label: 'About', href: '/#about' },
-  { label: 'Portfolio', href: '/#portfolio' },
+  { label: 'About', href: '/about' },
+  { label: 'Portfolio', href: '/portfolio' },
   { label: 'FAQ', href: '/#faq' },
   { label: 'Contact', href: '/#contact' },
 ];

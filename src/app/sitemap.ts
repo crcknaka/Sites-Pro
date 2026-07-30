@@ -1,70 +1,65 @@
 import { MetadataRoute } from 'next';
 import { projects } from '@/data/projects';
+import { SITE_URL } from '@/lib';
+
+/**
+ * lastmod is content-derived, not build-derived: a fresh timestamp on every
+ * page at every deploy makes Google discount the signal entirely.
+ * Bump CONTENT_UPDATED when page copy actually changes.
+ */
+const CONTENT_UPDATED = '2026-07-31';
+const PROJECTS_UPDATED = '2026-07-31';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://sitespro.org';
-
-  // Static pages
   const staticPages: MetadataRoute.Sitemap = [
     {
-      url: baseUrl,
-      lastModified: new Date(),
+      url: SITE_URL,
+      lastModified: CONTENT_UPDATED,
       changeFrequency: 'weekly',
       priority: 1,
     },
     {
-      url: `${baseUrl}/about`,
-      lastModified: new Date(),
+      url: `${SITE_URL}/about`,
+      lastModified: CONTENT_UPDATED,
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/privacy`,
-      lastModified: new Date(),
+      url: `${SITE_URL}/portfolio`,
+      lastModified: PROJECTS_UPDATED,
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
+      url: `${SITE_URL}/privacy`,
+      lastModified: CONTENT_UPDATED,
       changeFrequency: 'yearly',
       priority: 0.3,
     },
     {
-      url: `${baseUrl}/legal`,
-      lastModified: new Date(),
+      url: `${SITE_URL}/legal`,
+      lastModified: CONTENT_UPDATED,
       changeFrequency: 'yearly',
       priority: 0.3,
     },
   ];
 
-  // Service pages
   const servicePages: MetadataRoute.Sitemap = [
-    {
-      url: `${baseUrl}/services/web`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/services/web-platforms`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/services/ai`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/services/consulting`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-  ];
-
-  // Portfolio pages
-  const portfolioPages: MetadataRoute.Sitemap = projects.map((project) => ({
-    url: `${baseUrl}/portfolio/${project.slug}`,
-    lastModified: new Date(),
+    'web',
+    'web-platforms',
+    'ai',
+    'consulting',
+  ].map((slug) => ({
+    url: `${SITE_URL}/services/${slug}`,
+    lastModified: CONTENT_UPDATED,
     changeFrequency: 'monthly' as const,
+    priority: 0.9,
+  }));
+
+  const portfolioPages: MetadataRoute.Sitemap = projects.map((project) => ({
+    url: `${SITE_URL}/portfolio/${project.slug}`,
+    lastModified: PROJECTS_UPDATED,
+    changeFrequency: 'yearly' as const,
     priority: 0.6,
   }));
 

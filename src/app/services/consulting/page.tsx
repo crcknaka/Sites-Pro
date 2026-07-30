@@ -13,8 +13,33 @@ import {
   Users,
   FileCheck,
 } from 'lucide-react';
+import type { Metadata } from 'next';
 import { ACCENT_1, ACCENT_2 } from '@/lib';
 import { ConsultingInfographic } from '@/components/service-infographic';
+import {
+  ServiceJsonLd,
+  BreadcrumbJsonLd,
+  SERVICE_DEFINITIONS,
+} from '@/components/json-ld';
+
+const service = SERVICE_DEFINITIONS.find(
+  (s) => s.path === '/services/consulting',
+)!;
+
+export const metadata: Metadata = {
+  title: 'Digital & Fintech Consulting',
+  description:
+    'Strategic consulting for payment systems, fintech architecture, web and app development, AI integration and technical audits. Expert guidance for the right technical decisions.',
+  alternates: {
+    canonical: '/services/consulting',
+  },
+  openGraph: {
+    url: '/services/consulting',
+    title: 'Digital & Fintech Consulting | Sites Pro',
+    description:
+      'Payment systems, fintech architecture, technology selection, AI strategy and technical audits.',
+  },
+};
 
 /* ======================================================
    DATA
@@ -65,6 +90,10 @@ const additionalServices = [
 export default function ConsultingPage() {
   return (
     <main className="bg-[var(--bg)] text-[var(--fg)]">
+      <ServiceJsonLd service={service} />
+      <BreadcrumbJsonLd
+        items={[{ name: 'Digital Consulting', path: '/services/consulting' }]}
+      />
       {/* =====================================================
           HERO
       ====================================================== */}

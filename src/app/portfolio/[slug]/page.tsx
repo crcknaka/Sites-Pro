@@ -1,9 +1,12 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, ArrowRight, LayoutGrid, Facebook, Instagram, Music, Linkedin, Youtube, Target, Lightbulb, Trophy, ExternalLink, Play } from 'lucide-react';
 import { projects } from '@/data/projects';
 import { PortfolioLightbox } from '@/components/portfolio-lightbox';
 import { CategoryBadge } from '@/components/category-badge';
+import { ProjectJsonLd, BreadcrumbJsonLd } from '@/components/json-ld';
 
 const ACCENT_1 = 'var(--accent-1)';
 const ACCENT_2 = 'var(--accent-2)';
@@ -13,6 +16,50 @@ const sectionIcons = {
   Solution: Lightbulb,
   Result: Trophy,
 };
+
+export function generateStaticParams() {
+  return projects.map((p) => ({ slug: p.slug }));
+}
+
+export const dynamicParams = false;
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const project = projects.find((p) => p.slug === slug);
+
+  if (!project) return {};
+
+  const categories = Array.isArray(project.category)
+    ? project.category.join(', ')
+    : project.category;
+  const description = project.description.replace(/\s+/g, ' ').trim();
+  const url = `/portfolio/${project.slug}`;
+
+  return {
+    title: `${project.title} — ${categories} Case Study`,
+    description,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      type: 'article',
+      url,
+      title: `${project.title} — ${categories} Case Study | Sites Pro`,
+      description,
+      images: [{ url: project.image, alt: `${project.title} — project screenshot` }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${project.title} — ${categories} Case Study`,
+      description,
+      images: [project.image],
+    },
+  };
+}
 
 export default async function WorkCase({
   params,
@@ -32,6 +79,13 @@ export default async function WorkCase({
 
   return (
     <main className="mx-auto max-w-7xl px-4 sm:px-6 pt-24 sm:pt-32 pb-16 sm:pb-24 text-[var(--fg)]">
+      <ProjectJsonLd project={project} />
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Portfolio', path: '/portfolio' },
+          { name: project.title, path: `/portfolio/${project.slug}` },
+        ]}
+      />
       {/* =========================
          IMAGE GALLERY (Mobile - at top)
       ========================= */}
@@ -50,19 +104,41 @@ export default async function WorkCase({
         ========================= */}
         <div className="lg:col-span-2 space-y-6 sm:space-y-8">
           {/* Category Badge */}
-          <div>
+          <div className="flex flex-wrap items-center gap-3">
             <CategoryBadge category={project.category as any} />
           </div>
 
-          {/* Title */}
-          <h1 className="
-            text-2xl sm:text-3xl md:text-4xl lg:text-5xl
-            font-semibold
-            tracking-tight
-            leading-tight
-          ">
-            {project.title}
-          </h1>
+          {/* Title — with brand mark when the project has one */}
+          <div className="flex items-center gap-4">
+            {project.logo && (
+              <span
+                className="
+                  flex h-12 w-12 sm:h-14 sm:w-14 flex-shrink-0
+                  items-center justify-center
+                  overflow-hidden rounded-2xl
+                  border border-[var(--border)]
+                  bg-[var(--surface)]
+                "
+              >
+                <Image
+                  src={project.logo}
+                  alt={`${project.title} logo`}
+                  width={56}
+                  height={56}
+                  className="h-9 w-9 sm:h-11 sm:w-11"
+                />
+              </span>
+            )}
+
+            <h1 className="
+              text-2xl sm:text-3xl md:text-4xl lg:text-5xl
+              font-semibold
+              tracking-tight
+              leading-tight
+            ">
+              {project.title}
+            </h1>
+          </div>
 
           {/* Description */}
           <p className="

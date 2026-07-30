@@ -5,11 +5,8 @@ import { Inter, Space_Grotesk } from 'next/font/google';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 import ScrollToTop from '@/components/scroll-to-top';
-import {
-  OrganizationJsonLd,
-  WebsiteJsonLd,
-  ServicesJsonLd,
-} from '@/components/json-ld';
+import { OrganizationJsonLd, WebsiteJsonLd } from '@/components/json-ld';
+import { SITE_URL, SITE_NAME, SITE_DESCRIPTION } from '@/lib';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -26,21 +23,24 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: 'Sites Pro — Digital Done Right',
-    template: '%s | Sites Pro',
+    default: 'Sites Pro — Web Development, Platforms & AI Automation Agency',
+    template: `%s | ${SITE_NAME}`,
   },
-  description: 'Product-grade websites, platforms and AI automations built to scale.',
+  description: SITE_DESCRIPTION,
   keywords: ['web development', 'application development', 'AI automation', 'technical consulting', 'fintech solutions', 'digital agency'],
-  authors: [{ name: 'Sites Pro' }],
-  creator: 'Sites Pro',
-  metadataBase: new URL('https://sitespro.org'),
+  authors: [{ name: SITE_NAME }],
+  creator: SITE_NAME,
+  metadataBase: new URL(SITE_URL),
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://sitespro.org',
-    title: 'Sites Pro — Digital Done Right',
-    description: 'Product-grade websites, platforms and AI automations built to scale.',
-    siteName: 'Sites Pro',
+    url: SITE_URL,
+    title: 'Sites Pro — Web Development, Platforms & AI Automation Agency',
+    description: SITE_DESCRIPTION,
+    siteName: SITE_NAME,
     images: [
       {
         url: '/og-image.jpg',
@@ -52,8 +52,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Sites Pro — Digital Done Right',
-    description: 'Product-grade websites, platforms and AI automations built to scale.',
+    title: 'Sites Pro — Web Development, Platforms & AI Automation Agency',
+    description: SITE_DESCRIPTION,
     images: ['/og-image.jpg'],
   },
   robots: {
@@ -93,7 +93,6 @@ export default function RootLayout({
         />
         <OrganizationJsonLd />
         <WebsiteJsonLd />
-        <ServicesJsonLd />
       </head>
       <body
         className={`

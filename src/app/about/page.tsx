@@ -18,9 +18,18 @@ import {
 import { ACCENT_1, ACCENT_2 } from '@/lib';
 
 export const metadata: Metadata = {
-  title: 'About — Sites Pro',
+  title: 'About — How We Build Digital Products',
   description:
-    'Learn how Sites Pro works, our process, principles, and why we build product-grade websites.',
+    'How Sites Pro works: our discovery-to-launch process, engineering principles, and why we build product-grade websites, platforms and AI automations.',
+  alternates: {
+    canonical: '/about',
+  },
+  openGraph: {
+    url: '/about',
+    title: 'About Sites Pro — How We Build Digital Products',
+    description:
+      'Our discovery-to-launch process, engineering principles, and why we build product-grade websites, platforms and AI automations.',
+  },
 };
 
 const steps = [

@@ -1,0 +1,60 @@
+# Sites Pro
+
+> Sites Pro (SIA SitesPro) is a Latvia-based digital agency building product-grade
+> websites, web platforms and AI automations for clients across the EU and worldwide.
+> Working languages: English, Russian. Contact: info@sitespro.org
+
+## What we do
+
+- **Website development** — https://www.sitespro.org/services/web — high-performance
+  marketing, corporate and content websites built with Next.js, React and headless or
+  WordPress CMS. Core Web Vitals, accessibility and search visibility built in.
+- **Web platform development** — https://www.sitespro.org/services/web-platforms —
+  custom web applications, dashboards and internal tools. React/Next.js frontends,
+  Node.js APIs, PostgreSQL/MySQL/Redis data layers, integrations, cloud and CI/CD.
+- **AI & automations** — https://www.sitespro.org/services/ai — AI chatbots and
+  assistants, OpenAI and Anthropic API integration, RAG pipelines and vector
+  databases, n8n/Zapier and custom workflow automation, document processing.
+- **Digital consulting** — https://www.sitespro.org/services/consulting — payment
+  systems (Stripe, PayPal, Square, custom gateways), fintech architecture and
+  compliance, technology selection, technical audits and roadmaps.
+
+## Selected work
+
+- **Vadi** (https://vadi.lv) — our own accounting SaaS for Latvian sole traders and
+  small companies: tax calendar with calculated amounts, payroll with full gross-to-net
+  breakdown, VID EDS XML declarations, bank statement matching and eight free tax
+  calculators. Case study: https://www.sitespro.org/portfolio/vadi
+
+## Key pages
+
+- Home: https://www.sitespro.org/
+- Portfolio (all case studies): https://www.sitespro.org/portfolio
+- About and process: https://www.sitespro.org/about
+- Legal notice: https://www.sitespro.org/legal
+- Privacy policy: https://www.sitespro.org/privacy
+- Sitemap: https://www.sitespro.org/sitemap.xml
+
+## How we work
+
+Discovery & strategy → design & build → test, launch & scale. Agile delivery with
+regular updates and client involvement at every stage. Typical engagement starts with
+a free consultation and a tailored proposal covering scope, timeline and pricing.
+
+Commercial terms: 50% deposit to start, remainder on completion; milestone-based
+payments for larger projects. Cards, PayPal, SEPA and crypto accepted. Ongoing
+maintenance packages cover security updates, content changes, performance monitoring
+and technical support.
+
+## Technologies
+
+Next.js, React, TypeScript, Node.js, WordPress and WooCommerce, headless CMS,
+PostgreSQL, MySQL, Redis, OpenAI and Anthropic APIs, vector databases, n8n,
+Stripe and other payment providers, cloud hosting with CI/CD and observability.
+
+## Contact
+
+- Email: info@sitespro.org
+- LinkedIn: https://www.linkedin.com/company/sites-pro/
+- Telegram: https://t.me/IljaFinTech
+- Response time: usually within 24 hours

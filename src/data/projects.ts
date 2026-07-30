@@ -10,6 +10,8 @@ export interface Project {
   result?: string;
   image: string;
   images?: string[];
+  /** Square brand mark, shown next to the title on the case page. */
+  logo?: string;
   link?: string;
   facebook?: string;
   instagram?: string;
@@ -20,6 +22,59 @@ export interface Project {
 }
 
 export const projects: Project[] = [
+  {
+    slug: 'vadi',
+    title: 'Vadi',
+    category: 'Fintech',
+    description: 'Accounting SaaS for Latvian sole traders, micro-enterprises and small companies — invoices, payroll, taxes and VID EDS declarations in one system that tells you what is due, when and how much.',
+    challenge: `
+      Latvian bookkeeping punishes anyone without an accountant: VAT, payroll
+      taxes, MUN and CIT all run on their own deadlines and formulas, and the
+      cost of a mistake is a VID penalty. Build a product that a courier, an IT
+      freelancer or a five-person SIA can run alone — accurate enough to be
+      trusted with real tax filings, simple enough to need no accounting
+      background, and fast enough to set up in minutes. On top of that, the
+      product had to reach an audience that does not search for "accounting
+      software" — it searches for "how much tax do I pay on 1500 euro".
+    `,
+    solution: [
+      'Tax calendar as the core UX — every deadline with its already-calculated amount, one click from reminder to done',
+      'Payroll engine with a full gross-to-net breakdown: tax-free minimum, allowances, sick pay and holiday pay by average earnings',
+      'VAT, employer report and CIT generated as VID EDS XML; MUN declaration filed straight from the system via the EDS API',
+      'Bank statement import with automatic matching to invoices and expenses, and categorisation that learns recurring payments',
+      'PDF invoicing with VAT marks, plus camera and PDF receipt scanning — postings and VAT calculations appear on their own',
+      'Onboarding that pulls company details from the business register and sets up the chart of accounts — ready to work in about ten minutes',
+      'Eight free public tax calculators on current-year rates (salary gross↔net, self-employed, MUN, regime comparison, VAT, dividends and CIT, vacation pay, sick pay), each result shown with its full breakdown',
+      'Industry landing pages for couriers, taxi drivers, IT freelancers, beauty and wellness, e-commerce, trades and construction, tutors, consultants, retail, health and legal professionals',
+      'Multi-user access for accountants and teams, audit log of who changed what, and invite-only permissions',
+      'Data stored in an EU data centre with daily automatic backups',
+      'Three subscription tiers (€9 / €17 / €35 per month incl. VAT) with a 7-day trial that needs no payment card',
+      'Multilingual product and marketing site (LV / EN / RU) on Next.js, with a help and documentation portal',
+    ],
+    result: `
+      A self-serve accounting platform that removes the guesswork from Latvian
+      tax compliance: users always see what is due and when, declarations leave
+      the system in the exact format VID expects, and onboarding takes about ten
+      minutes instead of an accountant's onboarding call. The free calculators
+      and industry pages turn high-intent tax searches into an organic acquisition
+      channel that feeds the trial, while accountants get a shared workspace for
+      the clients they manage.
+    `,
+    image: '/projects/screenshots/vadi.jpg',
+    images: [
+      '/projects/screenshots/vadi.jpg',
+      '/projects/screenshots/vadi-features.jpg',
+      '/projects/screenshots/vadi-calculators.jpg',
+    ],
+    logo: '/projects/logos/vadi.svg',
+    link: 'https://vadi.lv/',
+    facebook: 'https://www.facebook.com/vadi.lv',
+    instagram: 'https://www.instagram.com/vadi.lv',
+    linkedin: 'https://www.linkedin.com/company/vadi-lv',
+    tiktok: 'https://www.tiktok.com/@vadi_lv',
+    youtube: 'https://www.youtube.com/@vadi-lv',
+  },
+
   {
     slug: 'bodybar',
     title: 'BodyBar',

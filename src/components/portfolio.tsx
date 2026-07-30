@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { Layers, ShoppingCart, Globe, Shield, Grid, ChevronDown } from 'lucide-react';
 import { projects } from '@/data/projects';
 import ProjectCard from '@/components/projectcard';
@@ -187,6 +188,20 @@ export default function Portfolio() {
             </button>
           </div>
         )}
+
+        {/* HUB LINK — crawlable entry point to every case study */}
+        <div className="mt-8 flex justify-center">
+          <Link
+            href="/portfolio"
+            className="
+              text-sm font-medium text-[var(--text-muted)]
+              underline-offset-4 transition-colors
+              hover:text-[var(--accent-1)] hover:underline
+            "
+          >
+            View all {projects.length} projects
+          </Link>
+        </div>
       </div>
     </section>
   );

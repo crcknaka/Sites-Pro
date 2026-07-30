@@ -8,8 +8,33 @@ import {
   ShieldCheck,
   Headphones,
 } from 'lucide-react';
+import type { Metadata } from 'next';
 import { ACCENT_1, ACCENT_2 } from '@/lib';
 import { WebPlatformInfographic } from '@/components/service-infographic';
+import {
+  ServiceJsonLd,
+  BreadcrumbJsonLd,
+  SERVICE_DEFINITIONS,
+} from '@/components/json-ld';
+
+const service = SERVICE_DEFINITIONS.find(
+  (s) => s.path === '/services/web-platforms',
+)!;
+
+export const metadata: Metadata = {
+  title: 'Web Platform & Custom Application Development',
+  description:
+    'Custom web platforms and applications built as systems: React and Next.js frontends, Node.js APIs, scalable databases, integrations and cloud infrastructure.',
+  alternates: {
+    canonical: '/services/web-platforms',
+  },
+  openGraph: {
+    url: '/services/web-platforms',
+    title: 'Web Platform & Custom Application Development | Sites Pro',
+    description:
+      'From internal tools and dashboards to business-critical platforms — architected for performance and long-term scale.',
+  },
+};
 
 /* ======================================================
    DATA
@@ -58,6 +83,12 @@ const additionalServices = [
 export default function WebPlatformsPage() {
   return (
     <main className="bg-[var(--bg)] text-[var(--fg)]">
+      <ServiceJsonLd service={service} />
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Web Platform Development', path: '/services/web-platforms' },
+        ]}
+      />
       {/* =====================================================
           HERO
       ====================================================== */}

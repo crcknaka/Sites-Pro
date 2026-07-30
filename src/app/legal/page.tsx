@@ -2,9 +2,13 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Legal Notice — Sites Pro',
+  title: 'Legal Notice',
   description:
     'Legal Notice for sitespro.org. Information about the operator, services, and liability disclaimer.',
+  alternates: {
+    canonical: '/legal',
+  },
+  openGraph: { url: '/legal' },
 };
 
 /* brand accents via CSS vars */
@@ -20,14 +24,14 @@ export default function LegalPage() {
 
         <div className="mt-8 space-y-8 text-[var(--text-muted)] leading-relaxed">
           <p>
-            This website, <a href="https://sitespro.org" className="text-[var(--accent-1)] hover:underline">sitespro.org</a>, is operated by <strong>SIA SitesPro</strong>, a company registered in Latvia, European Union.
+            This website, <a href="https://www.sitespro.org" className="text-[var(--accent-1)] hover:underline">sitespro.org</a>, is operated by <strong>SIA SitesPro</strong>, a company registered in Latvia, European Union.
           </p>
 
           <Section title="Operator Information">
             <ul className="space-y-2">
               <li><strong className="text-[var(--fg)]">Company:</strong> SIA SitesPro</li>
               <li><strong className="text-[var(--fg)]">Location:</strong> Latvia, European Union</li>
-              <li><strong className="text-[var(--fg)]">Website:</strong> <a href="https://sitespro.org" className="text-[var(--accent-1)] hover:underline">https://sitespro.org</a></li>
+              <li><strong className="text-[var(--fg)]">Website:</strong> <a href="https://www.sitespro.org" className="text-[var(--accent-1)] hover:underline">https://www.sitespro.org</a></li>
               <li><strong className="text-[var(--fg)]">Email:</strong> <a href="mailto:info@sitespro.org" className="text-[var(--accent-1)] hover:underline">info@sitespro.org</a></li>
               <li><strong className="text-[var(--fg)]">LinkedIn:</strong> <a href="https://www.linkedin.com/company/sites-pro/" target="_blank" rel="noreferrer" className="text-[var(--accent-1)] hover:underline">https://www.linkedin.com/company/sites-pro/</a></li>
             </ul>

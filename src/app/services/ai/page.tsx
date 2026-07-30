@@ -9,8 +9,31 @@ import {
   Sparkles,
   Bot,
 } from 'lucide-react';
+import type { Metadata } from 'next';
 import { ACCENT_1, ACCENT_2 } from '@/lib';
 import { AIInfographic } from '@/components/service-infographic';
+import {
+  ServiceJsonLd,
+  BreadcrumbJsonLd,
+  SERVICE_DEFINITIONS,
+} from '@/components/json-ld';
+
+const service = SERVICE_DEFINITIONS.find((s) => s.path === '/services/ai')!;
+
+export const metadata: Metadata = {
+  title: 'AI Automation & AI Integration Services',
+  description:
+    'AI automations built into real systems: chatbots and assistants, OpenAI and Anthropic API integration, RAG pipelines, document processing and workflow automation.',
+  alternates: {
+    canonical: '/services/ai',
+  },
+  openGraph: {
+    url: '/services/ai',
+    title: 'AI Automation & AI Integration Services | Sites Pro',
+    description:
+      'Chatbots, AI assistants, RAG pipelines and workflow automation integrated into your products and processes.',
+  },
+};
 
 /* ======================================================
    DATA
@@ -87,6 +110,10 @@ const useCases = [
 export default function AIPage() {
   return (
     <main className="bg-[var(--bg)] text-[var(--fg)]">
+      <ServiceJsonLd service={service} />
+      <BreadcrumbJsonLd
+        items={[{ name: 'AI & Automations', path: '/services/ai' }]}
+      />
       {/* =====================================================
           HERO
       ====================================================== */}
