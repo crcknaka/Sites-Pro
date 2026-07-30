@@ -125,7 +125,7 @@ export default async function WorkCase({
                   alt={`${project.title} logo`}
                   width={56}
                   height={56}
-                  className="h-9 w-9 sm:h-11 sm:w-11"
+                  className="h-9 w-9 sm:h-11 sm:w-11 object-contain"
                 />
               </span>
             )}

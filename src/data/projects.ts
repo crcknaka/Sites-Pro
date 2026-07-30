@@ -99,6 +99,7 @@ export const projects: Project[] = [
       from discovery to booking, while keeping content secure and easy to manage.
     `,
     image: '/projects/screenshots/bodybar.jpg',
+    logo: '/projects/logos/bodybar.png',
     link: 'https://bodybar.lv/',
     instagram: 'https://www.instagram.com/bodybar.lv/',
   },
@@ -123,6 +124,7 @@ export const projects: Project[] = [
       and supports long-term growth.
     `,
     image: '/projects/screenshots/lepicur.jpg',
+    logo: '/projects/logos/lepicur.png',
     link: 'https://lepicur.com/',
     facebook: 'https://www.facebook.com/lepicur/',
     instagram: 'https://www.instagram.com/lepicur/',
@@ -147,6 +149,7 @@ export const projects: Project[] = [
       A trustworthy and informative website that supports institutional goals.
     `,
     image: '/projects/screenshots/institut.jpg',
+    logo: '/projects/logos/institut-de-francais-nice.png',
     link: 'https://institutdefrancais-nice.com/',
     facebook: 'https://www.facebook.com/institutdefrancaisnice',
     instagram: 'https://www.instagram.com/institutdefrancais_nice',
@@ -177,6 +180,7 @@ export const projects: Project[] = [
       the breadth of game development expertise.
     `,
     image: '/projects/screenshots/madsword.jpg',
+    logo: '/projects/logos/madsword-studios.png',
     link: 'https://madswordstudios.com/',
     facebook: 'https://www.facebook.com/MadSwordStudio/',
     youtube: 'https://www.youtube.com/user/MadSwordStudio',
@@ -234,6 +238,7 @@ export const projects: Project[] = [
       fintech capabilities and builds confidence with enterprise clients.
     `,
     image: '/projects/screenshots/imun.jpg',
+    logo: '/projects/logos/imun.png',
     link: 'https://imungate.eu/',
   },
 
@@ -305,9 +310,11 @@ export const projects: Project[] = [
       A conversion-oriented e-commerce site that remains friendly and easy to use.
     `,
     image: '/projects/screenshots/pets-pro.jpg',
+    logo: '/projects/logos/pets-pro.png',
     link: 'https://pets-pro.eu/',
     instagram: 'https://www.instagram.com/pets_pro.eu',
     tiktok: 'https://www.tiktok.com/@petspro.eu',
+    facebook: 'https://www.facebook.com/people/Pets-proeu/100095118016104/',
   },
 
   {
@@ -356,7 +363,11 @@ export const projects: Project[] = [
       and credibility.
     `,
     image: '/projects/screenshots/goldberg.jpg',
+    logo: '/projects/logos/goldberg.png',
     link: 'https://goldberg.lv/',
+    facebook: 'https://www.facebook.com/goldberg.lv',
+    instagram: 'https://www.instagram.com/goldberg.dental',
+    tiktok: 'https://www.tiktok.com/@goldberg.dental.latvia',
   },
 
   {
@@ -420,6 +431,7 @@ export const projects: Project[] = [
       A niche platform that supports both discovery and community engagement.
     `,
     image: '/projects/screenshots/euc-one.jpg',
+    logo: '/projects/logos/euc-one.png',
     link: 'https://euc.one/',
     facebook: 'https://www.facebook.com/euconeofficial',
     instagram: 'https://www.instagram.com/euc.one',
@@ -443,6 +455,7 @@ export const projects: Project[] = [
       A focused utility app that delivers value instantly without friction.
     `,
     image: '/projects/screenshots/euc-calculator.jpg',
+    logo: '/projects/logos/euc-calculator.png',
     link: 'https://euc.one/calculator/',
     facebook: 'https://www.facebook.com/euconeofficial',
     instagram: 'https://www.instagram.com/euc.one',
@@ -491,6 +504,7 @@ export const projects: Project[] = [
       A robust e-commerce platform capable of handling scale and complexity.
     `,
     image: '/projects/screenshots/ekobaltika.jpg',
+    logo: '/projects/logos/ekobaltika.png',
     link: 'https://ekobaltika.lv/lv/',
     facebook: 'https://www.facebook.com/ekobaltika.lv',
   },
@@ -513,6 +527,7 @@ export const projects: Project[] = [
       A visually expressive store that still performs as a solid sales channel.
     `,
     image: '/projects/screenshots/bullulaivas.jpg',
+    logo: '/projects/logos/bullu-laivas.png',
     link: 'https://www.bullulaivas.lv/',
     facebook: 'https://www.facebook.com/bullulaivas/',
     instagram: 'https://www.instagram.com/bullu_laivas/',
@@ -569,6 +584,8 @@ export const projects: Project[] = [
     `,
     image: '/projects/screenshots/offshorelicense.jpg',
     link: 'https://www.offshorelicense.com/',
+    facebook: 'https://www.facebook.com/OffshorelicenseLTD/',
+    linkedin: 'https://www.linkedin.com/company/offshorelicense-ltd',
   },
 
   {
@@ -601,6 +618,7 @@ export const projects: Project[] = [
       '/projects/screenshots/wellton.jpg',
       '/projects/screenshots/wellton2.png',
     ],
+    logo: '/projects/logos/wellton.png',
     link: 'https://shop.wellton.com/',
     facebook: 'https://www.facebook.com/welltonhotels/',
     instagram: 'https://www.instagram.com/wellton_hotels/',
@@ -751,6 +769,7 @@ export const projects: Project[] = [
       explore solutions and request service.
     `,
     image: '/projects/screenshots/balticaqua.jpg',
+    logo: '/projects/logos/balticaqua.png',
     link: 'https://balticaqua.lv/',
   },
 
