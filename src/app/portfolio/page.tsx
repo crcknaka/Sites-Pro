@@ -83,14 +83,14 @@ export default function PortfolioIndex() {
       <header className="max-w-3xl">
         <p className="section-eyebrow">Portfolio</p>
         <h1 className="font-display mt-3 sm:mt-4 text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight">
-          Selected{' '}
+          All case{' '}
           <span
             className="bg-clip-text text-transparent"
             style={{
               backgroundImage: `linear-gradient(90deg, ${ACCENT_1}, ${ACCENT_2})`,
             }}
           >
-            work
+            studies
           </span>
         </h1>
         <p className="mt-5 text-base sm:text-lg text-[var(--text-muted)] leading-relaxed">

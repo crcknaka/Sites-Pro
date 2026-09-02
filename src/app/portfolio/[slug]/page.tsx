@@ -8,6 +8,7 @@ import { PortfolioLightbox } from '@/components/portfolio-lightbox';
 import { CategoryBadge } from '@/components/category-badge';
 import { ProjectJsonLd, BreadcrumbJsonLd } from '@/components/json-ld';
 import { TechIcon } from '@/components/tech-icons';
+import RelatedCases from '@/components/related-cases';
 
 const ACCENT_1 = 'var(--accent-1)';
 const ACCENT_2 = 'var(--accent-2)';
@@ -417,6 +418,8 @@ export default async function WorkCase({
         )}
       </div>
 
+      <RelatedCases current={project} />
+
       {/* =========================
          PREV / NEXT / BACK (Before CTA)
       ========================= */}
@@ -428,7 +431,7 @@ export default async function WorkCase({
         {/* Back button - always visible on top on mobile */}
         <div className="flex justify-center mb-4 sm:hidden">
           <Link
-            href="/#portfolio"
+            href="/portfolio"
             className="
               group
               inline-flex items-center justify-center gap-2
@@ -481,7 +484,7 @@ export default async function WorkCase({
 
           {/* Back Link - Center (desktop only) */}
           <Link
-            href="/#portfolio"
+            href="/portfolio"
             className="
               hidden sm:flex
               group

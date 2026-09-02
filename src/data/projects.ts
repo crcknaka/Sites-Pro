@@ -135,18 +135,25 @@ export const projects: Project[] = [
     services: ['web'],
     description: 'Luxury crystal tableware and home interior boutique — Baccarat, Christofle, Daum, Lalique and Bernardaud — in a design-led storefront built for slow, considered browsing.',
     challenge: `
-      Create a refined online presence that reflects the brand's premium
-      positioning while maintaining excellent performance and usability.
+      Lepicur sells the most demanding brands in tableware — Baccarat, Lalique,
+      Daum, Christofle, Bernardaud — to buyers who expect the online boutique to
+      feel like the physical one. The site had to carry that positioning while
+      still being a working store: fast, searchable, with a catalogue running
+      into thousands of pieces.
     `,
     solution: [
-      'Elegant, product-focused layout',
-      'Careful typography and spacing',
-      'Optimized media and assets',
-      'Scalable WordPress architecture',
+      'Brand-led navigation and a brands section — customers here shop by house first, category second',
+      'Restrained visual language: generous white space, editorial photography, a hero that sets tone rather than sells',
+      'Top products and new arrivals rows, wishlist and product comparison for considered purchases',
+      'Interior projects section that shows the pieces in situ and supports the studio\'s design work',
+      'Delivery and free-shipping threshold stated up front, phone contact in the header for concierge-style questions',
+      'WooCommerce catalogue tuned for performance despite heavy imagery, with newsletter capture',
     ],
     result: `
-      A calm, premium shopping experience that strengthens brand perception
-      and supports long-term growth.
+      A boutique that reads as luxury and works as a store: brand-first
+      browsing, considered-purchase tools and a catalogue that stays fast under
+      thousands of products — with the client managing every collection
+      themselves.
     `,
     image: '/projects/screenshots/lepicur.jpg',
     images: [
@@ -163,22 +170,32 @@ export const projects: Project[] = [
 
   {
     slug: 'institut-de-francais-nice',
-    title: 'Institut De Français Nice',
+    title: 'Institut de Français Nice',
     category: 'Websites',
     tech: ['WordPress', 'WooCommerce', 'Multilingual'],
     services: ['web'],
     description: 'Site for the Institut de Français language school in Nice — immersive programme structure, daily schedules and pricing by course length, with enrolment handled online.',
     challenge: `
-      Communicate credibility, clarity, and international accessibility.
+      The Institut de Français is a world-famous immersion school; the new Nice
+      branch needed a site that sells a four-week total-immersion method to
+      international students, explains a dense daily schedule and three
+      programme lengths, and takes enrolments online — in a market where the
+      school's reputation, not price, is the argument.
     `,
     solution: [
-      'Clear content hierarchy',
-      'Multilingual-ready structure',
-      'Editorial-style layouts',
-      'Accessible design choices',
+      'Programme structure made comparable at a glance: 2, 3 and 4 weeks (60, 90 and 120 hours) with what each includes',
+      'Daily schedule laid out as mornings (expert-led classes and repeater sessions) and afternoons (animated learning sessions), so applicants see the intensity before they apply',
+      'Transparent pricing per programme length, with what is and is not included',
+      'Video hero and a location section that leans on the setting — a few steps from the Grand Hôtel, the Coulée Verte and the old town',
+      'WooCommerce-backed application flow so enrolment and payment happen on the site',
+      'Live Instagram feed and links to Facebook, Instagram and TikTok to show the school in session',
+      'Multilingual WordPress build the school\'s team updates without a developer',
     ],
     result: `
-      A trustworthy and informative website that supports institutional goals.
+      A site that carries the Institut's reputation into a new city: students
+      can compare programmes, understand exactly how a day runs and enrol
+      without email back-and-forth, while the school controls every text and
+      price itself.
     `,
     image: '/projects/screenshots/institut.jpg',
     images: [
@@ -195,7 +212,7 @@ export const projects: Project[] = [
 
   {
     slug: 'madsword-studios',
-    title: 'Madsword Studios',
+    title: 'MadSword Studios',
     category: 'Websites',
     services: ['web'],
     description: 'Studio site for a mobile and VR game developer — a growing catalogue of iOS, Android and browser titles from TowerHex to Rigglebox VR, plus partnership and hiring sections.',
@@ -357,16 +374,24 @@ export const projects: Project[] = [
     services: ['web'],
     description: 'Pet supplies store with a multilingual catalogue — clothing, beds, toys and care products, with featured categories and a favourites list on the storefront.',
     challenge: `
-      Balance promotional content with product clarity and trustworthiness.
+      A pet-supplies retailer selling across the Baltics needed a store that
+      works like the big marketplaces shoppers are used to — fast browsing by
+      category, favourites, loyalty points, clear delivery terms — without a
+      marketplace budget, and with a small team running it in several languages.
     `,
     solution: [
-      'Clear promotional hierarchy',
-      'Trust-building visuals',
-      'Optimized checkout flow',
-      'Performance-focused setup',
+      'Storefront built around featured categories (clothing and shoes, beds, dog toys, care products) and seasonal campaign banners',
+      'Wishlist and a loyalty scheme: shoppers register, earn points with every purchase and spend them next time',
+      'Country-specific free-delivery thresholds shown on every page, so cross-border buyers know the rules up front',
+      'Promotional bar and campaign blocks (a −20% food line, for example) the team changes without touching the layout',
+      'Multilingual WooCommerce catalogue with Elementor-editable pages',
+      'Mailchimp newsletter capture and links to Instagram, TikTok and Facebook',
     ],
     result: `
-      A conversion-oriented e-commerce site that remains friendly and easy to use.
+      A Baltic-wide pet store the client operates alone: campaigns, prices and
+      delivery rules change in the back office, while shoppers get the
+      favourites, points and delivery clarity they expect from much bigger
+      stores.
     `,
     image: '/projects/screenshots/pets-pro.jpg',
     images: [
@@ -452,7 +477,7 @@ export const projects: Project[] = [
     title: 'Barberly',
     category: 'Websites',
     services: ['web'],
-    description: 'Where Style Meets Tradition. Experience the perfect blend of classic barbering techniques and modern style in the heart of the city.',
+    description: 'Barbershop website — classic barbering positioned as a premium experience, with services, the team, social proof and an online booking flow that works on a phone.',
     challenge: `
       Create an elegant booking-focused website that reflects the premium
       barbershop experience while making appointment scheduling simple and intuitive.
@@ -494,21 +519,32 @@ export const projects: Project[] = [
   {
     slug: 'euc-one',
     title: 'EUC.ONE',
-    category: 'Websites',
+    category: ['Apps', 'Websites'],
     tech: ['Vite', 'Progressive Web App', 'Interactive maps'],
     services: ['web-platforms'],
     description: 'Platform for electric unicycle riders — community content, routes and model data in an installable web app built to be used on a phone, mid-ride.',
     challenge: `
-      Combine community elements with structured product and content discovery.
+      Electric-unicycle riders in Latvia had their community scattered across
+      Telegram chats: where to charge, whether it is worth riding today, which
+      wheel to buy, where to learn. The brief was a single rider-built platform
+      that works on a phone mid-ride, installs without an app store, and gives
+      the community somewhere to add its own knowledge.
     `,
     solution: [
-      'Hybrid catalogue/community layout',
-      'Clear navigation paths',
-      'Scalable content structure',
-      'Mobile-friendly design',
+      'Spots map: chargers and riding spots nearby, searchable, with riders adding their own',
+      'Weather widget that turns the forecast into a riding verdict — "Dry — go ride", chance of rain — for the rider\'s city',
+      'Market for wheels and gear, with listings added by riders',
+      'Community gallery, training with an instructor, and an FAQ for people who have not bought their first wheel yet',
+      'Range calculator built in as a tool (see the EUC Calculator case)',
+      'Installable progressive web app — Android and iOS straight from the browser, no store listing needed',
+      'Telegram login and a Telegram group link, since that is where the community already lives',
+      'English and Russian interface',
     ],
     result: `
-      A niche platform that supports both discovery and community engagement.
+      The community's scattered knowledge now has one home that works at the
+      roadside: riders check the weather verdict, find a charger, add a spot or
+      a listing, and install it like an app — all from a browser, in either
+      language.
     `,
     image: '/projects/screenshots/euc-one.jpg',
     images: [
@@ -530,16 +566,25 @@ export const projects: Project[] = [
     services: ['web-platforms'],
     description: 'Interactive calculator for electric unicycle performance — a dark, data-first interface where inputs and results stay separated and every figure updates instantly.',
     challenge: `
-      Deliver a complex calculation tool in a simple and intuitive interface.
+      Range is the question every EUC buyer and rider asks, and the honest
+      answer depends on a dozen variables — rider weight, speed, tyre pressure,
+      temperature, riding style, battery degradation. The brief was a calculator
+      that takes all of them and still feels like a single screen, not a
+      spreadsheet.
     `,
     solution: [
-      'Dark UI with focus on data',
-      'Clear input/output separation',
-      'Fast client-side logic',
-      'Responsive layout',
+      'Wheel selection from a preset list (with a custom option for any other wheel) that pre-fills battery capacity',
+      'Riding parameters as toggles: riding style, tyre type, road surface, sitting or standing',
+      'Sliders for rider weight, average speed, tyre pressure and air temperature, each with unit switches (kg/lbs, km/h/mph, bar/psi, °C/°F)',
+      'Result shown two ways — expected range on a full battery and continuous ride time — with a relative range-quality indicator',
+      'Every factor explained in plain language under the result, including how battery degradation is treated',
+      'All calculation on the client, so results update instantly and the tool works inside the EUC.ONE progressive web app',
     ],
     result: `
-      A focused utility app that delivers value instantly without friction.
+      A calculator riders trust because it shows its work: move one slider and
+      the range and ride time update instantly, with the assumptions written out
+      rather than hidden — and it lives inside the EUC.ONE app, where the
+      decision gets made.
     `,
     image: '/projects/screenshots/euc-calculator.jpg',
     images: [
@@ -580,22 +625,31 @@ export const projects: Project[] = [
 
   {
     slug: 'ekobaltika',
-    title: 'Ekobaltika',
+    title: 'EkoBaltika',
     category: 'Commerce',
     tech: ['WordPress', 'WooCommerce', 'Multilingual'],
     services: ['web'],
     description: 'Laser cleaning of metal surfaces and CNC milling for wood and polymers, plus a tools web shop — services and products in one site, serving customers across Latvia.',
     challenge: `
-      Organize a very broad product range without sacrificing usability.
+      EkoBaltika does two different things — industrial services (laser cleaning
+      of metal, CNC milling of wood and polymers) and retail of tools and car
+      chemistry — for customers all over Latvia. One site had to sell both
+      without confusing a workshop owner looking for a service quote with a
+      hobbyist buying a wrench.
     `,
     solution: [
-      'Deep category structure',
-      'Efficient product listing',
-      'Optimized filtering',
-      'Performance tuning',
+      'One homepage, two clear paths: services with a quick cost-estimate request, and the web shop with new arrivals and popular categories',
+      'Product categories built for how customers search: tools for car repair, car chemistry, construction tools, metalworking tools',
+      'Trust block that answers the practical questions first — work across all of Latvia, pay by card or invoice, delivery or on-site pickup, help choosing',
+      'Service pages for laser cleaning and CNC milling with an individual-offer request form',
+      'Customer accounts with registration, and client-service hours and phone in the header',
+      'Multilingual WooCommerce build the team updates independently',
     ],
     result: `
-      A robust e-commerce platform capable of handling scale and complexity.
+      Services and retail now live on one domain without getting in each other's
+      way: workshops request a laser-cleaning or milling quote in a minute,
+      while shop customers browse, pay by card or invoice and pick up on site —
+      and the team manages both from one WordPress back office.
     `,
     image: '/projects/screenshots/ekobaltika.jpg',
     images: [
@@ -610,22 +664,32 @@ export const projects: Project[] = [
 
   {
     slug: 'bullu-laivas',
-    title: 'Bullu Laivas',
+    title: 'Buļļu Laivas',
     category: 'Commerce',
     tech: ['WordPress', 'WooCommerce', 'Multilingual'],
     services: ['web'],
     description: 'SUP and watersports shop — boards, paddles, wetsuits, clothing and gift cards, with a catalogue built for a seasonal range that turns over fast every summer.',
     challenge: `
-      Combine lifestyle branding with commercial functionality.
+      Buļļu Laivas is three businesses in one: Latvia's widest SUP board shop, a
+      rental fleet (SUP, kayaks, jet skis, e-foil, motorboats) and a calendar of
+      guided water events. The site had to sell boards, take rental bookings and
+      fill event dates — all in a season that lasts a few months, on a phone, on
+      the beach.
     `,
     solution: [
-      'Story-driven layouts',
-      'Strong imagery',
-      'Clear product CTAs',
-      'Mobile-optimized shopping',
+      'Shop-first homepage with the current sale, brand rows (Starboard, Shark, Gladiator, Aquatone, Yoloboard) and a "buy SUP" grid',
+      'Rental section with per-hour pricing for every craft — SUP, jet ski, boats and kayaks, catamaran, e-foil, motorboats',
+      'Events and corporate events with a calendar: sunrise SUP, river trips, group outings',
+      'Guides that shorten the sales conversation — SUP board types and a "which size board should I choose" article, with "try before you buy" as the pitch',
+      'Delivery rules in the top bar (free in Latvia above a threshold), gift cards, customer accounts',
+      'Mobile layout with a persistent shop / cart / account bar, since most traffic arrives from the beach',
+      'Multilingual WooCommerce catalogue the team restocks every spring',
     ],
     result: `
-      A visually expressive store that still performs as a solid sales channel.
+      One site now sells boards, books rentals and fills events for the season,
+      and the guides answer the questions the team used to answer by phone.
+      Everything is built for the mobile shopper who decides on the water, not
+      at a desk.
     `,
     image: '/projects/screenshots/bullulaivas.jpg',
     images: [
@@ -643,7 +707,7 @@ export const projects: Project[] = [
 
   {
     slug: 'annexe-de-francais',
-    title: 'Annexe De Français',
+    title: 'Annexe de Français',
     category: 'Websites',
     services: ['web'],
     description: 'Informational site for a French language school’s programmes and courses — clear content sections, trust-focused design and typography built for long reading.',
@@ -867,20 +931,20 @@ export const projects: Project[] = [
       devices when online, stays available when offline, and belongs to you.
       Train smarter, track progress, and stay motivated — completely free.
     `,
-    image: '/projects/screenshots/reppy/feature-graphic.png',
+    image: '/projects/screenshots/reppy/feature-graphic.jpg',
     images: [
-      '/projects/screenshots/reppy/feature-graphic.png',
-      '/projects/screenshots/reppy/workout-list.png',
-      '/projects/screenshots/reppy/workout-detail.png',
-      '/projects/screenshots/reppy/workouts.png',
-      '/projects/screenshots/reppy/progress.png',
+      '/projects/screenshots/reppy/workout-list.jpg',
+      '/projects/screenshots/reppy/workout-detail.jpg',
+      '/projects/screenshots/reppy/workouts.jpg',
+      '/projects/screenshots/reppy/progress.jpg',
+      '/projects/screenshots/reppy/feature-graphic.jpg',
     ],
     googlePlay: '',
   },
 
   {
     slug: 'balticaqua',
-    title: 'BalticAqua',
+    title: 'Baltic Aqua',
     category: 'Websites',
     tech: ['Next.js', 'React', 'Multilingual'],
     services: ['web'],
