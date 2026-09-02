@@ -21,6 +21,9 @@
 
 ## Selected work
 
+- **Web Studio CRM** — internal CRM for a web development company: cold-call lists, stage-guided
+  pipeline, project kanban and client portal, agreements and acceptance acts as PDF, recurring
+  invoicing through the accounting SaaS. Case study: https://www.sitespro.org/portfolio/agency-crm
 - **Liquid Silk** — interactive WebGL gallery of fourteen pointer-reactive shader scenes
   with generative Web Audio, one dependency-free HTML file. Live: https://crcknaka.github.io/liquid-silk/
   Case study: https://www.sitespro.org/portfolio/liquid-silk

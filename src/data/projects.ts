@@ -191,6 +191,53 @@ export const projects: Project[] = [
   },
 
   {
+    slug: 'agency-crm',
+    title: 'Web Studio CRM',
+    category: 'Apps',
+    status: 'Internal product · in daily use',
+    layout: 'landscape',
+    tech: ['Next.js', 'React', 'TypeScript', 'Supabase', 'PostgreSQL', 'Tailwind CSS', 'Row-level security', 'Email automation', 'PDF generation'],
+    services: ['web-platforms'],
+    description: 'CRM built for a web development company — cold-call lists, a stage-guided sales pipeline, projects with kanban and client portal, agreements and acceptance acts as PDF, invoicing through the accounting SaaS, email tracking and a shared calendar.',
+    challenge: `
+      A small web studio runs on the same few people doing sales, delivery and
+      billing, and off-the-shelf CRMs model none of that: cold-call lists that
+      turn into leads, a demo-first sales method with a script for every stage,
+      projects that need a kanban and a client-facing view, and documents that
+      must come out as proper Latvian agreements and acceptance acts. The brief
+      was one internal tool that follows the studio's actual process instead of
+      bending the process to the tool.
+    `,
+    solution: [
+      'Pre-lead lists for cold calling — status per company, callbacks, comments, one-click conversion into a lead',
+      'Sales pipeline with enforced stage transitions and stage guides: scripts, checklists and tips shown at the stage where they apply, lost reasons required on the way out',
+      'Lead workspace: contacts with multiple phones, call log with outcomes, follow-ups, a requirements questionnaire the client can fill via a signed link, activity history',
+      'Projects with a task kanban, checklists, comments with @mentions, files, encrypted credentials and support items; badge counts served by one database function',
+      'Client portal and an owner-only "view as client" preview, so the studio sees exactly what the customer sees',
+      'Documents: agreements and acceptance acts rendered from HTML templates to A4 PDF with headless Chrome; invoices drafted in the CRM and issued through the accounting platform, which owns numbering, VAT and payment status via a signed webhook',
+      'Monthly billing plans that issue and email recurring invoices unattended, resumable if a run fails, double-billing prevented by a database constraint',
+      'Email: templates, scheduled sends, open and reply tracking through an inbox poller, unsubscribe handling; shared calendar synced with Google',
+      'Reports on pipeline, revenue and team activity; notifications, news feed and a rich-text editor that keeps pasted formatting from Word and Docs',
+      'Multi-tenant from day one: organisations with owner and manager roles, row-level security on every table, credentials encrypted at rest',
+    ],
+    result: `
+      The studio's whole operating loop — find, call, qualify, build, bill,
+      support — lives in one app that mirrors how the team actually works. New
+      staff learn the sales method from the stage guides instead of a wiki,
+      recurring invoices go out without anyone remembering, and every client
+      document comes from a template rather than a copied file.
+    `,
+    image: '/projects/screenshots/crm/dashboard.jpg',
+    images: [
+      '/projects/screenshots/crm/dashboard.jpg',
+      '/projects/screenshots/crm/leads-board.jpg',
+      '/projects/screenshots/crm/project-detail.jpg',
+      '/projects/screenshots/crm/calendar.jpg',
+      '/projects/screenshots/crm/reports.jpg',
+    ],
+  },
+
+  {
     slug: 'bodybar',
     title: 'BodyBar',
     category: 'Commerce',
