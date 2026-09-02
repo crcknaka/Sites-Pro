@@ -1,6 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  images: {
+    // Local images are query-free except the card covers, which carry a
+    // cache-busting version — Next only allows that when it is listed here.
+    localPatterns: [
+      { pathname: '/**', search: '' },
+      { pathname: '/projects/covers/**', search: '?v=2' },
+    ],
+  },
   async headers() {
     return [
       {
