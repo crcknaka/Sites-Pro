@@ -92,8 +92,12 @@ export default async function WorkCase({
          IMAGE GALLERY (Mobile - at top)
       ========================= */}
       {images.length > 0 && (
-        <div className="lg:hidden mb-8">
-          <PortfolioLightbox images={images} projectTitle={project.title} />
+        <div className={project.layout === 'landscape' ? 'mb-8 lg:mb-12' : 'lg:hidden mb-8'}>
+          <PortfolioLightbox
+            images={images}
+            projectTitle={project.title}
+            orientation={project.layout === 'landscape' ? 'landscape' : 'portrait'}
+          />
         </div>
       )}
 
@@ -108,6 +112,11 @@ export default async function WorkCase({
           {/* Category Badge */}
           <div className="flex flex-wrap items-center gap-3">
             <CategoryBadge category={project.category as any} />
+            {project.status && (
+              <span className="rounded-full border border-[var(--border)] bg-[var(--surface)] px-3 py-1 text-xs font-medium text-[var(--text-muted)]">
+                {project.status}
+              </span>
+            )}
           </div>
 
           {/* Title — with brand mark when the project has one */}
@@ -413,7 +422,9 @@ export default async function WorkCase({
         {/* Desktop: sidebar gallery */}
         {images.length > 0 && (
           <div className="lg:col-span-1 hidden lg:block">
-            <PortfolioLightbox images={images} projectTitle={project.title} />
+            {project.layout !== 'landscape' && (
+              <PortfolioLightbox images={images} projectTitle={project.title} />
+            )}
           </div>
         )}
       </div>

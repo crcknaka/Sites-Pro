@@ -26,6 +26,10 @@ export interface Project {
   tech?: string[];
   /** Service pages this case belongs to — drives cross-linking in both directions. */
   services?: ServiceKey[];
+  /** Wide app screenshots: gallery goes full-width above the copy instead of the side column. */
+  layout?: 'landscape';
+  /** Short honest state, e.g. 'Prototype · road to MVP'. Shown as a badge next to the category. */
+  status?: string;
   link?: string;
   facebook?: string;
   instagram?: string;
@@ -89,6 +93,61 @@ export const projects: Project[] = [
     linkedin: 'https://www.linkedin.com/company/vadi-lv',
     tiktok: 'https://www.tiktok.com/@vadi_lv',
     youtube: 'https://www.youtube.com/@vadi-lv',
+  },
+
+  {
+    slug: 'payment-gateway',
+    title: 'White-label Payment Gateway',
+    category: ['Fintech', 'Apps'],
+    status: 'Prototype · road to MVP',
+    layout: 'landscape',
+    tech: ['Go', 'PostgreSQL', 'REST API', 'HMAC signing', 'State machine', 'Double-entry ledger', 'Docker'],
+    services: ['web-platforms', 'consulting'],
+    description: 'Payment orchestration core built for a fintech client — merchant API, payment state machine, double-entry ledger, cascading acquirer routing, settlements with rolling reserve and a white-label hosted checkout. Working prototype, acquirers simulated.',
+    challenge: `
+      A fintech client needed the core of a payment gateway before signing
+      acquirer contracts: something that proves the money model — how a payment
+      moves through its states, how client funds stay apart from fees, what
+      happens when an acquirer declines, times out or charges back — and that
+      partners could put their own brand on. One constraint shaped everything:
+      card data must never touch the system, so the build had to be honest
+      about its PCI posture from the first commit.
+    `,
+    solution: [
+      'Merchant REST API with idempotency keys, HMAC request signing, test and live key modes and rate limiting; the API reference is generated from the OpenAPI spec',
+      'Payment state machine with enforced transitions — create, capture (partial), refund (partial, multiple), void — and a per-payment event timeline with every provider attempt',
+      'Double-entry ledger in integer minor units; client funds kept apart from fee revenue, the safeguarding shape payment regulators expect',
+      'Provider routing that cascades only on retryable declines; an acquirer timeout parks the payment in processing instead of authorising the same card twice',
+      'Adaptive routing that ranks acquirers by observed authorisation rate with 10% exploration, and a route tester that dry-runs any payment through the live rules',
+      'Transactional outbox feeding signed merchant webhooks, with exponential backoff and a dead-letter queue that can be replayed by hand',
+      'Funding and settlements on the same ledger: acquirer statements reconciled line by line, rolling reserve held and released after T+N banking days, FX at the ECB reference rate less a spread',
+      'Chargebacks modelled end to end — funds leave when the case opens, the fee is charged either way, a merchant whose balance no longer covers it ends up owing it',
+      'White-label tenants managed from Settings: partner branding on checkout and portal, revenue share posted to the ledger on every capture',
+      'Hosted checkout with zero JavaScript and no third-party resources — an empty PCI script inventory that cannot drift, with a 3-D Secure challenge branch',
+      'Operator console (dashboard, payments, merchants, routing control room, ledger with integrity checks, payouts) and a read-only merchant portal opened by signed link',
+      'One Go binary with templates and assets embedded, PostgreSQL, CI, and a demo seed spread over 30 days so every screen looks real',
+    ],
+    result: `
+      A working prototype that runs the whole money cycle — authorise, capture,
+      webhook, settle, reserve, reconcile, charge back — against simulated
+      acquirers, with the seams (engine, router, providers, workers) already
+      where the production services will be. Deliberately not built yet: real
+      acquirer adapters, KYB and AML onboarding, cardholder payouts and merchant
+      sign-in. That is the MVP roadmap, and the client can now scope it against
+      something that runs.
+    `,
+    image: '/projects/screenshots/gateway/dashboard.jpg',
+    logo: '/projects/logos/payment-gateway.svg',
+    images: [
+      '/projects/screenshots/gateway/dashboard.jpg',
+      '/projects/screenshots/gateway/payments.jpg',
+      '/projects/screenshots/gateway/payment-detail.jpg',
+      '/projects/screenshots/gateway/routing.jpg',
+      '/projects/screenshots/gateway/ledger.jpg',
+      '/projects/screenshots/gateway/payouts.jpg',
+      '/projects/screenshots/gateway/merchant-portal.jpg',
+      '/projects/screenshots/gateway/checkout.jpg',
+    ],
   },
 
   {

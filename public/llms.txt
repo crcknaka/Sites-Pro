@@ -21,6 +21,10 @@
 
 ## Selected work
 
+- **White-label payment gateway** — prototype of a payment orchestration core for a fintech
+  client: merchant API, payment state machine, double-entry ledger, cascading acquirer
+  routing, settlements with rolling reserve, zero-JavaScript hosted checkout. Case study:
+  https://www.sitespro.org/portfolio/payment-gateway
 - **Vadi** (https://vadi.lv) — our own accounting SaaS for Latvian sole traders and
   small companies: tax calendar with calculated amounts, payroll with full gross-to-net
   breakdown, VID EDS XML declarations, bank statement matching and eight free tax

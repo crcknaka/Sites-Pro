@@ -29,9 +29,15 @@ const blurDataURL = `data:image/svg+xml;base64,${toBase64(shimmer(800, 1200))}`;
 interface LightboxProps {
   images: string[];
   projectTitle: string;
+  /** landscape = 16:10 frame for dashboards and app screens */
+  orientation?: 'portrait' | 'landscape';
 }
 
-export function PortfolioLightbox({ images, projectTitle }: LightboxProps) {
+export function PortfolioLightbox({
+  images,
+  projectTitle,
+  orientation = 'portrait',
+}: LightboxProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [touchStart, setTouchStart] = useState<number | null>(null);
@@ -139,7 +145,7 @@ export function PortfolioLightbox({ images, projectTitle }: LightboxProps) {
               "
               aria-label={`View ${projectTitle} image ${currentIndex + 1} in fullscreen`}
             >
-              <div className="relative w-full aspect-[4/5] sm:aspect-[3/4] lg:aspect-[4/5]">
+              <div className={orientation === 'landscape' ? 'relative w-full aspect-[16/10]' : 'relative w-full aspect-[4/5] sm:aspect-[3/4] lg:aspect-[4/5]'}>
                 <Image
                   src={images[currentIndex]}
                   alt={`${projectTitle} preview ${currentIndex + 1}`}

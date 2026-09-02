@@ -285,6 +285,7 @@ export function ProjectJsonLd({ project }: { project: Project }) {
         genre: categories,
         inLanguage: 'en',
         ...(project.tech?.length ? { keywords: project.tech.join(', ') } : {}),
+        ...(project.status ? { creativeWorkStatus: project.status } : {}),
         ...(project.services?.length
           ? {
               about: project.services.map((key) => ({
