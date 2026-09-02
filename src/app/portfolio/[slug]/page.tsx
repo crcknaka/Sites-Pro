@@ -92,7 +92,7 @@ export default async function WorkCase({
          IMAGE GALLERY (Mobile - at top)
       ========================= */}
       {images.length > 0 && (
-        <div className={project.layout === 'landscape' ? 'mb-8 lg:mb-12' : 'lg:hidden mb-8'}>
+        <div className="lg:hidden mb-8">
           <PortfolioLightbox
             images={images}
             projectTitle={project.title}
@@ -104,11 +104,21 @@ export default async function WorkCase({
       {/* =========================
          TWO COLUMN LAYOUT
       ========================= */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-16">
+      <div
+        className={
+          project.layout === 'landscape'
+            ? 'grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12'
+            : 'grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-16'
+        }
+      >
         {/* =========================
            LEFT — CONTENT
         ========================= */}
-        <div className="lg:col-span-2 space-y-6 sm:space-y-8">
+        <div
+          className={`${
+            project.layout === 'landscape' ? 'lg:col-span-3' : 'lg:col-span-2'
+          } space-y-6 sm:space-y-8`}
+        >
           {/* Category Badge */}
           <div className="flex flex-wrap items-center gap-3">
             <CategoryBadge category={project.category as any} />
@@ -421,10 +431,16 @@ export default async function WorkCase({
         ========================= */}
         {/* Desktop: sidebar gallery */}
         {images.length > 0 && (
-          <div className="lg:col-span-1 hidden lg:block">
-            {project.layout !== 'landscape' && (
-              <PortfolioLightbox images={images} projectTitle={project.title} />
-            )}
+          <div
+            className={`${
+              project.layout === 'landscape' ? 'lg:col-span-2' : 'lg:col-span-1'
+            } hidden lg:block`}
+          >
+            <PortfolioLightbox
+              images={images}
+              projectTitle={project.title}
+              orientation={project.layout === 'landscape' ? 'landscape' : 'portrait'}
+            />
           </div>
         )}
       </div>

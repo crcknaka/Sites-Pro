@@ -101,12 +101,39 @@ export default function PortfolioIndex() {
         </p>
       </header>
 
+      {/* Jump links — the page lists every case, so give the reader a way to skip ahead */}
+      <nav aria-label="Categories" className="mt-8 flex flex-wrap gap-2">
+        {CATEGORY_ORDER.map((category) => {
+          const count = projects.filter((p) => inCategory(p, category)).length;
+          if (count === 0) return null;
+          return (
+            <a
+              key={category}
+              href={`#${category.toLowerCase()}`}
+              className="
+                inline-flex items-center gap-2 rounded-full
+                border border-[var(--border)] bg-[var(--surface)]
+                px-4 py-2 text-sm font-medium text-[var(--text-muted)]
+                transition-colors hover:border-[var(--accent-1)]/40 hover:text-[var(--fg)]
+              "
+            >
+              {category}
+              <span className="text-xs opacity-70">{count}</span>
+            </a>
+          );
+        })}
+      </nav>
+
       {CATEGORY_ORDER.map((category) => {
         const items = projects.filter((p) => inCategory(p, category));
         if (items.length === 0) return null;
 
         return (
-          <section key={category} className="mt-16 sm:mt-20">
+          <section
+            key={category}
+            id={category.toLowerCase()}
+            className="mt-16 sm:mt-20 scroll-mt-28"
+          >
             <h2 className="font-display text-xl sm:text-2xl font-semibold tracking-tight">
               {category}
             </h2>
