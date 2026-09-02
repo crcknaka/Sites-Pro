@@ -140,14 +140,54 @@ export const projects: Project[] = [
     logo: '/projects/logos/payment-gateway.svg',
     images: [
       '/projects/screenshots/gateway/dashboard.jpg',
-      '/projects/screenshots/gateway/payments.jpg',
       '/projects/screenshots/gateway/payment-detail.jpg',
       '/projects/screenshots/gateway/routing.jpg',
-      '/projects/screenshots/gateway/ledger.jpg',
       '/projects/screenshots/gateway/payouts.jpg',
-      '/projects/screenshots/gateway/merchant-portal.jpg',
       '/projects/screenshots/gateway/checkout.jpg',
     ],
+  },
+
+  {
+    slug: 'liquid-silk',
+    title: 'Liquid Silk',
+    category: 'Apps',
+    layout: 'landscape',
+    tech: ['WebGL', 'GLSL shaders', 'Web Audio', 'Zero dependencies'],
+    services: ['web-platforms'],
+    description: 'Interactive WebGL gallery of fourteen pointer-reactive scenes — liquid gold, a solar eclipse, ion storms, a living map — each with its own generative soundtrack. One HTML file, no dependencies, no build step.',
+    challenge: `
+      Show what a browser can do with nothing but a fragment shader: fourteen
+      distinct scenes that react to every pointer movement, sound that is
+      synthesised live rather than played from files, and all of it tuned for
+      a trackpad — pinch, two-finger scroll, force click — while holding 60 fps
+      on a Retina display and not going black when the GPU drops the context.
+    `,
+    solution: [
+      'Fourteen fragment-shader scenes on pure WebGL 1, sharing one input pipeline: pointer trail, ripples, hue, flow direction and zoom',
+      'Scene-specific optics — specular lighting from the cursor, chromatic dispersion on glass edges, ray-marched light shafts, thin-film iridescence, gravitational lensing',
+      'A CPU particle scene with 3 000 bodies: attraction, swirl forces and shockwave impulses rendered as additive point sprites',
+      'Generative sound in Web Audio with zero audio files — every scene gets its own drone chord, wind colour and pluck voice; wind follows pointer speed, pitch follows the hue dial',
+      'Trackpad-first controls: two-finger scroll shifts palette and rotates flow, pinch zooms, click sends a shockwave, force click dimples the scene; touch equivalents on phones',
+      'Adaptive quality — a frame-time average scales render resolution so heavy scenes hold 60 fps, deep idle halves the frame rate to save battery, DPR capped at 2',
+      'Survives GPU context loss by rebuilding programs and buffers on restore; respects prefers-reduced-motion',
+      'Custom cursor with difference blend, scene rail, per-scene hero titles, film grain, vignette and a filmic tone curve — all in a single dependency-free HTML file',
+    ],
+    result: `
+      A screensaver-grade WebGL piece that opens from a single file in any
+      modern browser, runs smoothly on a laptop GPU, and doubles as a living
+      reference for shader techniques we reuse in client work: procedural
+      lighting, particle systems, adaptive rendering budgets and synthesised
+      audio without a single asset download.
+    `,
+    image: '/projects/screenshots/liquid-silk/scene-01.jpg',
+    images: [
+      '/projects/screenshots/liquid-silk/scene-01.jpg',
+      '/projects/screenshots/liquid-silk/scene-02.jpg',
+      '/projects/screenshots/liquid-silk/scene-04.jpg',
+      '/projects/screenshots/liquid-silk/scene-08.jpg',
+      '/projects/screenshots/liquid-silk/scene-14.jpg',
+    ],
+    link: 'https://crcknaka.github.io/liquid-silk/',
   },
 
   {

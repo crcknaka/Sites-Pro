@@ -21,6 +21,9 @@
 
 ## Selected work
 
+- **Liquid Silk** — interactive WebGL gallery of fourteen pointer-reactive shader scenes
+  with generative Web Audio, one dependency-free HTML file. Live: https://crcknaka.github.io/liquid-silk/
+  Case study: https://www.sitespro.org/portfolio/liquid-silk
 - **White-label payment gateway** — prototype of a payment orchestration core for a fintech
   client: merchant API, payment state machine, double-entry ledger, cascading acquirer
   routing, settlements with rolling reserve, zero-JavaScript hosted checkout. Case study:
