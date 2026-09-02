@@ -136,7 +136,7 @@ export const projects: Project[] = [
       sign-in. That is the MVP roadmap, and the client can now scope it against
       something that runs.
     `,
-    image: '/projects/screenshots/gateway/dashboard.jpg',
+    image: '/projects/screenshots/gateway/cover.jpg',
     logo: '/projects/logos/payment-gateway.svg',
     images: [
       '/projects/screenshots/gateway/dashboard.jpg',
@@ -179,7 +179,7 @@ export const projects: Project[] = [
       lighting, particle systems, adaptive rendering budgets and synthesised
       audio without a single asset download.
     `,
-    image: '/projects/screenshots/liquid-silk/scene-01.jpg',
+    image: '/projects/screenshots/liquid-silk/cover.jpg',
     images: [
       '/projects/screenshots/liquid-silk/scene-01.jpg',
       '/projects/screenshots/liquid-silk/scene-02.jpg',
@@ -227,7 +227,7 @@ export const projects: Project[] = [
       recurring invoices go out without anyone remembering, and every client
       document comes from a template rather than a copied file.
     `,
-    image: '/projects/screenshots/crm/dashboard.jpg',
+    image: '/projects/screenshots/crm/cover.jpg',
     images: [
       '/projects/screenshots/crm/dashboard.jpg',
       '/projects/screenshots/crm/leads-board.jpg',
