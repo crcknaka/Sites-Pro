@@ -39,6 +39,8 @@ export async function generateMetadata({
     ? project.category.join(', ')
     : project.category;
   const description = project.description.replace(/\s+/g, ' ').trim();
+  // the card image is a transparent cutout — social previews get the real screenshot
+  const preview = project.images?.[0] ?? project.image;
   const url = `/portfolio/${project.slug}`;
 
   return {
@@ -52,13 +54,13 @@ export async function generateMetadata({
       url,
       title: `${project.title} — ${categories} Case Study | Sites Pro`,
       description,
-      images: [{ url: project.image, alt: `${project.title} — project screenshot` }],
+      images: [{ url: preview, alt: `${project.title} — project screenshot` }],
     },
     twitter: {
       card: 'summary_large_image',
       title: `${project.title} — ${categories} Case Study`,
       description,
-      images: [project.image],
+      images: [preview],
     },
   };
 }

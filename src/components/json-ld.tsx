@@ -281,7 +281,7 @@ export function ProjectJsonLd({ project }: { project: Project }) {
         headline: `${project.title} — ${categories.join(', ')} case study`,
         description: project.description.trim(),
         url,
-        image: `${SITE_URL}${project.image}`,
+        image: `${SITE_URL}${project.images?.[0] ?? project.image}`,
         genre: categories,
         inLanguage: 'en',
         ...(project.tech?.length ? { keywords: project.tech.join(', ') } : {}),
