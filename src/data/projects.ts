@@ -316,7 +316,7 @@ export const projects: Project[] = [
 
   {
     slug: 'institut-de-francais-nice',
-    title: 'Institut de Français Nice',
+    title: 'Institut de Français — Nice',
     category: 'Websites',
     tech: ['WordPress', 'WooCommerce', 'Multilingual'],
     services: ['web'],
@@ -354,6 +354,51 @@ export const projects: Project[] = [
     facebook: 'https://www.facebook.com/institutdefrancaisnice',
     instagram: 'https://www.instagram.com/institutdefrancais_nice',
     tiktok: 'https://www.tiktok.com/@institutdefrancais_nice',
+  },
+
+  {
+    slug: 'institut-de-francais-villefranche',
+    title: 'Institut de Français — Villefranche',
+    category: 'Websites',
+    tech: ['WordPress', 'WooCommerce', 'Multilingual'],
+    services: ['web'],
+    description: 'Website of the original Institut de Français in Villefranche-sur-Mer — a total-immersion French school with 55 years of history: method, eight levels, daily schedule, fees, accommodation and online enrolment, in six languages.',
+    challenge: `
+      The Institut de Français has taught French by total immersion on the
+      Riviera for more than 55 years, with press coverage and decades of
+      testimonials to show for it. Its site had to carry that reputation to an
+      international audience while answering every practical question a
+      student asks before committing four weeks and €5,800 — method, levels, a
+      typical day, meals, accommodation, calendar, even the weather — in the
+      student's own language, and take the application online.
+    `,
+    solution: [
+      'Programme built around the three intensive formats — 4 weeks / 160 h, 3 weeks / 120 h, 2 weeks / 80 h — with fees stated openly rather than on request',
+      'The method explained the way the school teaches it: small groups, language laboratory and practical sessions, role plays, films and songs, continuous speaking, individual correction of characteristic errors, eight levels',
+      'Everything a student wants to know before booking: daily schedule and meals, recreation and weather, teachers, the location in Villefranche-sur-Mer, accommodation, calendar',
+      'Proof before the pitch: The New York Times and TIME coverage, Google reviews and testimonials, an Instagram feed straight from the classroom',
+      'Application form and online enrolment on WooCommerce, plus newsletter capture',
+      'Six languages — English, Russian, Ukrainian, German, Italian, Spanish — with hreflang so each market lands on its own version',
+      'Cross-promotion of the new Nice school from the header, and a blog and FAQ aimed at the long-tail searches: learn French in France, French immersion courses',
+    ],
+    result: `
+      A site that reads like the institution it represents: a prospective
+      student can compare the three programmes, see what a day looks like,
+      check fees and dates, read what the press and former students said, and
+      apply — without a single email — in any of six languages. It also became
+      the launch pad for the school's second campus in Nice.
+    `,
+    image: '/projects/covers/institut-de-francais-villefranche.webp?v=2',
+    images: [
+      '/projects/screenshots/institut-villefranche.jpg',
+      '/projects/screenshots/institut-villefranche-3.jpg',
+      '/projects/screenshots/institut-villefranche-2.jpg',
+      '/projects/screenshots/institut-villefranche-4.jpg',
+    ],
+    logo: '/projects/logos/institut-de-francais-villefranche.png',
+    link: 'https://www.institutdefrancais.com/',
+    facebook: 'https://www.facebook.com/annexedefrancais',
+    instagram: 'https://www.instagram.com/institutdefrancais/',
   },
 
   {
@@ -869,29 +914,6 @@ export const projects: Project[] = [
     youtube: 'https://www.youtube.com/channel/UCDurFuw59Rdw3_vcfk6ZJJw',
   },
 
-  {
-    slug: 'annexe-de-francais',
-    title: 'Annexe de Français',
-    category: 'Websites',
-    services: ['web'],
-    description: 'Informational site for a French language school’s programmes and courses — clear content sections, trust-focused design and typography built for long reading.',
-    challenge: `
-      Present educational offerings clearly to an international audience.
-    `,
-    solution: [
-      'Clear content sections',
-      'Simple navigation',
-      'Trust-focused design',
-      'Readable typography',
-    ],
-    result: `
-      An informative and approachable website supporting educational outreach.
-    `,
-    image: '/projects/covers/annexe-de-francais.webp?v=2',
-    images: [
-      '/projects/screenshots/annexedefrancais.jpg',
-    ],
-  },
 
   
 
