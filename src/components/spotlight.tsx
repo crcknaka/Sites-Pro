@@ -29,7 +29,7 @@ export default function Spotlight() {
             aria-label="Vadi case study"
           >
             <Image
-              src="/projects/spotlight/vadi-dashboard.jpg"
+              src="/projects/spotlight/vadi-overview.jpg"
               alt="Vadi dashboard — July overview with income, expenses, result and the tax calendar"
               width={1440}
               height={900}

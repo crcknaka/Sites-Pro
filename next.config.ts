@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
     // cache-busting version — Next only allows that when it is listed here.
     localPatterns: [
       { pathname: '/**', search: '' },
-      { pathname: '/projects/covers/**', search: '?v=3' },
+      { pathname: '/projects/**', search: '?v=4' },
     ],
   },
   // Canonical host is www; the apex answered 200 with the same content.
