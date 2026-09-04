@@ -44,6 +44,7 @@ export const projects: Project[] = [
     slug: 'vadi',
     title: 'Vadi',
     category: 'Fintech',
+    layout: 'landscape',
     tech: ['Next.js', 'React', 'VID EDS API', 'Multilingual (LV/EN/RU)'],
     services: ['web-platforms', 'consulting'],
     description: 'Accounting SaaS for Latvian sole traders, micro-enterprises and small companies — invoices, payroll, taxes and VID EDS declarations in one system that tells you what is due, when and how much.',
@@ -80,11 +81,12 @@ export const projects: Project[] = [
       channel that feeds the trial, while accountants get a shared workspace for
       the clients they manage.
     `,
-    image: '/projects/covers/vadi.webp?v=2',
+    image: '/projects/covers/vadi.webp?v=3',
     images: [
-      '/projects/screenshots/vadi.jpg',
-      '/projects/screenshots/vadi-features.jpg',
-      '/projects/screenshots/vadi-calculators.jpg',
+      '/projects/screenshots/vadi-dashboard.jpg',
+      '/projects/screenshots/vadi-finances.jpg',
+      '/projects/screenshots/vadi-income.jpg',
+      '/projects/screenshots/vadi-tax-calendar.jpg',
     ],
     logo: '/projects/logos/vadi.svg',
     link: 'https://vadi.lv/',
@@ -136,7 +138,7 @@ export const projects: Project[] = [
       sign-in. That is the MVP roadmap, and the client can now scope it against
       something that runs.
     `,
-    image: '/projects/covers/payment-gateway.webp?v=2',
+    image: '/projects/covers/payment-gateway.webp?v=3',
     logo: '/projects/logos/payment-gateway.svg',
     images: [
       '/projects/screenshots/gateway/dashboard.jpg',
@@ -179,7 +181,7 @@ export const projects: Project[] = [
       lighting, particle systems, adaptive rendering budgets and synthesised
       audio without a single asset download.
     `,
-    image: '/projects/covers/liquid-silk.webp?v=2',
+    image: '/projects/covers/liquid-silk.webp?v=3',
     images: [
       '/projects/screenshots/liquid-silk/scene-01.jpg',
       '/projects/screenshots/liquid-silk/scene-02.jpg',
@@ -227,7 +229,7 @@ export const projects: Project[] = [
       recurring invoices go out without anyone remembering, and every client
       document comes from a template rather than a copied file.
     `,
-    image: '/projects/covers/agency-crm.webp?v=2',
+    image: '/projects/covers/agency-crm.webp?v=3',
     images: [
       '/projects/screenshots/crm/dashboard.jpg',
       '/projects/screenshots/crm/leads-board.jpg',
@@ -262,7 +264,7 @@ export const projects: Project[] = [
       confidence, energy and harmony — giving clients a seamless experience
       from discovery to booking, while keeping content secure and easy to manage.
     `,
-    image: '/projects/covers/bodybar.webp?v=2',
+    image: '/projects/covers/bodybar.webp?v=3',
     images: [
       '/projects/screenshots/bodybar.jpg',
       '/projects/screenshots/bodybar-2.jpg',
@@ -301,7 +303,7 @@ export const projects: Project[] = [
       thousands of products — with the client managing every collection
       themselves.
     `,
-    image: '/projects/covers/lepicur.webp?v=2',
+    image: '/projects/covers/lepicur.webp?v=3',
     images: [
       '/projects/screenshots/lepicur.jpg',
       '/projects/screenshots/lepicur-2.jpg',
@@ -343,7 +345,7 @@ export const projects: Project[] = [
       without email back-and-forth, while the school controls every text and
       price itself.
     `,
-    image: '/projects/covers/institut-de-francais-nice.webp?v=2',
+    image: '/projects/covers/institut-de-francais-nice.webp?v=3',
     images: [
       '/projects/screenshots/institut.jpg',
       '/projects/screenshots/institut-de-francais-nice-2.jpg',
@@ -388,7 +390,7 @@ export const projects: Project[] = [
       apply — without a single email — in any of six languages. It also became
       the launch pad for the school's second campus in Nice.
     `,
-    image: '/projects/covers/institut-de-francais-villefranche.webp?v=2',
+    image: '/projects/covers/institut-de-francais-villefranche.webp?v=3',
     images: [
       '/projects/screenshots/institut-villefranche.jpg',
       '/projects/screenshots/institut-villefranche-3.jpg',
@@ -425,7 +427,7 @@ export const projects: Project[] = [
       track record and technical capabilities, attracting partnerships and showcasing
       the breadth of game development expertise.
     `,
-    image: '/projects/covers/madsword-studios.webp?v=2',
+    image: '/projects/covers/madsword-studios.webp?v=3',
     images: [
       '/projects/screenshots/madsword.jpg',
       '/projects/screenshots/madsword-studios-2.jpg',
@@ -464,7 +466,7 @@ export const projects: Project[] = [
       expertise and commitment to client security, building trust through transparency
       and demonstrating the comprehensive approach to information security protection.
     `,
-    image: '/projects/covers/sensora.webp?v=2',
+    image: '/projects/covers/sensora.webp?v=3',
     images: [
       '/projects/screenshots/sensora.jpg',
       '/projects/screenshots/sensora-2.jpg',
@@ -496,7 +498,7 @@ export const projects: Project[] = [
       A credible and informative platform that effectively communicates Imun's
       fintech capabilities and builds confidence with enterprise clients.
     `,
-    image: '/projects/covers/imun.webp?v=2',
+    image: '/projects/covers/imun.webp?v=3',
     images: [
       '/projects/screenshots/imun.jpg',
       '/projects/screenshots/imun-2.jpg',
@@ -528,7 +530,7 @@ export const projects: Project[] = [
       A scalable online store that makes browsing a large catalogue intuitive
       and efficient.
     `,
-    image: '/projects/covers/ma-sunglasses.webp?v=2',
+    image: '/projects/covers/ma-sunglasses.webp?v=3',
     images: [
       '/projects/screenshots/masunglasses.jpg',
     ],
@@ -556,7 +558,7 @@ export const projects: Project[] = [
       A visually engaging catalogue that highlights products without
       distracting from content.
     `,
-    image: '/projects/covers/sunachates.webp?v=2',
+    image: '/projects/covers/sunachates.webp?v=3',
     images: [
       '/projects/screenshots/sunachates.jpg',
     ],
@@ -590,7 +592,7 @@ export const projects: Project[] = [
       favourites, points and delivery clarity they expect from much bigger
       stores.
     `,
-    image: '/projects/covers/pets-pro.webp?v=2',
+    image: '/projects/covers/pets-pro.webp?v=3',
     images: [
       '/projects/screenshots/pets-pro.jpg',
       '/projects/screenshots/pets-pro-2.jpg',
@@ -621,7 +623,7 @@ export const projects: Project[] = [
     result: `
       A dynamic yet controlled layout suitable for frequently changing content.
     `,
-    image: '/projects/covers/on-air-emotions.webp?v=2',
+    image: '/projects/covers/on-air-emotions.webp?v=3',
     images: [
       '/projects/screenshots/onairemotions.jpg',
     ],
@@ -660,7 +662,7 @@ export const projects: Project[] = [
       consumable in a couple of clicks, and where the distributor can expand the
       range across markets without touching the design or calling us.
     `,
-    image: '/projects/covers/goldberg.webp?v=2',
+    image: '/projects/covers/goldberg.webp?v=3',
     images: [
       '/projects/screenshots/goldberg.jpg',
       '/projects/screenshots/goldberg-2.jpg',
@@ -692,7 +694,7 @@ export const projects: Project[] = [
       A sophisticated website that captures the essence of classic barbering
       while providing a seamless booking experience for clients.
     `,
-    image: '/projects/covers/barberly.webp?v=2',
+    image: '/projects/covers/barberly.webp?v=3',
     images: [
       '/projects/screenshots/barberly.jpg',
     ],
@@ -716,7 +718,7 @@ export const projects: Project[] = [
     result: `
       A practical catalogue that supports both marketing and sales use cases.
     `,
-    image: '/projects/covers/finnex.webp?v=2',
+    image: '/projects/covers/finnex.webp?v=3',
     images: [
       '/projects/screenshots/finnex.jpg',
     ],
@@ -752,7 +754,7 @@ export const projects: Project[] = [
       a listing, and install it like an app — all from a browser, in either
       language.
     `,
-    image: '/projects/covers/euc-one.webp?v=2',
+    image: '/projects/covers/euc-one.webp?v=3',
     images: [
       '/projects/screenshots/euc-one.jpg',
       '/projects/screenshots/euc-one-2.jpg',
@@ -792,7 +794,7 @@ export const projects: Project[] = [
       rather than hidden — and it lives inside the EUC.ONE app, where the
       decision gets made.
     `,
-    image: '/projects/covers/euc-calculator.webp?v=2',
+    image: '/projects/covers/euc-calculator.webp?v=3',
     images: [
       '/projects/screenshots/euc-calculator.jpg',
       '/projects/screenshots/euc-calculator-2.jpg',
@@ -826,7 +828,7 @@ export const projects: Project[] = [
       A user-friendly app that makes organizing Secret Santa events effortless,
       allowing users to focus on the fun of gift exchanges rather than logistics.
     `,
-    image: '/projects/covers/gift-roulette.webp?v=2',
+    image: '/projects/covers/gift-roulette.webp?v=3',
     images: [
       '/projects/screenshots/gift-roulette.jpg',
     ],
@@ -860,7 +862,7 @@ export const projects: Project[] = [
       while shop customers browse, pay by card or invoice and pick up on site —
       and the team manages both from one WordPress back office.
     `,
-    image: '/projects/covers/ekobaltika.webp?v=2',
+    image: '/projects/covers/ekobaltika.webp?v=3',
     images: [
       '/projects/screenshots/ekobaltika.jpg',
       '/projects/screenshots/ekobaltika-2.jpg',
@@ -900,7 +902,7 @@ export const projects: Project[] = [
       Everything is built for the mobile shopper who decides on the water, not
       at a desk.
     `,
-    image: '/projects/covers/bullu-laivas.webp?v=2',
+    image: '/projects/covers/bullu-laivas.webp?v=3',
     images: [
       '/projects/screenshots/bullulaivas.jpg',
       '/projects/screenshots/bullu-laivas-2.jpg',
@@ -944,7 +946,7 @@ export const projects: Project[] = [
       comprehensive capabilities and international reach, building trust with
       clients seeking complex financial and corporate services.
     `,
-    image: '/projects/covers/offshore-license.webp?v=2',
+    image: '/projects/covers/offshore-license.webp?v=3',
     images: [
       '/projects/screenshots/offshorelicense.jpg',
       '/projects/screenshots/offshore-license-2.jpg',
@@ -982,7 +984,7 @@ export const projects: Project[] = [
       gifts or for personal use, while maintaining the luxurious Wellton brand
       identity.
     `,
-    image: '/projects/covers/wellton.webp?v=2',
+    image: '/projects/covers/wellton.webp?v=3',
     images: [
       '/projects/screenshots/wellton.jpg',
       '/projects/screenshots/wellton2.png',
@@ -1021,7 +1023,7 @@ export const projects: Project[] = [
       reliability, generating qualified leads through free quote requests while
       building confidence in the installation process.
     `,
-    image: '/projects/covers/window-pros.webp?v=2',
+    image: '/projects/covers/window-pros.webp?v=3',
     images: [
       '/projects/screenshots/windowspros.jpg',
       '/projects/screenshots/window-pros-2.jpg',
@@ -1055,7 +1057,7 @@ export const projects: Project[] = [
       professional drone operators and clients, making exceptional aerial
       photography and videography services easily accessible. (Still in development.)
     `,
-    image: '/projects/covers/aerial-platform.webp?v=2',
+    image: '/projects/covers/aerial-platform.webp?v=3',
     images: [
       '/projects/screenshots/aerial.jpg',
     ],
@@ -1090,7 +1092,7 @@ export const projects: Project[] = [
       their structured approach and international experience to attract
       discerning clients seeking quality transformations.
     `,
-    image: '/projects/covers/senso-projects.webp?v=2',
+    image: '/projects/covers/senso-projects.webp?v=3',
     images: [
       '/projects/screenshots/sensoprojects.jpg',
       '/projects/screenshots/senso-projects-2.jpg',
@@ -1123,7 +1125,7 @@ export const projects: Project[] = [
       devices when online, stays available when offline, and belongs to you.
       Train smarter, track progress, and stay motivated — completely free.
     `,
-    image: '/projects/covers/reppy.webp?v=2',
+    image: '/projects/covers/reppy.webp?v=3',
     images: [
       '/projects/screenshots/reppy/workout-list.jpg',
       '/projects/screenshots/reppy/workout-detail.jpg',
@@ -1159,7 +1161,7 @@ export const projects: Project[] = [
       market authority and makes it simple for customers across Latvia to
       explore solutions and request service.
     `,
-    image: '/projects/covers/balticaqua.webp?v=2',
+    image: '/projects/covers/balticaqua.webp?v=3',
     images: [
       '/projects/screenshots/balticaqua.jpg',
       '/projects/screenshots/balticaqua-2.jpg',

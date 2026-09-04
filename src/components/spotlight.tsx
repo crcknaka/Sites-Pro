@@ -29,8 +29,8 @@ export default function Spotlight() {
             aria-label="Vadi case study"
           >
             <Image
-              src="/projects/spotlight/vadi.jpg"
-              alt="Vadi — accounting platform for Latvian sole traders and companies"
+              src="/projects/spotlight/vadi-dashboard.jpg"
+              alt="Vadi dashboard — July overview with income, expenses, result and the tax calendar"
               width={1440}
               height={900}
               sizes="(max-width: 1024px) 100vw, 60vw"

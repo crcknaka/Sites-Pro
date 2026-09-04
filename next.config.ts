@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
     // cache-busting version — Next only allows that when it is listed here.
     localPatterns: [
       { pathname: '/**', search: '' },
-      { pathname: '/projects/covers/**', search: '?v=2' },
+      { pathname: '/projects/covers/**', search: '?v=3' },
     ],
   },
   async headers() {
