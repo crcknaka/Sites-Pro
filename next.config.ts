@@ -9,6 +9,18 @@ const nextConfig: NextConfig = {
       { pathname: '/projects/covers/**', search: '?v=3' },
     ],
   },
+  // Canonical host is www; the apex answered 200 with the same content.
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'sitespro.org' }],
+        destination: 'https://www.sitespro.org/:path*',
+        permanent: true,
+      },
+    ];
+  },
+
   async headers() {
     return [
       {

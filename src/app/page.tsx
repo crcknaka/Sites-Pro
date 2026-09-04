@@ -17,6 +17,12 @@ export const metadata: Metadata = {
     'Sites Pro builds product-grade websites, web platforms and AI automations. A Latvia-based digital agency working with clients across the EU and worldwide.',
   alternates: {
     canonical: '/',
+    // Reciprocal of what sitespro.lv declares — Google ignores one-sided pairs.
+    languages: {
+      en: 'https://www.sitespro.org',
+      lv: 'https://sitespro.lv',
+      'x-default': 'https://www.sitespro.org',
+    },
   },
 };
 
