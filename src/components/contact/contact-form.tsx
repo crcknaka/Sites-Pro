@@ -6,6 +6,8 @@ import { SendHorizontal, CheckCircle, ChevronDown } from 'lucide-react';
 import { sendContactMessage } from './contact-actions';
 import { ACCENT_1 } from '@/lib';
 
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+
 const SERVICES = [
   'Website',
   'Web platform / application',
@@ -138,12 +140,16 @@ export default function ContactForm() {
         className={`${input} resize-none`}
       />
 
-      {/* Turnstile */}
-      <Turnstile
-        siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
-        onSuccess={(token) => setToken(token)}
-        options={{ appearance: 'interaction-only' }}
-      />
+      {/* Turnstile — only mounted when a site key is configured, so an
+          environment without one degrades to a clear message instead of an
+          uncaught widget error */}
+      {TURNSTILE_SITE_KEY && (
+        <Turnstile
+          siteKey={TURNSTILE_SITE_KEY}
+          onSuccess={(token) => setToken(token)}
+          options={{ appearance: 'interaction-only' }}
+        />
+      )}
 
       {error && <p className="text-sm text-[var(--text-muted)]">{error}</p>}
 

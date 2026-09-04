@@ -79,7 +79,8 @@ export function ScaledScene({
           height: SCENE_H,
           transform: `scale(${scale ?? 1})`,
           transformOrigin: 'top left',
-          visibility: scale === null ? 'hidden' : 'visible',
+          opacity: scale === null ? 0 : 1,
+          transition: 'opacity 0.6s ease-out',
         }}
       >
         <Scene type={type} />

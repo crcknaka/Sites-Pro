@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -40,6 +41,17 @@ export default function Hero() {
   const pathname = usePathname();
   const isHome = pathname === '/';
 
+  // The three windows arrive from the network at different moments. Rather than
+  // letting each pop in on its own, we wait until all of them have decoded (or
+  // 1.8 s, whichever comes first) and then run one choreographed entrance.
+  const [loaded, setLoaded] = useState(0);
+  const [ready, setReady] = useState(false);
+  useEffect(() => {
+    if (loaded >= WINDOWS.length) { setReady(true); return; }
+    const t = setTimeout(() => setReady(true), 1800);
+    return () => clearTimeout(t);
+  }, [loaded]);
+
   return (
     <section
       id="home"
@@ -63,7 +75,7 @@ export default function Hero() {
       <div className="relative z-10 mx-auto max-w-7xl">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-8">
           {/* COPY */}
-          <div className="text-center lg:col-span-6 lg:text-left">
+          <div className="hero-copy text-center lg:col-span-6 lg:text-left">
             <span
               className="
                 inline-flex items-center gap-2
@@ -118,21 +130,29 @@ export default function Hero() {
               style={{ aspectRatio: '560 / 470' }}
               aria-hidden="true"
             >
-              {WINDOWS.map((w) => (
+              {WINDOWS.map((w, i) => (
                 <div
                   key={w.src}
-                  className={`absolute lg:animate-[slow-float_8s_ease-in-out_infinite] ${w.className}`}
-                  style={{ animationDelay: w.delay }}
+                  className={`hero-window absolute ${w.className} ${ready ? 'is-ready' : ''}`}
+                  style={{ '--i': i } as React.CSSProperties}
                 >
-                  <Image
-                    src={w.src}
-                    alt={w.alt}
-                    width={1200}
-                    height={900}
-                    priority
-                    sizes="(max-width: 1024px) 80vw, 420px"
-                    className="h-auto w-full"
-                  />
+                  {/* float runs on an inner element so it never fights the entrance transform */}
+                  <div
+                    className={ready ? 'lg:animate-[slow-float_8s_ease-in-out_infinite]' : ''}
+                    style={{ animationDelay: w.delay }}
+                  >
+                    <Image
+                      src={w.src}
+                      alt={w.alt}
+                      width={1200}
+                      height={900}
+                      priority
+                      fetchPriority={i === WINDOWS.length - 1 ? 'high' : 'auto'}
+                      sizes="(max-width: 1024px) 80vw, 420px"
+                      className="h-auto w-full"
+                      onLoad={() => setLoaded((n) => n + 1)}
+                    />
+                  </div>
                 </div>
               ))}
             </div>
