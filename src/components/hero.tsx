@@ -45,12 +45,12 @@ export default function Hero() {
   // letting each pop in on its own, we wait until all of them have decoded (or
   // 1.8 s, whichever comes first) and then run one choreographed entrance.
   const [loaded, setLoaded] = useState(0);
-  const [ready, setReady] = useState(false);
+  const [timedOut, setTimedOut] = useState(false);
   useEffect(() => {
-    if (loaded >= WINDOWS.length) { setReady(true); return; }
-    const t = setTimeout(() => setReady(true), 1800);
+    const t = setTimeout(() => setTimedOut(true), 1800);
     return () => clearTimeout(t);
-  }, [loaded]);
+  }, []);
+  const ready = timedOut || loaded >= WINDOWS.length;
 
   return (
     <section
