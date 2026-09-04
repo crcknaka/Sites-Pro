@@ -10,7 +10,7 @@ import { ScaledScene } from '@/components/service-scenes';
 
 function HeroScene({ type }: { type: Parameters<typeof ScaledScene>[0]['type'] }) {
   return (
-    <div className="w-full max-w-[560px]">
+    <div className="w-full max-w-[680px] lg:-mr-6 xl:-mr-12">
       <ScaledScene type={type} />
     </div>
   );

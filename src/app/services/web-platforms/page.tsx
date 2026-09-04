@@ -94,7 +94,7 @@ export default function WebPlatformsPage() {
           HERO
       ====================================================== */}
       <section className="px-4 sm:px-6 pt-24 sm:pt-40 pb-16 sm:pb-32">
-        <div className="mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-20 items-center">
+        <div className="mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] gap-10 sm:gap-16 items-center">
           {/* TEXT */}
           <div>
             <span
@@ -131,7 +131,7 @@ export default function WebPlatformsPage() {
           </div>
 
           {/* INFOGRAPHIC - hidden on mobile */}
-          <div className="hidden lg:flex justify-center">
+          <div className="hidden lg:flex justify-end">
             <WebPlatformInfographic />
           </div>
         </div>

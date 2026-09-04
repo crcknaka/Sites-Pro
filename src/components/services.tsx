@@ -3,6 +3,7 @@ import { ArrowUpRight } from 'lucide-react';
 import { ACCENT_1, ACCENT_2 } from '@/lib';
 import SectionHeader from './section-header';
 import Reveal from './reveal';
+import Integrations from './integrations';
 import { ScaledScene, type SceneType } from './service-scenes';
 
 const services = [
@@ -101,6 +102,7 @@ export default function Services() {
           ))}
         </div>
 
+        <Integrations />
       </div>
     </section>
   );
