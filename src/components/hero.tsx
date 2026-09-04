@@ -107,7 +107,7 @@ export default function Hero() {
             </div>
 
             <p className="mt-6 text-xs text-[var(--text-subtle)] sm:text-sm">
-              30 case studies · Riga, Latvia · working across the EU and worldwide
+              Working across the EU and worldwide
             </p>
           </div>
 

@@ -15,7 +15,6 @@ const CLIENTS = [
   { name: 'BodyBar', logo: '/projects/logos/bodybar.png' },
   { name: 'EkoBaltika', logo: '/projects/logos/ekobaltika.png' },
   { name: 'Buļļu Laivas', logo: '/projects/logos/bullu-laivas.png' },
-  { name: 'Imun', logo: '/projects/logos/imun.png' },
   { name: 'Pets Pro', logo: '/projects/logos/pets-pro.png' },
   { name: 'EUC.ONE', logo: '/projects/logos/euc-one.png' },
   { name: 'MadSword Studios', logo: '/projects/logos/madsword-studios.png' },
