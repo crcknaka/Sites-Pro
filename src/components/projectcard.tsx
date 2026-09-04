@@ -48,14 +48,19 @@ export default function ProjectCard({
         <CategoryBadge category={category as any} />
 
         {/* Title */}
-        <h3 className="font-display mt-2 text-sm sm:text-base font-semibold text-[var(--fg)] line-clamp-1 sm:line-clamp-2">
+        {/* Title — two lines reserved on desktop so every card's link sits on the same line */}
+        <h3 className="font-display mt-2 text-sm sm:text-base font-semibold leading-snug text-[var(--fg)] line-clamp-1 sm:line-clamp-2 sm:min-h-[2.75em]">
           {title}
         </h3>
 
-        {/* Description - hidden on mobile for compact view */}
-        <p className="mt-1.5 text-xs leading-relaxed text-[var(--text-muted)] line-clamp-2 hidden sm:block">
-          {description}
-        </p>
+        {/* Description — hidden on mobile; clamped to three lines on desktop.
+            The wrapper carries the breakpoint display so it cannot override
+            line-clamp's -webkit-box (that is why the old clamp never applied). */}
+        <div className="hidden sm:block">
+          <p className="mt-1.5 line-clamp-3 min-h-[4.875em] text-xs leading-relaxed text-[var(--text-muted)]">
+            {description}
+          </p>
+        </div>
 
         {/* View project link */}
         <div className="mt-2 sm:mt-3 flex items-center gap-1.5 text-xs font-medium text-[var(--accent-1)] opacity-70 group-hover:opacity-100 transition-opacity">
