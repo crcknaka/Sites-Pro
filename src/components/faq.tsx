@@ -1,8 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
-import { useIsMobile } from '@/hooks';
 import { ACCENT } from '@/lib';
 import SectionHeader from './section-header';
 import Reveal from './reveal';
@@ -10,24 +9,6 @@ import { faqs } from '@/data/faqs';
 
 export default function FAQ() {
   const [open, setOpen] = useState<number | null>(null);
-  const isMobile = useIsMobile();
-  const [visibleCount, setVisibleCount] = useState(4);
-  const [isInitialized, setIsInitialized] = useState(false);
-
-  // Set initial count based on screen size
-  useEffect(() => {
-    if (!isInitialized) {
-      setVisibleCount(isMobile ? 3 : 4);
-      setIsInitialized(true);
-    }
-  }, [isMobile, isInitialized]);
-
-  const handleLoadMore = () => {
-    const increment = isMobile ? 3 : 4;
-    setVisibleCount((prev) => prev + increment);
-  };
-
-  const hasMore = visibleCount < faqs.length;
 
   return (
     <section
@@ -45,8 +26,7 @@ export default function FAQ() {
           className="mb-14 sm:mb-20"
         />
 
-        {/* LIST — every item stays in the DOM (collapsed ones are just
-            display:none) so crawlers and AI agents see all answers. */}
+        {/* LIST — every answer is in the DOM (collapsed ones are display:none) */}
         <Reveal className="flex flex-col gap-3">
           {faqs.map((item, i) => {
             const active = open === i;
@@ -56,7 +36,6 @@ export default function FAQ() {
                 key={i}
                 className={`
                   rounded-2xl border transition-all duration-300
-                  ${i >= visibleCount ? 'hidden' : ''}
                   ${
                     active
                       ? 'border-[var(--accent-1)]/30 bg-[var(--surface-strong)] shadow-lg shadow-[var(--accent-1)]/5'
@@ -106,14 +85,6 @@ export default function FAQ() {
           })}
         </Reveal>
 
-        {/* MORE BUTTON */}
-        {hasMore && (
-          <div className="mt-8 flex justify-center">
-            <button onClick={handleLoadMore} className="btn-secondary text-sm">
-              Load more
-            </button>
-          </div>
-        )}
       </div>
     </section>
   );

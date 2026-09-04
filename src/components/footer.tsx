@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { LinkedinIcon, Send, type LucideIcon } from 'lucide-react';
 import { ACCENT_1 } from '@/lib';
+import PaymentMethods from './payment-methods';
 
 const navServices = [
   { label: 'Websites', href: '/services/web' },
@@ -132,9 +133,14 @@ export default function Footer() {
 
           </div>
 
+          {/* PAYMENTS */}
+          <div className="mt-12 pt-8" style={{ borderTop: '1px solid var(--border)' }}>
+            <PaymentMethods />
+          </div>
+
           {/* BOTTOM BAR */}
           <div
-            className="mt-12 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[var(--text-muted)]"
+            className="mt-8 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[var(--text-muted)]"
             style={{ borderTop: '1px solid var(--border)' }}
           >
             <span>© {new Date().getFullYear()} SIA SitesPro. All rights reserved.</span>

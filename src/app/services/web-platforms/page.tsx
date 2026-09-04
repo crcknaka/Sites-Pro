@@ -270,33 +270,6 @@ export default function WebPlatformsPage() {
         </div>
       </section>
 
-      {/* BACK TO SERVICES */}
-      <section className="px-4 sm:px-6 py-10 sm:py-16">
-        <div className="mx-auto max-w-6xl">
-          <div className="flex justify-center">
-            <Link
-              href="/#services"
-              className="
-                group
-                flex items-center justify-center gap-2
-                px-5 sm:px-6 py-3 sm:py-4
-                rounded-xl
-                border border-[var(--border)]
-                bg-[var(--surface)]
-                text-sm font-medium
-                text-[var(--text-muted)]
-                hover:text-[var(--fg)]
-                hover:border-[var(--accent-1)]
-                transition-all
-                cursor-pointer select-none
-              "
-            >
-              <span>←</span>
-              <span>Back to services</span>
-            </Link>
-          </div>
-        </div>
-      </section>
     </main>
   );
 }

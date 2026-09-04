@@ -2,9 +2,25 @@
 
 import { useEffect, useState, useTransition } from 'react';
 import { Turnstile } from '@marsidev/react-turnstile';
-import { SendHorizontal, CheckCircle } from 'lucide-react';
+import { SendHorizontal, CheckCircle, ChevronDown } from 'lucide-react';
 import { sendContactMessage } from './contact-actions';
 import { ACCENT_1 } from '@/lib';
+
+const SERVICES = [
+  'Website',
+  'Web platform / application',
+  'AI & automation',
+  'Consulting',
+  'Not sure yet',
+];
+
+const BUDGETS = [
+  'Under €3,000',
+  '€3,000 – €10,000',
+  '€10,000 – €30,000',
+  '€30,000+',
+  'Not decided yet',
+];
 
 export default function ContactForm() {
   const [success, setSuccess] = useState(false);
@@ -48,7 +64,7 @@ export default function ContactForm() {
     return (
       <div
         className="
-          flex h-[320px] flex-col items-center justify-center
+          flex h-[360px] flex-col items-center justify-center
           rounded-3xl
           bg-[var(--surface)]
           border border-[var(--border)]
@@ -67,12 +83,10 @@ export default function ContactForm() {
           <CheckCircle className="h-7 w-7" style={{ color: ACCENT_1 }} />
         </div>
 
-        <h3 className="text-xl font-semibold text-[var(--fg)]">
-          Message sent
-        </h3>
+        <h3 className="text-xl font-semibold text-[var(--fg)]">Message sent</h3>
 
         <p className="mt-3 max-w-md text-sm text-[var(--text-muted)]">
-          Thanks for reaching out. We’ll get back to you within 24 hours.
+          Thanks for reaching out. We’ll reply within 24 hours with next steps.
         </p>
 
         <button
@@ -103,29 +117,24 @@ export default function ContactForm() {
         card-premium card-topline
         rounded-3xl
         p-6 sm:p-8
-        space-y-5
+        space-y-4
       "
     >
-      <input
-        name="name"
-        required
-        placeholder="Your name"
-        className={input}
-      />
+      <div className="grid gap-4 sm:grid-cols-2">
+        <input name="name" required placeholder="Your name" className={input} />
+        <input name="email" type="email" required placeholder="Your email" className={input} />
+      </div>
 
-      <input
-        name="email"
-        type="email"
-        required
-        placeholder="Your email"
-        className={input}
-      />
+      <div className="grid gap-4 sm:grid-cols-2">
+        <Select name="service" label="What do you need?" options={SERVICES} />
+        <Select name="budget" label="Budget range" options={BUDGETS} />
+      </div>
 
       <textarea
         name="message"
         rows={5}
         required
-        placeholder="Tell us about your project"
+        placeholder="Tell us about the project — goals, timeline, anything already decided"
         className={`${input} resize-none`}
       />
 
@@ -136,16 +145,11 @@ export default function ContactForm() {
         options={{ appearance: 'interaction-only' }}
       />
 
-      {/* Error */}
-      {error && (
-        <p className="text-sm text-[var(--text-muted)]">
-          {error}
-        </p>
-      )}
+      {error && <p className="text-sm text-[var(--text-muted)]">{error}</p>}
 
       <button
         disabled={isPending}
-        className="btn-primary mt-4 w-full disabled:opacity-60 disabled:pointer-events-none"
+        className="btn-primary mt-2 w-full disabled:opacity-60 disabled:pointer-events-none"
       >
         {isPending ? (
           <span className="flex items-center gap-2">
@@ -154,7 +158,7 @@ export default function ContactForm() {
           </span>
         ) : (
           <>
-            Send
+            Send the brief
             <SendHorizontal className="h-4 w-4" />
           </>
         )}
@@ -163,7 +167,26 @@ export default function ContactForm() {
   );
 }
 
-/* ================= INPUT ================= */
+/* ================= FIELDS ================= */
+
+function Select({ name, label, options }: { name: string; label: string; options: string[] }) {
+  return (
+    <label className="relative block">
+      <span className="sr-only">{label}</span>
+      <select name={name} defaultValue="" className={`${input} appearance-none pr-10 cursor-pointer`}>
+        <option value="" disabled>
+          {label}
+        </option>
+        {options.map((o) => (
+          <option key={o} value={o}>
+            {o}
+          </option>
+        ))}
+      </select>
+      <ChevronDown className="pointer-events-none absolute right-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--text-muted)]" />
+    </label>
+  );
+}
 
 const input = `
   w-full rounded-xl

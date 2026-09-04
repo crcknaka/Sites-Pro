@@ -35,6 +35,8 @@ export async function sendContactMessage(formData: FormData) {
   const name = String(formData.get('name') || '').trim();
   const email = String(formData.get('email') || '').trim();
   const message = String(formData.get('message') || '').trim();
+  const service = String(formData.get('service') || '').trim();
+  const budget = String(formData.get('budget') || '').trim();
 
   if (!name || !email || !message) {
     throw new Error('Missing required fields');
@@ -45,12 +47,14 @@ export async function sendContactMessage(formData: FormData) {
     from: 'Sites Pro <info@sitespro.org>',
     to: ['info@sitespro.org'],
     replyTo: email,
-    subject: `New contact request from ${name}`,
+    subject: `New project request from ${name}${service ? ` — ${service}` : ''}`,
     html: `
       <div style="font-family: Arial, sans-serif; line-height: 1.6;">
         <h2>New Contact Message</h2>
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>
+        ${service ? `<p><strong>Service:</strong> ${service}</p>` : ''}
+        ${budget ? `<p><strong>Budget:</strong> ${budget}</p>` : ''}
         <p><strong>Message:</strong></p>
         <p>${message.replace(/\n/g, '<br />')}</p>
         <hr />

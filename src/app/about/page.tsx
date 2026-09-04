@@ -1,26 +1,23 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import ContactForm from '@/components/contact/contact-form';
 import {
-  Search,
+  ArrowRight,
+  ArrowUpRight,
   Code,
-  Rocket,
-  ShieldCheck,
   Gauge,
   Layers,
-  Mail,
-  MapPin,
-  Clock,
-  Briefcase,
-  FolderOpen,
-  ArrowRight,
+  Rocket,
+  Search,
+  ShieldCheck,
+  Wrench,
 } from 'lucide-react';
 import { ACCENT_1, ACCENT_2 } from '@/lib';
+import { projects, SERVICE_LABELS, type ServiceKey } from '@/data/projects';
 
 export const metadata: Metadata = {
   title: 'About — How We Build Digital Products',
   description:
-    'How Sites Pro works: our discovery-to-launch process, engineering principles, and why we build product-grade websites, platforms and AI automations.',
+    'How Sites Pro works: a Riga-based studio that builds websites, web platforms and AI automations the way a product team would — and runs its own products on the same stack.',
   alternates: {
     canonical: '/about',
   },
@@ -28,562 +25,232 @@ export const metadata: Metadata = {
     url: '/about',
     title: 'About Sites Pro — How We Build Digital Products',
     description:
-      'Our discovery-to-launch process, engineering principles, and why we build product-grade websites, platforms and AI automations.',
+      'A Riga-based studio that builds websites, web platforms and AI automations the way a product team would — and runs its own products on the same stack.',
   },
 };
+
+const ownProducts = projects.filter((p) => ['vadi', 'agency-crm', 'liquid-silk'].includes(p.slug));
+
+const facts = [
+  { value: 'Riga', label: 'Latvia — working across the EU and worldwide' },
+  { value: String(projects.length), label: 'case studies in the portfolio' },
+  { value: String(ownProducts.length), label: 'products of our own in daily use' },
+  { value: 'EN · RU', label: 'working languages, Latvian on request' },
+];
 
 const steps = [
   {
     step: 1,
-    title: 'Discovery & Strategy',
-    description:
-      'We align on goals, constraints and technical direction to define scope and priorities.',
+    title: 'Discovery & strategy',
     icon: Search,
+    text: 'One call to understand the business, then a short written brief we both sign off on: goals, constraints, what already exists, what "done" looks like. For anything bigger than a brochure site we map the data and the integrations before a single screen is designed.',
+    delivers: 'Brief · scope · fixed price and timeline',
   },
   {
     step: 2,
-    title: 'Design & Build',
-    description:
-      'We design and build scalable products with a focus on architecture, performance and usability.',
+    title: 'Design & build',
     icon: Code,
+    text: 'Design and engineering run together, not in sequence. You see a working version early and often — a staging link you can click, not a slide deck. Content, SEO structure and performance budgets are part of the build from the first week.',
+    delivers: 'Staging site · weekly check-ins · content and SEO in place',
   },
   {
     step: 3,
-    title: 'Test, Launch & Scale',
-    description:
-      'We prepare products for production, launch reliably and support long-term growth.',
+    title: 'Test, launch & scale',
     icon: Rocket,
+    text: 'Cross-device testing, Core Web Vitals, accessibility and security checks before launch; DNS, hosting and monitoring handled by us. After launch the same team stays on for support, new features and the next version.',
+    delivers: 'Launch checklist · handover · support plan',
   },
 ];
 
 const principles = [
   {
-    title: 'Product-first UX',
-    description:
-      'Every decision is driven by clarity, structure and predictable user behavior.',
     icon: Layers,
+    title: 'Product-first UX',
+    text: 'Every decision is driven by clarity, structure and predictable user behaviour — not by what is fashionable this quarter.',
   },
   {
-    title: 'Performance by default',
-    description:
-      'Minimal JavaScript, native browser features and fast-loading interfaces by default.',
     icon: Gauge,
+    title: 'Performance by default',
+    text: 'Minimal JavaScript, native browser features and fast-loading interfaces. Speed is a feature the client feels every day.',
   },
   {
-    title: 'Production-ready',
-    description:
-      'Security, scalability, and clean architecture from day one.',
     icon: ShieldCheck,
+    title: 'Production-ready',
+    text: 'Security, scalability and clean architecture from day one, so the site you launch is the site you can grow.',
+  },
+  {
+    icon: Wrench,
+    title: 'We run what we build',
+    text: 'Our own accounting SaaS and CRM run on the same stack and practices we sell. If something is painful, we feel it first.',
   },
 ];
+
+const services: ServiceKey[] = ['web', 'web-platforms', 'ai', 'consulting'];
 
 export default function AboutPage() {
   return (
     <main className="relative">
       {/* HERO */}
-      <section className="mx-auto max-w-6xl px-4 sm:px-6 pt-24 sm:pt-32 pb-16 sm:pb-24">
-        <span
-          className="block text-xs sm:text-sm font-medium tracking-widest uppercase"
-          style={{ color: ACCENT_1 }}
-        >
-          About Sites Pro
-        </span>
+      <section className="mx-auto max-w-6xl px-4 sm:px-6 pt-24 sm:pt-32 pb-14 sm:pb-20">
+        <span className="section-eyebrow">About Sites Pro</span>
 
-        <h1 className="font-display mt-3 sm:mt-4 text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight">
-          How we build{' '}
-          <span
-            className="bg-clip-text text-transparent"
-            style={{
-              backgroundImage: `linear-gradient(90deg, ${ACCENT_1}, ${ACCENT_2})`,
-            }}
-          >
-            product-grade websites
-          </span>
+        <h1 className="font-display mt-4 max-w-4xl text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-balance">
+          A small studio that builds{' '}
+          <span className="text-gradient">like a product team</span>
         </h1>
 
-        <p className="mt-4 sm:mt-6 max-w-2xl text-base sm:text-lg leading-relaxed text-[var(--text-muted)]">
-          We design and develop calm, scalable, and conversion-focused digital
-          products — where UX, performance, and engineering work as one system.
+        <p className="mt-5 sm:mt-6 max-w-2xl text-base sm:text-lg leading-relaxed text-[var(--text-muted)]">
+          Sites Pro is SIA SitesPro, a web development studio in Riga. We design and
+          build websites, web platforms and AI automations for companies in Latvia,
+          the EU and beyond — and we run our own products on the same stack, which
+          keeps us honest about what actually works.
         </p>
+
+        {/* FACTS */}
+        <dl className="mt-10 sm:mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--border)] lg:grid-cols-4">
+          {facts.map((f) => (
+            <div key={f.label} className="bg-[var(--bg)] px-5 py-5 sm:px-6 sm:py-6">
+              <dt className="font-display text-2xl font-semibold tracking-tight sm:text-3xl">{f.value}</dt>
+              <dd className="mt-1 text-sm text-[var(--text-muted)]">{f.label}</dd>
+            </div>
+          ))}
+        </dl>
       </section>
 
       {/* PROCESS */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 pb-20 sm:pb-32">
-        {/* Mobile version - compact vertical cards */}
-        <div className="md:hidden space-y-4">
-          {steps.map((step) => {
-            const Icon = step.icon;
-
-            return (
-              <div
-                key={step.step}
-                className="
-                  flex items-start gap-4 p-4
-                  rounded-xl
-                  bg-[var(--surface)]
-                  border border-[var(--border)]
-                "
-              >
-                <div
-                  className="
-                    relative shrink-0 h-12 w-12 rounded-lg
-                    flex items-center justify-center
-                    bg-[var(--surface-strong)]
-                    border border-[var(--border)]
-                    text-[var(--text-muted)]
-                  "
-                >
-                  <Icon className="h-5 w-5" />
-                  <span
-                    className="
-                      absolute -top-1.5 -right-1.5 h-5 w-5 rounded-full
-                      flex items-center justify-center
-                      text-xs font-semibold text-black
-                    "
-                    style={{ background: ACCENT_1 }}
-                  >
-                    {step.step}
-                  </span>
-                </div>
-
-                <div>
-                  <h3 className="text-base font-semibold text-[var(--fg)] mb-1">
-                    {step.title}
-                  </h3>
-                  <p className="text-sm leading-relaxed text-[var(--text-muted)]">
-                    {step.description}
-                  </p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Desktop version - horizontal grid with connector */}
-        <div className="hidden md:block">
-          <div className="relative grid grid-cols-3 gap-12">
-            <div
-              className="absolute top-12 left-[10%] right-[10%] h-px"
-              style={{
-                background: `linear-gradient(
-                  90deg,
-                  transparent,
-                  ${ACCENT_1}33,
-                  ${ACCENT_1}22,
-                  ${ACCENT_1}33,
-                  transparent
-                )`,
-              }}
-            />
-
-            {steps.map((step) => {
-              const Icon = step.icon;
-
-              return (
-                <div key={step.step} className="relative px-6 text-center">
-                  <div
-                    className="
-                      relative z-10 mx-auto mb-8 h-24 w-24 rounded-xl
-                      flex items-center justify-center
-                      bg-[var(--surface-strong)] backdrop-blur-sm
-                      border border-[var(--border)]
-                      text-[var(--text-muted)]
-                      hover:text-[var(--fg)]
-                      hover:border-[var(--accent-1)]
-                      hover:bg-[var(--surface-strong)]
-                      transition-all duration-300
-                    "
-                    style={{
-                      backgroundColor: 'color-mix(in srgb, var(--bg) 95%, var(--surface-strong))',
-                    }}
-                  >
-                    <Icon className="h-10 w-10" />
-
-                    <span
-                      className="
-                        absolute -top-2 -right-2
-                        flex h-8 w-8 items-center justify-center
-                        rounded-full
-                        text-sm font-semibold text-black
-                      "
-                      style={{ background: ACCENT_1 }}
-                    >
-                      {step.step}
-                    </span>
-                  </div>
-
-                  <h3 className="text-xl font-semibold text-[var(--fg)]">
-                    {step.title}
-                  </h3>
-
-                  <p className="mt-4 text-sm leading-relaxed text-[var(--text-muted)]">
-                    {step.description}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* PRINCIPLES */}
-      <section className="mx-auto max-w-6xl px-4 sm:px-6 pb-20 sm:pb-32">
-        <h2 className="font-display text-xl sm:text-2xl font-semibold text-[var(--fg)]">
-        Principles & Approach
-        </h2>
-
-        {/* Mobile version - compact cards */}
-        <div className="md:hidden mt-8 space-y-3">
-          {principles.map((item) => {
-            const Icon = item.icon;
-
-            return (
-              <div
-                key={item.title}
-                className="
-                  flex items-start gap-4 p-4
-                  rounded-xl
-                  bg-[var(--surface)]
-                  border border-[var(--border)]
-                "
-              >
-                <div
-                  className="
-                    shrink-0 h-10 w-10 rounded-lg
-                    flex items-center justify-center
-                    bg-[var(--surface-strong)]
-                    border border-[var(--border)]
-                  "
-                >
-                  <Icon className="h-5 w-5" style={{ color: ACCENT_1 }} />
-                </div>
-
-                <div>
-                  <h3 className="text-base font-semibold text-[var(--fg)] mb-1">
-                    {item.title}
-                  </h3>
-                  <p className="text-sm leading-relaxed text-[var(--text-muted)]">
-                    {item.description}
-                  </p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Desktop version - grid */}
-        <div className="hidden md:grid mt-12 grid-cols-3 gap-8">
-          {principles.map((item) => {
-            const Icon = item.icon;
-
-            return (
-              <div
-                key={item.title}
-                className="
-                  rounded-2xl p-6
-                  bg-[var(--surface)]
-                  border border-[var(--border)]
-                "
-              >
-                <Icon className="h-6 w-6 text-[var(--accent-1)]" />
-
-                <h3 className="mt-4 text-lg font-semibold text-[var(--fg)]">
-                  {item.title}
-                </h3>
-
-                <p className="mt-3 text-sm text-[var(--text-muted)]">
-                  {item.description}
-                </p>
-              </div>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* CLOSING */}
-      <section className="mx-auto max-w-4xl px-4 sm:px-6 pb-20 sm:pb-40">
-        <div className="mb-12 sm:mb-20 h-px bg-[var(--border)]" />
-
-        <p className="text-base sm:text-lg leading-relaxed text-[var(--text-muted)]">
-        Sites Pro is built for founders, startups and teams who value quality, clarity and long-term growth. We don't chase trends — we design systems that last.
-        </p>
-
-        {/* EXPLORE MORE SECTION */}
-        <div className="mt-12 sm:mt-20 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8">
-          {/* Services Card */}
-          <div
-            className="
-              group relative overflow-hidden
-              rounded-2xl sm:rounded-3xl p-5 sm:p-8
-              bg-[var(--surface)]
-              border border-[var(--border)]
-              hover:border-[var(--accent-1)]/40
-              transition-all duration-500
-              hover:shadow-2xl
-              hover:shadow-[var(--accent-1)]/10
-            "
-          >
-            {/* Accent gradient overlay */}
-            <div
-              className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-              style={{
-                background: `radial-gradient(circle at top left, ${ACCENT_1}08, transparent 60%)`,
-              }}
-            />
-
-            <div className="relative">
-              {/* Icon */}
-              <div
-                className="
-                  inline-flex h-11 w-11 sm:h-14 sm:w-14 items-center justify-center
-                  rounded-xl sm:rounded-2xl
-                  bg-gradient-to-br
-                  transition-all duration-500
-                  group-hover:scale-110
-                "
-                style={{
-                  background: `linear-gradient(135deg, ${ACCENT_1}20, ${ACCENT_1}10)`,
-                }}
-              >
-                <Briefcase className="h-5 w-5 sm:h-7 sm:w-7" style={{ color: ACCENT_1 }} />
-              </div>
-
-              <h3 className="mt-4 sm:mt-6 text-lg sm:text-xl font-semibold text-[var(--fg)]">
-                Explore Our Services
-              </h3>
-
-              <p className="mt-2 sm:mt-3 text-sm sm:text-base text-[var(--text-muted)] leading-relaxed">
-              Explore our services — from websites to web platforms and AI automations.
-              </p>
-
-              <Link
-                href="/#services"
-                className="
-                  mt-5 sm:mt-8 inline-flex items-center gap-2
-                  rounded-xl px-5 sm:px-6 py-2.5 sm:py-3 text-sm font-medium
-                  text-[var(--fg)]
-                  bg-[var(--surface-strong)]
-                  border border-[var(--border)]
-                  hover:border-[var(--accent-1)]/60
-                  hover:shadow-lg
-                  hover:shadow-[var(--accent-1)]/20
-                  hover:scale-105
-                  active:scale-[0.98]
-                  transition-all duration-300
-                "
-              >
-                View Services
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </div>
-          </div>
-
-          {/* Portfolio Card */}
-          <div
-            className="
-              group relative overflow-hidden
-              rounded-2xl sm:rounded-3xl p-5 sm:p-8
-              bg-[var(--surface)]
-              border border-[var(--border)]
-              hover:border-[var(--accent-2)]/40
-              transition-all duration-500
-              hover:shadow-2xl
-              hover:shadow-[var(--accent-2)]/10
-            "
-          >
-            {/* Accent gradient overlay */}
-            <div
-              className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-              style={{
-                background: `radial-gradient(circle at top right, ${ACCENT_2}08, transparent 60%)`,
-              }}
-            />
-
-            <div className="relative">
-              {/* Icon */}
-              <div
-                className="
-                  inline-flex h-11 w-11 sm:h-14 sm:w-14 items-center justify-center
-                  rounded-xl sm:rounded-2xl
-                  bg-gradient-to-br
-                  transition-all duration-500
-                  group-hover:scale-110
-                "
-                style={{
-                  background: `linear-gradient(135deg, ${ACCENT_2}20, ${ACCENT_2}10)`,
-                }}
-              >
-                <FolderOpen className="h-5 w-5 sm:h-7 sm:w-7" style={{ color: ACCENT_2 }} />
-              </div>
-
-              <h3 className="mt-4 sm:mt-6 text-lg sm:text-xl font-semibold text-[var(--fg)]">
-                Browse Our Work
-              </h3>
-
-              <p className="mt-2 sm:mt-3 text-sm sm:text-base text-[var(--text-muted)] leading-relaxed">
-                Check out our portfolio — real projects, real results, real impact.
-              </p>
-
-              <Link
-                href="/#portfolio"
-                className="
-                  mt-5 sm:mt-8 inline-flex items-center gap-2
-                  rounded-xl px-5 sm:px-6 py-2.5 sm:py-3 text-sm font-medium
-                  text-[var(--fg)]
-                  bg-[var(--surface-strong)]
-                  border border-[var(--border)]
-                  hover:border-[var(--accent-2)]/60
-                  hover:shadow-lg
-                  hover:shadow-[var(--accent-2)]/20
-                  hover:scale-105
-                  active:scale-[0.98]
-                  transition-all duration-300
-                "
-              >
-                View Portfolio
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CONTACT FORM */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 pb-20 sm:pb-32">
-        <div className="mb-10 sm:mb-20 text-center">
-          <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[var(--fg)]">
-          Ready to start a project?
+      <section className="mx-auto max-w-6xl px-4 sm:px-6 pb-20 sm:pb-28">
+        <div className="max-w-2xl">
+          <span className="section-eyebrow">How we work</span>
+          <h2 className="font-display mt-4 text-2xl sm:text-3xl font-semibold tracking-tight">
+            Three stages, no surprises
           </h2>
-          <p className="mt-3 sm:mt-4 text-base sm:text-lg text-[var(--text-muted)]">
-          Get in touch and let's discuss your idea.
+          <p className="mt-4 text-base leading-relaxed text-[var(--text-muted)]">
+            The same process for a five-page site and a multi-year platform — what changes
+            is the depth of each stage, not the order.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-10 sm:gap-16 lg:grid-cols-2">
-          {/* LEFT INFO (on desktop, second on mobile) */}
-          <div className="space-y-6 sm:space-y-10 order-2 lg:order-1">
-            <InfoItem
-              icon={Mail}
-              title="Email"
-              value="info@sitespro.org"
-              selectable
-            />
-            <InfoItem
-              icon={MapPin}
-              title="Location"
-              value="Europe — working globally"
-            />
-            <InfoItem
-              icon={Clock}
-              title="Response time"
-              value="Usually within 24 hours"
-            />
+        <ol className="mt-10 sm:mt-14 grid gap-4 lg:grid-cols-3 lg:gap-6">
+          {steps.map((s) => {
+            const Icon = s.icon;
+            return (
+              <li key={s.step} className="card-premium card-topline flex flex-col rounded-2xl p-6 sm:p-7">
+                <div className="flex items-center gap-3">
+                  <span className="grid h-11 w-11 place-items-center rounded-xl border border-[var(--border)] bg-[var(--surface-strong)]">
+                    <Icon className="h-5 w-5" style={{ color: ACCENT_1 }} />
+                  </span>
+                  <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--text-subtle)]">
+                    Stage {s.step}
+                  </span>
+                </div>
+                <h3 className="font-display mt-5 text-xl font-semibold">{s.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-[var(--text-muted)]">{s.text}</p>
+                <p className="mt-auto pt-5 text-xs font-medium" style={{ color: ACCENT_1 }}>
+                  {s.delivers}
+                </p>
+              </li>
+            );
+          })}
+        </ol>
+      </section>
 
-            {/* QUOTE */}
-            <blockquote
-              className="
-                mt-8 sm:mt-12 border-l pl-4 sm:pl-6 text-sm
-                border-[var(--border)]
-                text-[var(--text-muted)]
-              "
-            >
-              Tell us about your project or challenge.
-              We’ll help define the right direction and next steps..
+      {/* PRINCIPLES */}
+      <section className="mx-auto max-w-6xl px-4 sm:px-6 pb-20 sm:pb-28">
+        <span className="section-eyebrow">Principles</span>
+        <h2 className="font-display mt-4 text-2xl sm:text-3xl font-semibold tracking-tight">
+          What we optimise for
+        </h2>
 
-              <div
-                className="mt-4 font-medium not-italic"
-                style={{ color: ACCENT_1 }}
-              >
-                — The Sites Pro Team
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:gap-6">
+          {principles.map((p) => {
+            const Icon = p.icon;
+            return (
+              <div key={p.title} className="flex gap-4 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-[var(--border)] bg-[var(--surface-strong)]">
+                  <Icon className="h-5 w-5" style={{ color: ACCENT_1 }} />
+                </span>
+                <div>
+                  <h3 className="text-base font-semibold sm:text-lg">{p.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-[var(--text-muted)]">{p.text}</p>
+                </div>
               </div>
-            </blockquote>
-          </div>
-
-          {/* RIGHT: FORM + TRUST (on desktop, first on mobile) */}
-          <div className="flex flex-col order-1 lg:order-2">
-            <ContactForm />
-
-            {/* TRUST NOTE */}
-            <div className="mt-6 flex max-w-md items-start gap-3 text-xs text-[var(--text-muted)]">
-              <ShieldCheck
-                className="h-4 w-4 flex-shrink-0"
-                style={{ color: ACCENT_1 }}
-              />
-              <p className="leading-relaxed">
-                Your information is used solely to respond to your inquiry.
-                We do not share your data with third parties and handle all
-                submissions in accordance with GDPR and privacy best practices.
-              </p>
-            </div>
-          </div>
+            );
+          })}
         </div>
       </section>
 
-      {/* BACK HOME */}
-      <section className="px-4 sm:px-6 py-10 sm:py-16">
-        <div className="mx-auto max-w-6xl">
-          <div className="flex justify-center">
+      {/* OWN PRODUCTS */}
+      <section className="mx-auto max-w-6xl px-4 sm:px-6 pb-20 sm:pb-28">
+        <span className="section-eyebrow">Our own products</span>
+        <h2 className="font-display mt-4 text-2xl sm:text-3xl font-semibold tracking-tight">
+          Built for ourselves, run every day
+        </h2>
+        <div className="mt-8 grid gap-4 sm:grid-cols-3">
+          {ownProducts.map((p) => (
             <Link
-              href="/"
-              className="
-                group
-                flex items-center justify-center gap-2
-                px-5 sm:px-6 py-3 sm:py-4
-                rounded-xl
-                border border-[var(--border)]
-                bg-[var(--surface)]
-                text-sm font-medium
-                text-[var(--text-muted)]
-                hover:text-[var(--fg)]
-                hover:border-[var(--accent-1)]
-                transition-all
-                cursor-pointer select-none
-              "
+              key={p.slug}
+              href={`/portfolio/${p.slug}`}
+              className="card-premium group flex flex-col rounded-2xl p-5 sm:p-6"
             >
-              <span>←</span>
-              <span>Back Home</span>
+              <span className="font-display text-lg font-semibold">{p.title}</span>
+              <span className="mt-2 line-clamp-3 text-sm leading-relaxed text-[var(--text-muted)]">
+                {p.description}
+              </span>
+              <span
+                className="mt-4 inline-flex items-center gap-1 text-sm font-medium opacity-70 transition-opacity group-hover:opacity-100"
+                style={{ color: ACCENT_1 }}
+              >
+                Case study
+                <ArrowUpRight className="h-4 w-4" />
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* SERVICES */}
+      <section className="mx-auto max-w-6xl px-4 sm:px-6 pb-20 sm:pb-28">
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+          <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--text-subtle)]">
+            What we build
+          </span>
+          {services.map((key) => (
+            <Link
+              key={key}
+              href={`/services/${key}`}
+              className="inline-flex items-center gap-1.5 rounded-full border border-[var(--border)] bg-[var(--surface)] px-4 py-2 text-sm font-medium text-[var(--fg)] transition-colors hover:border-[var(--accent-1)]/50 hover:bg-[var(--surface-strong)]"
+            >
+              {SERVICE_LABELS[key]}
+              <ArrowUpRight className="h-3.5 w-3.5 opacity-60" />
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* CLOSING + CTA */}
+      <section className="px-4 sm:px-6 pb-24 sm:pb-32">
+        <div
+          className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl border border-[var(--border)] px-6 py-12 sm:px-12 sm:py-16"
+          style={{
+            background: `linear-gradient(135deg, color-mix(in srgb, ${ACCENT_1} 10%, var(--surface)), color-mix(in srgb, ${ACCENT_2} 6%, var(--surface)))`,
+          }}
+        >
+          <p className="max-w-3xl text-lg leading-relaxed sm:text-xl">
+            Sites Pro is built for founders, companies and teams who value quality, clarity
+            and long-term growth. We don’t chase trends — we design systems that last, and
+            we stay around to run them.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link href="/#contact" className="btn-primary group text-sm">
+              Start a project
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+            </Link>
+            <Link href="/portfolio" className="btn-secondary text-sm">
+              See the work
             </Link>
           </div>
         </div>
       </section>
     </main>
-  );
-}
-
-function InfoItem({
-  icon: Icon,
-  title,
-  value,
-  selectable,
-}: {
-  icon: any;
-  title: string;
-  value: string;
-  selectable?: boolean;
-}) {
-  return (
-    <div className="flex items-start gap-4">
-      <div
-        className="
-          flex h-11 w-11 items-center justify-center
-          rounded-xl
-          bg-[var(--surface)]
-          border border-[var(--border)]
-        "
-      >
-        <Icon className="h-5 w-5" style={{ color: ACCENT_1 }} />
-      </div>
-
-      <div>
-        <p className="font-medium text-[var(--fg)]">
-          {title}
-        </p>
-        <p
-          className={`mt-1 text-sm text-[var(--text-muted)]${selectable ? ' select-text' : ''}`}
-        >
-          {value}
-        </p>
-      </div>
-    </div>
   );
 }

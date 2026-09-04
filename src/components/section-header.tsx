@@ -3,15 +3,15 @@ import Reveal from './reveal';
 type Props = {
   eyebrow: string;
   title: React.ReactNode;
-  /** The word(s) rendered with the brand gradient, appended after `title`. */
+  /** Trailing word(s) of the heading. Kept plain: the brand gradient is a hero-only accent. */
   highlight?: string;
   subtitle?: string;
   className?: string;
 };
 
 /**
- * Unified section heading: eyebrow → display heading with gradient
- * highlight → muted subtitle. Keeps every section visually consistent.
+ * Unified section heading: eyebrow → display heading → muted subtitle.
+ * Keeps every section visually consistent.
  */
 export default function SectionHeader({
   eyebrow,
@@ -29,7 +29,7 @@ export default function SectionHeader({
         {highlight && (
           <>
             {' '}
-            <span className="text-gradient">{highlight}</span>
+            {highlight}
           </>
         )}
       </h2>

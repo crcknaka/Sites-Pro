@@ -1,13 +1,5 @@
 import Link from 'next/link';
-import {
-  CreditCard,
-  Smartphone,
-  Wallet,
-  Building2,
-  Coins,
-  Bitcoin,
-  ArrowUpRight,
-} from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { ACCENT_1, ACCENT_2 } from '@/lib';
 import SectionHeader from './section-header';
 import Reveal from './reveal';
@@ -38,20 +30,6 @@ const services = [
       'Strategic digital consulting to guide your transformation. We help you design, validate and scale digital solutions.',
     type: 'consulting',
   },
-];
-
-const payments = [
-  { name: 'Visa', icon: CreditCard },
-  { name: 'Mastercard', icon: CreditCard },
-  { name: 'Apple Pay', icon: Smartphone },
-  { name: 'Google Pay', icon: Smartphone },
-  { name: 'PayPal', icon: Wallet },
-  { name: 'SEPA', icon: Building2 },
-  { name: 'Bank Transfer', icon: Building2 },
-  { name: 'Wise', icon: Coins },
-  { name: 'Revolut', icon: Wallet },
-  { name: 'Stripe', icon: CreditCard },
-  { name: 'Crypto', icon: Bitcoin },
 ];
 
 export default function Services() {
@@ -123,40 +101,6 @@ export default function Services() {
           ))}
         </div>
 
-        {/* PAYMENTS */}
-        <Reveal className="mt-16 sm:mt-20 text-center">
-          <p className="text-sm text-[var(--text-muted)]">
-            Flexible payment options for your convenience
-          </p>
-
-          <div className="mt-6 sm:mt-8 flex flex-wrap justify-center gap-2 sm:gap-3">
-            {payments.map((method) => {
-              const Icon = method.icon;
-              return (
-                <span
-                  key={method.name}
-                  className="
-                    inline-flex items-center gap-2
-                    rounded-full
-                    px-4 sm:px-5 py-2
-                    text-xs sm:text-sm
-                    bg-[var(--surface)]
-                    border border-[var(--border-soft)]
-                    text-[var(--text-muted)]
-                    transition-all duration-300
-                    cursor-default
-                    hover:text-[var(--fg)]
-                    hover:bg-[var(--surface-strong)]
-                    hover:border-[color-mix(in_srgb,var(--accent-1)_25%,var(--border))]
-                  "
-                >
-                  <Icon className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-                  {method.name}
-                </span>
-              );
-            })}
-          </div>
-        </Reveal>
       </div>
     </section>
   );
