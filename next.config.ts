@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Self-contained server bundle for the Docker image: only traced files ship
+  output: 'standalone',
   images: {
     // Local images are query-free except the card covers, which carry a
     // cache-busting version — Next only allows that when it is listed here.
