@@ -7,6 +7,7 @@ import Image from 'next/image';
 ====================================================== */
 
 const CLIENTS = [
+  { name: 'Overline', logo: '/projects/logos/overline.svg' },
   { name: 'Institut de Français', logo: '/projects/logos/institut-de-francais-villefranche.png' },
   { name: 'Lepicur', logo: '/projects/logos/lepicur.png' },
   { name: 'Baltic Aqua', logo: '/projects/logos/balticaqua.png' },
