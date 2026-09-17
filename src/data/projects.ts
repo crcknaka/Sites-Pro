@@ -240,6 +240,99 @@ export const projects: Project[] = [
   },
 
   {
+    slug: 'overline-gcc',
+    title: 'Overline — Dubai & GCC',
+    category: 'Commerce',
+    tech: ['Next.js', 'TypeScript', 'PostgreSQL', 'Arabic RTL layout', 'Multilingual (AR/EN/RU)', 'Custom admin panel', 'PDF generation', 'Docker'],
+    services: ['web', 'web-platforms'],
+    description: 'Arabic-language catalogue and partner shop for Overline in the UAE — Italian aesthetic equipment sold from Business Bay, Dubai, with a native right-to-left layout, prices in dirhams, UAE tax invoices and WhatsApp straight to the Dubai team.',
+    challenge: `
+      Arbidora Medical Trading, Overline's official distributor for the UAE and
+      the Gulf, runs from Business Bay in Dubai and needed what the Baltic site
+      already had — the full device catalogue, iSol cosmetics and a partner shop —
+      for clinics that read Arabic, pay in dirhams, invoice under UAE VAT and
+      reach their suppliers on WhatsApp. A translated copy would have become a
+      second codebase drifting away from the first, and simply mirroring the
+      stylesheet breaks every phone number, price and Latin model name inside an
+      Arabic sentence.
+    `,
+    solution: [
+      'One codebase, a second market: a region preset switches company, currency, VAT rate, time zone, languages and legal texts, and the Dubai site runs as its own instance with its own database and media storage',
+      'Arabic as a first-class language rather than a toggle — a right-to-left layout built on logical CSS properties, mirrored arrows and menus, IBM Plex Sans Arabic and El Messiri typefaces',
+      'Bidirectional text handled line by line: phone numbers, prices, addresses and Latin model names keep their own direction inside Arabic text',
+      'All 52 devices and the cosmetics range described in Arabic, English and Russian, with transactional emails in each language',
+      'Prices in AED and invoices under UAE rules — 5% VAT, the distributor\'s TRN turning the PDF into a Tax Invoice, dates on Dubai time and a separate numbering series',
+      'Privacy policy, terms and cookie policy written for UAE law in all three languages; GCC countries, trade licence and TRN at partner registration',
+      'Partner-only prices and ordering: a clinic registers, the distributor approves it, and only then do prices, cart and checkout open',
+      'WhatsApp button and contacts routed to the Dubai office, with a Business Bay map on the contacts page — the channel Gulf clients actually use',
+      'Region-specific share card and an English admin panel the distributor\'s team runs without a developer',
+    ],
+    result: `
+      Overline's Gulf distributor got a site that reads natively in Arabic
+      instead of looking like a mirrored European one: a clinic anywhere in the
+      GCC can browse the whole range in its own language, register as a partner
+      and receive a UAE tax invoice in dirhams. Because both markets share one
+      codebase, every improvement made for the Baltic site reaches Dubai with the
+      next deploy.
+    `,
+    image: '/projects/covers/overline-gcc.webp?v=4',
+    images: [
+      '/projects/screenshots/overline/gcc-home.jpg',
+      '/projects/screenshots/overline/gcc-catalogue.jpg',
+      '/projects/screenshots/overline/gcc-device.jpg',
+      '/projects/screenshots/overline/gcc-contacts.jpg',
+    ],
+    logo: '/projects/logos/overline.svg',
+    link: 'https://overline-gcc.com/ar',
+  },
+
+  {
+    slug: 'overline-baltics',
+    title: 'Overline — Baltics',
+    category: 'Commerce',
+    tech: ['Next.js', 'TypeScript', 'PostgreSQL', 'Drizzle ORM', 'Docker', 'Custom admin panel', 'PDF generation', 'Email automation', 'Multilingual (LV/RU/EN)'],
+    services: ['web', 'web-platforms'],
+    description: 'Catalogue and B2B partner shop for Overline, the Milan maker of aesthetic cosmetology equipment, in Latvia and Lithuania — 52 devices in six lines, iSol professional cosmetics at partner-only prices, orders and VAT-correct invoices across the EU.',
+    challenge: `
+      SIA Beauty Equipment represents Overline in Latvia and Lithuania and sells
+      to two very different buyers: a clinic weighing a major equipment purchase,
+      and a salon reordering serums and masks every month. Cosmetics prices are
+      for the trade only, cross-border B2B orders need invoices that survive a
+      VAT audit, and a small team wanted to run the catalogue, partners and
+      orders in three languages without calling a developer.
+    `,
+    solution: [
+      'Device catalogue of 52 Overline machines in six lines — Infinity, Elite, Elite+, Xilia, Exential and Smart — filterable by line, by application (face, body, hair removal) and by new arrivals, plus accessories and training pages',
+      'Device pages with photo galleries, key features, embedded video and downloadable PDF brochures',
+      'iSol Beauty and O\'Care cosmetics with brand, category and offer filters; prices, cart and ordering unlock only for partners the admin has approved',
+      'Stock reserved when an order is placed and returned if it is cancelled, "New" and "Sale" flags, and a volume discount on three or more identical items set in the admin',
+      'PDF invoices with yearly numbering; partners elsewhere in the EU get zero-rated reverse-charge invoices once their VAT number is confirmed by the European Commission\'s VIES service, and the cart\'s VAT breakdown matches the invoice to the cent',
+      'Admin panel the client runs alone: devices, products and brands in three languages, partner approval and CSV export, order statuses, editable email templates, contacts, company details and About page figures',
+      'About page built for trust — the chain from the Milan factory to the salon, how the work is done, client clinics, manufacturer facts, FAQ and company details',
+      'Latvian, Russian and English with canonical and hreflang on every page, a sitemap with language alternates and share images for each device and product',
+      'Layered parallax hero; self-hosted in Docker with PostgreSQL, media and database backups in Cloudflare R2, and transactional email through Resend',
+    ],
+    result: `
+      A clinic can research a device in its own language and ask for an offer,
+      an approved salon can reorder cosmetics at partner prices at any hour, and
+      the team issues VAT-correct invoices across the EU without a spreadsheet.
+      The codebase was later split into regions and now also runs Overline's
+      Arabic-language site for Dubai and the GCC.
+    `,
+    image: '/projects/covers/overline-baltics.webp?v=4',
+    images: [
+      '/projects/screenshots/overline/eu-home.jpg',
+      '/projects/screenshots/overline/eu-catalogue.jpg',
+      '/projects/screenshots/overline/eu-cosmetics.jpg',
+      '/projects/screenshots/overline/eu-about.jpg',
+    ],
+    logo: '/projects/logos/overline.svg',
+    link: 'https://overline-global.com/',
+    facebook: 'https://www.facebook.com/beautyequipment.latvia',
+    instagram: 'https://www.instagram.com/beautyequipmentlatvia/',
+  },
+
+  {
     slug: 'bodybar',
     title: 'BodyBar',
     category: 'Commerce',

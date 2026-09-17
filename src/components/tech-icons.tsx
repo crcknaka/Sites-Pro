@@ -4,10 +4,12 @@ import {
   Boxes,
   Calculator,
   CreditCard,
+  Database,
   Languages,
   LayoutDashboard,
   Mail,
   Map,
+  PilcrowLeft,
   Plug,
   RefreshCw,
   Scale,
@@ -117,6 +119,8 @@ const GENERIC_ICONS: Record<string, LucideIcon> = {
   'double-entry ledger': Scale,
   'state machine': Workflow,
   'pdf generation': BookOpenText,
+  'drizzle orm': Database,
+  'arabic rtl layout': PilcrowLeft,
   octobercms: Boxes,
 };
 

@@ -21,6 +21,11 @@
 
 ## Selected work
 
+- **Overline** (https://overline-global.com, https://overline-gcc.com/ar) — catalogue and
+  B2B partner shop for Italian aesthetic equipment, one codebase for two markets: Latvia and
+  Lithuania (LV/RU/EN, EUR, EU reverse-charge invoices checked against VIES) and Dubai/GCC
+  (Arabic right-to-left layout, AR/EN/RU, AED, UAE tax invoices). Case studies:
+  https://www.sitespro.org/portfolio/overline-gcc and https://www.sitespro.org/portfolio/overline-baltics
 - **Web Studio CRM** — internal CRM for a web development company: cold-call lists, stage-guided
   pipeline, project kanban and client portal, agreements and acceptance acts as PDF, recurring
   invoicing through the accounting SaaS. Case study: https://www.sitespro.org/portfolio/agency-crm
