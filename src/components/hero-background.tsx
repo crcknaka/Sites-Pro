@@ -52,10 +52,25 @@ export default function HeroBackground() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
+    // The dots only ever draw around a mouse cursor: touch devices and
+    // reduced-motion users get no loop at all.
+    const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!finePointer || reducedMotion) return;
+
+    // The loop runs only while the cursor is over (or near) the hero, and
+    // stops itself once it leaves — no idle frames.
+    let running = false;
+    const start = () => {
+      if (running) return;
+      running = true;
+      rafRef.current = requestAnimationFrame(draw);
+    };
+
     const resize = () => {
       const parent = canvas.parentElement;
       if (!parent) return;
-      const dpr = window.devicePixelRatio || 1;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
       const w = parent.clientWidth;
       const h = parent.clientHeight;
       canvas.width = w * dpr;
@@ -68,10 +83,13 @@ export default function HeroBackground() {
 
     const onMouseMove = (e: MouseEvent) => {
       const rect = canvas.getBoundingClientRect();
-      mouseRef.current = {
-        x: e.clientX - rect.left,
-        y: e.clientY - rect.top,
-      };
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const margin = 300; // reveal radius — dots near the edge still light up
+      const near =
+        x > -margin && y > -margin && x < rect.width + margin && y < rect.height + margin;
+      mouseRef.current = near ? { x, y } : { x: -1000, y: -1000 };
+      if (near) start();
     };
 
     const onMouseLeave = () => {
@@ -97,14 +115,22 @@ export default function HeroBackground() {
     window.addEventListener("resize", resize);
     window.addEventListener("mousemove", onMouseMove);
     window.addEventListener("scroll", onScroll, { passive: true });
-    canvas.addEventListener("mouseleave", onMouseLeave);
+    // the canvas itself has pointer-events: none, so watch the cursor leaving the window
+    document.documentElement.addEventListener("mouseleave", onMouseLeave);
 
     const accentRGB = { r: 143, g: 215, b: 89 };
 
-    const draw = () => {
+    function draw() {
+      if (!canvas || !ctx) return;
       const w = canvas.clientWidth;
       const h = canvas.clientHeight;
       ctx.clearRect(0, 0, w, h);
+
+      if (mouseRef.current.x <= -500) {
+        // cursor gone: leave the canvas cleared and stop the loop
+        running = false;
+        return;
+      }
 
       const dark = isDarkRef.current;
       const mx = mouseRef.current.x;
@@ -254,16 +280,14 @@ export default function HeroBackground() {
       }
 
       rafRef.current = requestAnimationFrame(draw);
-    };
-
-    rafRef.current = requestAnimationFrame(draw);
+    }
 
     return () => {
       cancelAnimationFrame(rafRef.current);
       window.removeEventListener("resize", resize);
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("scroll", onScroll);
-      canvas.removeEventListener("mouseleave", onMouseLeave);
+      document.documentElement.removeEventListener("mouseleave", onMouseLeave);
       observer.disconnect();
     };
   }, [initDots]);

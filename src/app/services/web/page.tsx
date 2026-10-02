@@ -8,7 +8,8 @@ import {
   Headphones,
 } from 'lucide-react';
 import type { Metadata } from 'next';
-import { ACCENT_1, ACCENT_2 } from '@/lib';
+import { pageMetadata, withLatvian } from '@/lib/metadata';
+import { ACCENT_1, SITE_URL } from '@/lib';
 import { WebsiteInfographic } from '@/components/service-infographic';
 import ServiceCases from '@/components/service-cases';
 import {
@@ -17,22 +18,19 @@ import {
   SERVICE_DEFINITIONS,
 } from '@/components/json-ld';
 
+
 const service = SERVICE_DEFINITIONS.find((s) => s.path === '/services/web')!;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: 'Website Development Services',
   description:
     'High-performance website development with Next.js, React and headless CMS. Fast, accessible and SEO-ready websites built as a foundation for long-term growth.',
-  alternates: {
-    canonical: '/services/web',
-  },
-  openGraph: {
-    url: '/services/web',
-    title: 'Website Development Services | Sites Pro',
-    description:
-      'Websites that perform, scale and convert — built with Next.js, React and modern CMS platforms.',
-  },
-};
+  path: '/services/web',
+  socialDescription:
+    'Websites that perform, scale and convert — built with Next.js, React and modern CMS platforms.',
+  image: false, // opengraph-image.tsx in this folder
+  ...(service.lv ? { languages: withLatvian(`${SITE_URL}${service.path}`, service.lv) } : {}),
+});
 
 /* ======================================================
    DATA
@@ -79,10 +77,10 @@ const additionalServices = [
 
 export default function WebsitesPage() {
   return (
-    <main className="bg-[var(--bg)] text-[var(--fg)]">
+    <div className="bg-[var(--bg)] text-[var(--fg)]">
       <ServiceJsonLd service={service} />
       <BreadcrumbJsonLd
-        items={[{ name: 'Website Development', path: '/services/web' }]}
+        items={[{ name: 'Services', path: '/services' }, { name: 'Website Development', path: '/services/web' }]}
       />
       {/* =====================================================
           HERO
@@ -93,19 +91,16 @@ export default function WebsitesPage() {
           <div>
             <span
               className="block text-xs sm:text-sm uppercase tracking-widest font-medium"
-              style={{ color: ACCENT_1 }}
+              style={{ color: 'var(--accent-text)' }}
             >
               Websites
             </span>
 
             <h1 className="font-display mt-4 sm:mt-6 text-3xl sm:text-4xl md:text-6xl font-semibold tracking-tight">
-              Websites that perform,
+              Websites that perform,{' '}
               <br />
               <span
-                className="bg-clip-text text-transparent"
-                style={{
-                  backgroundImage: `linear-gradient(90deg, ${ACCENT_1}, ${ACCENT_2})`,
-                }}
+                className="text-gradient"
               >
                 scale and convert
               </span>
@@ -117,7 +112,7 @@ export default function WebsitesPage() {
             </p>
 
             <Link
-              href="/#contact"
+              href="#contact"
               className="btn-primary mt-6 sm:mt-10 !text-sm"
             >
               Start your project
@@ -216,12 +211,12 @@ export default function WebsitesPage() {
                   <service.icon
                     size={16}
                     className="sm:hidden"
-                    style={{ color: ACCENT_1 }}
+                    style={{ color: 'var(--accent-text)' }}
                   />
                   <service.icon
                     size={18}
                     className="hidden sm:block"
-                    style={{ color: ACCENT_1 }}
+                    style={{ color: 'var(--accent-text)' }}
                   />
                 </div>
 
@@ -264,7 +259,7 @@ export default function WebsitesPage() {
         </div>
       </section>
 
-    </main>
+    </div>
   );
 }
 

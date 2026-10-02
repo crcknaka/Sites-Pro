@@ -5,8 +5,13 @@ import Reveal from './reveal';
 const toList = (c: Project['category']) => (Array.isArray(c) ? c : [c]);
 
 /**
- * Other case studies in the same category, shown under a case so a reader
- * who came in from search has somewhere to go besides the CTA.
+ * Other case studies close to this one, shown under a case so a reader who came
+ * in from search has somewhere to go besides the CTA.
+ *
+ * Scored by shared services and categories; ties go to the nearest neighbours in
+ * portfolio order. Taking "the first four of the category" sent every case's
+ * related links to the same four projects and left half the portfolio with no
+ * inbound links at all — neighbours spread them across every case.
  */
 export default function RelatedCases({
   current,
@@ -15,11 +20,22 @@ export default function RelatedCases({
   current: Project;
   limit?: number;
 }) {
-  const wanted = toList(current.category);
+  const index = projects.findIndex((p) => p.slug === current.slug);
+  const categories = toList(current.category);
+  const services = current.services ?? [];
+
   const related = projects
-    .filter((p) => p.slug !== current.slug)
-    .filter((p) => toList(p.category).some((c) => wanted.includes(c)))
-    .slice(0, limit);
+    .map((p, i) => {
+      if (p.slug === current.slug) return null;
+      const sharedServices = (p.services ?? []).filter((s) => services.includes(s)).length;
+      const sharedCategories = toList(p.category).filter((c) => categories.includes(c)).length;
+      const score = sharedServices * 2 + sharedCategories * 3;
+      return score > 0 ? { p, score, distance: Math.abs(i - index) } : null;
+    })
+    .filter((x): x is { p: Project; score: number; distance: number } => x !== null)
+    .sort((a, b) => b.score - a.score || a.distance - b.distance)
+    .slice(0, limit)
+    .map((x) => x.p);
 
   if (related.length === 0) return null;
 
@@ -27,7 +43,7 @@ export default function RelatedCases({
     <section className="mt-16 sm:mt-24">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="section-eyebrow">More {wanted[0].toLowerCase()} work</p>
+          <p className="section-eyebrow">More {categories[0].toLowerCase()} work</p>
           <h2 className="font-display mt-2 text-2xl sm:text-3xl font-semibold tracking-tight">
             Related case studies
           </h2>

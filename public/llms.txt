@@ -2,7 +2,7 @@
 
 > Sites Pro (SIA SitesPro) is a Latvia-based digital agency building product-grade
 > websites, web platforms and AI automations for clients across the EU and worldwide.
-> Working languages: English, Russian. Contact: info@sitespro.org
+> Working languages: English, Latvian, Russian. Contact: info@sitespro.org
 
 ## What we do
 
@@ -12,12 +12,27 @@
 - **Web platform development** — https://www.sitespro.org/services/web-platforms —
   custom web applications, dashboards and internal tools. React/Next.js frontends,
   Node.js APIs, PostgreSQL/MySQL/Redis data layers, integrations, cloud and CI/CD.
-- **AI & automations** — https://www.sitespro.org/services/ai — AI chatbots and
-  assistants, OpenAI and Anthropic API integration, RAG pipelines and vector
-  databases, n8n/Zapier and custom workflow automation, document processing.
+- **AI & automations** — https://www.sitespro.org/services/ai — AI document
+  recognition (receipt and invoice scanning with Mistral OCR and LLM extraction in
+  Vadi), LLM features inside business tools (OpenAI, Anthropic, Gemini, Groq),
+  chatbots and assistants, RAG pipelines, n8n and custom workflow automation.
 - **Digital consulting** — https://www.sitespro.org/services/consulting — payment
   systems (Stripe, PayPal, Square, custom gateways), fintech architecture and
   compliance, technology selection, technical audits and roadmaps.
+
+Specialisations:
+
+- **E-commerce & B2B shops** — https://www.sitespro.org/services/ecommerce —
+  WooCommerce and custom Next.js shops, partner-only pricing, stock, EU reverse-charge
+  invoices checked against VIES, multi-region catalogues.
+- **Payment systems & fintech** — https://www.sitespro.org/services/payments —
+  payment gateway cores, double-entry ledgers, settlements, checkout integration,
+  accounting and tax software.
+- **Custom CRM development** — https://www.sitespro.org/services/crm — stage-guided
+  pipelines, client portals, PDF documents, recurring invoicing, email tracking.
+- **Multilingual & RTL websites** — https://www.sitespro.org/services/multilingual —
+  hreflang, per-language SEO, Arabic right-to-left layouts, regional sites from one codebase.
+- All services: https://www.sitespro.org/services
 
 ## Selected work
 
@@ -26,6 +41,11 @@
   Lithuania (LV/RU/EN, EUR, EU reverse-charge invoices checked against VIES) and Dubai/GCC
   (Arabic right-to-left layout, AR/EN/RU, AED, UAE tax invoices). Case studies:
   https://www.sitespro.org/portfolio/overline-gcc and https://www.sitespro.org/portfolio/overline-baltics
+- **TEAHOUSE News Bot** — AI editor for a fintech Telegram channel: harvests news from nine
+  sources, has an LLM categorise and score every article 0–100 against editable editorial
+  criteria, writes the weekly digest (stories cited by id, so no invented links), generates
+  a cover and posts on schedule after one-tap approval. Case study:
+  https://www.sitespro.org/portfolio/teahouse-news-bot
 - **Web Studio CRM** — internal CRM for a web development company: cold-call lists, stage-guided
   pipeline, project kanban and client portal, agreements and acceptance acts as PDF, recurring
   invoicing through the accounting SaaS. Case study: https://www.sitespro.org/portfolio/agency-crm
@@ -46,14 +66,16 @@
 - Home: https://www.sitespro.org/
 - Portfolio (all case studies): https://www.sitespro.org/portfolio
 - About and process: https://www.sitespro.org/about
+- Web development in Riga, Latvia: https://www.sitespro.org/web-development-riga
+- Latvian-language site: https://sitespro.lv
 - Legal notice: https://www.sitespro.org/legal
 - Privacy policy: https://www.sitespro.org/privacy
 - Sitemap: https://www.sitespro.org/sitemap.xml
 
 ## How we work
 
-Discovery & strategy → design & build → test, launch & scale. Agile delivery with
-regular updates and client involvement at every stage. Typical engagement starts with
+Discovery & strategy → design & build → test, launch & scale. A staging link to click
+from early on, weekly check-ins, and the same team after launch. Typical engagement starts with
 a free consultation and a tailored proposal covering scope, timeline and pricing.
 
 Commercial terms: 50% deposit to start, remainder on completion; milestone-based

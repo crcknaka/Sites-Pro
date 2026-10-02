@@ -36,7 +36,7 @@ function Row({ ariaHidden = false }: { ariaHidden?: boolean }) {
             height={28}
             className="h-6 w-6 rounded-md sm:h-7 sm:w-7"
           />
-          <span className="text-sm font-medium tracking-tight text-[var(--fg)]">{c.name}</span>
+          <span className="font-display text-sm font-medium tracking-tight text-[var(--fg)]">{c.name}</span>
         </li>
       ))}
     </ul>

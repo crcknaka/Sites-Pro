@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import ContactForm from '@/components/contact/contact-form';
 import {
-  Brain,
   Workflow,
   MessageSquare,
   Eye,
@@ -10,7 +9,8 @@ import {
   Bot,
 } from 'lucide-react';
 import type { Metadata } from 'next';
-import { ACCENT_1, ACCENT_2 } from '@/lib';
+import { pageMetadata, withLatvian } from '@/lib/metadata';
+import { ACCENT_1, SITE_URL } from '@/lib';
 import { AIInfographic } from '@/components/service-infographic';
 import ServiceCases from '@/components/service-cases';
 import {
@@ -19,22 +19,19 @@ import {
   SERVICE_DEFINITIONS,
 } from '@/components/json-ld';
 
+
 const service = SERVICE_DEFINITIONS.find((s) => s.path === '/services/ai')!;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: 'AI Automation & AI Integration Services',
   description:
-    'AI automations built into real systems: chatbots and assistants, OpenAI and Anthropic API integration, RAG pipelines, document processing and workflow automation.',
-  alternates: {
-    canonical: '/services/ai',
-  },
-  openGraph: {
-    url: '/services/ai',
-    title: 'AI Automation & AI Integration Services | Sites Pro',
-    description:
-      'Chatbots, AI assistants, RAG pipelines and workflow automation integrated into your products and processes.',
-  },
-};
+    'AI built into real products: document recognition, LLM features inside business tools, assistants, RAG pipelines and workflow automation — with validation built in.',
+  path: '/services/ai',
+  socialDescription:
+    'Document recognition, LLM features, assistants and automation pipelines integrated into your products and processes.',
+  image: false, // opengraph-image.tsx in this folder
+  ...(service.lv ? { languages: withLatvian(`${SITE_URL}${service.path}`, service.lv) } : {}),
+});
 
 /* ======================================================
    DATA
@@ -62,20 +59,41 @@ const techStack = [
     description: 'Extraction, classification and transformation of structured and unstructured data.',
   },
   {
-    name: 'Custom ML solutions',
-    description: 'Tailored models and logic for domain-specific problems.',
+    name: 'Guardrails around the model',
+    description: 'Model output validated field by field, a person confirming before anything is posted, and rules — not the model — doing the arithmetic.',
+  },
+];
+
+/** AI features we run in production — each one is part of a case study. */
+const shipped = [
+  {
+    title: 'Receipt and invoice recognition',
+    product: 'Vadi — accounting SaaS',
+    slug: 'vadi',
+    description:
+      'Mistral OCR reads a photo or PDF, a language model turns the text into JSON that is validated field by field, and the app pre-fills a draft expense — date, number, supplier, total, printed VAT — for the user to check before it is posted.',
   },
   {
-    name: 'Real-time data handling',
-    description: 'Streaming data, analysis and system-level insights.',
+    title: 'AI news editor for a Telegram channel',
+    product: 'TEAHOUSE News Bot',
+    slug: 'teahouse-news-bot',
+    description:
+      'Collects the week’s fintech news, scores every article 0–100 with a reason against the client’s editorial criteria, writes the digest and makes a cover — the model cites stories by id, so it cannot invent a link, and the editor publishes with one tap.',
+  },
+  {
+    title: 'AI writing helper inside a CRM',
+    product: 'Web Studio CRM',
+    slug: 'agency-crm',
+    description:
+      'Improves, formalises, shortens or translates notes, call logs and task descriptions on the user’s own API key — Gemini, Claude, GPT or Llama on Groq — with a custom tone prompt and the formatting kept intact.',
   },
 ];
 
 const useCases = [
   {
     icon: Bot,
-    title: 'Chatbots of any complexity',
-    description: 'From simple FAQ bots to advanced AI assistants with custom logic and integrations',
+    title: 'Chatbots and assistants',
+    description: 'From FAQ bots to assistants connected to your own data and systems',
   },
   {
     icon: MessageSquare,
@@ -110,10 +128,10 @@ const useCases = [
 
 export default function AIPage() {
   return (
-    <main className="bg-[var(--bg)] text-[var(--fg)]">
+    <div className="bg-[var(--bg)] text-[var(--fg)]">
       <ServiceJsonLd service={service} />
       <BreadcrumbJsonLd
-        items={[{ name: 'AI & Automations', path: '/services/ai' }]}
+        items={[{ name: 'Services', path: '/services' }, { name: 'AI & Automations', path: '/services/ai' }]}
       />
       {/* =====================================================
           HERO
@@ -124,19 +142,16 @@ export default function AIPage() {
           <div>
             <span
               className="block text-xs sm:text-sm uppercase tracking-widest font-medium"
-              style={{ color: ACCENT_1 }}
+              style={{ color: 'var(--accent-text)' }}
             >
               AI & Automations
             </span>
 
             <h1 className="font-display mt-4 sm:mt-6 text-3xl sm:text-4xl md:text-6xl font-semibold tracking-tight">
-              Intelligent automation
+              Intelligent automation{' '}
               <br />
               <span
-                className="bg-clip-text text-transparent"
-                style={{
-                  backgroundImage: `linear-gradient(90deg, ${ACCENT_1}, ${ACCENT_2})`,
-                }}
+                className="text-gradient"
               >
                 built into real systems
               </span>
@@ -148,7 +163,7 @@ export default function AIPage() {
             </p>
 
             <Link
-              href="/#contact"
+              href="#contact"
               className="btn-primary mt-6 sm:mt-10 !text-sm"
             >
               Start your project
@@ -207,7 +222,7 @@ export default function AIPage() {
           <div className="text-center mb-10 sm:mb-16">
             <span
               className="text-xs sm:text-sm uppercase tracking-widest font-medium"
-              style={{ color: ACCENT_1 }}
+              style={{ color: 'var(--accent-text)' }}
             >
               Use Cases
             </span>
@@ -236,8 +251,8 @@ export default function AIPage() {
                     bg-[var(--bg)]
                   "
                 >
-                  <item.icon size={18} className="sm:hidden" style={{ color: ACCENT_1 }} />
-                  <item.icon size={22} className="hidden sm:block" style={{ color: ACCENT_1 }} />
+                  <item.icon size={18} className="sm:hidden" style={{ color: 'var(--accent-text)' }} />
+                  <item.icon size={22} className="hidden sm:block" style={{ color: 'var(--accent-text)' }} />
                 </div>
 
                 <h3 className="font-semibold text-sm sm:text-base">{item.title}</h3>
@@ -245,6 +260,42 @@ export default function AIPage() {
                   {item.description}
                 </p>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* =====================================================
+          SHIPPED
+      ====================================================== */}
+      <section className="px-4 sm:px-6 pb-4 sm:pb-8">
+        <div className="mx-auto max-w-6xl">
+          <div className="text-center mb-10 sm:mb-14">
+            <span className="section-eyebrow">In production</span>
+            <h2 className="font-display mt-3 sm:mt-4 text-2xl sm:text-3xl md:text-4xl font-semibold">
+              AI features we have shipped
+            </h2>
+            <p className="mt-3 sm:mt-4 text-sm sm:text-base text-[var(--text-muted)] max-w-2xl mx-auto">
+              Not demos: each one runs in production, inside products people use every week.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+            {shipped.map((item) => (
+              <Link
+                key={item.slug}
+                href={`/portfolio/${item.slug}`}
+                className="card-premium group block rounded-xl sm:rounded-2xl p-5 sm:p-7"
+              >
+                <p className="text-xs font-medium uppercase tracking-wider text-[var(--text-subtle)]">
+                  {item.product}
+                </p>
+                <h3 className="mt-2 font-display text-lg sm:text-xl font-semibold">{item.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-[var(--text-muted)]">{item.description}</p>
+                <span className="mt-4 inline-flex items-center gap-1 text-xs font-medium text-[var(--accent-text)]">
+                  Read the case study
+                </span>
+              </Link>
             ))}
           </div>
         </div>
@@ -274,7 +325,7 @@ export default function AIPage() {
         </div>
       </section>
 
-    </main>
+    </div>
   );
 }
 

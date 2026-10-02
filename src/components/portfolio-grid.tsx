@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Layers, ShoppingCart, Globe, Shield, Grid, ChevronDown } from 'lucide-react';
-import { projects } from '@/data/projects';
+import type { ProjectCategory } from '@/data/projects';
 import ProjectCard from '@/components/projectcard';
 import { useIsMobile } from '@/hooks';
 import SectionHeader from './section-header';
@@ -33,7 +33,16 @@ const categoryDescriptions: Record<(typeof CATEGORIES)[number], string> = {
   Fintech: 'Fintech platforms & payments',
 };
 
-export default function Portfolio() {
+/** Just what a card needs — the full case texts stay on the server. */
+export interface PortfolioItem {
+  slug: string;
+  title: string;
+  category: ProjectCategory | ProjectCategory[];
+  description: string;
+  image: string;
+}
+
+export default function PortfolioGrid({ projects }: { projects: PortfolioItem[] }) {
   const [active, setActive] = useState<(typeof CATEGORIES)[number]>('All');
   const isMobile = useIsMobile();
   const [visibleCount, setVisibleCount] = useState(8);
@@ -77,7 +86,6 @@ export default function Portfolio() {
       className="
         scroll-mt-24 relative
         px-4 sm:px-6 py-20 sm:py-32
-        select-none
         text-[var(--fg)]
       "
     >
@@ -114,7 +122,7 @@ export default function Portfolio() {
                       isActive
                         ? `
                           bg-[var(--accent-1)]/10
-                          text-[var(--accent-1)]
+                          text-[var(--accent-text)]
                           border-[var(--accent-1)]/50
                           shadow-md shadow-[var(--accent-1)]/10
                         `
@@ -131,7 +139,7 @@ export default function Portfolio() {
                     }
                   `}
                 >
-                  <Icon className={`h-3.5 w-3.5 sm:h-4 sm:w-4 ${isActive ? 'text-[var(--accent-1)]' : ''}`} />
+                  <Icon className={`h-3.5 w-3.5 sm:h-4 sm:w-4 ${isActive ? 'text-[var(--accent-text)]' : ''}`} />
                   {category}
                 </button>
               );
@@ -196,7 +204,7 @@ export default function Portfolio() {
             className="
               text-sm font-medium text-[var(--text-muted)]
               underline-offset-4 transition-colors
-              hover:text-[var(--accent-1)] hover:underline
+              hover:text-[var(--accent-text)] hover:underline
             "
           >
             View all {projects.length} projects

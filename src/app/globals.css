@@ -36,9 +36,14 @@ html {
   --accent-1: #8fd759;
   --accent-2: #27d6ff;
 
-  /* text */
+  /* accent used AS TEXT — the brand green is fine on dark, but only
+     1.7:1 on the light background, so the light theme gets a darker one */
+  --accent-text: #8fd759;
+  --danger: #ff8a80;
+
+  /* text — subtle stays ≥ 4.5:1 on --bg (WCAG AA) */
   --text-muted: rgba(242, 243, 241, 0.62);
-  --text-subtle: rgba(242, 243, 241, 0.4);
+  --text-subtle: rgba(242, 243, 241, 0.5);
 
   /* effects */
   --glow-soft: rgba(143, 215, 89, 0.25);
@@ -61,7 +66,10 @@ html {
   --border-soft: rgba(16, 20, 16, 0.1);
 
   --text-muted: rgba(16, 20, 16, 0.62);
-  --text-subtle: rgba(16, 20, 16, 0.4);
+  --text-subtle: rgba(16, 20, 16, 0.58);
+
+  --accent-text: #3a7518;
+  --danger: #b42318;
 
   --glow-soft: rgba(143, 215, 89, 0.18);
   --shadow-card: 0 1px 2px rgba(16, 20, 16, 0.05), 0 12px 32px -18px rgba(16, 20, 16, 0.14);
@@ -97,7 +105,6 @@ html {
     var(--bg);
   background-attachment: fixed;
   min-height: 100%;
-  height: 100%;
   /* Hide scrollbar but keep scrolling functionality */
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE and Edge */
@@ -107,12 +114,15 @@ html::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
 }
 
+/* The window is the scroller. body used to be height:100% + overflow-x:hidden,
+   which made body itself the scroll container: window.scrollY stayed 0, so
+   scroll-to-top never showed and scroll-driven effects never ran.
+   overflow-x: clip trims sideways overflow without creating a scroll box. */
 body {
   background: transparent;
   color: var(--fg);
   min-height: 100%;
-  height: 100%;
-  overflow-x: hidden;
+  overflow-x: clip;
   /* Hide scrollbar but keep scrolling functionality */
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE and Edge */
@@ -229,9 +239,11 @@ body {
   animation: hero-copy-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+/* Movement only, no fade: the hero text is the LCP element, and starting it
+   at opacity 0 held the paint back until the animation's first frame. */
 @keyframes hero-copy-in {
-  from { opacity: 0; transform: translateY(14px); }
-  to { opacity: 1; transform: none; }
+  from { transform: translateY(14px); }
+  to { transform: none; }
 }
 
 .hero-window {
@@ -712,6 +724,12 @@ body {
   color: transparent;
 }
 
+/* The brand gradient washes out on the light background — deeper stops keep
+   large headings above 3:1 */
+[data-theme="light"] .text-gradient {
+  background-image: linear-gradient(90deg, #3f8a1c, #0a8fb5);
+}
+
 /* Section eyebrow label */
 .section-eyebrow {
   display: inline-flex;
@@ -721,7 +739,7 @@ body {
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--accent-1);
+  color: var(--accent-text);
 }
 
 

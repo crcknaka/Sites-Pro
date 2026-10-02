@@ -1,14 +1,9 @@
 export type ProjectCategory = 'Websites' | 'Commerce' | 'Apps' | 'Fintech';
 
-/** Keys of the service pages under /services — used to cross-link cases and services. */
-export type ServiceKey = 'web' | 'web-platforms' | 'ai' | 'consulting';
-
-export const SERVICE_LABELS: Record<ServiceKey, string> = {
-  web: 'Website Development',
-  'web-platforms': 'Web Platform Development',
-  ai: 'AI & Automations',
-  consulting: 'Digital Consulting',
-};
+/** Service keys and labels live with the service registry; re-exported for existing imports. */
+import type { ServiceKey } from './services';
+export type { ServiceKey } from './services';
+export { SERVICE_LABELS } from './services';
 
 export interface Project {
   slug: string;
@@ -30,6 +25,14 @@ export interface Project {
   layout?: 'landscape';
   /** Short honest state, e.g. 'Prototype · road to MVP'. Shown as a badge next to the category. */
   status?: string;
+  /** Our own product rather than client work — counted and listed on the About page. */
+  own?: boolean;
+  /** <title> for the case page when the plain title says too little (≤ ~48 chars; " | Sites Pro" is appended). */
+  seoTitle?: string;
+  /** Meta description when `description` runs past ~160 characters. */
+  metaDescription?: string;
+  /** Content date for the sitemap — bump when the case copy or images change. */
+  updated?: string;
   link?: string;
   facebook?: string;
   instagram?: string;
@@ -43,11 +46,15 @@ export const projects: Project[] = [
   {
     slug: 'vadi',
     title: 'Vadi',
+    seoTitle: 'Vadi — Accounting SaaS for Latvian Businesses',
+    updated: '2026-10-02',
+    own: true,
     category: 'Fintech',
     layout: 'landscape',
-    tech: ['Next.js', 'React', 'VID EDS API', 'Multilingual (LV/EN/RU)'],
-    services: ['web-platforms', 'consulting'],
+    tech: ['Next.js', 'React', 'VID EDS API', 'AI document recognition', 'Multilingual (LV/EN/RU)'],
+    services: ['web-platforms', 'ai', 'consulting', 'payments', 'multilingual'],
     description: 'Accounting SaaS for Latvian sole traders, micro-enterprises and small companies — invoices, payroll, taxes and VID EDS declarations in one system that tells you what is due, when and how much.',
+    metaDescription: 'Accounting SaaS for Latvian sole traders and small companies: tax calendar, payroll, VAT and VID EDS declarations, bank matching and AI receipt scanning.',
     challenge: `
       Latvian bookkeeping punishes anyone without an accountant: VAT, payroll
       taxes, MUN and CIT all run on their own deadlines and formulas, and the
@@ -62,8 +69,9 @@ export const projects: Project[] = [
       'Tax calendar as the core UX — every deadline with its already-calculated amount, one click from reminder to done',
       'Payroll engine with a full gross-to-net breakdown: tax-free minimum, allowances, sick pay and holiday pay by average earnings',
       'VAT, employer report and CIT generated as VID EDS XML; MUN declaration filed straight from the system via the EDS API',
-      'Bank statement import with automatic matching to invoices and expenses, and categorisation that learns recurring payments',
-      'PDF invoicing with VAT marks, plus camera and PDF receipt scanning — postings and VAT calculations appear on their own',
+      'Bank statement import with automatic matching to invoices and expenses, and categorisation rules for recurring payments — explicit, tested rules rather than guesswork',
+      'PDF invoicing with VAT marks',
+      'AI receipt and invoice scanning: Mistral OCR reads the photo or PDF, a language model turns the text into JSON that is validated field by field, and the app pre-fills a draft expense — date, number, supplier, total, printed VAT and a VAT-regime hint — that the user checks before anything is posted; VAT itself is then calculated by rules, not by the model',
       'Onboarding that pulls company details from the business register and sets up the chart of accounts — ready to work in about ten minutes',
       'Eight free public tax calculators on current-year rates (salary gross↔net, self-employed, MUN, regime comparison, VAT, dividends and CIT, vacation pay, sick pay), each result shown with its full breakdown',
       'Industry landing pages for couriers, taxi drivers, IT freelancers, beauty and wellness, e-commerce, trades and construction, tutors, consultants, retail, health and legal professionals',
@@ -100,12 +108,14 @@ export const projects: Project[] = [
   {
     slug: 'payment-gateway',
     title: 'White-label Payment Gateway',
+    seoTitle: 'White-label Payment Gateway Prototype',
     category: ['Fintech', 'Apps'],
     status: 'Prototype · road to MVP',
     layout: 'landscape',
     tech: ['Go', 'PostgreSQL', 'REST API', 'HMAC signing', 'State machine', 'Double-entry ledger', 'Docker'],
-    services: ['web-platforms', 'consulting'],
+    services: ['web-platforms', 'consulting', 'payments'],
     description: 'Payment orchestration core built for a fintech client — merchant API, payment state machine, double-entry ledger, cascading acquirer routing, settlements with rolling reserve and a white-label hosted checkout. Working prototype, acquirers simulated.',
+    metaDescription: 'Prototype payment gateway core for a fintech client: merchant API, payment state machine, double-entry ledger, acquirer routing and white-label checkout.',
     challenge: `
       A fintech client needed the core of a payment gateway before signing
       acquirer contracts: something that proves the money model — how a payment
@@ -152,11 +162,14 @@ export const projects: Project[] = [
   {
     slug: 'liquid-silk',
     title: 'Liquid Silk',
+    seoTitle: 'Liquid Silk — Interactive WebGL Shader Gallery',
+    own: true,
     category: 'Apps',
     layout: 'landscape',
     tech: ['WebGL', 'GLSL shaders', 'Web Audio', 'Zero dependencies'],
     services: ['web-platforms'],
     description: 'Interactive WebGL gallery of fourteen pointer-reactive scenes — liquid gold, a solar eclipse, ion storms, a living map — each with its own generative soundtrack. One HTML file, no dependencies, no build step.',
+    metaDescription: 'Fourteen pointer-reactive WebGL scenes with generative Web Audio in one dependency-free HTML file — shader lighting, particles and adaptive quality.',
     challenge: `
       Show what a browser can do with nothing but a fragment shader: fourteen
       distinct scenes that react to every pointer movement, sound that is
@@ -195,12 +208,16 @@ export const projects: Project[] = [
   {
     slug: 'agency-crm',
     title: 'Web Studio CRM',
+    seoTitle: 'Custom CRM for a Web Studio — Case Study',
+    updated: '2026-10-02',
+    own: true,
     category: 'Apps',
     status: 'Internal product · in daily use',
     layout: 'landscape',
-    tech: ['Next.js', 'React', 'TypeScript', 'Supabase', 'PostgreSQL', 'Tailwind CSS', 'Row-level security', 'Email automation', 'PDF generation'],
-    services: ['web-platforms'],
+    tech: ['Next.js', 'React', 'TypeScript', 'Supabase', 'PostgreSQL', 'Tailwind CSS', 'Row-level security', 'Email automation', 'PDF generation', 'LLM integration'],
+    services: ['web-platforms', 'ai', 'crm'],
     description: 'CRM built for a web development company — cold-call lists, a stage-guided sales pipeline, projects with kanban and client portal, agreements and acceptance acts as PDF, invoicing through the accounting SaaS, email tracking and a shared calendar.',
+    metaDescription: 'Custom CRM for a web studio: cold-call lists, stage-guided pipeline, projects with client portal, PDF agreements, recurring invoicing and AI writing help.',
     challenge: `
       A small web studio runs on the same few people doing sales, delivery and
       billing, and off-the-shelf CRMs model none of that: cold-call lists that
@@ -220,6 +237,7 @@ export const projects: Project[] = [
       'Monthly billing plans that issue and email recurring invoices unattended, resumable if a run fails, double-billing prevented by a database constraint',
       'Email: templates, scheduled sends, open and reply tracking through an inbox poller, unsubscribe handling; shared calendar synced with Google',
       'Reports on pipeline, revenue and team activity; notifications, news feed and a rich-text editor that keeps pasted formatting from Word and Docs',
+      'AI writing helper on the user\'s own API key — Gemini, Claude, GPT or Llama on Groq, model picked per user — that improves, formalises, shortens or translates (EN/RU) lead notes, call logs, comments and task descriptions, following a custom tone prompt and keeping the formatting',
       'Multi-tenant from day one: organisations with owner and manager roles, row-level security on every table, credentials encrypted at rest',
     ],
     result: `
@@ -242,10 +260,13 @@ export const projects: Project[] = [
   {
     slug: 'overline-gcc',
     title: 'Overline — Dubai & GCC',
+    seoTitle: 'Overline GCC — Arabic B2B Shop for Dubai',
+    updated: '2026-09-17',
     category: 'Commerce',
     tech: ['Next.js', 'TypeScript', 'PostgreSQL', 'Arabic RTL layout', 'Multilingual (AR/EN/RU)', 'Custom admin panel', 'PDF generation', 'Docker'],
-    services: ['web', 'web-platforms'],
+    services: ['web', 'web-platforms', 'ecommerce', 'multilingual'],
     description: 'Arabic-language catalogue and partner shop for Overline in the UAE — Italian aesthetic equipment sold from Business Bay, Dubai, with a native right-to-left layout, prices in dirhams, UAE tax invoices and WhatsApp straight to the Dubai team.',
+    metaDescription: 'Arabic right-to-left catalogue and B2B partner shop for Overline in Dubai: prices in AED, UAE tax invoices, UAE legal texts and AR/EN/RU content.',
     challenge: `
       Arbidora Medical Trading, Overline's official distributor for the UAE and
       the Gulf, runs from Business Bay in Dubai and needed what the Baltic site
@@ -289,10 +310,13 @@ export const projects: Project[] = [
   {
     slug: 'overline-baltics',
     title: 'Overline — Baltics',
+    seoTitle: 'Overline — B2B Beauty Equipment Shop, Baltics',
+    updated: '2026-09-17',
     category: 'Commerce',
     tech: ['Next.js', 'TypeScript', 'PostgreSQL', 'Drizzle ORM', 'Docker', 'Custom admin panel', 'PDF generation', 'Email automation', 'Multilingual (LV/RU/EN)'],
-    services: ['web', 'web-platforms'],
+    services: ['web', 'web-platforms', 'ecommerce', 'multilingual'],
     description: 'Catalogue and B2B partner shop for Overline, the Milan maker of aesthetic cosmetology equipment, in Latvia and Lithuania — 52 devices in six lines, iSol professional cosmetics at partner-only prices, orders and VAT-correct invoices across the EU.',
+    metaDescription: 'B2B catalogue and partner shop for Overline in Latvia and Lithuania: 52 devices, partner-only cosmetics prices, stock and VIES-checked EU invoices.',
     challenge: `
       SIA Beauty Equipment represents Overline in Latvia and Lithuania and sells
       to two very different buyers: a clinic weighing a major equipment purchase,
@@ -333,12 +357,67 @@ export const projects: Project[] = [
   },
 
   {
+    slug: 'teahouse-news-bot',
+    title: 'TEAHOUSE News Bot',
+    seoTitle: 'TEAHOUSE — AI Fintech News Digest Bot',
+    updated: '2026-10-02',
+    category: 'Apps',
+    layout: 'landscape',
+    tech: ['Python', 'FastAPI', 'Telegram Bot API', 'LLM integration', 'AI image generation', 'SQLite', 'Docker'],
+    services: ['ai', 'web-platforms'],
+    description: 'Telegram bot and web admin for the TEAHOUSE fintech channel: it collects the week’s news from nine sources, has AI score, sort and write the digest, makes a cover and posts to the channel on schedule.',
+    metaDescription: 'AI news bot for a fintech Telegram channel: collects the week’s news, scores and sorts it with an LLM, writes the digest, makes a cover and posts on schedule.',
+    challenge: `
+      The TEAHOUSE community runs TH NEWS POST, a Telegram channel with a weekly
+      fintech digest. Every issue means reading a dozen news sites, picking the
+      stories that matter, writing a dozen headlines in the channel's format,
+      finding a cover and posting on time — every single week. The brief was to
+      automate that routine without handing the channel over to a model: the
+      editor keeps the last word, the AI must never invent a story or a link,
+      and every post has to fit Telegram's formatting and length limits.
+    `,
+    solution: [
+      'News harvested from nine sources — Finextra, The Paypers, Finance Magnates, CoinDesk, Latvijas Banka and others — via RSS, sitemaps or page parsing; paste any URL and the bot detects the feed type itself',
+      'Duplicates dropped by content hash, old articles pruned on a schedule, and every source weighted so stronger outlets rank higher',
+      'AI editor in three passes: it puts each article into a category, scores it 0–100 with a one-line reason against editorial criteria the client writes in plain words, then writes the digest from the best-scored stories',
+      'Hallucination guard: the model refers to stories by id, never by URL — the server substitutes the real links and drops any line whose link it cannot verify',
+      'Provider-agnostic text AI — Groq (Llama, GPT-OSS), Anthropic, OpenAI or Google Gemini — switched in settings, with a connection test',
+      'Covers from a photo library sorted by category, or generated by AI through Pollinations (Flux), Cloudflare Workers AI, Google Imagen or fal.ai',
+      'Every Sunday the bot collects the week and builds a draft; the editor gets a preview in Telegram and publishes with one tap — now, in the default Monday-morning slot or at any time — with an optional heads-up before it goes out',
+      '"Tea posts": standalone posts the AI writes in the channel’s own voice from a one-line topic, with a generated cover',
+      'Telegram-native output: MarkdownV2 escaped automatically, captions and messages kept inside the 1024 / 4096-character limits, link previews instead of bare URLs',
+      'Web admin with a health dashboard, pipeline and calendar, articles with their AI scores, sources, photo library, channel-reaction analytics and an operator guide in Russian',
+      'Optional cross-posting of each digest to LinkedIn',
+      'Self-hosted in Docker on a VPS behind Caddy with automatic TLS, push-to-deploy and daily database backups',
+    ],
+    result: `
+      Putting the weekly digest together now comes down to reviewing a draft and
+      one tap in Telegram: on Sunday the bot collects and ranks the week's fintech
+      news, and by Monday morning the issue is on the channel. Editorial control
+      stays with a person — the criteria are plain text the client edits, every
+      score comes with its reason, and the model cannot put an invented story or
+      link on the channel.
+    `,
+    image: '/projects/covers/teahouse-news-bot.webp?v=4',
+    images: [
+      '/projects/screenshots/teahouse/draft.jpg',
+      '/projects/screenshots/teahouse/articles.jpg',
+      '/projects/screenshots/teahouse/dashboard.jpg',
+      '/projects/screenshots/teahouse/editorial.jpg',
+      '/projects/screenshots/teahouse/compose.jpg',
+    ],
+    logo: '/projects/logos/teahouse.png',
+  },
+
+  {
     slug: 'bodybar',
     title: 'BodyBar',
+    seoTitle: 'BodyBar — Fitness Membership Platform',
     category: 'Commerce',
     tech: ['Next.js', 'React', 'Framer Motion', 'Online payments', 'Custom admin panel'],
-    services: ['web-platforms'],
+    services: ['web-platforms', 'ecommerce', 'payments'],
     description: 'Membership platform for the BodyBar method — barre, stretching and women’s plastique — with protected video courses, online payments and an admin panel the client runs alone.',
+    metaDescription: 'Membership platform for the BodyBar barre and stretching method: protected video courses, online payments and an admin panel the client runs alone.',
     challenge: `
       Create a premium digital experience that captures the elegance and energy
       of the BodyBar method while handling protected video content, integrated
@@ -371,10 +450,12 @@ export const projects: Project[] = [
   {
     slug: 'lepicur',
     title: 'Lepicur',
+    seoTitle: 'Lepicur — Luxury Tableware E-commerce',
     category: 'Commerce',
     tech: ['WordPress', 'WooCommerce'],
-    services: ['web'],
+    services: ['web', 'ecommerce'],
     description: 'Luxury crystal tableware and home interior boutique — Baccarat, Christofle, Daum, Lalique and Bernardaud — in a design-led storefront built for slow, considered browsing.',
+    metaDescription: 'Luxury tableware boutique on WooCommerce — Baccarat, Christofle, Lalique — with brand-first browsing and a fast catalogue of thousands of pieces.',
     challenge: `
       Lepicur sells the most demanding brands in tableware — Baccarat, Lalique,
       Daum, Christofle, Bernardaud — to buyers who expect the online boutique to
@@ -412,10 +493,12 @@ export const projects: Project[] = [
   {
     slug: 'institut-de-francais-nice',
     title: 'Institut de Français — Nice',
+    seoTitle: 'Institut de Français Nice — School Website',
     category: 'Websites',
     tech: ['WordPress', 'WooCommerce', 'Multilingual'],
-    services: ['web'],
+    services: ['web', 'multilingual'],
     description: 'Site for the Institut de Français language school in Nice — immersive programme structure, daily schedules and pricing by course length, with enrolment handled online.',
+    metaDescription: 'Website for the Institut de Français in Nice: programme lengths, daily schedule, transparent fees and online enrolment for an immersion French school.',
     challenge: `
       The Institut de Français is a world-famous immersion school; the new Nice
       branch needed a site that sells a four-week total-immersion method to
@@ -454,10 +537,13 @@ export const projects: Project[] = [
   {
     slug: 'institut-de-francais-villefranche',
     title: 'Institut de Français — Villefranche',
+    seoTitle: 'Institut de Français — Six-Language Website',
+    updated: '2026-09-04',
     category: 'Websites',
     tech: ['WordPress', 'WooCommerce', 'Multilingual'],
-    services: ['web'],
+    services: ['web', 'multilingual'],
     description: 'Website of the original Institut de Français in Villefranche-sur-Mer — a total-immersion French school with 55 years of history: method, eight levels, daily schedule, fees, accommodation and online enrolment, in six languages.',
+    metaDescription: 'Six-language website of the Institut de Français, a total-immersion French school: method, levels, fees, accommodation and online enrolment.',
     challenge: `
       The Institut de Français has taught French by total immersion on the
       Riviera for more than 55 years, with press coverage and decades of
@@ -499,9 +585,12 @@ export const projects: Project[] = [
   {
     slug: 'madsword-studios',
     title: 'MadSword Studios',
+    seoTitle: 'MadSword Studios — Game Studio Website',
+    updated: '2026-10-02',
     category: 'Websites',
     services: ['web'],
     description: 'Studio site for a mobile and VR game developer — a growing catalogue of iOS, Android and browser titles from TowerHex to Rigglebox VR, plus partnership and hiring sections.',
+    metaDescription: 'Website for a mobile and VR game studio: a filterable catalogue of iOS, Android and browser titles, plus partnership and hiring sections.',
     challenge: `
       Showcase a game development studio's extensive portfolio and technical expertise
       while highlighting achievements and capabilities across mobile, VR, and multiplayer
@@ -509,8 +598,8 @@ export const projects: Project[] = [
     `,
     solution: [
       'Comprehensive game portfolio showcase with filtering by platform',
-      'Highlighting 160+ games developed and 20M+ downloads',
-      'Emphasizing 8+ years of experience in AAA mobile, VR and multiplayer projects',
+      'The studio’s track record put up front — 160+ games shipped and 20M+ downloads',
+      'Their 8+ years in AAA mobile, VR and multiplayer work presented as the core of the pitch',
       'Expertise in performance optimization, game servers, payments and cross-platform development',
       'Clear presentation of studio capabilities and services',
       'Professional design reflecting gaming industry standards',
@@ -536,9 +625,11 @@ export const projects: Project[] = [
   {
     slug: 'sensora',
     title: 'Sensora',
+    seoTitle: 'Sensora — Cyber-Security Company Website',
     category: 'Websites',
     services: ['web'],
     description: 'Site for a Latvian cyber-security company — IT security services, cyber strategy, penetration testing and a security education platform, framed for a corporate buyer.',
+    metaDescription: 'Website for a Latvian cyber-security company: security services, penetration testing and a security education platform, written for corporate buyers.',
     challenge: `
       Build trust and credibility for a cybersecurity services provider while
       clearly communicating expertise, certifications, and the comprehensive approach
@@ -571,9 +662,10 @@ export const projects: Project[] = [
   {
     slug: 'imun',
     title: 'Imun',
+    seoTitle: 'Imun — Payment Gateway Marketing Site',
     category: ['Websites', 'Fintech'] ,
     tech: ['React', 'Vite'],
-    services: ['web', 'consulting'],
+    services: ['web', 'consulting', 'payments'],
     description: 'Marketing site for a payment gateway provider — open banking, online acquiring, alternative payment methods and payouts, presented with a compliance-first tone.',
     challenge: `
       Create a professional, trustworthy online presence that communicates
@@ -606,8 +698,9 @@ export const projects: Project[] = [
   {
     slug: 'ma-sunglasses',
     title: 'Ma Sunglasses',
+    seoTitle: 'Ma Sunglasses — Online Sunglasses Store',
     category: 'Commerce',
-    services: ['web'],
+    services: ['web', 'ecommerce'],
     description: 'Online sunglasses store built around a large catalogue — filterable browsing, clear product presentation and a checkout tuned for fast, repeat purchases.',
     challenge: `
       Present a wide assortment of products in a clear and user-friendly way
@@ -634,6 +727,7 @@ export const projects: Project[] = [
   {
     slug: 'sunachates',
     title: 'Sunachates',
+    seoTitle: 'Sunachates — Boutique Catalogue Site',
     category: 'Websites',
     services: ['web'],
     description: 'Boutique catalogue site with a strong visual identity — image-led layouts, a consistent editorial rhythm and a responsive grid that keeps the products in front.',
@@ -661,9 +755,10 @@ export const projects: Project[] = [
   {
     slug: 'pets-pro',
     title: 'Pets Pro',
+    seoTitle: 'Pets Pro — Multilingual Pet Supplies Store',
     category: 'Commerce',
     tech: ['WordPress', 'WooCommerce', 'Multilingual', 'Mailchimp'],
-    services: ['web'],
+    services: ['web', 'ecommerce', 'multilingual'],
     description: 'Pet supplies store with a multilingual catalogue — clothing, beds, toys and care products, with featured categories and a favourites list on the storefront.',
     challenge: `
       A pet-supplies retailer selling across the Baltics needed a store that
@@ -700,6 +795,7 @@ export const projects: Project[] = [
   {
     slug: 'on-air-emotions',
     title: 'On Air Emotions',
+    seoTitle: 'On Air Emotions — Event Agency Website',
     category: 'Websites',
     services: ['web'],
     description: 'Event agency catalogue built from modular content blocks — a flexible CMS structure that lets the team reshape their offering without touching the design.',
@@ -731,9 +827,10 @@ export const projects: Project[] = [
   {
     slug: 'goldberg',
     title: 'Goldberg',
+    seoTitle: 'Goldberg — Dental Supplies Catalogue',
     category: 'Websites',
     tech: ['WordPress', 'WooCommerce', 'Multilingual'],
-    services: ['web'],
+    services: ['web', 'multilingual'],
     description: 'Dental supplies catalogue for a Baltic distributor — endodontics, therapy, hygiene, orthodontics, implantology and instruments, organised so doctors find parts fast.',
     challenge: `
       A dental supplies distributor sells to an audience that knows exactly what
@@ -770,6 +867,7 @@ export const projects: Project[] = [
   {
     slug: 'barberly',
     title: 'Barberly',
+    seoTitle: 'Barberly — Barbershop Booking Website',
     category: 'Websites',
     services: ['web'],
     description: 'Barbershop website — classic barbering positioned as a premium experience, with services, the team, social proof and an online booking flow that works on a phone.',
@@ -796,6 +894,7 @@ export const projects: Project[] = [
   {
     slug: 'finnex',
     title: 'Finnex',
+    seoTitle: 'Finnex — Manufacturing Product Catalogue',
     category: 'Websites',
     services: ['web'],
     description: 'Product catalogue for a manufacturing-focused brand — a simple visual language, fast-loading pages and navigation that keeps a wide range easy to scan.',
@@ -820,9 +919,11 @@ export const projects: Project[] = [
   {
     slug: 'euc-one',
     title: 'EUC.ONE',
+    seoTitle: 'EUC.ONE — Electric Unicycle Community App',
+    own: true,
     category: ['Apps', 'Websites'],
     tech: ['Vite', 'Progressive Web App', 'Interactive maps'],
-    services: ['web-platforms'],
+    services: ['web-platforms', 'multilingual'],
     description: 'Platform for electric unicycle riders — community content, routes and model data in an installable web app built to be used on a phone, mid-ride.',
     challenge: `
       Electric-unicycle riders in Latvia had their community scattered across
@@ -862,6 +963,8 @@ export const projects: Project[] = [
   {
     slug: 'euc-calculator',
     title: 'EUC Calculator',
+    seoTitle: 'EUC Calculator — Unicycle Range Calculator',
+    own: true,
     category: 'Apps',
     tech: ['Vite', 'Progressive Web App', 'Client-side calculations'],
     services: ['web-platforms'],
@@ -902,9 +1005,11 @@ export const projects: Project[] = [
   {
     slug: 'gift-roulette',
     title: 'Gift Roulette',
+    seoTitle: 'Gift Roulette — Secret Santa Organiser App',
     category: 'Apps',
     services: ['web-platforms'],
     description: 'Secret Santa organiser — create an event, manage participants, draw names automatically and share admin links by email, with nothing to install and no account to join.',
+    metaDescription: 'Secret Santa organiser: create an event, add participants and draw names automatically — nothing to install and no account needed to join.',
     challenge: `
       Simplify the organization of Secret Santa events by providing an intuitive
       platform for creating events, managing participants, and coordinating gift
@@ -930,9 +1035,10 @@ export const projects: Project[] = [
   {
     slug: 'ekobaltika',
     title: 'EkoBaltika',
+    seoTitle: 'EkoBaltika — Services and Tools Web Shop',
     category: 'Commerce',
     tech: ['WordPress', 'WooCommerce', 'Multilingual'],
-    services: ['web'],
+    services: ['web', 'ecommerce'],
     description: 'Laser cleaning of metal surfaces and CNC milling for wood and polymers, plus a tools web shop — services and products in one site, serving customers across Latvia.',
     challenge: `
       EkoBaltika does two different things — industrial services (laser cleaning
@@ -969,9 +1075,10 @@ export const projects: Project[] = [
   {
     slug: 'bullu-laivas',
     title: 'Buļļu Laivas',
+    seoTitle: 'Buļļu Laivas — SUP Shop, Rentals and Events',
     category: 'Commerce',
     tech: ['WordPress', 'WooCommerce', 'Multilingual'],
-    services: ['web'],
+    services: ['web', 'ecommerce'],
     description: 'SUP and watersports shop — boards, paddles, wetsuits, clothing and gift cards, with a catalogue built for a seasonal range that turns over fast every summer.',
     challenge: `
       Buļļu Laivas is three businesses in one: Latvia's widest SUP board shop, a
@@ -1015,6 +1122,8 @@ export const projects: Project[] = [
   {
     slug: 'offshore-license',
     title: 'Offshore License',
+    seoTitle: 'Offshore License — Corporate Services Website',
+    updated: '2026-10-02',
     category: 'Fintech',
     tech: ['Bitrix', 'Multilingual'],
     services: ['web', 'consulting'],
@@ -1026,10 +1135,10 @@ export const projects: Project[] = [
     `,
     solution: [
       'Company formation and corporate services',
-      'Licensing for Forex, Crypto & ICO, Binaries, Financial intermediaries and Gambling',
+      'Licensing for Forex, crypto businesses and financial intermediaries',
       'Assistance with banking and merchant services',
       'Accounting and Audit services',
-      'Turnkey solution for Forex, Crypto & ICO, Binaries and Gambling platforms',
+      'Turnkey setup for Forex and crypto platforms',
       'Highlighting highly experienced staff and strong technological base',
       'Emphasizing wide partner network and broad geographical presence',
       'Clear service categorization and professional presentation',
@@ -1053,9 +1162,10 @@ export const projects: Project[] = [
   {
     slug: 'wellton',
     title: 'Wellton',
+    seoTitle: 'Wellton — Spa Gift Card Shop',
     category: 'Commerce',
     tech: ['WordPress', 'WooCommerce', 'Multilingual'],
-    services: ['web'],
+    services: ['web', 'ecommerce'],
     description: 'Gift card shop for Wellton Hotels & Spa in Riga — SPA zones, massages and memberships sold as vouchers, with a purchase flow that still feels like giving a gift.',
     challenge: `
       Create an elegant and user-friendly platform for selling premium wellness
@@ -1092,6 +1202,8 @@ export const projects: Project[] = [
   {
     slug: 'window-pros',
     title: 'Bay Area Window Pros',
+    seoTitle: 'Bay Area Window Pros — Window Dealer Website',
+    updated: '2026-10-02',
     category: 'Websites',
     tech: ['OctoberCMS', 'Laravel'],
     services: ['web'],
@@ -1105,11 +1217,11 @@ export const projects: Project[] = [
       'Large variety of styles, sizes and colors to transform home design',
       'Partnerships with highest quality manufacturers ensuring best dealer prices',
       'Guaranteed customer service with extensive product knowledge',
-      'Team of installation experts with 20+ years of experience',
+      'The installers’ 20+ years of experience made a headline argument',
       'Custom design approach meeting specific project requirements',
       'HOA and city approval assistance for compliance',
       'Clear 4-step process from quote to project completion',
-      'Trust-building credentials and statistics (5000+ jobs, 45,000+ windows installed)',
+      'The company’s own numbers as proof — 5,000+ jobs and 45,000+ windows installed',
     ],
     result: `
       A professional service website that effectively communicates expertise and
@@ -1128,6 +1240,7 @@ export const projects: Project[] = [
   {
     slug: 'aerial-platform',
     title: 'Aerial Platform',
+    seoTitle: 'Aerial Platform — Drone Services Marketplace',
     category: ['Apps', 'Commerce'] ,
     services: ['web-platforms'],
     description: 'The premier marketplace connecting professional drone operators with clients who need exceptional aerial photography and videography services.',
@@ -1160,6 +1273,7 @@ export const projects: Project[] = [
   {
     slug: 'senso-projects',
     title: 'Senso Projects',
+    seoTitle: 'Senso Projects — Interior Design Website',
     category: 'Websites',
     tech: ['React', 'Vite'],
     services: ['web'],
@@ -1196,6 +1310,8 @@ export const projects: Project[] = [
   {
     slug: 'reppy',
     title: 'Reppy',
+    seoTitle: 'Reppy — Offline-first Workout Tracker',
+    own: true,
     category: 'Apps',
     tech: ['Mobile app', 'Offline-first architecture', 'Cross-device sync'],
     services: ['web-platforms'],
@@ -1232,9 +1348,11 @@ export const projects: Project[] = [
   {
     slug: 'balticaqua',
     title: 'Baltic Aqua',
+    seoTitle: 'Baltic Aqua — Water Treatment Website',
+    updated: '2026-10-02',
     category: 'Websites',
     tech: ['Next.js', 'React', 'Multilingual'],
-    services: ['web'],
+    services: ['web', 'multilingual'],
     description: 'Kinetico water treatment systems for homes and businesses in Latvia — softeners, drinking water filters and full filtration, sold with installation and consultation.',
     challenge: `
       Establish a strong digital presence for a well-established water treatment
@@ -1244,7 +1362,7 @@ export const projects: Project[] = [
     solution: [
       'Custom-built admin panel for independent content management',
       'Clear service categorization: purification, softening, filtration',
-      'Trust-building elements highlighting 20+ years of industry experience',
+      'Trust built around the company’s 20+ years in water treatment',
       'Latvia-wide service coverage with installation and maintenance info',
       'Mobile-optimized layout for on-the-go customer inquiries',
       'SEO-friendly structure for local search visibility',

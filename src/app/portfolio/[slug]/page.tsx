@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/metadata';
 import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
@@ -35,34 +36,16 @@ export async function generateMetadata({
 
   if (!project) return {};
 
-  const categories = Array.isArray(project.category)
-    ? project.category.join(', ')
-    : project.category;
-  const description = project.description.replace(/\s+/g, ' ').trim();
-  // the card image is a transparent cutout — social previews get the real screenshot
-  const preview = project.images?.[0] ?? project.image;
-  const url = `/portfolio/${project.slug}`;
+  const description = (project.metaDescription ?? project.description).replace(/\s+/g, ' ').trim();
 
-  return {
-    title: `${project.title} — ${categories} Case Study`,
+  return pageMetadata({
+    title: project.seoTitle ?? `${project.title} — case study`,
     description,
-    alternates: {
-      canonical: url,
-    },
-    openGraph: {
-      type: 'article',
-      url,
-      title: `${project.title} — ${categories} Case Study | Sites Pro`,
-      description,
-      images: [{ url: preview, alt: `${project.title} — project screenshot` }],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: `${project.title} — ${categories} Case Study`,
-      description,
-      images: [preview],
-    },
-  };
+    path: `/portfolio/${project.slug}`,
+    socialTitle: `${project.title} — case study | Sites Pro`,
+    type: 'article',
+    image: false, // opengraph-image.tsx in this folder renders a 1200×630 card per case
+  });
 }
 
 export default async function WorkCase({
@@ -82,7 +65,7 @@ export default async function WorkCase({
   const images = ((project as any).images || [project.image]).filter(Boolean);
 
   return (
-    <main className="mx-auto max-w-7xl px-4 sm:px-6 pt-24 sm:pt-32 pb-16 sm:pb-24 text-[var(--fg)]">
+    <div className="mx-auto max-w-7xl px-4 sm:px-6 pt-24 sm:pt-32 pb-16 sm:pb-24 text-[var(--fg)]">
       <ProjectJsonLd project={project} />
       <BreadcrumbJsonLd
         items={[
@@ -90,19 +73,6 @@ export default async function WorkCase({
           { name: project.title, path: `/portfolio/${project.slug}` },
         ]}
       />
-      {/* =========================
-         IMAGE GALLERY (Mobile - at top)
-      ========================= */}
-      {images.length > 0 && (
-        <div className="lg:hidden mb-8">
-          <PortfolioLightbox
-            images={images}
-            projectTitle={project.title}
-            orientation={project.layout === 'landscape' ? 'landscape' : 'portrait'}
-          />
-        </div>
-      )}
-
       {/* =========================
          TWO COLUMN LAYOUT
       ========================= */}
@@ -210,7 +180,7 @@ export default async function WorkCase({
                       className="
                         rounded-full border border-[var(--accent-1)]/30
                         bg-[var(--accent-1)]/10 px-3 py-1
-                        text-xs font-medium text-[var(--accent-1)]
+                        text-xs font-medium text-[var(--accent-text)]
                         transition-colors hover:bg-[var(--accent-1)]/20
                       "
                     >
@@ -429,14 +399,15 @@ export default async function WorkCase({
         </div>
 
         {/* =========================
-           RIGHT — IMAGES (Desktop sidebar)
+           GALLERY — rendered once: first on mobile (CSS order), the right
+           column on desktop. It used to be rendered twice, one copy per
+           breakpoint, which shipped every image and its JS twice.
         ========================= */}
-        {/* Desktop: sidebar gallery */}
         {images.length > 0 && (
           <div
-            className={`${
+            className={`order-first lg:order-none ${
               project.layout === 'landscape' ? 'lg:col-span-2' : 'lg:col-span-1'
-            } hidden lg:block`}
+            }`}
           >
             <PortfolioLightbox
               images={images}
@@ -625,7 +596,7 @@ export default async function WorkCase({
         </div>
       </div>
 
-    </main>
+    </div>
   );
 }
 
@@ -660,7 +631,7 @@ function Section({
               bg-[var(--accent-1)]/10
             "
           >
-            <Icon className="h-4 w-4 sm:h-5 sm:w-5 text-[var(--accent-1)]" />
+            <Icon className="h-4 w-4 sm:h-5 sm:w-5 text-[var(--accent-text)]" />
           </div>
         )}
         <h2

@@ -19,6 +19,8 @@ export const CONTACT_EMAIL = 'info@sitespro.org';
 export const SOCIAL_PROFILES = [
   'https://www.linkedin.com/company/sites-pro/',
   'https://t.me/IljaFinTech',
+  // the Latvian-language site of the same company
+  'https://sitespro.lv',
 ];
 
 /** Markets we sell into — used for areaServed in structured data. */

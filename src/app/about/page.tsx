@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/metadata';
 import Link from 'next/link';
 import {
   ArrowRight,
@@ -14,28 +15,22 @@ import {
 import { ACCENT_1, ACCENT_2 } from '@/lib';
 import { projects, SERVICE_LABELS, type ServiceKey } from '@/data/projects';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: 'About — How We Build Digital Products',
   description:
     'How Sites Pro works: a Riga-based studio that builds websites, web platforms and AI automations the way a product team would — and runs its own products on the same stack.',
-  alternates: {
-    canonical: '/about',
-  },
-  openGraph: {
-    url: '/about',
-    title: 'About Sites Pro — How We Build Digital Products',
-    description:
-      'A Riga-based studio that builds websites, web platforms and AI automations the way a product team would — and runs its own products on the same stack.',
-  },
-};
+  path: '/about',
+  socialTitle: 'About Sites Pro — How We Build Digital Products',
+  image: false, // opengraph-image.tsx in this folder
+});
 
-const ownProducts = projects.filter((p) => ['vadi', 'agency-crm', 'liquid-silk'].includes(p.slug));
+const ownProducts = projects.filter((p) => p.own);
 
 const facts = [
   { value: 'Riga', label: 'Latvia — working across the EU and worldwide' },
   { value: String(projects.length), label: 'case studies in the portfolio' },
-  { value: String(ownProducts.length), label: 'products of our own in daily use' },
-  { value: 'EN · RU', label: 'working languages, Latvian on request' },
+  { value: String(ownProducts.length), label: 'products of our own' },
+  { value: 'EN · LV · RU', label: 'working languages' },
 ];
 
 const steps = [
@@ -89,7 +84,7 @@ const services: ServiceKey[] = ['web', 'web-platforms', 'ai', 'consulting'];
 
 export default function AboutPage() {
   return (
-    <main className="relative">
+    <div className="relative">
       {/* HERO */}
       <section className="mx-auto max-w-6xl px-4 sm:px-6 pt-24 sm:pt-32 pb-14 sm:pb-20">
         <span className="section-eyebrow">About Sites Pro</span>
@@ -137,7 +132,7 @@ export default function AboutPage() {
               <li key={s.step} className="card-premium card-topline flex flex-col rounded-2xl p-6 sm:p-7">
                 <div className="flex items-center gap-3">
                   <span className="grid h-11 w-11 place-items-center rounded-xl border border-[var(--border)] bg-[var(--surface-strong)]">
-                    <Icon className="h-5 w-5" style={{ color: ACCENT_1 }} />
+                    <Icon className="h-5 w-5" style={{ color: 'var(--accent-text)' }} />
                   </span>
                   <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--text-subtle)]">
                     Stage {s.step}
@@ -145,7 +140,7 @@ export default function AboutPage() {
                 </div>
                 <h3 className="font-display mt-5 text-xl font-semibold">{s.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-[var(--text-muted)]">{s.text}</p>
-                <p className="mt-auto pt-5 text-xs font-medium" style={{ color: ACCENT_1 }}>
+                <p className="mt-auto pt-5 text-xs font-medium" style={{ color: 'var(--accent-text)' }}>
                   {s.delivers}
                 </p>
               </li>
@@ -167,7 +162,7 @@ export default function AboutPage() {
             return (
               <div key={p.title} className="flex gap-4 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
                 <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-[var(--border)] bg-[var(--surface-strong)]">
-                  <Icon className="h-5 w-5" style={{ color: ACCENT_1 }} />
+                  <Icon className="h-5 w-5" style={{ color: 'var(--accent-text)' }} />
                 </span>
                 <div>
                   <h3 className="text-base font-semibold sm:text-lg">{p.title}</h3>
@@ -183,7 +178,7 @@ export default function AboutPage() {
       <section className="mx-auto max-w-6xl px-4 sm:px-6 pb-20 sm:pb-28">
         <span className="section-eyebrow">Our own products</span>
         <h2 className="font-display mt-4 text-2xl sm:text-3xl font-semibold tracking-tight">
-          Built for ourselves, run every day
+          Built and run by us
         </h2>
         <div className="mt-8 grid gap-4 sm:grid-cols-3">
           {ownProducts.map((p) => (
@@ -198,7 +193,7 @@ export default function AboutPage() {
               </span>
               <span
                 className="mt-4 inline-flex items-center gap-1 text-sm font-medium opacity-70 transition-opacity group-hover:opacity-100"
-                style={{ color: ACCENT_1 }}
+                style={{ color: 'var(--accent-text)' }}
               >
                 Case study
                 <ArrowUpRight className="h-4 w-4" />
@@ -251,6 +246,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

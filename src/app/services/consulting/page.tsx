@@ -1,11 +1,8 @@
 import Link from 'next/link';
 import ContactForm from '@/components/contact/contact-form';
 import {
-  CreditCard,
   TrendingUp,
   Code,
-  Brain,
-  Globe,
   BarChart3,
   ShieldCheck,
   Zap,
@@ -14,7 +11,8 @@ import {
   FileCheck,
 } from 'lucide-react';
 import type { Metadata } from 'next';
-import { ACCENT_1, ACCENT_2 } from '@/lib';
+import { pageMetadata, withLatvian } from '@/lib/metadata';
+import { ACCENT_1, SITE_URL } from '@/lib';
 import { ConsultingInfographic } from '@/components/service-infographic';
 import ServiceCases from '@/components/service-cases';
 import {
@@ -23,24 +21,21 @@ import {
   SERVICE_DEFINITIONS,
 } from '@/components/json-ld';
 
+
 const service = SERVICE_DEFINITIONS.find(
   (s) => s.path === '/services/consulting',
 )!;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: 'Digital & Fintech Consulting',
   description:
     'Strategic consulting for payment systems, fintech architecture, web and app development, AI integration and technical audits. Expert guidance for the right technical decisions.',
-  alternates: {
-    canonical: '/services/consulting',
-  },
-  openGraph: {
-    url: '/services/consulting',
-    title: 'Digital & Fintech Consulting | Sites Pro',
-    description:
-      'Payment systems, fintech architecture, technology selection, AI strategy and technical audits.',
-  },
-};
+  path: '/services/consulting',
+  socialDescription:
+    'Payment systems, fintech architecture, technology selection, AI strategy and technical audits.',
+  image: false, // opengraph-image.tsx in this folder
+  ...(service.lv ? { languages: withLatvian(`${SITE_URL}${service.path}`, service.lv) } : {}),
+});
 
 /* ======================================================
    DATA
@@ -90,10 +85,10 @@ const additionalServices = [
 
 export default function ConsultingPage() {
   return (
-    <main className="bg-[var(--bg)] text-[var(--fg)]">
+    <div className="bg-[var(--bg)] text-[var(--fg)]">
       <ServiceJsonLd service={service} />
       <BreadcrumbJsonLd
-        items={[{ name: 'Digital Consulting', path: '/services/consulting' }]}
+        items={[{ name: 'Services', path: '/services' }, { name: 'Digital Consulting', path: '/services/consulting' }]}
       />
       {/* =====================================================
           HERO
@@ -104,19 +99,16 @@ export default function ConsultingPage() {
           <div>
             <span
               className="block text-xs sm:text-sm uppercase tracking-widest font-medium"
-              style={{ color: ACCENT_1 }}
+              style={{ color: 'var(--accent-text)' }}
             >
               Consulting
             </span>
 
             <h1 className="font-display mt-4 sm:mt-6 text-3xl sm:text-4xl md:text-6xl font-semibold tracking-tight">
-              Expert guidance for
+              Expert guidance for{' '}
               <br />
               <span
-                className="bg-clip-text text-transparent"
-                style={{
-                  backgroundImage: `linear-gradient(90deg, ${ACCENT_1}, ${ACCENT_2})`,
-                }}
+                className="text-gradient"
               >
                 your digital projects
               </span>
@@ -129,7 +121,7 @@ export default function ConsultingPage() {
             </p>
 
             <Link
-              href="/#contact"
+              href="#contact"
               className="btn-primary mt-6 sm:mt-10 !text-sm"
             >
               Start consulting
@@ -231,12 +223,12 @@ export default function ConsultingPage() {
                   <service.icon
                     size={16}
                     className="sm:hidden"
-                    style={{ color: ACCENT_1 }}
+                    style={{ color: 'var(--accent-text)' }}
                   />
                   <service.icon
                     size={18}
                     className="hidden sm:block"
-                    style={{ color: ACCENT_1 }}
+                    style={{ color: 'var(--accent-text)' }}
                   />
                 </div>
 
@@ -279,7 +271,7 @@ export default function ConsultingPage() {
         </div>
       </section>
 
-    </main>
+    </div>
   );
 }
 

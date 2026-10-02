@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
@@ -8,176 +8,148 @@ import { Menu, X } from 'lucide-react';
 import { ThemeToggle } from '@/components/theme/theme-toggle';
 import { ACCENT } from '@/lib';
 
-type NavItem =
-  | { label: string; type: 'section'; target: string }
-  | { label: string; type: 'page'; href: string };
+/**
+ * On the home page every item scrolls to its section. Elsewhere the items
+ * that have a page of their own link to it, so the nav carries real links
+ * to /services, /portfolio and /about instead of anchors on the home page.
+ */
+type NavItem = { label: string; target: string; page?: string };
 
 const navItems: NavItem[] = [
-  { label: 'Home', type: 'section', target: 'home' },
-  { label: 'Services', type: 'section', target: 'services' },
-  { label: 'Portfolio', type: 'section', target: 'portfolio' },
-  { label: 'About', type: 'section', target: 'about' },
-  { label: 'FAQ', type: 'section', target: 'faq' },
-  { label: 'Contact', type: 'section', target: 'contact' },
+  { label: 'Home', target: 'home', page: '/' },
+  { label: 'Services', target: 'services', page: '/services' },
+  { label: 'Portfolio', target: 'portfolio', page: '/portfolio' },
+  { label: 'About', target: 'about', page: '/about' },
+  { label: 'FAQ', target: 'faq' },
+  { label: 'Contact', target: 'contact' },
 ];
-
-const SPRING = {
-  stiffness: 0.045,
-  damping: 0.88,
-};
 
 const UNDERLINE_PADDING = 0.32;
 
 export default function Header() {
   const pathname = usePathname();
-
   const isHome = pathname === '/';
-  const isAboutPage = pathname === '/about';
-  const isServicesPage = pathname.startsWith('/services');
-  const isPortfolioPage = pathname.startsWith('/portfolio');
 
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState('');
-  const [visible, setVisible] = useState(false);
+  // home page: set by the scroll spy below
+  const [sectionActive, setSectionActive] = useState('');
 
-  const navRef = useRef<HTMLDivElement>(null);
-  const underline = useRef({
-    x: 0,
-    width: 0,
-    vx: 0,
-    targetX: 0,
-    targetW: 0,
-  });
+  const navRef = useRef<HTMLElement>(null);
+  const underlineRef = useRef<HTMLSpanElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
 
-  const [, force] = useState(0);
+  const hrefFor = (item: NavItem) =>
+    isHome ? `#${item.target}` : (item.page ?? `/#${item.target}`);
 
-  /* scroll spy */
+  /* ---------- which item is active ---------- */
+
+  // Off the home page the active item follows the route.
+  const active = isHome
+    ? sectionActive
+    : (navItems.find((i) => i.page && i.page !== '/' && pathname.startsWith(i.page))?.target ?? '');
+
+  // On the home page the section crossing a thin band at 40% of the viewport
+  // is active. A band with threshold 0 works for sections of any height — the
+  // old ratio thresholds never fired for sections taller than the screen.
   useEffect(() => {
     if (!isHome) return;
 
-    const sections = document.querySelectorAll<HTMLElement>('section[id]');
+    const sections = navItems
+      .map((i) => document.getElementById(i.target))
+      .filter((el): el is HTMLElement => el !== null);
     if (!sections.length) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
-        let bestRatio = 0;
-        let bestId = '';
-
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          const target = entry.target as HTMLElement;
-          if (!target.id) return;
-          if (entry.intersectionRatio > bestRatio) {
-            bestRatio = entry.intersectionRatio;
-            bestId = target.id;
-          }
-        });
-
-        if (bestId) {
-          setActive(bestId);
-          // Update URL hash without scrolling
-          if (window.location.hash !== `#${bestId}`) {
-            window.history.replaceState(null, '', `#${bestId}`);
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          const id = entry.target.id;
+          setSectionActive(id);
+          // keep the address shareable, but no #home on the bare home page
+          const hash = id === 'home' ? '' : `#${id}`;
+          if (window.location.hash !== hash) {
+            window.history.replaceState(
+              null,
+              '',
+              `${window.location.pathname}${window.location.search}${hash}`
+            );
           }
         }
       },
-      {
-        rootMargin: '-30% 0px -55% 0px',
-        threshold: [0.1, 0.3, 0.6],
-      }
+      { rootMargin: '-40% 0px -59% 0px', threshold: 0 }
     );
 
     sections.forEach((s) => observer.observe(s));
     return () => observer.disconnect();
   }, [isHome]);
 
-  /* handle hash on page load */
-  useEffect(() => {
-    if (!isHome) return;
+  /* ---------- underline: measured, then moved by a CSS transition ----------
+     Written straight to the element's style — it is pure layout, so it needs
+     neither React state nor a re-render. */
 
-    const hash = window.location.hash.slice(1);
-    if (hash) {
-      // Set active section based on hash
-      setActive(hash);
-    }
-  }, [isHome]);
-
-  useEffect(() => {
-    if (isAboutPage) {
-      setActive('about');
-      setVisible(true);
-    } else if (isServicesPage) {
-      setActive('services');
-      setVisible(true);
-    } else if (isPortfolioPage) {
-      setActive('portfolio');
-      setVisible(true);
-    } else if (!isHome) {
-      // For other pages, hide underline
-      setActive('');
-      setVisible(false);
-    }
-  }, [isAboutPage, isServicesPage, isPortfolioPage, isHome]);
-
-  /* underline target */
-  useLayoutEffect(() => {
-    if (!navRef.current || !active) {
-      setVisible(false);
-      return;
-    }
-
-    // Find the link by data-key attribute
-    const links = navRef.current.querySelectorAll<HTMLElement>('a[data-key]');
-    const link = Array.from(links).find(
-      (el) => el.getAttribute('data-key') === active
-    );
-
-    if (!link) {
-      setVisible(false);
-      return;
-    }
-
-    const text = link.querySelector<HTMLElement>('span');
+  const measure = useCallback(() => {
+    const nav = navRef.current;
+    const line = underlineRef.current;
+    if (!nav || !line) return;
+    const text = active
+      ? nav.querySelector<HTMLElement>(`a[data-key="${active}"] span`)
+      : null;
     if (!text) {
-      setVisible(false);
+      line.style.opacity = '0';
       return;
     }
-
-    const navRect = navRef.current.getBoundingClientRect();
+    const navRect = nav.getBoundingClientRect();
     const textRect = text.getBoundingClientRect();
-
-    const width = textRect.width * (1 + UNDERLINE_PADDING);
-    const x = textRect.left - navRect.left - (width - textRect.width) / 2;
-
-    underline.current.targetX = x;
-    underline.current.targetW = width;
-
-    setVisible(true);
+    const w = textRect.width * (1 + UNDERLINE_PADDING);
+    const x = textRect.left - navRect.left - (w - textRect.width) / 2;
+    line.style.transform = `translateX(${x}px)`;
+    line.style.width = `${w}px`;
+    line.style.opacity = '1';
   }, [active]);
 
-  /* spring animation */
+  useLayoutEffect(() => {
+    measure();
+  }, [measure]);
+
   useEffect(() => {
-    let raf: number;
+    window.addEventListener('resize', measure);
+    // web fonts can change the label widths after the first paint
+    document.fonts?.ready.then(measure).catch(() => {});
+    return () => window.removeEventListener('resize', measure);
+  }, [measure]);
 
-    const tick = () => {
-      const u = underline.current;
+  /* ---------- mobile menu ---------- */
 
-      u.vx += (u.targetX - u.x) * SPRING.stiffness;
-      u.vx *= SPRING.damping;
-
-      u.x += u.vx;
-      u.width += (u.targetW - u.width) * 0.1;
-
-      force((n) => n + 1);
-      raf = requestAnimationFrame(tick);
-    };
-
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
+  const closeMenu = useCallback((restoreFocus = true) => {
+    setOpen(false);
+    if (restoreFocus) menuButtonRef.current?.focus();
   }, []);
+
+  useEffect(() => {
+    if (!open) return;
+    closeButtonRef.current?.focus();
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeMenu();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [open, closeMenu]);
 
   return (
     <>
+      <a
+        href="#main"
+        className="
+          sr-only focus:not-sr-only
+          focus:fixed focus:left-4 focus:top-4 focus:z-[80]
+          focus:rounded-xl focus:bg-[var(--bg)] focus:px-4 focus:py-2
+          focus:text-sm focus:text-[var(--fg)] focus:shadow-lg
+        "
+      >
+        Skip to content
+      </a>
+
       {/* HEADER */}
       <header
         className="fixed top-0 left-0 right-0 z-30 border-b border-[var(--border)]"
@@ -191,13 +163,13 @@ export default function Header() {
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 -z-10 dark-overlay"
         />
-        
+
         {/* Light overlay for light theme */}
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 -z-10 light-overlay"
         />
-        
+
         {/* Backdrop blur layer with enhanced opacity */}
         <div
           aria-hidden="true"
@@ -210,47 +182,44 @@ export default function Header() {
         />
 
         <div className="relative mx-auto flex h-16 sm:h-20 max-w-7xl items-center justify-between px-4 sm:px-6">
-          {/* LOGO */}
+          {/* LOGO — theme CSS hides one of the two marks, so neither is preloaded */}
           <Link
             href="/"
-            aria-label="Go to home"
+            aria-label="Sites Pro — home"
             className="relative block h-[54px] w-[54px] sm:h-[70px] sm:w-[70px] select-none"
           >
             <Image
               src="/logo-dark.svg"
-              alt="Logo"
+              alt=""
               width={70}
               height={70}
+              loading="eager"
               className="logo-dark absolute inset-0 h-full w-full"
-              priority
             />
             <Image
               src="/logo-light.svg"
-              alt="Logo"
+              alt=""
               width={70}
               height={70}
+              loading="eager"
               className="logo-light absolute inset-0 h-full w-full"
-              priority
             />
           </Link>
 
           {/* DESKTOP NAV */}
-          <div ref={navRef} className="relative hidden items-center gap-8 text-sm md:flex">
+          <nav
+            ref={navRef}
+            aria-label="Main"
+            className="relative hidden items-center gap-8 text-sm md:flex"
+          >
             {navItems.map((item) => {
-              const key = item.type === 'section' ? item.target : item.href;
-              // Fixed: Navigate to home with hash for sections
-              const href = item.type === 'section' 
-                ? (isHome ? `#${item.target}` : `/#${item.target}`)
-                : item.href;
-
-              const isActive =
-                item.type === 'section' ? active === item.target : pathname === item.href;
-
+              const isActive = active === item.target;
               return (
                 <Link
                   key={item.label}
-                  data-key={key}
-                  href={href}
+                  data-key={item.target}
+                  href={hrefFor(item)}
+                  aria-current={isActive ? (isHome ? 'location' : 'page') : undefined}
                   className={`
                     cursor-pointer select-none
                     transition-colors transition-transform
@@ -268,23 +237,23 @@ export default function Header() {
             })}
 
             <span
-              className="absolute -bottom-1 h-[1.5px]"
+              ref={underlineRef}
+              aria-hidden="true"
+              className="absolute -bottom-1 left-0 h-[1.5px] w-0 opacity-0 motion-reduce:!transition-none"
               style={{
-                transform: `translateX(${underline.current.x}px)`,
-                width: underline.current.width,
                 background: ACCENT,
-                opacity: visible ? 1 : 0,
-                transition: 'opacity 220ms ease',
+                transition:
+                  'transform 480ms cubic-bezier(0.34, 1.4, 0.64, 1), width 320ms ease, opacity 220ms ease',
               }}
             />
-          </div>
+          </nav>
 
           {/* RIGHT */}
           <div className="hidden md:flex items-center gap-4">
             <ThemeToggle />
 
             <Link
-              href={isHome ? "#contact" : "/#contact"}
+              href={isHome ? '#contact' : '/#contact'}
               className="btn-primary !px-4 !py-2 !text-sm"
             >
               Get Started
@@ -292,18 +261,23 @@ export default function Header() {
           </div>
 
           {/* MOBILE */}
-          <button 
-            onClick={() => setOpen(true)} 
+          <button
+            ref={menuButtonRef}
+            type="button"
+            onClick={() => setOpen(true)}
             className="cursor-pointer select-none md:hidden"
             aria-label="Open menu"
+            aria-expanded={open}
+            aria-controls="mobile-menu"
           >
-            <Menu className="h-6 w-6 text-[var(--fg)]" />
+            <Menu className="h-6 w-6 text-[var(--fg)]" aria-hidden="true" />
           </button>
         </div>
       </header>
 
       {/* OVERLAY */}
       <div
+        aria-hidden="true"
         className={`
           fixed inset-0 z-[60]
           bg-[var(--bg)]/60
@@ -311,11 +285,16 @@ export default function Header() {
           transition
           ${open ? 'opacity-100' : 'pointer-events-none opacity-0'}
         `}
-        onClick={() => setOpen(false)}
+        onClick={() => closeMenu(false)}
       />
 
-      {/* MOBILE MENU */}
+      {/* MOBILE MENU — inert while closed, so its links stay out of the tab order */}
       <aside
+        id="mobile-menu"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Menu"
+        inert={!open}
         className={`
           fixed right-4 top-4 z-[70]
           w-[48%] max-w-[280px]
@@ -331,7 +310,9 @@ export default function Header() {
         <div className="flex items-center justify-between px-5 pt-5">
           <ThemeToggle />
           <button
-            onClick={() => setOpen(false)}
+            ref={closeButtonRef}
+            type="button"
+            onClick={() => closeMenu()}
             className="
               cursor-pointer select-none
               p-2 rounded-lg
@@ -341,25 +322,21 @@ export default function Header() {
             "
             aria-label="Close menu"
           >
-            <X className="h-5 w-5 text-[var(--fg)]" />
+            <X className="h-5 w-5 text-[var(--fg)]" aria-hidden="true" />
           </button>
         </div>
 
         {/* Navigation */}
-        <nav className="flex flex-col items-center gap-2 px-5 pt-6 pb-5">
+        <nav aria-label="Mobile" className="flex flex-col items-center gap-2 px-5 pt-6 pb-5">
           {navItems.map((item) => {
-            // Fixed: Navigate to home with hash for sections from any page
-            const href = item.type === 'section' 
-              ? (isHome ? `#${item.target}` : `/#${item.target}`)
-              : item.href;
-            const isActive =
-              item.type === 'section' ? active === item.target : pathname === item.href;
+            const isActive = active === item.target;
 
             return (
               <Link
                 key={item.label}
-                href={href}
-                onClick={() => setOpen(false)}
+                href={hrefFor(item)}
+                onClick={() => closeMenu(false)}
+                aria-current={isActive ? (isHome ? 'location' : 'page') : undefined}
                 className={`
                   w-full
                   text-center
@@ -374,8 +351,8 @@ export default function Header() {
                       : 'text-[var(--text-muted)] hover:bg-[var(--surface-strong)] hover:text-[var(--fg)]'
                   }
                 `}
-                style={isActive ? { 
-                  color: ACCENT,
+                style={isActive ? {
+                  color: 'var(--accent-text)',
                   border: `1px solid ${ACCENT}40`
                 } : undefined}
               >
@@ -387,8 +364,8 @@ export default function Header() {
           {/* CTA Button */}
           <div className="w-full pt-4">
             <Link
-              href={isHome ? "#contact" : "/#contact"}
-              onClick={() => setOpen(false)}
+              href={isHome ? '#contact' : '/#contact'}
+              onClick={() => closeMenu(false)}
               className="btn-primary w-full !text-sm"
             >
               Get Started

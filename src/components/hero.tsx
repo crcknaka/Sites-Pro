@@ -1,11 +1,7 @@
-'use client';
-
-import { useEffect, useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { ArrowRight, Briefcase } from 'lucide-react';
 import HeroBackground from './hero-background';
+import HeroWindows from './hero-windows';
 import ClientLogos from './client-logos';
 
 /* ======================================================
@@ -13,52 +9,18 @@ import ClientLogos from './client-logos';
 
    The right side is not an illustration: it is three of our own
    product windows (the same covers the portfolio grid uses), so the
-   first screen already shows real work.
+   first screen already shows real work. A server component — only
+   the window entrance (HeroWindows) and the dot canvas run on the client.
 ====================================================== */
 
-const WINDOWS = [
-  {
-    src: '/projects/covers/payment-gateway.webp?v=4',
-    alt: 'Payment gateway operator console',
-    className: 'left-0 top-0 w-[74%] -rotate-[4deg] opacity-90',
-    delay: '0s',
-  },
-  {
-    src: '/projects/covers/agency-crm.webp?v=4',
-    alt: 'Web studio CRM dashboard',
-    className: 'right-0 top-[14%] w-[74%] rotate-[3deg] opacity-95',
-    delay: '-2.5s',
-  },
-  {
-    src: '/projects/covers/vadi.webp?v=4',
-    alt: 'Vadi accounting platform',
-    className: 'left-[6%] bottom-0 w-[80%]',
-    delay: '-5s',
-  },
-];
-
 export default function Hero() {
-  const pathname = usePathname();
-  const isHome = pathname === '/';
-
-  // The three windows arrive from the network at different moments. Rather than
-  // letting each pop in on its own, we wait until all of them have decoded (or
-  // 1.8 s, whichever comes first) and then run one choreographed entrance.
-  const [loaded, setLoaded] = useState(0);
-  const [timedOut, setTimedOut] = useState(false);
-  useEffect(() => {
-    const t = setTimeout(() => setTimedOut(true), 1800);
-    return () => clearTimeout(t);
-  }, []);
-  const ready = timedOut || loaded >= WINDOWS.length;
-
   return (
     <section
       id="home"
       className="
         relative overflow-hidden
         pt-28 sm:pt-36 pb-12 sm:pb-16
-        px-4 sm:px-6 select-none
+        px-4 sm:px-6
         text-[var(--fg)]
       "
     >
@@ -108,7 +70,7 @@ export default function Hero() {
             </p>
 
             <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center sm:gap-4 lg:justify-start">
-              <Link href={isHome ? '#contact' : '/#contact'} className="btn-primary group w-full sm:w-auto">
+              <Link href="#contact" className="btn-primary group w-full sm:w-auto">
                 Start a project
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </Link>
@@ -125,37 +87,7 @@ export default function Hero() {
 
           {/* PROOF — three real product windows */}
           <div className="lg:col-span-6">
-            <div
-              className="relative mx-auto w-full max-w-[560px]"
-              style={{ aspectRatio: '560 / 470' }}
-              aria-hidden="true"
-            >
-              {WINDOWS.map((w, i) => (
-                <div
-                  key={w.src}
-                  className={`hero-window absolute ${w.className} ${ready ? 'is-ready' : ''}`}
-                  style={{ '--i': i } as React.CSSProperties}
-                >
-                  {/* float runs on an inner element so it never fights the entrance transform */}
-                  <div
-                    className={ready ? 'lg:animate-[slow-float_8s_ease-in-out_infinite]' : ''}
-                    style={{ animationDelay: w.delay }}
-                  >
-                    <Image
-                      src={w.src}
-                      alt={w.alt}
-                      width={1200}
-                      height={900}
-                      priority
-                      fetchPriority={i === WINDOWS.length - 1 ? 'high' : 'auto'}
-                      sizes="(max-width: 1024px) 80vw, 420px"
-                      className="h-auto w-full"
-                      onLoad={() => setLoaded((n) => n + 1)}
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
+            <HeroWindows />
           </div>
         </div>
 

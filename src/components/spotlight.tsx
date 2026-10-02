@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, ArrowUpRight, Calculator, FileCheck2, Languages } from 'lucide-react';
-import { ACCENT_1 } from '@/lib';
 import Reveal from './reveal';
 
 /* ======================================================
@@ -18,7 +17,7 @@ const FACTS = [
 
 export default function Spotlight() {
   return (
-    <section className="relative px-4 py-20 sm:px-6 sm:py-28 select-none">
+    <section className="relative px-4 py-20 sm:px-6 sm:py-28">
       <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-12 lg:gap-14">
         {/* FRAME */}
         <Reveal className="lg:col-span-7">
@@ -69,7 +68,7 @@ export default function Spotlight() {
                 <span
                   className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-xl border border-[var(--border)] bg-[var(--surface)]"
                 >
-                  <Icon className="h-4 w-4" style={{ color: ACCENT_1 }} />
+                  <Icon className="h-4 w-4" style={{ color: 'var(--accent-text)' }} />
                 </span>
                 <span>
                   <span className="block font-medium text-[var(--fg)]">{label}</span>

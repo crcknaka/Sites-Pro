@@ -14,7 +14,7 @@ export const faqs: Faq[] = [
   },
   {
     q: 'What is your development process?',
-    a: 'We follow an agile methodology: Discovery → Design → Development → Testing → Launch. You’ll be involved at every stage with regular updates and opportunities for feedback to ensure the final product exceeds expectations.',
+    a: 'Three stages, in the same order for every project. Discovery: one call and a short written brief with scope, a fixed price and a timeline. Design and build: design and engineering run together, and you get a staging link you can click from early on, with weekly check-ins. Test, launch and support: cross-device, performance, accessibility and security checks, then launch — and the same team stays on afterwards.',
   },
   {
     q: 'Do you offer ongoing support and maintenance?',
@@ -34,7 +34,7 @@ export const faqs: Faq[] = [
   },
   {
     q: 'Do you provide hosting services?',
-    a: 'We can recommend and set up hosting solutions tailored to your needs, from simple setups to scalable cloud infrastructure. Your site will be fast, secure, and reliable.',
+    a: 'Yes. Hosting, DNS and monitoring are part of the launch: we run sites on our own managed servers in the EU, or set everything up on your own cloud account if you prefer to own the infrastructure.',
   },
   {
     q: 'How do we get started?',

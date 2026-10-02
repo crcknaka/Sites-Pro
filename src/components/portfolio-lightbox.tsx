@@ -47,15 +47,22 @@ export function PortfolioLightbox({
   // Minimum swipe distance
   const minSwipeDistance = 50;
 
-  // Prevent body scroll when lightbox is open
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const returnFocusRef = useRef<HTMLElement | null>(null);
+
+  // Lock page scroll while the lightbox is open (the window is the scroller,
+  // so the lock goes on <html>), move focus into the dialog and give it back
+  // to whatever opened it on close.
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+    if (!isOpen) return;
+    const root = document.documentElement;
+    const previous = root.style.overflow;
+    root.style.overflow = 'hidden';
+    returnFocusRef.current = document.activeElement as HTMLElement | null;
+    closeButtonRef.current?.focus();
     return () => {
-      document.body.style.overflow = '';
+      root.style.overflow = previous;
+      returnFocusRef.current?.focus?.();
     };
   }, [isOpen]);
 
@@ -154,7 +161,9 @@ export function PortfolioLightbox({
                   sizes="(max-width: 1024px) 100vw, 33vw"
                   placeholder="blur"
                   blurDataURL={blurDataURL}
-                  priority={currentIndex === 0}
+                  // the first image is the LCP element on case pages
+                  preload={currentIndex === 0}
+                  fetchPriority={currentIndex === 0 ? 'high' : undefined}
                 />
               </div>
             </button>
@@ -279,6 +288,9 @@ export function PortfolioLightbox({
       {/* Lightbox Modal */}
       {isOpen && (
         <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${projectTitle} — image ${currentIndex + 1} of ${images.length}`}
           className="
             fixed inset-0 z-50
             flex items-center justify-center
@@ -292,6 +304,8 @@ export function PortfolioLightbox({
         >
           {/* Close Button */}
           <button
+            ref={closeButtonRef}
+            type="button"
             onClick={closeLightbox}
             className="
               absolute top-4 right-4 sm:top-8 sm:right-8
@@ -433,7 +447,6 @@ export function PortfolioLightbox({
                 object-contain
                 rounded-lg
               "
-              priority
               placeholder="blur"
               blurDataURL={blurDataURL}
             />

@@ -1,22 +1,19 @@
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/metadata';
 import Link from 'next/link';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: 'Privacy Policy',
   description:
     'Privacy Policy for sitespro.org. Learn how we collect, use, and protect your personal data under GDPR.',
-  alternates: {
-    canonical: '/privacy',
-  },
-  openGraph: { url: '/privacy' },
-};
+  path: '/privacy',
+});
 
 /* brand accents via CSS vars */
-const ACCENT_1 = 'var(--accent-1)';
 
 export default function PrivacyPage() {
   return (
-    <main className="relative">
+    <div className="relative">
       <section className="mx-auto max-w-4xl px-6 pt-32 pb-40">
         <h1 className="text-4xl font-semibold tracking-tight text-[var(--fg)]">
           Privacy Policy
@@ -34,9 +31,9 @@ export default function PrivacyPage() {
           <Section title="1. Who We Are">
             <p>This website is operated by <strong>SIA SitesPro</strong>, a company registered in Latvia, European Union.</p>
             <p className="mt-4"><strong className="text-[var(--fg)]">Company:</strong> SIA SitesPro</p>
-            <p><strong className="text-[var(--fg)]">Website:</strong> <a href="https://www.sitespro.org" className="text-[var(--accent-1)] hover:underline">https://www.sitespro.org</a></p>
-            <p><strong className="text-[var(--fg)]">Contact email:</strong> <a href="mailto:info@sitespro.org" className="text-[var(--accent-1)] hover:underline">info@sitespro.org</a></p>
-            <p><strong className="text-[var(--fg)]">LinkedIn:</strong> <a href="https://www.linkedin.com/company/sites-pro/" target="_blank" rel="noreferrer" className="text-[var(--accent-1)] hover:underline">https://www.linkedin.com/company/sites-pro/</a></p>
+            <p><strong className="text-[var(--fg)]">Website:</strong> <a href="https://www.sitespro.org" className="text-[var(--accent-text)] hover:underline">https://www.sitespro.org</a></p>
+            <p><strong className="text-[var(--fg)]">Contact email:</strong> <a href="mailto:info@sitespro.org" className="text-[var(--accent-text)] hover:underline">info@sitespro.org</a></p>
+            <p><strong className="text-[var(--fg)]">LinkedIn:</strong> <a href="https://www.linkedin.com/company/sites-pro/" target="_blank" rel="noreferrer" className="text-[var(--accent-text)] hover:underline">https://www.linkedin.com/company/sites-pro/</a></p>
             <p className="mt-4">For the purposes of the General Data Protection Regulation (GDPR), SIA SitesPro acts as the Data Controller.</p>
           </Section>
 
@@ -106,7 +103,7 @@ export default function PrivacyPage() {
               <li>Withdraw consent at any time</li>
             </ul>
             <p className="mt-4">
-              To exercise any of these rights, contact SIA SitesPro at: <a href="mailto:info@sitespro.org" className="text-[var(--accent-1)] hover:underline">info@sitespro.org</a>
+              To exercise any of these rights, contact SIA SitesPro at: <a href="mailto:info@sitespro.org" className="text-[var(--accent-text)] hover:underline">info@sitespro.org</a>
             </p>
           </Section>
 
@@ -138,7 +135,7 @@ export default function PrivacyPage() {
 
           <Section title="13. Contact">
             <p>If you have any questions regarding this Privacy Policy or how your data is handled, please contact:</p>
-            <p className="mt-4"> <a href="mailto:info@sitespro.org" className="text-[var(--accent-1)] hover:underline">info@sitespro.org</a></p>
+            <p className="mt-4"> <a href="mailto:info@sitespro.org" className="text-[var(--accent-text)] hover:underline">info@sitespro.org</a></p>
           </Section>
         </div>
       </section>
@@ -170,7 +167,7 @@ export default function PrivacyPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }
 

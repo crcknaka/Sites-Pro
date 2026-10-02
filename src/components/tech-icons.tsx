@@ -12,6 +12,7 @@ import {
   PilcrowLeft,
   Plug,
   RefreshCw,
+  ScanText,
   Scale,
   Server,
   Sparkles,
@@ -20,6 +21,10 @@ import {
   WifiOff,
   Workflow,
   Feather,
+  FileCode,
+  ImagePlus,
+  Send,
+  Zap,
   Wrench,
   type LucideIcon,
 } from 'lucide-react';
@@ -121,6 +126,13 @@ const GENERIC_ICONS: Record<string, LucideIcon> = {
   'pdf generation': BookOpenText,
   'drizzle orm': Database,
   'arabic rtl layout': PilcrowLeft,
+  'ai document recognition': ScanText,
+  'llm integration': Sparkles,
+  'ai image generation': ImagePlus,
+  'telegram bot api': Send,
+  python: FileCode,
+  fastapi: Zap,
+  sqlite: Database,
   octobercms: Boxes,
 };
 

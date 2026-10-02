@@ -1,5 +1,3 @@
-'use client';
-
 import { ScaledScene } from '@/components/service-scenes';
 
 /* ======================================================

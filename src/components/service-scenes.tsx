@@ -1,6 +1,3 @@
-'use client';
-
-import { useEffect, useRef, useState } from 'react';
 import {
   ArrowRight,
   BarChart3,
@@ -22,6 +19,7 @@ import {
   Zap,
 } from 'lucide-react';
 import { ACCENT_1, ACCENT_2 } from '@/lib';
+import SceneScaler from './scene-scaler';
 
 /* ======================================================
    SERVICE SCENES — one visual system for every service
@@ -35,11 +33,9 @@ import { ACCENT_1, ACCENT_2 } from '@/lib';
 
 export type SceneType = 'web' | 'web-platforms' | 'ai' | 'consulting';
 
-export const SCENE_W = 560;
-export const SCENE_H = 380;
-
 /* ------------------------------------------------------
-   Scaler — measures its box and scales the fixed drawing
+   Scaled scene — a server component; only SceneScaler runs on
+   the client, to measure the box.
 ------------------------------------------------------ */
 
 export function ScaledScene({
@@ -52,40 +48,10 @@ export function ScaledScene({
   /** true = gentle idle float, used in the service heroes */
   float?: boolean;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [scale, setScale] = useState<number | null>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const measure = () => setScale(el.clientWidth / SCENE_W);
-    measure();
-    const ro = new ResizeObserver(measure);
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, []);
-
   return (
-    <div
-      ref={ref}
-      className={`relative w-full select-none ${className}`}
-      style={{ aspectRatio: `${SCENE_W} / ${SCENE_H}` }}
-      aria-hidden="true"
-    >
-      <div
-        className={`absolute left-0 top-0 ${float ? 'lg:animate-[slow-float_7s_ease-in-out_infinite]' : ''}`}
-        style={{
-          width: SCENE_W,
-          height: SCENE_H,
-          transform: `scale(${scale ?? 1})`,
-          transformOrigin: 'top left',
-          opacity: scale === null ? 0 : 1,
-          transition: 'opacity 0.6s ease-out',
-        }}
-      >
-        <Scene type={type} />
-      </div>
-    </div>
+    <SceneScaler className={className} float={float}>
+      <Scene type={type} />
+    </SceneScaler>
   );
 }
 
@@ -132,7 +98,7 @@ function Window({
         <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
         <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
         <div className="mx-auto flex h-5 w-56 items-center justify-center gap-1.5 rounded-md border border-[var(--border)] bg-[var(--surface)] text-[9px] text-[var(--text-muted)]">
-          <ShieldCheck className="h-2.5 w-2.5" style={{ color: ACCENT_1 }} />
+          <ShieldCheck className="h-2.5 w-2.5" style={{ color: 'var(--accent-text)' }} />
           {title}
         </div>
         <span className="h-2.5 w-2.5" />
@@ -346,7 +312,7 @@ function PlatformScene() {
                 }`}
                 style={on ? { background: `${ACCENT_1}1a` } : undefined}
               >
-                <Icon className="h-3 w-3" style={on ? { color: ACCENT_1 } : undefined} />
+                <Icon className="h-3 w-3" style={on ? { color: 'var(--accent-text)' } : undefined} />
                 {t}
               </div>
             ))}
@@ -441,7 +407,7 @@ function PlatformScene() {
       <Floating className="left-[372px] top-[10px] w-[186px]">
         <div className="flex items-center gap-2">
           <span className="grid h-6 w-6 place-items-center rounded-full" style={{ background: `${ACCENT_1}22` }}>
-            <Check className="h-3 w-3" style={{ color: ACCENT_1 }} />
+            <Check className="h-3 w-3" style={{ color: 'var(--accent-text)' }} />
           </span>
           <div className="leading-tight">
             <div className="text-[10px] font-semibold text-[var(--fg)]">Deployed to production</div>
@@ -638,7 +604,7 @@ function ConsultingScene() {
                 <span className="text-[var(--text-muted)]">{f}</span>
                 <span className="text-[var(--text-muted)]">{t}</span>
                 <span className="text-right">
-                  {pick && <Check className="ml-auto h-3 w-3" style={{ color: ACCENT_1 }} />}
+                  {pick && <Check className="ml-auto h-3 w-3" style={{ color: 'var(--accent-text)' }} />}
                 </span>
               </div>
             ))}
@@ -652,7 +618,7 @@ function ConsultingScene() {
         <div className="mt-1 text-[10px] leading-snug text-[var(--fg)]">
           Start on <b>Stripe</b>, keep the checkout PSP-agnostic — switch acquirers at volume without a rebuild.
         </div>
-        <div className="mt-1.5 flex items-center gap-1 text-[9px] font-medium" style={{ color: ACCENT_1 }}>
+        <div className="mt-1.5 flex items-center gap-1 text-[9px] font-medium" style={{ color: 'var(--accent-text)' }}>
           <ShieldCheck className="h-3 w-3" /> PCI SAQ A · 3-DS ready
         </div>
       </Floating>

@@ -4,10 +4,12 @@ import { SITE_URL } from '@/lib';
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
+      // /_next/ must stay open: it holds the CSS, JS and optimized images
+      // Googlebot needs to render the pages and index the case screenshots.
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/api/', '/_next/'],
+        disallow: ['/api/'],
       },
       // AI crawlers are welcome — being cited in AI answers is the point.
       {

@@ -383,9 +383,21 @@ export default function Integrations() {
               {CATEGORIES.map((c, i) => (
                 <button
                   key={c.name}
+                  type="button"
                   role="tab"
+                  id={`integrations-tab-${i}`}
                   aria-selected={i === active}
+                  aria-controls="integrations-panel"
+                  tabIndex={i === active ? 0 : -1}
                   onClick={() => setActive(i)}
+                  onKeyDown={(e) => {
+                    // arrow keys move between tabs, as the tablist pattern expects
+                    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+                    e.preventDefault();
+                    const next = (i + (e.key === 'ArrowRight' ? 1 : -1) + CATEGORIES.length) % CATEGORIES.length;
+                    setActive(next);
+                    document.getElementById(`integrations-tab-${next}`)?.focus();
+                  }}
                   className={`cursor-pointer rounded-full border px-3.5 py-1.5 text-xs font-medium transition-colors sm:text-sm ${
                     i === active
                       ? 'border-[var(--accent-1)]/50 bg-[var(--accent-1)]/12 text-[var(--fg)]'
@@ -398,10 +410,14 @@ export default function Integrations() {
             </div>
           </div>
 
-          {/* chips */}
+          {/* chips — the panel role sits on a wrapper so the list keeps its list semantics */}
+          <div
+            id="integrations-panel"
+            role="tabpanel"
+            aria-labelledby={`integrations-tab-${active}`}
+          >
           <ul
             key={cat.name}
-            role="tabpanel"
             className="flex flex-wrap content-start gap-2 animate-[fadeScale_0.35s_ease-out]"
           >
             {cat.items.map((it) => (
@@ -414,6 +430,7 @@ export default function Integrations() {
               </li>
             ))}
           </ul>
+          </div>
         </div>
       </div>
     </Reveal>

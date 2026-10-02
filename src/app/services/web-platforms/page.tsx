@@ -9,7 +9,8 @@ import {
   Headphones,
 } from 'lucide-react';
 import type { Metadata } from 'next';
-import { ACCENT_1, ACCENT_2 } from '@/lib';
+import { pageMetadata, withLatvian } from '@/lib/metadata';
+import { ACCENT_1, SITE_URL } from '@/lib';
 import { WebPlatformInfographic } from '@/components/service-infographic';
 import ServiceCases from '@/components/service-cases';
 import {
@@ -18,24 +19,21 @@ import {
   SERVICE_DEFINITIONS,
 } from '@/components/json-ld';
 
+
 const service = SERVICE_DEFINITIONS.find(
   (s) => s.path === '/services/web-platforms',
 )!;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: 'Web Platform & Custom Application Development',
   description:
     'Custom web platforms and applications built as systems: React and Next.js frontends, Node.js APIs, scalable databases, integrations and cloud infrastructure.',
-  alternates: {
-    canonical: '/services/web-platforms',
-  },
-  openGraph: {
-    url: '/services/web-platforms',
-    title: 'Web Platform & Custom Application Development | Sites Pro',
-    description:
-      'From internal tools and dashboards to business-critical platforms — architected for performance and long-term scale.',
-  },
-};
+  path: '/services/web-platforms',
+  socialDescription:
+    'From internal tools and dashboards to business-critical platforms — architected for performance and long-term scale.',
+  image: false, // opengraph-image.tsx in this folder
+  ...(service.lv ? { languages: withLatvian(`${SITE_URL}${service.path}`, service.lv) } : {}),
+});
 
 /* ======================================================
    DATA
@@ -83,10 +81,11 @@ const additionalServices = [
 
 export default function WebPlatformsPage() {
   return (
-    <main className="bg-[var(--bg)] text-[var(--fg)]">
+    <div className="bg-[var(--bg)] text-[var(--fg)]">
       <ServiceJsonLd service={service} />
       <BreadcrumbJsonLd
         items={[
+          { name: 'Services', path: '/services' },
           { name: 'Web Platform Development', path: '/services/web-platforms' },
         ]}
       />
@@ -99,19 +98,16 @@ export default function WebPlatformsPage() {
           <div>
             <span
               className="block text-xs sm:text-sm uppercase tracking-widest font-medium"
-              style={{ color: ACCENT_1 }}
+              style={{ color: 'var(--accent-text)' }}
             >
               Web Platforms
             </span>
 
             <h1 className="font-display mt-4 sm:mt-6 text-3xl sm:text-4xl md:text-6xl font-semibold tracking-tight">
-              Scalable platforms
+              Scalable platforms{' '}
               <br />
               <span
-                className="bg-clip-text text-transparent"
-                style={{
-                  backgroundImage: `linear-gradient(90deg, ${ACCENT_1}, ${ACCENT_2})`,
-                }}
+                className="text-gradient"
               >
                 built as systems
               </span>
@@ -123,7 +119,7 @@ export default function WebPlatformsPage() {
             </p>
 
             <Link
-              href="/#contact"
+              href="#contact"
               className="btn-primary mt-6 sm:mt-10 !text-sm"
             >
               Start your project
@@ -222,12 +218,12 @@ export default function WebPlatformsPage() {
                   <service.icon
                     size={16}
                     className="sm:hidden"
-                    style={{ color: ACCENT_1 }}
+                    style={{ color: 'var(--accent-text)' }}
                   />
                   <service.icon
                     size={18}
                     className="hidden sm:block"
-                    style={{ color: ACCENT_1 }}
+                    style={{ color: 'var(--accent-text)' }}
                   />
                 </div>
 
@@ -270,7 +266,7 @@ export default function WebPlatformsPage() {
         </div>
       </section>
 
-    </main>
+    </div>
   );
 }
 

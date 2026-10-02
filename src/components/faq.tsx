@@ -14,7 +14,7 @@ export default function FAQ() {
     <section
       id="faq"
       className="
-        scroll-mt-24 relative px-4 sm:px-6 py-20 sm:py-32 select-none
+        scroll-mt-24 relative px-4 sm:px-6 py-20 sm:py-32
       "
     >
       <div className="mx-auto max-w-4xl">
@@ -44,6 +44,10 @@ export default function FAQ() {
                 `}
               >
                 <button
+                  type="button"
+                  id={`faq-q-${i}`}
+                  aria-expanded={active}
+                  aria-controls={`faq-a-${i}`}
                   onClick={() => setOpen(active ? null : i)}
                   className="
                     flex w-full cursor-pointer items-center justify-between gap-4
@@ -55,6 +59,7 @@ export default function FAQ() {
                   </span>
 
                   <ChevronDown
+                    aria-hidden="true"
                     className={`
                       h-5 w-5 shrink-0 transition-transform duration-200
                       ${active ? 'rotate-180' : ''}
@@ -67,8 +72,13 @@ export default function FAQ() {
                   />
                 </button>
 
-                {/* ANSWER with smooth animation */}
+                {/* ANSWER with smooth animation — kept in the DOM for search,
+                    hidden from assistive tech while collapsed */}
                 <div
+                  id={`faq-a-${i}`}
+                  role="region"
+                  aria-labelledby={`faq-q-${i}`}
+                  aria-hidden={!active}
                   className={`
                     grid transition-all duration-300 ease-out
                     ${active ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}

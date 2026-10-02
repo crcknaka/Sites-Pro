@@ -1,8 +1,6 @@
-'use client';
-
 import ContactForm from './contact-form';
 import { Mail, MapPin, Clock, ShieldCheck, FileSignature, type LucideIcon } from 'lucide-react';
-import { ACCENT_1, ACCENT_2 } from '@/lib';
+import { ACCENT_1, ACCENT_2, CONTACT_EMAIL } from '@/lib';
 import SectionHeader from '../section-header';
 import Reveal from '../reveal';
 
@@ -28,7 +26,6 @@ export default function Contact() {
       id="contact"
       className="
         relative scroll-mt-24 py-20 sm:py-32 px-4 sm:px-6
-        select-none
       "
     >
       {/* Ambient glow */}
@@ -59,7 +56,7 @@ export default function Contact() {
                     style={{
                       borderColor: `color-mix(in srgb, ${ACCENT_1} 40%, transparent)`,
                       background: `color-mix(in srgb, ${ACCENT_1} 12%, transparent)`,
-                      color: ACCENT_1,
+                      color: 'var(--accent-text)',
                     }}
                   >
                     {i + 1}
@@ -73,7 +70,7 @@ export default function Contact() {
             </ol>
 
             <div className="mt-10 grid gap-5 sm:grid-cols-2">
-              <InfoItem icon={Mail} title="Email" value="info@sitespro.org" selectable />
+              <InfoItem icon={Mail} title="Email" value={CONTACT_EMAIL} href={`mailto:${CONTACT_EMAIL}`} />
               <InfoItem icon={Clock} title="Response time" value="Usually within 24 hours" />
               <InfoItem icon={MapPin} title="Based in" value="Riga, Latvia — working across the EU and worldwide" />
               <InfoItem icon={FileSignature} title="Confidentiality" value="NDA signed on request before any details are shared" />
@@ -85,7 +82,7 @@ export default function Contact() {
             <ContactForm />
 
             <div className="mt-6 flex max-w-md items-start gap-3 text-xs text-[var(--text-muted)]">
-              <ShieldCheck className="h-4 w-4 flex-shrink-0" style={{ color: ACCENT_1 }} />
+              <ShieldCheck className="h-4 w-4 flex-shrink-0" style={{ color: 'var(--accent-text)' }} />
               <p className="leading-relaxed">
                 Your information is used solely to respond to your inquiry. We do not share
                 your data with third parties and handle all submissions in accordance with
@@ -103,21 +100,30 @@ function InfoItem({
   icon: Icon,
   title,
   value,
-  selectable,
+  href,
 }: {
   icon: LucideIcon;
   title: string;
   value: string;
-  selectable?: boolean;
+  href?: string;
 }) {
   return (
     <div className="flex items-start gap-3.5">
       <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[var(--border)] bg-[var(--surface)]">
-        <Icon className="h-4.5 w-4.5" style={{ color: ACCENT_1 }} />
+        <Icon className="h-4.5 w-4.5" style={{ color: 'var(--accent-text)' }} aria-hidden="true" />
       </div>
       <div>
         <p className="text-sm font-medium text-[var(--fg)]">{title}</p>
-        <p className={`mt-0.5 text-sm text-[var(--text-muted)]${selectable ? ' select-text' : ''}`}>{value}</p>
+        {href ? (
+          <a
+            href={href}
+            className="mt-0.5 block text-sm text-[var(--text-muted)] underline-offset-2 transition-colors hover:text-[var(--fg)] hover:underline"
+          >
+            {value}
+          </a>
+        ) : (
+          <p className="mt-0.5 text-sm text-[var(--text-muted)]">{value}</p>
+        )}
       </div>
     </div>
   );

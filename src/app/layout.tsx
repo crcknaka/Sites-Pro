@@ -27,13 +27,11 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
-  keywords: ['web development', 'application development', 'AI automation', 'technical consulting', 'fintech solutions', 'digital agency'],
   authors: [{ name: SITE_NAME }],
   creator: SITE_NAME,
   metadataBase: new URL(SITE_URL),
-  alternates: {
-    canonical: '/',
-  },
+  // No site-wide canonical: every page sets its own (see pageMetadata), and a
+  // default here would point the 404 page and anything forgotten at the home page.
   openGraph: {
     type: 'website',
     locale: 'en_US',
@@ -99,13 +97,13 @@ export default function RootLayout({
           ${inter.className}
           ${spaceGrotesk.variable}
           antialiased
-          overflow-x-hidden
+          overflow-x-clip
           bg-[var(--bg)]
         `}
       >
         <Header />
 
-        <main className="relative min-h-screen">
+        <main id="main" className="relative min-h-screen">
           {children}
         </main>
 

@@ -7,8 +7,9 @@ import {
   SOCIAL_PROFILES,
   AREA_SERVED,
 } from '@/lib';
-import { faqs } from '@/data/faqs';
+import { faqs, type Faq } from '@/data/faqs';
 import type { Project } from '@/data/projects';
+import { SERVICES, type ServiceDefinition } from '@/data/services';
 
 /** Stable node ids so every schema on the site points at one organization. */
 export const ORG_ID = `${SITE_URL}/#organization`;
@@ -33,9 +34,10 @@ export function OrganizationJsonLd() {
         name: SITE_NAME,
         legalName: LEGAL_NAME,
         url: SITE_URL,
+        // the dark-ink mark — the light one is white and vanishes on white backgrounds
         logo: {
           '@type': 'ImageObject',
-          url: `${SITE_URL}/logo-dark.svg`,
+          url: `${SITE_URL}/logo-light.svg`,
         },
         image: `${SITE_URL}/og-image.jpg`,
         description: SITE_DESCRIPTION,
@@ -59,12 +61,12 @@ export function OrganizationJsonLd() {
           email: CONTACT_EMAIL,
           contactType: 'customer service',
           areaServed: AREA_SERVED,
-          availableLanguage: ['English', 'Russian'],
+          availableLanguage: ['English', 'Latvian', 'Russian'],
         },
         address: {
           '@type': 'PostalAddress',
+          addressLocality: 'Riga',
           addressCountry: 'LV',
-          addressRegion: 'Latvia',
         },
         areaServed: AREA_SERVED.map((name) => ({ '@type': 'Place', name })),
       }}
@@ -93,69 +95,10 @@ export function WebsiteJsonLd() {
    SERVICES
 ====================================================== */
 
-export interface ServiceDefinition {
-  path: string;
-  name: string;
-  serviceType: string;
-  description: string;
-  offers: string[];
-}
+export type { ServiceDefinition } from '@/data/services';
 
-export const SERVICE_DEFINITIONS: ServiceDefinition[] = [
-  {
-    path: '/services/web',
-    name: 'Website Development',
-    serviceType: 'Web Development',
-    description:
-      'High-performance websites built for growth. Scalable, fast and product-ready, with Core Web Vitals, accessibility and search visibility built in from day one.',
-    offers: [
-      'Marketing and corporate websites',
-      'Headless CMS websites',
-      'WordPress and WooCommerce',
-      'Website redesign and performance optimization',
-    ],
-  },
-  {
-    path: '/services/web-platforms',
-    name: 'Web Platform Development',
-    serviceType: 'Application Development',
-    description:
-      'Product-grade web applications and platforms built for complexity, scale and long-term use — from internal tools and dashboards to business-critical systems.',
-    offers: [
-      'Custom web applications',
-      'Dashboards and internal tools',
-      'API and third-party integrations',
-      'Cloud infrastructure, CI/CD and observability',
-    ],
-  },
-  {
-    path: '/services/ai',
-    name: 'AI & Automations',
-    serviceType: 'AI Automation',
-    description:
-      'AI-powered automations integrated into digital products and business workflows — chatbots, assistants, document processing and data pipelines that cut manual work.',
-    offers: [
-      'AI chatbots and assistants',
-      'OpenAI and Anthropic API integration',
-      'RAG pipelines and vector databases',
-      'Workflow automation with n8n and custom pipelines',
-      'Document processing and data extraction',
-    ],
-  },
-  {
-    path: '/services/consulting',
-    name: 'Digital Consulting',
-    serviceType: 'Consulting',
-    description:
-      'Strategic consulting for payment systems, fintech solutions, web and app development, AI integration and project planning.',
-    offers: [
-      'Payment systems and checkout consulting',
-      'Fintech architecture and compliance',
-      'Technology selection and roadmaps',
-      'Technical audits and feasibility studies',
-    ],
-  },
-];
+/** Kept under its old name for the service pages that import it. */
+export const SERVICE_DEFINITIONS = SERVICES;
 
 /** ItemList of all services — rendered on the home page. */
 export function ServicesJsonLd() {
@@ -214,13 +157,13 @@ export function ServiceJsonLd({ service }: { service: ServiceDefinition }) {
    FAQ / BREADCRUMBS / PORTFOLIO
 ====================================================== */
 
-export function FaqJsonLd() {
+export function FaqJsonLd({ items = faqs }: { items?: Faq[] } = {}) {
   return (
     <JsonLd
       data={{
         '@context': 'https://schema.org',
         '@type': 'FAQPage',
-        mainEntity: faqs.map((item) => ({
+        mainEntity: items.map((item) => ({
           '@type': 'Question',
           name: item.q,
           acceptedAnswer: {
@@ -261,15 +204,15 @@ export function ProjectJsonLd({ project }: { project: Project }) {
   const categories = Array.isArray(project.category)
     ? project.category
     : [project.category];
-  const sameAs = [
-    project.link,
-    project.facebook,
-    project.instagram,
-    project.linkedin,
-    project.tiktok,
-    project.youtube,
-    project.googlePlay,
-  ].filter(Boolean);
+  // The case study is ABOUT the client's site, not the same thing as it —
+  // so the live URL goes into `about`, never into sameAs.
+  const about = [
+    ...(project.link ? [{ '@type': 'WebSite', url: project.link, name: project.title }] : []),
+    ...(project.services ?? []).map((key) => ({
+      '@type': 'Service',
+      '@id': `${SITE_URL}/services/${key}#service`,
+    })),
+  ];
 
   return (
     <JsonLd
@@ -286,17 +229,10 @@ export function ProjectJsonLd({ project }: { project: Project }) {
         inLanguage: 'en',
         ...(project.tech?.length ? { keywords: project.tech.join(', ') } : {}),
         ...(project.status ? { creativeWorkStatus: project.status } : {}),
-        ...(project.services?.length
-          ? {
-              about: project.services.map((key) => ({
-                '@type': 'Service',
-                '@id': `${SITE_URL}/services/${key}#service`,
-              })),
-            }
-          : {}),
+        ...(about.length ? { about } : {}),
+        ...(project.updated ? { dateModified: project.updated } : {}),
         creator: { '@id': ORG_ID },
         publisher: { '@id': ORG_ID },
-        ...(sameAs.length ? { sameAs } : {}),
         ...(project.logo
           ? { thumbnailUrl: `${SITE_URL}${project.logo}` }
           : {}),

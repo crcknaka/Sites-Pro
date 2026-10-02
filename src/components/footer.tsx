@@ -1,18 +1,15 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { LinkedinIcon, Send, type LucideIcon } from 'lucide-react';
-import { ACCENT_1 } from '@/lib';
+import { SERVICES } from '@/data/services';
 
-const navServices = [
-  { label: 'Websites', href: '/services/web' },
-  { label: 'Web Platforms', href: '/services/web-platforms' },
-  { label: 'AI & Automations', href: '/services/ai' },
-  { label: 'Consulting', href: '/services/consulting' },
-];
+const navServices = SERVICES.map((s) => ({ label: s.short, href: s.path }));
 
 const navCompany = [
   { label: 'About', href: '/about' },
   { label: 'Portfolio', href: '/portfolio' },
+  { label: 'All services', href: '/services' },
+  { label: 'Web development in Riga', href: '/web-development-riga' },
   { label: 'FAQ', href: '/#faq' },
   { label: 'Contact', href: '/#contact' },
 ];
@@ -36,17 +33,17 @@ export default function Footer() {
 
             {/* BRAND */}
             <div className="col-span-2 lg:col-span-1">
-              <Link href="/" aria-label="Go to home" className="relative inline-block h-[56px] w-[56px] select-none">
+              <Link href="/" aria-label="Sites Pro — home" className="relative inline-block h-[56px] w-[56px] select-none">
                 <Image
                   src="/logo-dark.svg"
-                  alt="Sites Pro"
+                  alt=""
                   width={56}
                   height={56}
                   className="logo-dark absolute inset-0"
                 />
                 <Image
                   src="/logo-light.svg"
-                  alt="Sites Pro"
+                  alt=""
                   width={56}
                   height={56}
                   className="logo-light absolute inset-0"
@@ -58,14 +55,14 @@ export default function Footer() {
                 built to scale.
               </p>
 
-              <p className="mt-3 text-sm font-medium" style={{ color: ACCENT_1 }}>
+              <p className="mt-3 text-sm font-medium" style={{ color: 'var(--accent-text)' }}>
                 Digital Done Right.
               </p>
             </div>
 
             {/* SERVICES */}
             <div>
-              <p className="mb-4 text-xs font-semibold uppercase tracking-widest" style={{ color: ACCENT_1 }}>
+              <p className="mb-4 text-xs font-semibold uppercase tracking-widest" style={{ color: 'var(--accent-text)' }}>
                 Services
               </p>
               <ul className="space-y-3">
@@ -81,7 +78,7 @@ export default function Footer() {
 
             {/* COMPANY */}
             <div>
-              <p className="mb-4 text-xs font-semibold uppercase tracking-widest" style={{ color: ACCENT_1 }}>
+              <p className="mb-4 text-xs font-semibold uppercase tracking-widest" style={{ color: 'var(--accent-text)' }}>
                 Company
               </p>
               <ul className="space-y-3">
@@ -97,7 +94,7 @@ export default function Footer() {
 
             {/* CONTACT */}
             <div className="col-span-2 lg:col-span-1">
-              <p className="mb-4 text-xs font-semibold uppercase tracking-widest" style={{ color: ACCENT_1 }}>
+              <p className="mb-4 text-xs font-semibold uppercase tracking-widest" style={{ color: 'var(--accent-text)' }}>
                 Contact
               </p>
               <div className="grid grid-cols-2 items-start lg:block">
@@ -111,7 +108,7 @@ export default function Footer() {
                     </a>
                   </li>
                   <li className="text-sm text-[var(--text-muted)]">
-                    Europe — working globally
+                    Riga, Latvia — working across the EU and worldwide
                   </li>
                 </ul>
 
@@ -138,7 +135,15 @@ export default function Footer() {
             style={{ borderTop: '1px solid var(--border)' }}
           >
             <span>© {new Date().getFullYear()} SIA SitesPro. All rights reserved.</span>
-            <div className="flex items-center gap-4">
+            <div className="flex flex-wrap items-center justify-center gap-4">
+              <a
+                href="https://sitespro.lv"
+                hrefLang="lv"
+                lang="lv"
+                className="hover:text-[var(--fg)] transition-colors underline"
+              >
+                Latviski — sitespro.lv
+              </a>
               <Link href="/privacy" className="hover:text-[var(--fg)] transition-colors underline">
                 Privacy Policy
               </Link>
@@ -167,6 +172,7 @@ function SocialLink({
     <Link
       href={href}
       target="_blank"
+      rel="noopener"
       aria-label={label}
       className="
         inline-flex items-center justify-center
@@ -182,7 +188,7 @@ function SocialLink({
         cursor-pointer
       "
     >
-      <Icon className="h-5 w-5" />
+      <Icon className="h-5 w-5" aria-hidden="true" />
     </Link>
   );
 }

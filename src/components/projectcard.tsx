@@ -49,7 +49,7 @@ export default function ProjectCard({
 
         {/* Title */}
         {/* Title — two lines reserved on desktop so every card's link sits on the same line */}
-        <h3 className="font-display mt-2 text-sm sm:text-base font-semibold leading-snug text-[var(--fg)] line-clamp-1 sm:line-clamp-2 sm:min-h-[2.75em]">
+        <h3 className="font-display mt-2 text-sm sm:text-base font-semibold leading-snug text-[var(--fg)] line-clamp-2 min-h-[2.75em]">
           {title}
         </h3>
 
@@ -63,7 +63,7 @@ export default function ProjectCard({
         </div>
 
         {/* View project link */}
-        <div className="mt-2 sm:mt-3 flex items-center gap-1.5 text-xs font-medium text-[var(--accent-1)] opacity-70 group-hover:opacity-100 transition-opacity">
+        <div className="mt-2 sm:mt-3 flex items-center gap-1.5 text-xs font-medium text-[var(--accent-text)]">
           <span className="hidden sm:inline">View project</span>
           <span className="sm:hidden">View</span>
           <ArrowUpRight className="h-3 w-3 sm:h-3.5 sm:w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

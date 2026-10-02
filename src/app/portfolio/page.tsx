@@ -1,26 +1,23 @@
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/metadata';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 
 import { projects, type ProjectCategory } from '@/data/projects';
 import ProjectCard from '@/components/projectcard';
 import { BreadcrumbJsonLd } from '@/components/json-ld';
-import { SITE_URL, ACCENT_1, ACCENT_2 } from '@/lib';
+import { SITE_URL } from '@/lib';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: 'Portfolio — Website, Platform & AI Project Case Studies',
   description:
     'Case studies from Sites Pro: websites, online stores, web platforms, apps and fintech products — the challenge, the solution and the result for each project.',
-  alternates: {
-    canonical: '/portfolio',
-  },
-  openGraph: {
-    url: '/portfolio',
-    title: 'Portfolio — Case Studies | Sites Pro',
-    description:
-      'Websites, commerce, apps and fintech projects with the challenge, solution and result behind each one.',
-  },
-};
+  path: '/portfolio',
+  socialTitle: 'Portfolio — Case Studies | Sites Pro',
+  socialDescription:
+    'Websites, commerce, apps and fintech projects with the challenge, solution and result behind each one.',
+  image: false, // opengraph-image.tsx in this folder
+});
 
 const CATEGORY_ORDER: ProjectCategory[] = [
   'Websites',
@@ -53,7 +50,7 @@ function inCategory(
  */
 export default function PortfolioIndex() {
   return (
-    <main className="mx-auto max-w-7xl px-4 sm:px-6 pt-24 sm:pt-32 pb-16 sm:pb-24 text-[var(--fg)]">
+    <div className="mx-auto max-w-7xl px-4 sm:px-6 pt-24 sm:pt-32 pb-16 sm:pb-24 text-[var(--fg)]">
       <BreadcrumbJsonLd items={[{ name: 'Portfolio', path: '/portfolio' }]} />
 
       <script
@@ -85,10 +82,7 @@ export default function PortfolioIndex() {
         <h1 className="font-display mt-3 sm:mt-4 text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight">
           All case{' '}
           <span
-            className="bg-clip-text text-transparent"
-            style={{
-              backgroundImage: `linear-gradient(90deg, ${ACCENT_1}, ${ACCENT_2})`,
-            }}
+            className="text-gradient"
           >
             studies
           </span>
@@ -166,6 +160,6 @@ export default function PortfolioIndex() {
           How we work
         </Link>
       </div>
-    </main>
+    </div>
   );
 }
