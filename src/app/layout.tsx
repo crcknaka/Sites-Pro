@@ -114,7 +114,7 @@ export default function RootLayout({
         {/* SitesPro Analytics (self-hosted Umami, no cookies). data-domains keeps
             local, staging and preview visits out of the production stats. */}
         <Script
-          src="https://stats.apps.sitespro.org/script.js"
+          src="https://stats.sitespro.org/script.js"
           data-website-id="9de7302e-c7b9-4a0a-ac4b-9fce7368a3e8"
           data-domains="www.sitespro.org,sitespro.org"
           strategy="afterInteractive"

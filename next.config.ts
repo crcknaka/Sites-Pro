@@ -5,7 +5,7 @@ const isDev = process.env.NODE_ENV !== 'production';
 /** Cloudflare Turnstile (contact form) and our own Umami stats are the only
  *  other origins the pages load from. */
 const TURNSTILE = 'https://challenges.cloudflare.com';
-const STATS = 'https://stats.apps.sitespro.org';
+const STATS = 'https://stats.sitespro.org';
 
 const csp = [
   "default-src 'self'",
