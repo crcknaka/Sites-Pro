@@ -2,20 +2,22 @@ import type { NextConfig } from "next";
 
 const isDev = process.env.NODE_ENV !== 'production';
 
-/** Cloudflare Turnstile (contact form) is the only third party the pages load. */
+/** Cloudflare Turnstile (contact form) and our own Umami stats are the only
+ *  other origins the pages load from. */
 const TURNSTILE = 'https://challenges.cloudflare.com';
+const STATS = 'https://stats.apps.sitespro.org';
 
 const csp = [
   "default-src 'self'",
   // 'unsafe-inline' stays: Next's inline bootstrap/RSC scripts and the theme
   // script need it, and a nonce would force every page to render dynamically.
   // 'unsafe-eval' is only needed by the dev server's hot reload.
-  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''} ${TURNSTILE}`,
+  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''} ${TURNSTILE} ${STATS}`,
   `style-src 'self' 'unsafe-inline' ${TURNSTILE}`,
   // next/font self-hosts the fonts — no Google Fonts hosts needed
   "font-src 'self' data:",
   "img-src 'self' data: https: blob:",
-  `connect-src 'self' ${TURNSTILE}`,
+  `connect-src 'self' ${TURNSTILE} ${STATS}`,
   `frame-src ${TURNSTILE}`,
   "worker-src 'self' blob:",
   "object-src 'none'",

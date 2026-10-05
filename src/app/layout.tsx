@@ -1,6 +1,7 @@
 import './globals.css';
 import type { Metadata, Viewport } from 'next';
 import { Inter, Space_Grotesk } from 'next/font/google';
+import Script from 'next/script';
 
 import Header from '@/components/header';
 import Footer from '@/components/footer';
@@ -109,6 +110,15 @@ export default function RootLayout({
 
         <Footer />
         <ScrollToTop />
+
+        {/* SitesPro Analytics (self-hosted Umami, no cookies). data-domains keeps
+            local, staging and preview visits out of the production stats. */}
+        <Script
+          src="https://stats.apps.sitespro.org/script.js"
+          data-website-id="9de7302e-c7b9-4a0a-ac4b-9fce7368a3e8"
+          data-domains="www.sitespro.org,sitespro.org"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );

@@ -20,7 +20,7 @@ export default function PrivacyPage() {
         </h1>
 
         <p className="mt-4 text-sm text-[var(--text-muted)]">
-          Last updated: 30 January 2026
+          Last updated: 5 October 2026
         </p>
 
         <div className="mt-8 space-y-8 text-[var(--text-muted)] leading-relaxed">
@@ -107,9 +107,14 @@ export default function PrivacyPage() {
             </p>
           </Section>
 
-          <Section title="9. Cookies and Tracking">
+          <Section title="9. Cookies and Visit Statistics">
             <p>This website does not use cookies for tracking, analytics, or advertising purposes.</p>
-            <p className="mt-2">If this changes in the future, this Privacy Policy will be updated accordingly.</p>
+            <p className="mt-4">
+              To understand which pages are useful, we count visits with SitesPro Analytics — our own installation of the open-source tool Umami. It uses no cookies and stores no personal data: it records the page viewed, the referring website, browser, operating system, device type, screen size, language and approximate location (country and city). Your IP address is used only to determine that location and is not stored, so individual visitors cannot be identified.
+            </p>
+            <p className="mt-4">
+              The statistics are processed on our own server in the European Union (Hetzner, Germany), are not shared with third parties, and are kept for 3 years. The legal basis is our legitimate interest in improving the Website (GDPR Article 6(1)(f)).
+            </p>
           </Section>
 
           <Section title="10. Third-Party Links">
