@@ -106,6 +106,71 @@ export const projects: Project[] = [
   },
 
   {
+    slug: 'vinylera',
+    title: 'Vinylera',
+    seoTitle: 'Vinylera — Record Shop with a Custom Back Office',
+    updated: '2026-10-18',
+    category: ['Commerce', 'Apps'],
+    layout: 'landscape',
+    tech: ['Next.js', 'React', 'TypeScript', 'Prisma', 'MySQL', 'Auth.js', 'Discogs API', 'PDF generation', 'Multilingual (LV/RU/EN)', 'Vitest'],
+    services: ['web-platforms', 'ecommerce', 'crm', 'multilingual'],
+    description: 'Custom-built system for a Riga record and hi-fi shop — a three-language online store on top of a back office that runs the whole business: shop till with cash-register reconciliation, sales ledger for the accountant, Discogs import, orders, invoices, clients, wish lists, suppliers and stock.',
+    metaDescription: 'Custom online store and back office for a Riga vinyl shop: shop till, sales ledger, Discogs import, orders, invoices, clients, wish lists and stock control.',
+    challenge: `
+      Vinylera sells new and second-hand records, CDs, cassettes and vintage
+      hi-fi from a shop in Riga and online. Every copy is one of a kind — its
+      own condition grades, its own price, often bought from a private person —
+      and the same shelf feeds the counter, the website and the occasional fair.
+      The old site handled the catalogue and little else; sales at the counter,
+      VAT under the second-hand margin scheme, write-offs and the accountant's
+      monthly report lived in spreadsheets. No off-the-shelf shop platform models
+      that, so the brief was a system built around how the shop actually works,
+      with its whole history carried over from the old database.
+    `,
+    solution: [
+      'Back office of about 30 screens that works like a CRM for the shop — dashboard, orders, invoices, clients, wish lists, till, sales ledger, catalogue, categories, suppliers and site content — with several staff accounts, and lists that keep their search, filters and page',
+      'Shop till: scan a sticker or search the catalogue, add services and accessories from its own price list, apply the client\'s standing discount, take a receipt number and payment method; four VAT modes per line (21%, 5% for books, the second-hand margin scheme, none for gift cards) and till departments reconciled against the cash register\'s Z-report',
+      'Sales ledger ("Aprite") for the accountant: every sale, return, write-off and outside sale in one register with spreadsheet-style column filters, period presets, column sets for the cashier and the accountant, cost and profit per line, and Excel/CSV export',
+      'Product cards with a full price chain — purchase price, markup, discount, VAT and profit, recalculated from whichever field is edited — plus inventory number, supplier invoice and condition grades for record and sleeve',
+      'Discogs import from a release or marketplace link: artist, label, format, styles, year, country and the seller\'s price and grades pulled into the card in one click',
+      'Orders with a server-enforced status flow, full change history, delivery repriced by tariff on edit, and a preview of every e-mail before it goes out — editable, in Latvian, Russian or English, with the PDF invoice attached on confirmation',
+      'Documents beyond the order invoice: advance, prepayment and credit invoices for private and business buyers, a numbering series that stays unique when two people issue at once, and a searchable register with re-download and "copy as new"',
+      'Client directory with statuses, standing discounts and purchase history; storefront orders find their client by phone number. A wish list tracks who is waiting for what through six steps, from new to fulfilled',
+      'Stock that only moves with a reason — written off, returned to supplier, gift, sold outside the shop — and the purchase cost frozen at that moment, so the loss stays right after a re-price',
+      'Batch printing of 62×32 mm thermal stickers with QR codes, up to 200 per PDF',
+      'Storefront in Latvian, Russian and English: catalogue filters by artist, genre, style, country, label, condition, price and stock that recount to the search results, nine product badges, live price and stock check in the cart, product structured data and hreflang',
+      'Staff signed into the admin see the shop as a customer does, with an edit link on every page and product card',
+      'Migration from the old site: its database merged into the new schema with every product, order and client, old addresses redirected, schema changes applied automatically on each deploy',
+      'Two security and code audits with every finding closed, rate limits and an anti-bot checkout, and more than 300 automated tests run on every push',
+    ],
+    result: `
+      The shop runs on one system instead of a website plus spreadsheets: a sale
+      at the counter, an online order and a write-off all land in the same
+      ledger the accountant exports at month end, priced under the right VAT
+      regime. The old site's stock, clients and order history came across
+      intact, and every part of the job — pricing a used LP, chasing a client's
+      wish, closing the till — has a screen built for it. Under the hood: about
+      40,000 lines of TypeScript, 41 API routes and 28 database migrations.
+    `,
+    image: '/projects/covers/vinylera.webp?v=4',
+    images: [
+      '/projects/screenshots/vinylera/aprite.jpg',
+      '/projects/screenshots/vinylera/till.jpg',
+      '/projects/screenshots/vinylera/product-form.jpg',
+      '/projects/screenshots/vinylera/order.jpg',
+      '/projects/screenshots/vinylera/wishes.jpg',
+      '/projects/screenshots/vinylera/catalogue.jpg',
+      '/projects/screenshots/vinylera/storefront.jpg',
+    ],
+    logo: '/projects/logos/vinylera.png',
+    link: 'https://vinylera.eu/',
+    facebook: 'https://www.facebook.com/vinylera.eu',
+    instagram: 'https://www.instagram.com/vinylera.eu',
+    tiktok: 'https://www.tiktok.com/@vinylera.eu',
+    youtube: 'https://www.youtube.com/@vinilaera',
+  },
+
+  {
     slug: 'payment-gateway',
     title: 'White-label Payment Gateway',
     seoTitle: 'White-label Payment Gateway Prototype',

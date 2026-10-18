@@ -69,11 +69,11 @@ const config: ServiceLandingConfig = {
       ],
     },
     {
-      slug: 'overline-gcc',
+      slug: 'vinylera',
       facts: [
-        'Arabic right-to-left shop with prices in AED',
-        'UAE tax invoices with the distributor’s TRN',
-        'Runs on the same codebase as the Baltic shop',
+        'Shop till, sales ledger and online store on one stock',
+        'Discogs import fills a record card from one link',
+        'Second-hand margin VAT and Z-report reconciliation built in',
       ],
     },
     {

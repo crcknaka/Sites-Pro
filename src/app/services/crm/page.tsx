@@ -56,9 +56,9 @@ const config: ServiceLandingConfig = {
     },
   ],
 
-  proofTitle: 'The CRM we run on',
+  proofTitle: 'CRMs we have built',
   proofIntro:
-    'Our studio’s whole operating loop — find, call, qualify, build, bill, support — lives in a CRM we designed and built ourselves. It is the reference for every CRM we build for clients.',
+    'Our studio’s whole operating loop — find, call, qualify, build, bill, support — lives in a CRM we designed and built ourselves, and the same approach runs a client’s shop end to end, from the till to the accountant’s report.',
   proof: [
     {
       slug: 'agency-crm',
@@ -66,6 +66,14 @@ const config: ServiceLandingConfig = {
         'Monthly billing plans issue and email recurring invoices unattended',
         'Multi-tenant from day one, with row-level security on every table',
         'In daily use by our own team',
+      ],
+    },
+    {
+      slug: 'vinylera',
+      facts: [
+        'Clients with statuses, standing discounts and purchase history',
+        'Wish lists tracked from request to fulfilled',
+        'Orders, invoices, till and stock in one back office',
       ],
     },
   ],
