@@ -1,5 +1,12 @@
 import type { Metadata } from 'next';
-import { SITE_NAME } from './site';
+import {
+  SITES,
+  absoluteUrl,
+  dictionaryFor,
+  localizePath,
+  otherLocale,
+  type Locale,
+} from '@/i18n';
 
 /**
  * Complete metadata for one page.
@@ -10,20 +17,28 @@ import { SITE_NAME } from './site';
  * page's twitter title. Every page builds its metadata here instead.
  */
 export function pageMetadata({
+  locale,
   title,
   description,
   path,
+  alternate,
   socialTitle,
   socialDescription,
   image = '/og-image.jpg',
   type = 'website',
-  languages,
+  absoluteTitle = false,
 }: {
+  locale: Locale;
   /** Page title; the root template appends " | Sites Pro". */
   title: string;
   description: string;
-  /** Canonical path, e.g. '/services/web'. */
+  /** Internal route path, e.g. '/services/web' — localized for the canonical. */
   path: string;
+  /**
+   * The same page on the other language's site (internal path), which becomes
+   * a reciprocal hreflang pair. Defaults to `path`; `null` when there is none.
+   */
+  alternate?: string | null;
   /** Title for share cards — defaults to the full page title. */
   socialTitle?: string;
   socialDescription?: string;
@@ -33,24 +48,26 @@ export function pageMetadata({
    */
   image?: string | false;
   type?: 'website' | 'article';
-  /** hreflang alternates, e.g. the matching page on sitespro.lv. */
-  languages?: Record<string, string>;
+  /** Skip the " | Sites Pro" template (the home page carries the brand already). */
+  absoluteTitle?: boolean;
 }): Metadata {
-  const shareTitle = socialTitle ?? `${title} | ${SITE_NAME}`;
+  const siteName = dictionaryFor(locale).site.name;
+  const shareTitle = socialTitle ?? (absoluteTitle ? title : `${title} | ${siteName}`);
   const shareDescription = socialDescription ?? description;
+  const canonical = localizePath(locale, path);
 
   return {
-    title,
+    title: absoluteTitle ? { absolute: title } : title,
     description,
     alternates: {
-      canonical: path,
-      ...(languages ? { languages } : {}),
+      canonical,
+      ...(alternate !== null ? { languages: hreflang(locale, path, alternate ?? path) } : {}),
     },
     openGraph: {
       type,
-      locale: 'en_US',
-      siteName: SITE_NAME,
-      url: path,
+      locale: SITES[locale].ogLocale,
+      siteName,
+      url: canonical,
       title: shareTitle,
       description: shareDescription,
       ...(image ? { images: [{ url: image, width: 1200, height: 630, alt: shareTitle }] } : {}),
@@ -64,7 +81,13 @@ export function pageMetadata({
   };
 }
 
-/** sitespro.lv counterpart of an English page, as an hreflang pair. */
-export function withLatvian(enUrl: string, lvUrl: string): Record<string, string> {
-  return { en: enUrl, lv: lvUrl, 'x-default': enUrl };
+/**
+ * hreflang pair across the two domains. Google ignores one-sided pairs, so
+ * both pages must declare each other — they do, since both are built here.
+ * English is the x-default: it is the version for everyone outside Latvia.
+ */
+export function hreflang(locale: Locale, path: string, alternate: string): Record<string, string> {
+  const other = otherLocale(locale);
+  const urls = { [locale]: absoluteUrl(locale, path), [other]: absoluteUrl(other, alternate) };
+  return { en: urls.en, lv: urls.lv, 'x-default': urls.en };
 }

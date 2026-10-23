@@ -1,5 +1,6 @@
-import { projects, type Project } from '@/data/projects';
+import { projectsFor, type Project } from '@/data/projects';
 import ProjectCard from '@/components/projectcard';
+import { getI18n } from '@/i18n/server';
 import Reveal from './reveal';
 
 const toList = (c: Project['category']) => (Array.isArray(c) ? c : [c]);
@@ -13,13 +14,15 @@ const toList = (c: Project['category']) => (Array.isArray(c) ? c : [c]);
  * related links to the same four projects and left half the portfolio with no
  * inbound links at all — neighbours spread them across every case.
  */
-export default function RelatedCases({
+export default async function RelatedCases({
   current,
   limit = 4,
 }: {
   current: Project;
   limit?: number;
 }) {
+  const { locale, t } = await getI18n();
+  const projects = projectsFor(locale);
   const index = projects.findIndex((p) => p.slug === current.slug);
   const categories = toList(current.category);
   const services = current.services ?? [];
@@ -43,9 +46,11 @@ export default function RelatedCases({
     <section className="mt-16 sm:mt-24">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="section-eyebrow">More {categories[0].toLowerCase()} work</p>
+          <p className="section-eyebrow">
+            {t.caseStudy.relatedEyebrow(t.categories[categories[0]])}
+          </p>
           <h2 className="font-display mt-2 text-2xl sm:text-3xl font-semibold tracking-tight">
-            Related case studies
+            {t.caseStudy.relatedTitle}
           </h2>
         </div>
       </div>
@@ -59,6 +64,7 @@ export default function RelatedCases({
               category={project.category}
               description={project.description}
               image={project.image}
+              locale={locale}
             />
           </Reveal>
         ))}

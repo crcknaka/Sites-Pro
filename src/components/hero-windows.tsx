@@ -6,19 +6,16 @@ import Image from 'next/image';
 const WINDOWS = [
   {
     src: '/projects/covers/payment-gateway.webp?v=4',
-    alt: 'Payment gateway operator console',
     className: 'left-0 top-0 w-[74%] -rotate-[4deg] opacity-90',
     delay: '0s',
   },
   {
     src: '/projects/covers/agency-crm.webp?v=4',
-    alt: 'Web studio CRM dashboard',
     className: 'right-0 top-[14%] w-[74%] rotate-[3deg] opacity-95',
     delay: '-2.5s',
   },
   {
     src: '/projects/covers/vadi.webp?v=4',
-    alt: 'Vadi accounting platform',
     className: 'left-[6%] bottom-0 w-[80%]',
     delay: '-5s',
   },
@@ -30,7 +27,7 @@ const WINDOWS = [
  * wait until all have decoded (or 1.8 s, whichever comes first) and run one
  * choreographed entrance. The only client code in the hero.
  */
-export default function HeroWindows() {
+export default function HeroWindows({ alts }: { alts: string[] }) {
   const [loaded, setLoaded] = useState(0);
   const [timedOut, setTimedOut] = useState(false);
   useEffect(() => {
@@ -58,7 +55,7 @@ export default function HeroWindows() {
           >
             <Image
               src={w.src}
-              alt={w.alt}
+              alt={alts[i] ?? ''}
               width={1200}
               height={900}
               // only the front window is worth a preload; the text is the LCP

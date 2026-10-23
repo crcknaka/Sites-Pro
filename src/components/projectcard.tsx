@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowUpRight } from 'lucide-react';
 import { CategoryBadge } from '@/components/category-badge';
+import { dictionaryFor, type Locale } from '@/i18n';
 
 type Props = {
   slug: string;
@@ -9,6 +10,7 @@ type Props = {
   category: string | string[];
   description: string;
   image?: string;
+  locale: Locale;
 };
 
 export default function ProjectCard({
@@ -17,7 +19,9 @@ export default function ProjectCard({
   category,
   description,
   image,
+  locale,
 }: Props) {
+  const t = dictionaryFor(locale).portfolioSection;
   return (
     <Link
       href={`/portfolio/${slug}`}
@@ -45,7 +49,7 @@ export default function ProjectCard({
       {/* Content */}
       <div className="p-3 sm:p-4">
         {/* Badge */}
-        <CategoryBadge category={category as any} />
+        <CategoryBadge category={category as never} locale={locale} />
 
         {/* Title */}
         {/* Title — two lines reserved on desktop so every card's link sits on the same line */}
@@ -64,8 +68,8 @@ export default function ProjectCard({
 
         {/* View project link */}
         <div className="mt-2 sm:mt-3 flex items-center gap-1.5 text-xs font-medium text-[var(--accent-text)]">
-          <span className="hidden sm:inline">View project</span>
-          <span className="sm:hidden">View</span>
+          <span className="hidden sm:inline">{t.viewProject}</span>
+          <span className="sm:hidden">{t.view}</span>
           <ArrowUpRight className="h-3 w-3 sm:h-3.5 sm:w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </div>
       </div>

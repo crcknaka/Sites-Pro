@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { getI18n } from '@/i18n/server';
 
 /* ======================================================
    CLIENT LOGOS — a quiet, monochrome strip of the brands we
@@ -43,11 +44,12 @@ function Row({ ariaHidden = false }: { ariaHidden?: boolean }) {
   );
 }
 
-export default function ClientLogos({ className = '' }: { className?: string }) {
+export default async function ClientLogos({ className = '' }: { className?: string }) {
+  const { t } = await getI18n();
   return (
     <div className={`select-none ${className}`}>
       <p className="mb-5 text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--text-subtle)]">
-        Selected clients
+        {t.hero.clients}
       </p>
 
       {/* the row is rendered twice and scrolled by half its width: a seamless loop */}

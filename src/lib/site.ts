@@ -1,26 +1,18 @@
 /**
- * Canonical site identity.
+ * Company identity shared by both sites. Per-language values — origin,
+ * contact address, analytics — live in src/i18n/config.ts.
  *
- * SITE_URL is the host the site actually serves from: the apex domain
- * 307-redirects to www, so every self-referencing URL (metadataBase,
- * canonicals, sitemap, robots, JSON-LD) must use www — otherwise sitemap
- * entries and structured-data URLs point at redirects.
+ * Canonical origins: sitespro.org serves from www (the apex redirects),
+ * sitespro.lv from the apex (www redirects). Every self-referencing URL —
+ * metadataBase, canonicals, sitemap, JSON-LD — is built on SITES[locale].url.
  */
-export const SITE_URL = 'https://www.sitespro.org';
 
-export const SITE_NAME = 'Sites Pro';
 export const LEGAL_NAME = 'SIA SitesPro';
 
-export const SITE_DESCRIPTION =
-  'Product-grade websites, platforms and AI automations built to scale.';
-
-export const CONTACT_EMAIL = 'info@sitespro.org';
-
+/** Profiles of the company itself; each site adds the other domain. */
 export const SOCIAL_PROFILES = [
   'https://www.linkedin.com/company/sites-pro/',
   'https://t.me/IljaFinTech',
-  // the Latvian-language site of the same company
-  'https://sitespro.lv',
 ];
 
 /** Markets we sell into — used for areaServed in structured data. */

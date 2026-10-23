@@ -1,26 +1,16 @@
 import ContactForm from './contact-form';
 import { Mail, MapPin, Clock, ShieldCheck, FileSignature, type LucideIcon } from 'lucide-react';
-import { ACCENT_1, ACCENT_2, CONTACT_EMAIL } from '@/lib';
+import { ACCENT_1, ACCENT_2 } from '@/lib';
+import { SITES } from '@/i18n';
+import { getI18n } from '@/i18n/server';
 import SectionHeader from '../section-header';
 import Reveal from '../reveal';
 
-/** What actually happens after the form — a process, not a mailto. */
-const NEXT_STEPS = [
-  {
-    title: 'We reply within 24 hours',
-    text: 'A real answer from the person who will run your project, not an auto-responder.',
-  },
-  {
-    title: 'A 30-minute call',
-    text: 'We go through goals, constraints and what already exists — no slides, no pitch.',
-  },
-  {
-    title: 'A written proposal',
-    text: 'Scope, timeline and a fixed price. If we are not the right fit, we say so and point you elsewhere.',
-  },
-];
+export default async function Contact() {
+  const { locale, t } = await getI18n();
+  const c = t.contact;
+  const email = SITES[locale].email;
 
-export default function Contact() {
   return (
     <section
       id="contact"
@@ -37,19 +27,20 @@ export default function Contact() {
       />
       <div className="mx-auto max-w-7xl">
         <SectionHeader
-          eyebrow="Get in touch"
-          title="Start your project"
-          subtitle="Tell us what you are building. You will hear back from us within a day."
+          eyebrow={c.eyebrow}
+          title={c.title}
+          subtitle={c.subtitle}
         />
 
         <div className="mt-14 sm:mt-20 grid grid-cols-1 gap-12 sm:gap-16 lg:grid-cols-2">
           {/* LEFT: what happens next + contacts */}
           <Reveal className="order-2 lg:order-1" delay={100}>
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--text-subtle)]">
-              What happens next
+              {c.nextTitle}
             </p>
             <ol className="mt-5 space-y-5">
-              {NEXT_STEPS.map((step, i) => (
+              {/* what actually happens after the form — a process, not a mailto */}
+              {c.next.map((step, i) => (
                 <li key={step.title} className="flex gap-4">
                   <span
                     className="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-full border text-xs font-semibold"
@@ -70,24 +61,20 @@ export default function Contact() {
             </ol>
 
             <div className="mt-10 grid gap-5 sm:grid-cols-2">
-              <InfoItem icon={Mail} title="Email" value={CONTACT_EMAIL} href={`mailto:${CONTACT_EMAIL}`} />
-              <InfoItem icon={Clock} title="Response time" value="Usually within 24 hours" />
-              <InfoItem icon={MapPin} title="Based in" value="Riga, Latvia — working across the EU and worldwide" />
-              <InfoItem icon={FileSignature} title="Confidentiality" value="NDA signed on request before any details are shared" />
+              <InfoItem icon={Mail} title={c.email} value={email} href={`mailto:${email}`} />
+              <InfoItem icon={Clock} title={c.responseTime} value={c.responseValue} />
+              <InfoItem icon={MapPin} title={c.basedIn} value={t.site.location} />
+              <InfoItem icon={FileSignature} title={c.confidentiality} value={c.confidentialityValue} />
             </div>
           </Reveal>
 
           {/* RIGHT: form + trust note */}
           <Reveal className="order-1 flex flex-col lg:order-2">
-            <ContactForm />
+            <ContactForm locale={locale} />
 
             <div className="mt-6 flex max-w-md items-start gap-3 text-xs text-[var(--text-muted)]">
               <ShieldCheck className="h-4 w-4 flex-shrink-0" style={{ color: 'var(--accent-text)' }} />
-              <p className="leading-relaxed">
-                Your information is used solely to respond to your inquiry. We do not share
-                your data with third parties and handle all submissions in accordance with
-                GDPR.
-              </p>
+              <p className="leading-relaxed">{c.privacyNote}</p>
             </div>
           </Reveal>
         </div>

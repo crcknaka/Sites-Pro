@@ -5,9 +5,10 @@ import { ChevronDown } from 'lucide-react';
 import { ACCENT } from '@/lib';
 import SectionHeader from './section-header';
 import Reveal from './reveal';
-import { faqs } from '@/data/faqs';
+import type { Faq } from '@/data/faqs';
+import type { Dictionary } from '@/i18n';
 
-export default function FAQ() {
+export default function FAQ({ items, t }: { items: Faq[]; t: Dictionary['faqSection'] }) {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
@@ -19,16 +20,16 @@ export default function FAQ() {
     >
       <div className="mx-auto max-w-4xl">
         <SectionHeader
-          eyebrow="FAQ"
-          title="Frequently Asked"
-          highlight="Questions"
-          subtitle="Got questions? We’ve got answers. If you don’t find what you’re looking for, feel free to reach out."
+          eyebrow={t.eyebrow}
+          title={t.title}
+          highlight={t.highlight}
+          subtitle={t.subtitle}
           className="mb-14 sm:mb-20"
         />
 
         {/* LIST — every answer is in the DOM (collapsed ones are display:none) */}
         <Reveal className="flex flex-col gap-3">
-          {faqs.map((item, i) => {
+          {items.map((item, i) => {
             const active = open === i;
 
             return (

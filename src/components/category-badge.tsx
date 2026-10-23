@@ -1,4 +1,5 @@
 import { Layers, ShoppingCart, Globe, Shield } from 'lucide-react';
+import { dictionaryFor, type Locale } from '@/i18n';
 
 type Category =
   | 'Apps'
@@ -43,7 +44,14 @@ const styles: Record<
   },
 };
 
-export function CategoryBadge({ category }: { category: Category | Category[] }) {
+export function CategoryBadge({
+  category,
+  locale,
+}: {
+  category: Category | Category[];
+  locale: Locale;
+}) {
+  const labels = dictionaryFor(locale).categories;
   const categories = Array.isArray(category) ? category : [category];
 
   return (
@@ -65,7 +73,7 @@ export function CategoryBadge({ category }: { category: Category | Category[] })
             `}
           >
             <Icon className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
-            {cat}
+            {labels[cat]}
           </span>
         );
       })}

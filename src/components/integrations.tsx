@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Plug } from 'lucide-react';
 import Reveal from './reveal';
+import type { Dictionary } from '@/i18n';
 
 /* ======================================================
    INTEGRATIONS — "we wire anything in", shown as the popular
@@ -360,7 +361,7 @@ function Mark({ d }: { d: string }) {
   );
 }
 
-export default function Integrations() {
+export default function Integrations({ t }: { t: Dictionary['integrations'] }) {
   const [active, setActive] = useState(0);
   const cat = CATEGORIES[active];
 
@@ -370,16 +371,13 @@ export default function Integrations() {
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] lg:gap-12">
           {/* copy + tabs */}
           <div>
-            <span className="section-eyebrow">Integrations</span>
+            <span className="section-eyebrow">{t.eyebrow}</span>
             <h3 className="font-display mt-3 text-xl font-semibold tracking-tight sm:text-2xl">
-              We connect whatever your product runs on
+              {t.title}
             </h3>
-            <p className="mt-3 text-sm leading-relaxed text-[var(--text-muted)]">
-              Payments, banking, CRM, logistics, AI — if it has an API, we have
-              probably wired it in. These are the ones that come up most often.
-            </p>
+            <p className="mt-3 text-sm leading-relaxed text-[var(--text-muted)]">{t.text}</p>
 
-            <div className="mt-6 flex flex-wrap gap-2" role="tablist" aria-label="Integration categories">
+            <div className="mt-6 flex flex-wrap gap-2" role="tablist" aria-label={t.tabsLabel}>
               {CATEGORIES.map((c, i) => (
                 <button
                   key={c.name}
@@ -404,7 +402,7 @@ export default function Integrations() {
                       : 'border-[var(--border-soft)] bg-transparent text-[var(--text-muted)] hover:border-[var(--border)] hover:text-[var(--fg)]'
                   }`}
                 >
-                  {c.name}
+                  {t.categories[i] ?? c.name}
                 </button>
               ))}
             </div>

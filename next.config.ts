@@ -56,6 +56,13 @@ const nextConfig: NextConfig = {
         destination: 'https://www.sitespro.org/:path*',
         permanent: true,
       },
+      // sitespro.lv is canonical on the apex — the reverse of sitespro.org.
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'www.sitespro.lv' }],
+        destination: 'https://sitespro.lv/:path*',
+        permanent: true,
+      },
       // The Annexe case became the Institut de Français — Villefranche case.
       {
         source: '/portfolio/annexe-de-francais',

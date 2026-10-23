@@ -2,8 +2,10 @@
 
 import { Sun, Moon } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { dictionaryFor, type Locale } from '@/i18n';
 
-export function ThemeToggle() {
+export function ThemeToggle({ locale }: { locale: Locale }) {
+  const t = dictionaryFor(locale).theme;
   const [mounted, setMounted] = useState(false);
   const [theme, setTheme] = useState<'dark' | 'light'>('dark');
 
@@ -38,7 +40,7 @@ export function ThemeToggle() {
   return (
     <button
       onClick={toggle}
-      aria-label="Toggle theme"
+      aria-label={theme === 'dark' ? t.toLight : t.toDark}
       className="
         cursor-pointer
         h-9 w-9

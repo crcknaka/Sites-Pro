@@ -5,38 +5,21 @@ import SectionHeader from './section-header';
 import Reveal from './reveal';
 import Integrations from './integrations';
 import { ScaledScene, type SceneType } from './service-scenes';
-import { SERVICES } from '@/data/services';
+import { findService, servicesFor, type ServiceKey } from '@/data/services';
+import { localizePath } from '@/i18n';
+import { getI18n } from '@/i18n/server';
 
-const specialisations = SERVICES.filter((s) => !s.core);
+export default async function Services() {
+  const { locale, t } = await getI18n();
+  const s = t.servicesSection;
+  const cardKeys = s.cards.map((c) => c.service);
+  // everything without a card on the home page shows as a chip below the cards
+  const specialisations = servicesFor(locale).filter((x) => !cardKeys.includes(x.key));
+  const cards = s.cards.map((card) => ({
+    ...card,
+    href: localizePath(locale, findService(locale, card.service as ServiceKey)?.path ?? '/services'),
+  }));
 
-const services = [
-  {
-    title: 'Websites',
-    description:
-      'High-performance websites built for growth. Scalable, fast and product-ready.',
-    type: 'web',
-  },
-  {
-    title: 'Web Platforms',
-    description:
-      'Product-grade web applications and platforms. Built for complexity, scale and long-term use.',
-    type: 'web-platforms',
-  },
-  {
-    title: 'AI & Automations',
-    description:
-      'AI-powered automations for digital products and workflows. Reduce manual work and improve efficiency.',
-    type: 'ai',
-  },
-  {
-    title: 'Consulting',
-    description:
-      'Strategic digital consulting to guide your transformation. We help you design, validate and scale digital solutions.',
-    type: 'consulting',
-  },
-];
-
-export default function Services() {
   return (
     <section
       id="services"
@@ -56,18 +39,18 @@ export default function Services() {
       />
       <div className="mx-auto max-w-7xl">
         <SectionHeader
-          eyebrow="What we do"
-          title="Our"
-          highlight="Services"
-          subtitle="We design and build digital products — from high-performance websites to complex web platforms and automations."
+          eyebrow={s.eyebrow}
+          title={s.title}
+          highlight={s.highlight}
+          subtitle={s.subtitle}
         />
 
         {/* CARDS — the link wraps only the title and is stretched over the card,
             so the anchor text search engines see is the service name, not the
             mock product window drawn inside the card. */}
         <div className="mt-14 sm:mt-20 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
-          {services.map((service, i) => (
-            <Reveal key={service.type} delay={i * 90}>
+          {cards.map((service, i) => (
+            <Reveal key={service.service} delay={i * 90}>
               <div
                 className="
                   group relative
@@ -80,13 +63,13 @@ export default function Services() {
               >
                 {/* INFOGRAPHIC */}
                 <div className="mb-6 sm:mb-8 flex h-32 items-center justify-center lg:animate-[slow-float_6s_ease-in-out_infinite]">
-                  <ServiceInfographic type={service.type} />
+                  <ServiceInfographic type={service.scene} />
                 </div>
 
                 {/* TEXT */}
                 <h3 className="font-display text-base sm:text-lg md:text-xl font-semibold mb-2 sm:mb-3">
                   <Link
-                    href={`/services/${service.type}`}
+                    href={service.href}
                     className="after:absolute after:inset-0 after:rounded-[inherit] after:content-['']"
                   >
                     {service.title}
@@ -103,7 +86,7 @@ export default function Services() {
                   className="mt-auto pt-4 flex items-center gap-1 text-xs font-medium"
                   style={{ color: 'var(--accent-text)' }}
                 >
-                  Learn more{' '}
+                  {s.learnMore}{' '}
                   <ArrowUpRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </div>
               </div>
@@ -114,20 +97,20 @@ export default function Services() {
         {/* SPECIALISATIONS */}
         <Reveal className="mt-8 flex flex-wrap items-center justify-center gap-x-3 gap-y-3">
           <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--text-subtle)]">
-            Also
+            {s.also}
           </span>
-          {specialisations.map((s) => (
+          {specialisations.map((x) => (
             <Link
-              key={s.key}
-              href={s.path}
+              key={x.key}
+              href={localizePath(locale, x.path)}
               className="inline-flex items-center gap-1.5 rounded-full border border-[var(--border)] bg-[var(--surface)] px-4 py-2 text-sm font-medium text-[var(--fg)] transition-colors hover:border-[var(--accent-1)]/50 hover:bg-[var(--surface-strong)]"
             >
-              {s.short}
+              {x.short}
             </Link>
           ))}
         </Reveal>
 
-        <Integrations />
+        <Integrations t={t.integrations} />
       </div>
     </section>
   );

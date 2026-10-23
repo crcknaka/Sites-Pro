@@ -1,0 +1,141 @@
+import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/metadata';
+import Link from 'next/link';
+import TermsLv from '@/components/legal/terms-lv';
+import { isLocale } from '@/i18n';
+import { getLocale } from '@/i18n/server';
+
+const META = {
+  en: {
+    title: 'Legal Notice',
+    description:
+      'Legal Notice for sitespro.org. Information about the operator, services, and liability disclaimer.',
+  },
+  lv: {
+    title: 'Lietošanas noteikumi',
+    description: 'SIA SitesPro vietnes sitespro.lv lietošanas noteikumi.',
+  },
+};
+
+export async function generateMetadata({ params }: PageProps<'/[locale]/legal'>): Promise<Metadata> {
+  const { locale } = await params;
+  if (!isLocale(locale)) return {};
+  return pageMetadata({ locale, path: '/legal', ...META[locale] });
+}
+
+/* brand accents via CSS vars */
+
+export default async function LegalPage() {
+  const locale = await getLocale();
+  return locale === 'lv' ? <LvPage /> : <LegalPageEn />;
+}
+
+function LvPage() {
+  return (
+    <div className="relative">
+      <section className="mx-auto max-w-4xl px-6 pt-32 pb-40">
+        <TermsLv />
+      </section>
+    </div>
+  );
+}
+
+function LegalPageEn() {
+  return (
+    <div className="relative">
+      <section className="mx-auto max-w-4xl px-6 pt-32 pb-40">
+        <h1 className="text-4xl font-semibold tracking-tight text-[var(--fg)]">
+          Legal Notice
+        </h1>
+
+        <div className="mt-8 space-y-8 text-[var(--text-muted)] leading-relaxed">
+          <p>
+            This website, <a href="https://www.sitespro.org" className="text-[var(--accent-text)] hover:underline">sitespro.org</a>, is operated by <strong>SIA SitesPro</strong>, a company registered in Latvia, European Union.
+          </p>
+
+          <Section title="Operator Information">
+            <ul className="space-y-2">
+              <li><strong className="text-[var(--fg)]">Company:</strong> SIA SitesPro</li>
+              <li><strong className="text-[var(--fg)]">Location:</strong> Latvia, European Union</li>
+              <li><strong className="text-[var(--fg)]">Website:</strong> <a href="https://www.sitespro.org" className="text-[var(--accent-text)] hover:underline">https://www.sitespro.org</a></li>
+              <li><strong className="text-[var(--fg)]">Email:</strong> <a href="mailto:info@sitespro.org" className="text-[var(--accent-text)] hover:underline">info@sitespro.org</a></li>
+              <li><strong className="text-[var(--fg)]">LinkedIn:</strong> <a href="https://www.linkedin.com/company/sites-pro/" target="_blank" rel="noreferrer" className="text-[var(--accent-text)] hover:underline">https://www.linkedin.com/company/sites-pro/</a></li>
+            </ul>
+          </Section>
+
+          <Section title="Services">
+            <p>The website presents professional services including, but not limited to:</p>
+            <ul className="mt-2 ml-6 list-disc space-y-1">
+              <li>Web development</li>
+              <li>Application development</li>
+              <li>AI automations</li>
+              <li>Technical consulting</li>
+            </ul>
+          </Section>
+
+          <Section title="Liability Disclaimer">
+            <p>
+              The content of this website is provided for general informational purposes only.
+              While reasonable efforts are made to keep information accurate and up to date, no warranties are given regarding completeness or accuracy.
+            </p>
+          </Section>
+
+          <Section title="External Links">
+            <p>
+              This website may contain links to third-party websites.
+              The operator has no control over the content or privacy practices of external sites and assumes no responsibility for them.
+            </p>
+          </Section>
+
+          <Section title="Changes">
+            <p>
+              This Legal Notice may be updated at any time without prior notice.
+            </p>
+          </Section>
+        </div>
+      </section>
+
+      {/* BACK HOME */}
+      <section className="px-6 py-16">
+        <div className="mx-auto max-w-4xl">
+          <div className="flex justify-center">
+            <Link
+              href="/"
+              className="
+                group
+                flex items-center justify-center gap-2
+                px-6 py-4
+                rounded-xl
+                border border-[var(--border)]
+                bg-[var(--surface)]
+                text-sm sm:text-base font-medium
+                text-[var(--text-muted)]
+                hover:text-[var(--fg)]
+                hover:border-[var(--accent-1)]
+                transition-all
+                cursor-pointer select-none
+              "
+            >
+              <span>←</span>
+              <span>Back Home</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function Section({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <section>
+      <h2 className="text-xl font-semibold text-[var(--fg)]">
+        {title}
+      </h2>
+      <div className="mt-3">
+        {children}
+      </div>
+    </section>
+  );
+}
+

@@ -1,4 +1,5 @@
-import { projects } from '@/data/projects';
+import { projectsFor } from '@/data/projects';
+import { getLocale } from '@/i18n/server';
 import PortfolioGrid from './portfolio-grid';
 
 /**
@@ -6,8 +7,9 @@ import PortfolioGrid from './portfolio-grid';
  * needs five fields per case. Passing slim items keeps the full case texts —
  * ~60 KB of challenge/solution/result copy — out of the client bundle.
  */
-export default function Portfolio() {
-  const items = projects.map(({ slug, title, category, description, image }) => ({
+export default async function Portfolio() {
+  const locale = await getLocale();
+  const items = projectsFor(locale).map(({ slug, title, category, description, image }) => ({
     slug,
     title,
     category,
@@ -15,5 +17,5 @@ export default function Portfolio() {
     image,
   }));
 
-  return <PortfolioGrid projects={items} />;
+  return <PortfolioGrid projects={items} locale={locale} />;
 }

@@ -3,6 +3,7 @@ import { ArrowRight, Briefcase } from 'lucide-react';
 import HeroBackground from './hero-background';
 import HeroWindows from './hero-windows';
 import ClientLogos from './client-logos';
+import { getI18n } from '@/i18n/server';
 
 /* ======================================================
    HERO — headline on the left, proof on the right.
@@ -13,7 +14,8 @@ import ClientLogos from './client-logos';
    the window entrance (HeroWindows) and the dot canvas run on the client.
 ====================================================== */
 
-export default function Hero() {
+export default async function Hero() {
+  const { t } = await getI18n();
   return (
     <section
       id="home"
@@ -56,38 +58,37 @@ export default function Hero() {
                 />
                 <span className="relative inline-flex h-2 w-2 rounded-full" style={{ background: 'var(--accent-1)' }} />
               </span>
-              Available for new projects
+              {t.hero.badge}
             </span>
 
             <h1 className="font-display mt-6 text-[2.25rem] font-semibold leading-[1.08] tracking-tight text-balance sm:mt-8 sm:text-5xl lg:text-[3.5rem] xl:text-6xl">
-              Product-grade websites and{' '}
-              <span className="text-gradient">web applications</span>
+              {t.hero.title}{' '}
+              <span className="text-gradient">{t.hero.titleAccent}</span>
             </h1>
 
             <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-[var(--text-muted)] sm:mt-6 sm:text-lg lg:mx-0">
-              We design and build scalable websites, web platforms and secure digital
-              products — from the first conversation to production, and the years after.
+              {t.hero.intro}
             </p>
 
             <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center sm:gap-4 lg:justify-start">
               <Link href="#contact" className="btn-primary group w-full sm:w-auto">
-                Start a project
+                {t.hero.primary}
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </Link>
               <Link href="/portfolio" className="btn-secondary w-full sm:w-auto">
                 <Briefcase className="h-4 w-4" />
-                See the work
+                {t.hero.secondary}
               </Link>
             </div>
 
             <p className="mt-6 text-xs text-[var(--text-subtle)] sm:text-sm">
-              Working across the EU and worldwide
+              {t.hero.note}
             </p>
           </div>
 
           {/* PROOF — three real product windows */}
           <div className="lg:col-span-6">
-            <HeroWindows />
+            <HeroWindows alts={t.hero.windows} />
           </div>
         </div>
 

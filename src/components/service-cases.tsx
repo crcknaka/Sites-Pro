@@ -1,8 +1,9 @@
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 
-import { projects, type ServiceKey } from '@/data/projects';
+import { projectsFor, type ServiceKey } from '@/data/projects';
 import ProjectCard from '@/components/projectcard';
+import { getI18n } from '@/i18n/server';
 import Reveal from './reveal';
 
 /**
@@ -11,11 +12,11 @@ import Reveal from './reveal';
  * Several keys may be passed: cases tagged with the first come first, the rest
  * fill up the grid (a narrow specialisation borrows from its parent service).
  */
-export default function ServiceCases({
+export default async function ServiceCases({
   service,
   slugs,
   limit = 8,
-  title = 'Projects we delivered under this service',
+  title,
 }: {
   service?: ServiceKey | ServiceKey[];
   /** Explicit list instead of a service filter, kept in the given order. */
@@ -23,6 +24,8 @@ export default function ServiceCases({
   limit?: number;
   title?: string;
 }) {
+  const { locale, t } = await getI18n();
+  const projects = projectsFor(locale);
   const keys = service ? (Array.isArray(service) ? service : [service]) : [];
   const seen = new Set<string>();
   const picked = slugs
@@ -39,9 +42,9 @@ export default function ServiceCases({
       <div className="mx-auto max-w-7xl">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="section-eyebrow">Selected work</p>
+            <p className="section-eyebrow">{t.serviceCases.eyebrow}</p>
             <h2 className="font-display mt-2 text-2xl sm:text-3xl font-semibold tracking-tight">
-              {title}
+              {title ?? t.serviceCases.defaultTitle}
             </h2>
           </div>
 
@@ -53,7 +56,7 @@ export default function ServiceCases({
               hover:text-[var(--accent-text)]
             "
           >
-            All case studies
+            {t.serviceCases.all}
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </Link>
         </div>
@@ -67,6 +70,7 @@ export default function ServiceCases({
                 category={project.category}
                 description={project.description}
                 image={project.image}
+                locale={locale}
               />
             </Reveal>
           ))}

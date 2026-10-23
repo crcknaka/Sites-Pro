@@ -8,32 +8,16 @@ import {
 import { ACCENT_1, ACCENT_2 } from '@/lib';
 import SectionHeader from './section-header';
 import Reveal from './reveal';
+import { localizePath } from '@/i18n';
+import { getI18n } from '@/i18n/server';
 
-const steps = [
-  {
-    step: 1,
-    title: 'Discovery & Strategy',
-    description:
-      'We align on goals, constraints and technical direction to define scope and priorities.',
-    icon: Search,
-  },
-  {
-    step: 2,
-    title: 'Design & Build',
-    description:
-      'We design and build scalable products with a focus on architecture, performance and usability.',
-    icon: Code,
-  },
-  {
-    step: 3,
-    title: 'Test, Launch & Scale',
-    description:
-      'We prepare products for production, launch reliably and support long-term growth.',
-    icon: Rocket,
-  },
-];
+const STEP_ICONS = [Search, Code, Rocket];
 
-export default function About() {
+export default async function About() {
+  const { locale, t } = await getI18n();
+  const s = t.aboutSection;
+  const steps = s.steps.map((step, i) => ({ ...step, step: i + 1, icon: STEP_ICONS[i] }));
+
   return (
     <section
       id="about"
@@ -52,10 +36,10 @@ export default function About() {
       />
       <div className="mx-auto max-w-7xl">
         <SectionHeader
-          eyebrow="About us"
-          title="How We"
-          highlight="Work"
-          subtitle="We follow a structured, product-driven process focused on clarity, scalability and long-term results."
+          eyebrow={s.eyebrow}
+          title={s.title}
+          highlight={s.highlight}
+          subtitle={s.subtitle}
         />
 
         {/* STEPS — one list: a card per step on mobile, a three-column row on desktop */}
@@ -136,8 +120,8 @@ export default function About() {
 
         {/* READ MORE */}
         <Reveal className="mt-12 flex justify-center">
-          <Link href="/about" className="btn-secondary group text-sm">
-            How we work, in detail
+          <Link href={localizePath(locale, '/about')} className="btn-secondary group text-sm">
+            {s.more}
             <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </Link>
         </Reveal>

@@ -5,20 +5,15 @@ import { Turnstile, type TurnstileInstance } from '@marsidev/react-turnstile';
 import { SendHorizontal, CheckCircle, ChevronDown } from 'lucide-react';
 import { sendContactMessage } from './contact-actions';
 import { BUDGETS, LIMITS, SERVICES, type ContactResult } from './contact-options';
-import { ACCENT_1, CONTACT_EMAIL } from '@/lib';
+import { ACCENT_1 } from '@/lib';
+import { SITES, dictionaryFor, type Locale } from '@/i18n';
 
 const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
-type Reason = Extract<ContactResult, { ok: false }>['reason'];
-
-const MESSAGES: Record<Reason, string> = {
-  captcha: 'We could not confirm the form was sent by a person. Please try again.',
-  invalid: 'Please check your name, email and message — something is missing or too long.',
-  rate: 'Too many messages from this connection. Please wait a few minutes and try again.',
-  send: 'Your message could not be delivered just now. Please try again in a minute.',
-};
-
-export default function ContactForm() {
+export default function ContactForm({ locale }: { locale: Locale }) {
+  const t = dictionaryFor(locale).form;
+  const MESSAGES = t.errors;
+  const CONTACT_EMAIL = SITES[locale].email;
   const formRef = useRef<HTMLFormElement>(null);
   const turnstileRef = useRef<TurnstileInstance | undefined>(undefined);
   const waitingRef = useRef(false);
@@ -61,6 +56,7 @@ export default function ContactForm() {
 
     const data = new FormData(form);
     data.set('cf-turnstile-response', withToken);
+    data.set('locale', locale);
     setError(null);
 
     startTransition(async () => {
@@ -132,10 +128,10 @@ export default function ContactForm() {
           <CheckCircle className="h-7 w-7 text-[var(--accent-text)]" aria-hidden="true" />
         </div>
 
-        <h3 className="text-xl font-semibold text-[var(--fg)]">Message sent</h3>
+        <h3 className="text-xl font-semibold text-[var(--fg)]">{t.sentTitle}</h3>
 
         <p className="mt-3 max-w-md text-sm text-[var(--text-muted)]">
-          Thanks for reaching out. We’ll reply within 24 hours with next steps.
+          {t.sentText}
         </p>
 
         <button
@@ -152,7 +148,7 @@ export default function ContactForm() {
             transition-colors
           "
         >
-          Send another message
+          {t.sendAnother}
         </button>
       </div>
     );
@@ -176,43 +172,43 @@ export default function ContactForm() {
     >
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="block">
-          <span className="sr-only">Your name</span>
+          <span className="sr-only">{t.name}</span>
           <input
             name="name"
             required
             maxLength={LIMITS.name}
             autoComplete="name"
-            placeholder="Your name"
+            placeholder={t.name}
             className={input}
           />
         </label>
         <label className="block">
-          <span className="sr-only">Your email</span>
+          <span className="sr-only">{t.email}</span>
           <input
             name="email"
             type="email"
             required
             maxLength={LIMITS.email}
             autoComplete="email"
-            placeholder="Your email"
+            placeholder={t.email}
             className={input}
           />
         </label>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2">
-        <Select name="service" label="What do you need?" options={SERVICES} />
-        <Select name="budget" label="Budget range" options={BUDGETS} />
+        <Select name="service" label={t.service} options={SERVICES} labels={t.services} />
+        <Select name="budget" label={t.budget} options={BUDGETS} labels={t.budgets} />
       </div>
 
       <label className="block">
-        <span className="sr-only">About the project</span>
+        <span className="sr-only">{t.message}</span>
         <textarea
           name="message"
           rows={5}
           required
           maxLength={LIMITS.message}
-          placeholder="Tell us about the project — goals, timeline, anything already decided"
+          placeholder={t.messagePlaceholder}
           className={`${input} resize-none`}
         />
       </label>
@@ -245,13 +241,13 @@ export default function ContactForm() {
 
       {waiting && (
         <p role="status" className="text-sm text-[var(--text-muted)]">
-          Checking the form is not spam — one moment…
+          {t.checking}
         </p>
       )}
 
       {error && (
         <p role="alert" className="text-sm leading-relaxed text-[var(--danger)]">
-          {error} You can also write to us directly at{' '}
+          {error} {t.writeDirect}{' '}
           <a href={`mailto:${CONTACT_EMAIL}`} className="font-medium underline underline-offset-2">
             {CONTACT_EMAIL}
           </a>
@@ -267,11 +263,11 @@ export default function ContactForm() {
         {busy ? (
           <span className="flex items-center gap-2">
             <span className="h-4 w-4 rounded-full border-2 border-black/20 border-t-black/70 animate-spin" />
-            {waiting ? 'Verifying…' : 'Sending…'}
+            {waiting ? t.verifying : t.sending}
           </span>
         ) : (
           <>
-            Send the brief
+            {t.send}
             <SendHorizontal className="h-4 w-4" aria-hidden="true" />
           </>
         )}
@@ -286,10 +282,14 @@ function Select({
   name,
   label,
   options,
+  labels,
 }: {
   name: string;
   label: string;
+  /** Submitted values — the server only accepts these. */
   options: readonly string[];
+  /** What the visitor reads, in the page language; same order as options. */
+  labels: string[];
 }) {
   return (
     <label className="relative block">
@@ -298,9 +298,9 @@ function Select({
         <option value="" disabled>
           {label}
         </option>
-        {options.map((o) => (
+        {options.map((o, i) => (
           <option key={o} value={o}>
-            {o}
+            {labels[i] ?? o}
           </option>
         ))}
       </select>

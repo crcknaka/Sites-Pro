@@ -1,12 +1,13 @@
 'use client';
 
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import { ThemeToggle } from '@/components/theme/theme-toggle';
 import { ACCENT } from '@/lib';
+import { dictionaryFor, localizePath, type Locale } from '@/i18n';
 
 /**
  * On the home page every item scrolls to its section. Elsewhere the items
@@ -15,18 +16,23 @@ import { ACCENT } from '@/lib';
  */
 type NavItem = { label: string; target: string; page?: string };
 
-const navItems: NavItem[] = [
-  { label: 'Home', target: 'home', page: '/' },
-  { label: 'Services', target: 'services', page: '/services' },
-  { label: 'Portfolio', target: 'portfolio', page: '/portfolio' },
-  { label: 'About', target: 'about', page: '/about' },
-  { label: 'FAQ', target: 'faq' },
-  { label: 'Contact', target: 'contact' },
-];
+function navItemsFor(locale: Locale): NavItem[] {
+  const t = dictionaryFor(locale).nav;
+  return [
+    { label: t.home, target: 'home', page: '/' },
+    { label: t.services, target: 'services', page: localizePath(locale, '/services') },
+    { label: t.portfolio, target: 'portfolio', page: '/portfolio' },
+    { label: t.about, target: 'about', page: localizePath(locale, '/about') },
+    { label: t.faq, target: 'faq' },
+    { label: t.contact, target: 'contact' },
+  ];
+}
 
 const UNDERLINE_PADDING = 0.32;
 
-export default function Header() {
+export default function Header({ locale }: { locale: Locale }) {
+  const t = dictionaryFor(locale).nav;
+  const navItems = useMemo(() => navItemsFor(locale), [locale]);
   const pathname = usePathname();
   const isHome = pathname === '/';
 
@@ -55,8 +61,8 @@ export default function Header() {
   useEffect(() => {
     if (!isHome) return;
 
-    const sections = navItems
-      .map((i) => document.getElementById(i.target))
+    const sections = ['home', 'services', 'portfolio', 'about', 'faq', 'contact']
+      .map((id) => document.getElementById(id))
       .filter((el): el is HTMLElement => el !== null);
     if (!sections.length) return;
 
@@ -147,7 +153,7 @@ export default function Header() {
           focus:text-sm focus:text-[var(--fg)] focus:shadow-lg
         "
       >
-        Skip to content
+        {t.skip}
       </a>
 
       {/* HEADER */}
@@ -185,7 +191,7 @@ export default function Header() {
           {/* LOGO — theme CSS hides one of the two marks, so neither is preloaded */}
           <Link
             href="/"
-            aria-label="Sites Pro — home"
+            aria-label={t.homeLabel}
             className="relative block h-[54px] w-[54px] sm:h-[70px] sm:w-[70px] select-none"
           >
             <Image
@@ -209,7 +215,7 @@ export default function Header() {
           {/* DESKTOP NAV */}
           <nav
             ref={navRef}
-            aria-label="Main"
+            aria-label={t.main}
             className="relative hidden items-center gap-8 text-sm md:flex"
           >
             {navItems.map((item) => {
@@ -250,13 +256,13 @@ export default function Header() {
 
           {/* RIGHT */}
           <div className="hidden md:flex items-center gap-4">
-            <ThemeToggle />
+            <ThemeToggle locale={locale} />
 
             <Link
               href={isHome ? '#contact' : '/#contact'}
               className="btn-primary !px-4 !py-2 !text-sm"
             >
-              Get Started
+              {t.cta}
             </Link>
           </div>
 
@@ -266,7 +272,7 @@ export default function Header() {
             type="button"
             onClick={() => setOpen(true)}
             className="cursor-pointer select-none md:hidden"
-            aria-label="Open menu"
+            aria-label={t.openMenu}
             aria-expanded={open}
             aria-controls="mobile-menu"
           >
@@ -293,7 +299,7 @@ export default function Header() {
         id="mobile-menu"
         role="dialog"
         aria-modal="true"
-        aria-label="Menu"
+        aria-label={t.menu}
         inert={!open}
         className={`
           fixed right-4 top-4 z-[70]
@@ -308,7 +314,7 @@ export default function Header() {
       >
         {/* Header with Theme Toggle and Close Button */}
         <div className="flex items-center justify-between px-5 pt-5">
-          <ThemeToggle />
+          <ThemeToggle locale={locale} />
           <button
             ref={closeButtonRef}
             type="button"
@@ -320,14 +326,14 @@ export default function Header() {
               transition-colors
               active:scale-[0.96]
             "
-            aria-label="Close menu"
+            aria-label={t.closeMenu}
           >
             <X className="h-5 w-5 text-[var(--fg)]" aria-hidden="true" />
           </button>
         </div>
 
         {/* Navigation */}
-        <nav aria-label="Mobile" className="flex flex-col items-center gap-2 px-5 pt-6 pb-5">
+        <nav aria-label={t.mobile} className="flex flex-col items-center gap-2 px-5 pt-6 pb-5">
           {navItems.map((item) => {
             const isActive = active === item.target;
 
@@ -368,7 +374,7 @@ export default function Header() {
               onClick={() => closeMenu(false)}
               className="btn-primary w-full !text-sm"
             >
-              Get Started
+              {t.cta}
             </Link>
           </div>
         </nav>

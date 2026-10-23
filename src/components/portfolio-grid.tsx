@@ -8,6 +8,7 @@ import ProjectCard from '@/components/projectcard';
 import { useIsMobile } from '@/hooks';
 import SectionHeader from './section-header';
 import Reveal from './reveal';
+import { dictionaryFor, type Locale } from '@/i18n';
 
 const CATEGORIES = [
   'All',
@@ -25,14 +26,6 @@ const categoryIcons: Record<(typeof CATEGORIES)[number], typeof Grid> = {
   Fintech: Shield,
 };
 
-const categoryDescriptions: Record<(typeof CATEGORIES)[number], string> = {
-  All: 'All projects',
-  Apps: 'Web apps, AI tools, interactive services',
-  Commerce: 'Online stores & transactional platforms',
-  Websites: 'Content-driven sites & product showcases',
-  Fintech: 'Fintech platforms & payments',
-};
-
 /** Just what a card needs — the full case texts stay on the server. */
 export interface PortfolioItem {
   slug: string;
@@ -42,7 +35,15 @@ export interface PortfolioItem {
   image: string;
 }
 
-export default function PortfolioGrid({ projects }: { projects: PortfolioItem[] }) {
+export default function PortfolioGrid({
+  projects,
+  locale,
+}: {
+  projects: PortfolioItem[];
+  locale: Locale;
+}) {
+  const t = dictionaryFor(locale);
+  const s = t.portfolioSection;
   const [active, setActive] = useState<(typeof CATEGORIES)[number]>('All');
   const isMobile = useIsMobile();
   const [visibleCount, setVisibleCount] = useState(8);
@@ -93,10 +94,10 @@ export default function PortfolioGrid({ projects }: { projects: PortfolioItem[] 
 
       <div className="mx-auto max-w-7xl">
         <SectionHeader
-          eyebrow="Portfolio"
-          title="Selected"
-          highlight="Work"
-          subtitle="A selection of projects where strategy, design, and technology come together to create meaningful digital experiences."
+          eyebrow={s.eyebrow}
+          title={s.title}
+          highlight={s.highlight}
+          subtitle={s.subtitle}
           className="mb-14"
         />
 
@@ -140,7 +141,7 @@ export default function PortfolioGrid({ projects }: { projects: PortfolioItem[] 
                   `}
                 >
                   <Icon className={`h-3.5 w-3.5 sm:h-4 sm:w-4 ${isActive ? 'text-[var(--accent-text)]' : ''}`} />
-                  {category}
+                  {t.categories[category]}
                 </button>
               );
             })}
@@ -149,7 +150,7 @@ export default function PortfolioGrid({ projects }: { projects: PortfolioItem[] 
           {/* Category description */}
           {active !== 'All' && (
             <p className="mt-4 text-center text-xs sm:text-sm text-[var(--text-muted)]">
-              {categoryDescriptions[active]}
+              {s.filterDescriptions[active]}
             </p>
           )}
         </div>
@@ -165,6 +166,7 @@ export default function PortfolioGrid({ projects }: { projects: PortfolioItem[] 
                 category={project.category}
                 description={project.description}
                 image={project.image}
+                locale={locale}
               />
             </Reveal>
           ))}
@@ -191,7 +193,7 @@ export default function PortfolioGrid({ projects }: { projects: PortfolioItem[] 
                 active:scale-95
               "
             >
-              <span>Load more projects</span>
+              <span>{s.loadMore}</span>
               <ChevronDown className="h-4 w-4 transition-transform group-hover:translate-y-0.5" />
             </button>
           </div>
@@ -207,7 +209,7 @@ export default function PortfolioGrid({ projects }: { projects: PortfolioItem[] 
               hover:text-[var(--accent-text)] hover:underline
             "
           >
-            View all {projects.length} projects
+            {s.viewAll(projects.length)}
           </Link>
         </div>
       </div>

@@ -1,7 +1,11 @@
-import { MetadataRoute } from 'next';
-import { SITE_URL } from '@/lib';
+import type { MetadataRoute } from 'next';
+import { headers } from 'next/headers';
+import { SITES, localeForHost } from '@/i18n';
 
-export default function robots(): MetadataRoute.Robots {
+/** Per domain: each site points crawlers at its own sitemap and host. */
+export default async function robots(): Promise<MetadataRoute.Robots> {
+  const site = SITES[localeForHost((await headers()).get('host'))];
+
   return {
     rules: [
       // /_next/ must stay open: it holds the CSS, JS and optimized images
@@ -31,7 +35,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/api/'],
       },
     ],
-    sitemap: `${SITE_URL}/sitemap.xml`,
-    host: SITE_URL,
+    sitemap: `${site.url}/sitemap.xml`,
+    host: site.url,
   };
 }

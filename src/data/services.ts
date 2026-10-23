@@ -1,7 +1,14 @@
+import type { Locale } from '@/i18n';
+
 /**
- * Every service page on the site, in one place. Drives the services hub,
- * the footer, the Service structured data, the sitemap, hreflang pairs with
- * sitespro.lv and the case ↔ service cross-links (Project.services).
+ * Every service page on both sites, in one place. Drives the services hub,
+ * the footer, the Service structured data, the sitemap, the hreflang pairs
+ * between sitespro.org and sitespro.lv and the case ↔ service cross-links
+ * (Project.services).
+ *
+ * A key is the same service on both sites; a site only lists the services it
+ * has a page for. Paths are internal (/services/…) — localizePath() turns
+ * them into /pakalpojumi/… on sitespro.lv.
  */
 
 export type ServiceKey =
@@ -12,7 +19,9 @@ export type ServiceKey =
   | 'ecommerce'
   | 'payments'
   | 'crm'
-  | 'multilingual';
+  | 'multilingual'
+  | 'maintenance'
+  | 'seo-geo';
 
 export interface ServiceDefinition {
   key: ServiceKey;
@@ -26,13 +35,11 @@ export interface ServiceDefinition {
   offers: string[];
   /** The four core services get a card on the home page; the rest are specialisations. */
   core: boolean;
-  /** Matching page on sitespro.lv — becomes a reciprocal hreflang pair. */
-  lv?: string;
   /** Content date for the sitemap — bump when the page copy changes. */
   updated: string;
 }
 
-export const SERVICES: ServiceDefinition[] = [
+const SERVICES_EN: ServiceDefinition[] = [
   {
     key: 'web',
     path: '/services/web',
@@ -48,7 +55,6 @@ export const SERVICES: ServiceDefinition[] = [
       'Website redesign and performance optimization',
     ],
     core: true,
-    lv: 'https://sitespro.lv/pakalpojumi/majas-lapas-izstrade',
     updated: '2026-07-31',
   },
   {
@@ -66,7 +72,6 @@ export const SERVICES: ServiceDefinition[] = [
       'Cloud infrastructure, CI/CD and observability',
     ],
     core: true,
-    lv: 'https://sitespro.lv/pakalpojumi/web-aplikaciju-izstrade',
     updated: '2026-07-31',
   },
   {
@@ -85,7 +90,6 @@ export const SERVICES: ServiceDefinition[] = [
       'Workflow automation with n8n and custom pipelines',
     ],
     core: true,
-    lv: 'https://sitespro.lv/pakalpojumi/ai-automatizacija',
     updated: '2026-10-02',
   },
   {
@@ -121,7 +125,6 @@ export const SERVICES: ServiceDefinition[] = [
       'Multilingual and multi-region catalogues',
     ],
     core: false,
-    lv: 'https://sitespro.lv/pakalpojumi/interneta-veikala-izstrade',
     updated: '2026-10-02',
   },
   {
@@ -158,7 +161,6 @@ export const SERVICES: ServiceDefinition[] = [
       'Integration with accounting and billing',
     ],
     core: false,
-    lv: 'https://sitespro.lv/pakalpojumi/crm-sistemas-izstrade',
     updated: '2026-10-02',
   },
   {
@@ -181,13 +183,165 @@ export const SERVICES: ServiceDefinition[] = [
   },
 ];
 
-export const SERVICE_LABELS = Object.fromEntries(
-  SERVICES.map((s) => [s.key, s.name])
-) as Record<ServiceKey, string>;
+const SERVICES_LV: ServiceDefinition[] = [
+  {
+    key: 'web',
+    path: '/services/majas-lapas-izstrade',
+    name: 'Mājas lapas izstrāde',
+    short: 'Mājas lapas',
+    serviceType: 'Web Development',
+    description:
+      'Mājas lapas izstrāde Latvijā no 2-5 dienām. Individuāls dizains, administrācijas panelis, SEO un GEO optimizācija. Bezmaksas demo versija pirms samaksas.',
+    offers: [
+      'Vizītkaršu un korporatīvās mājas lapas',
+      'Individuāls dizains',
+      'Pielāgots administrācijas panelis',
+      'Daudzvalodu mājas lapas',
+    ],
+    core: true,
+    updated: '2026-10-23',
+  },
+  {
+    key: 'ecommerce',
+    path: '/services/interneta-veikala-izstrade',
+    name: 'Interneta veikala izstrāde',
+    short: 'Interneta veikali',
+    serviceType: 'E-commerce Development',
+    description:
+      'Interneta veikali ar pielāgotu administrācijas paneli, drošiem maksājumiem, loģistikas un grāmatvedības integrācijām.',
+    offers: [
+      'WooCommerce veikali',
+      'Individuāli Next.js veikali',
+      'Maksājumu un loģistikas integrācijas',
+      'Rēķini un PVN',
+    ],
+    core: true,
+    updated: '2026-10-23',
+  },
+  {
+    key: 'web-platforms',
+    path: '/services/web-aplikaciju-izstrade',
+    name: 'Web aplikāciju izstrāde',
+    short: 'Web aplikācijas',
+    serviceType: 'Application Development',
+    description:
+      'Web aplikācijas un portāli jebkurai sarežģītībai - lietotāju pārvaldība, individuāla administrācijas sistēma, atskaites un API integrācijas.',
+    offers: [
+      'Biznesa aplikācijas un portāli',
+      'Lietotāji, lomas un tiesības',
+      'Atskaites un datu vizualizācija',
+      'API integrācijas',
+    ],
+    core: true,
+    updated: '2026-10-23',
+  },
+  {
+    key: 'ai',
+    path: '/services/ai-automatizacija',
+    name: 'AI automatizācija',
+    short: 'AI automatizācija',
+    serviceType: 'AI Automation',
+    description:
+      'Mākslīgā intelekta ieviešana biznesa procesos - čatboti, dokumentu apstrāde, satura ģenerēšana un datu analīze jūsu esošajās sistēmās.',
+    offers: [
+      'Klientu atbalsta čatboti',
+      'Dokumentu un rēķinu apstrāde',
+      'Satura ģenerēšana',
+      'Procesu automatizācija',
+    ],
+    core: true,
+    updated: '2026-10-23',
+  },
+  {
+    key: 'crm',
+    path: '/services/crm-sistemas-izstrade',
+    name: 'CRM sistēmas izstrāde',
+    short: 'CRM sistēmas',
+    serviceType: 'CRM Development',
+    description:
+      'Individuālas CRM sistēmas - klientu bāze, darījumu vadība, uzdevumi un atskaites, pielāgotas tieši jūsu darba procesiem.',
+    offers: [
+      'Klientu bāze un vēsture',
+      'Darījumu piltuve',
+      'Dokumenti un rēķini PDF formātā',
+      'Integrācija ar grāmatvedību',
+    ],
+    core: false,
+    updated: '2026-10-23',
+  },
+  {
+    key: 'maintenance',
+    path: '/services/majas-lapas-uzturesana',
+    name: 'Mājas lapas uzturēšana un administrēšana',
+    short: 'Uzturēšana',
+    serviceType: 'Website Maintenance',
+    description:
+      'Mājas lapas uzturēšana par fiksētu mēneša maksu: drošības atjauninājumi, rezerves kopijas, uzraudzība 24/7, satura izmaiņas un mēneša atskaite. Arī citu izstrādātāju vietnēm.',
+    offers: [
+      'Drošības atjauninājumi',
+      'Ikdienas rezerves kopijas',
+      'Uzraudzība 24/7',
+      'Satura administrēšana',
+      'Mēneša atskaite',
+    ],
+    core: false,
+    updated: '2026-10-23',
+  },
+  {
+    key: 'seo-geo',
+    path: '/services/seo-geo-optimizacija',
+    name: 'SEO un GEO optimizācija',
+    short: 'SEO un GEO',
+    serviceType: 'Search Engine Optimization',
+    description:
+      'Augstākas pozīcijas Google meklētājā un ieteikumi ChatGPT, Gemini un Perplexity atbildēs: audits, tehniskie labojumi, saturs un atskaites.',
+    offers: [
+      'SEO un GEO audits',
+      'Tehniskā optimizācija',
+      'Strukturētie dati (Schema.org)',
+      'Google uzņēmuma profils',
+      'Ikmēneša atskaites',
+    ],
+    core: false,
+    updated: '2026-10-23',
+  },
+];
 
-export function getService(key: ServiceKey): ServiceDefinition {
-  return SERVICES.find((s) => s.key === key)!;
+const SERVICES: Record<Locale, ServiceDefinition[]> = { en: SERVICES_EN, lv: SERVICES_LV };
+
+/** The services a site has a page for, in display order. */
+export function servicesFor(locale: Locale): ServiceDefinition[] {
+  return SERVICES[locale];
 }
 
-/** The services hub has a counterpart on sitespro.lv too. */
-export const SERVICES_HUB_LV = 'https://sitespro.lv/pakalpojumi';
+/** A service's page on the given site — undefined when that site has none. */
+export function findService(locale: Locale, key: ServiceKey): ServiceDefinition | undefined {
+  return SERVICES[locale].find((s) => s.key === key);
+}
+
+/** For pages that only exist on one site and know their key is there. */
+export function getService(key: ServiceKey, locale: Locale = 'en'): ServiceDefinition {
+  return findService(locale, key)!;
+}
+
+/**
+ * Names for every key, including services a site has no page for — a case
+ * tagged "payments" still shows the chip on sitespro.lv, just without a link.
+ */
+const LABELS: Record<Locale, Record<ServiceKey, string>> = {
+  en: {
+    ...(Object.fromEntries(SERVICES_EN.map((s) => [s.key, s.name])) as Record<ServiceKey, string>),
+    maintenance: 'Website Maintenance',
+    'seo-geo': 'SEO & GEO',
+  },
+  lv: {
+    ...(Object.fromEntries(SERVICES_LV.map((s) => [s.key, s.name])) as Record<ServiceKey, string>),
+    consulting: 'Konsultācijas',
+    payments: 'Maksājumu sistēmas un fintech',
+    multilingual: 'Daudzvalodu vietnes',
+  },
+};
+
+export function serviceLabel(locale: Locale, key: ServiceKey): string {
+  return LABELS[locale][key];
+}

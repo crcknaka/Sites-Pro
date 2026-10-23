@@ -1,6 +1,7 @@
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { ImageResponse } from 'next/og';
+import { SITES, dictionaryFor, type Locale } from '@/i18n';
 
 /* ======================================================
    Share cards (og:image) — 1200×630, rendered at build time.
@@ -66,11 +67,14 @@ export async function loadShot(publicPath: string | undefined): Promise<Shot | n
 }
 
 export function renderOg({
+  locale = 'en',
   eyebrow,
   title,
   subtitle,
   shot,
 }: {
+  /** Which site the card is for — brand spelling and domain in the footer. */
+  locale?: Locale;
   eyebrow: string;
   title: string;
   subtitle?: string;
@@ -165,8 +169,10 @@ export function renderOg({
               paddingTop: 26,
             }}
           >
-            <div style={{ display: 'flex', fontSize: 34, color: FG }}>Sites Pro</div>
-            <div style={{ display: 'flex', fontSize: 26, color: MUTED }}>sitespro.org</div>
+            <div style={{ display: 'flex', fontSize: 34, color: FG }}>{dictionaryFor(locale).site.name}</div>
+            <div style={{ display: 'flex', fontSize: 26, color: MUTED }}>
+              {new URL(SITES[locale].url).hostname.replace(/^www\./, '')}
+            </div>
           </div>
         </div>
 

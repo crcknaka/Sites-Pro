@@ -3,11 +3,12 @@
 import { headers } from 'next/headers';
 import { Resend } from 'resend';
 import { BUDGETS, LIMITS, SERVICES, type ContactResult } from './contact-options';
+import { SITES, isLocale, type Locale } from '@/i18n';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 /** Hosts the Turnstile widget may legitimately be solved on. */
-const ALLOWED_HOSTNAMES = ['www.sitespro.org', 'sitespro.org'];
+const ALLOWED_HOSTNAMES = [...SITES.en.hosts, ...SITES.lv.hosts];
 
 const EMAIL_RE = /^[^\s@<>()",;:]+@[^\s@<>()",;:]+\.[^\s@<>()",;:]{2,}$/;
 
@@ -85,6 +86,11 @@ export async function sendContactMessage(formData: FormData): Promise<ContactRes
 
   /* ---------- Fields ---------- */
 
+  // Which site the form was sent from: a Latvian lead goes to the .lv inbox.
+  const localeRaw = String(formData.get('locale') || '');
+  const locale: Locale = isLocale(localeRaw) ? localeRaw : 'en';
+  const domain = new URL(SITES[locale].url).hostname.replace(/^www\./, '');
+
   const name = oneLine(String(formData.get('name') || ''));
   const email = String(formData.get('email') || '').trim();
   const message = String(formData.get('message') || '').replace(/\r\n/g, '\n').trim();
@@ -119,7 +125,7 @@ export async function sendContactMessage(formData: FormData): Promise<ContactRes
     '',
     message,
     '',
-    '— Sent from sitespro.org',
+    `— Sent from ${domain}`,
   ].join('\n');
 
   const html = `
@@ -132,14 +138,15 @@ export async function sendContactMessage(formData: FormData): Promise<ContactRes
       <p><strong>Message:</strong></p>
       <p>${escapeHtml(message).replace(/\n/g, '<br />')}</p>
       <hr />
-      <p style="font-size:12px;color:#666">Sent from sitespro.org</p>
+      <p style="font-size:12px;color:#666">Sent from ${domain}</p>
     </div>
   `;
 
   try {
     const { error } = await resend.emails.send({
+      // Always sent from the verified sitespro.org domain; only the inbox differs.
       from: 'Sites Pro <info@sitespro.org>',
-      to: ['info@sitespro.org'],
+      to: [SITES[locale].email],
       replyTo: email,
       subject,
       text,

@@ -1,20 +1,26 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { LinkedinIcon, Send, type LucideIcon } from 'lucide-react';
-import { SERVICES } from '@/data/services';
+import { servicesFor } from '@/data/services';
+import { SITES, localizePath, otherLocale } from '@/i18n';
+import { getI18n } from '@/i18n/server';
 
-const navServices = SERVICES.map((s) => ({ label: s.short, href: s.path }));
+export default async function Footer() {
+  const { locale, t } = await getI18n();
+  const l = (path: string) => localizePath(locale, path);
+  const other = otherLocale(locale);
+  const email = SITES[locale].email;
 
-const navCompany = [
-  { label: 'About', href: '/about' },
-  { label: 'Portfolio', href: '/portfolio' },
-  { label: 'All services', href: '/services' },
-  { label: 'Web development in Riga', href: '/web-development-riga' },
-  { label: 'FAQ', href: '/#faq' },
-  { label: 'Contact', href: '/#contact' },
-];
+  const navServices = servicesFor(locale).map((s) => ({ label: s.short, href: l(s.path) }));
+  const navCompany = [
+    { label: t.nav.about, href: l('/about') },
+    { label: t.nav.portfolio, href: '/portfolio' },
+    { label: t.footer.allServices, href: l('/services') },
+    ...t.footer.extraLinks,
+    { label: t.nav.faq, href: '/#faq' },
+    { label: t.nav.contact, href: '/#contact' },
+  ];
 
-export default function Footer() {
   return (
     <footer className="relative">
       {/* TOP DIVIDER */}
@@ -33,7 +39,7 @@ export default function Footer() {
 
             {/* BRAND */}
             <div className="col-span-2 lg:col-span-1">
-              <Link href="/" aria-label="Sites Pro — home" className="relative inline-block h-[56px] w-[56px] select-none">
+              <Link href="/" aria-label={t.nav.homeLabel} className="relative inline-block h-[56px] w-[56px] select-none">
                 <Image
                   src="/logo-dark.svg"
                   alt=""
@@ -51,19 +57,18 @@ export default function Footer() {
               </Link>
 
               <p className="mt-4 max-w-xs text-sm leading-relaxed text-[var(--text-muted)]">
-                Product-grade websites, web platforms and AI automations —
-                built to scale.
+                {t.footer.tagline}
               </p>
 
               <p className="mt-3 text-sm font-medium" style={{ color: 'var(--accent-text)' }}>
-                Digital Done Right.
+                {t.footer.motto}
               </p>
             </div>
 
             {/* SERVICES */}
             <div>
               <p className="mb-4 text-xs font-semibold uppercase tracking-widest" style={{ color: 'var(--accent-text)' }}>
-                Services
+                {t.footer.services}
               </p>
               <ul className="space-y-3">
                 {navServices.map((item) => (
@@ -79,7 +84,7 @@ export default function Footer() {
             {/* COMPANY */}
             <div>
               <p className="mb-4 text-xs font-semibold uppercase tracking-widest" style={{ color: 'var(--accent-text)' }}>
-                Company
+                {t.footer.company}
               </p>
               <ul className="space-y-3">
                 {navCompany.map((item) => (
@@ -95,20 +100,20 @@ export default function Footer() {
             {/* CONTACT */}
             <div className="col-span-2 lg:col-span-1">
               <p className="mb-4 text-xs font-semibold uppercase tracking-widest" style={{ color: 'var(--accent-text)' }}>
-                Contact
+                {t.footer.contact}
               </p>
               <div className="grid grid-cols-2 items-start lg:block">
                 <ul className="space-y-3">
                   <li>
                     <a
-                      href="mailto:info@sitespro.org"
+                      href={`mailto:${email}`}
                       className="text-sm text-[var(--text-muted)] hover:text-[var(--fg)] transition-colors select-text"
                     >
-                      info@sitespro.org
+                      {email}
                     </a>
                   </li>
                   <li className="text-sm text-[var(--text-muted)]">
-                    Riga, Latvia — working across the EU and worldwide
+                    {t.site.location}
                   </li>
                 </ul>
 
@@ -134,21 +139,21 @@ export default function Footer() {
             className="mt-12 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[var(--text-muted)]"
             style={{ borderTop: '1px solid var(--border)' }}
           >
-            <span>© {new Date().getFullYear()} SIA SitesPro. All rights reserved.</span>
+            <span>© {new Date().getFullYear()} SIA SitesPro. {t.footer.rights}</span>
             <div className="flex flex-wrap items-center justify-center gap-4">
               <a
-                href="https://sitespro.lv"
-                hrefLang="lv"
-                lang="lv"
+                href={SITES[other].url}
+                hrefLang={SITES[other].lang}
+                lang={SITES[other].lang}
                 className="hover:text-[var(--fg)] transition-colors underline"
               >
-                Latviski — sitespro.lv
+                {t.footer.switchLabel}
               </a>
-              <Link href="/privacy" className="hover:text-[var(--fg)] transition-colors underline">
-                Privacy Policy
+              <Link href={l('/privacy')} className="hover:text-[var(--fg)] transition-colors underline">
+                {t.footer.privacy}
               </Link>
-              <Link href="/legal" className="hover:text-[var(--fg)] transition-colors underline">
-                Legal Notice
+              <Link href={l('/legal')} className="hover:text-[var(--fg)] transition-colors underline">
+                {t.footer.legal}
               </Link>
             </div>
           </div>

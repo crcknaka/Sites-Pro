@@ -1,19 +1,15 @@
-import {
-  SITE_URL,
-  SITE_NAME,
-  LEGAL_NAME,
-  SITE_DESCRIPTION,
-  CONTACT_EMAIL,
-  SOCIAL_PROFILES,
-  AREA_SERVED,
-} from '@/lib';
-import { faqs, type Faq } from '@/data/faqs';
+import { LEGAL_NAME, SOCIAL_PROFILES, AREA_SERVED } from '@/lib';
+import { SITES, absoluteUrl, dictionaryFor, otherLocale, type Locale } from '@/i18n';
+import { getLocale } from '@/i18n/server';
+import { faqsFor, type Faq } from '@/data/faqs';
 import type { Project } from '@/data/projects';
-import { SERVICES, type ServiceDefinition } from '@/data/services';
+import { servicesFor, type ServiceDefinition } from '@/data/services';
 
-/** Stable node ids so every schema on the site points at one organization. */
-export const ORG_ID = `${SITE_URL}/#organization`;
-export const SITE_ID = `${SITE_URL}/#website`;
+/** Stable node ids so every schema on a site points at one organization. */
+const orgId = (locale: Locale) => `${SITES[locale].url}/#organization`;
+const siteId = (locale: Locale) => `${SITES[locale].url}/#website`;
+
+const LANGUAGE_NAMES: Record<Locale, string> = { en: 'English', lv: 'Latvian' };
 
 function JsonLd({ data }: { data: object }) {
   return (
@@ -24,26 +20,31 @@ function JsonLd({ data }: { data: object }) {
   );
 }
 
-export function OrganizationJsonLd() {
+export async function OrganizationJsonLd() {
+  const locale = await getLocale();
+  const site = SITES[locale];
+  const t = dictionaryFor(locale);
+
   return (
     <JsonLd
       data={{
         '@context': 'https://schema.org',
         '@type': 'ProfessionalService',
-        '@id': ORG_ID,
-        name: SITE_NAME,
+        '@id': orgId(locale),
+        name: t.site.name,
         legalName: LEGAL_NAME,
-        url: SITE_URL,
+        url: site.url,
         // the dark-ink mark — the light one is white and vanishes on white backgrounds
         logo: {
           '@type': 'ImageObject',
-          url: `${SITE_URL}/logo-light.svg`,
+          url: `${site.url}/logo-light.svg`,
         },
-        image: `${SITE_URL}/og-image.jpg`,
-        description: SITE_DESCRIPTION,
-        email: CONTACT_EMAIL,
+        image: `${site.url}/og-image.jpg`,
+        description: t.site.description,
+        email: site.email,
         priceRange: '$$',
-        sameAs: SOCIAL_PROFILES,
+        // the same company's site in the other language
+        sameAs: [...SOCIAL_PROFILES, SITES[otherLocale(locale)].url],
         knowsAbout: [
           'Web development',
           'Next.js',
@@ -55,10 +56,12 @@ export function OrganizationJsonLd() {
           'Payment systems',
           'Fintech',
           'Technical consulting',
+          'Search engine optimization',
+          'Generative engine optimization',
         ],
         contactPoint: {
           '@type': 'ContactPoint',
-          email: CONTACT_EMAIL,
+          email: site.email,
           contactType: 'customer service',
           areaServed: AREA_SERVED,
           availableLanguage: ['English', 'Latvian', 'Russian'],
@@ -74,18 +77,21 @@ export function OrganizationJsonLd() {
   );
 }
 
-export function WebsiteJsonLd() {
+export async function WebsiteJsonLd() {
+  const locale = await getLocale();
+  const t = dictionaryFor(locale);
+
   return (
     <JsonLd
       data={{
         '@context': 'https://schema.org',
         '@type': 'WebSite',
-        '@id': SITE_ID,
-        name: SITE_NAME,
-        url: SITE_URL,
-        description: SITE_DESCRIPTION,
-        inLanguage: 'en',
-        publisher: { '@id': ORG_ID },
+        '@id': siteId(locale),
+        name: t.site.name,
+        url: SITES[locale].url,
+        description: t.site.description,
+        inLanguage: SITES[locale].lang,
+        publisher: { '@id': orgId(locale) },
       }}
     />
   );
@@ -95,30 +101,28 @@ export function WebsiteJsonLd() {
    SERVICES
 ====================================================== */
 
-export type { ServiceDefinition } from '@/data/services';
-
-/** Kept under its old name for the service pages that import it. */
-export const SERVICE_DEFINITIONS = SERVICES;
-
 /** ItemList of all services — rendered on the home page. */
-export function ServicesJsonLd() {
+export async function ServicesJsonLd() {
+  const locale = await getLocale();
+  const t = dictionaryFor(locale);
+
   return (
     <JsonLd
       data={{
         '@context': 'https://schema.org',
         '@type': 'ItemList',
-        name: 'Services by Sites Pro',
-        itemListElement: SERVICE_DEFINITIONS.map((service, i) => ({
+        name: `${t.nav.services} — ${t.site.name}`,
+        itemListElement: servicesFor(locale).map((service, i) => ({
           '@type': 'ListItem',
           position: i + 1,
-          url: `${SITE_URL}${service.path}`,
+          url: absoluteUrl(locale, service.path),
           item: {
             '@type': 'Service',
             name: service.name,
             description: service.description,
             serviceType: service.serviceType,
-            url: `${SITE_URL}${service.path}`,
-            provider: { '@id': ORG_ID },
+            url: absoluteUrl(locale, service.path),
+            provider: { '@id': orgId(locale) },
           },
         })),
       }}
@@ -127,19 +131,23 @@ export function ServicesJsonLd() {
 }
 
 /** Full Service node — rendered on an individual service page. */
-export function ServiceJsonLd({ service }: { service: ServiceDefinition }) {
+export async function ServiceJsonLd({ service }: { service: ServiceDefinition }) {
+  const locale = await getLocale();
+  const url = absoluteUrl(locale, service.path);
+
   return (
     <JsonLd
       data={{
         '@context': 'https://schema.org',
         '@type': 'Service',
-        '@id': `${SITE_URL}${service.path}#service`,
+        '@id': `${url}#service`,
         name: service.name,
         description: service.description,
         serviceType: service.serviceType,
-        url: `${SITE_URL}${service.path}`,
-        provider: { '@id': ORG_ID },
+        url,
+        provider: { '@id': orgId(locale) },
         areaServed: AREA_SERVED.map((name) => ({ '@type': 'Place', name })),
+        availableLanguage: [LANGUAGE_NAMES[locale]],
         hasOfferCatalog: {
           '@type': 'OfferCatalog',
           name: service.name,
@@ -157,13 +165,17 @@ export function ServiceJsonLd({ service }: { service: ServiceDefinition }) {
    FAQ / BREADCRUMBS / PORTFOLIO
 ====================================================== */
 
-export function FaqJsonLd({ items = faqs }: { items?: Faq[] } = {}) {
+export async function FaqJsonLd({ items }: { items?: Faq[] } = {}) {
+  const locale = await getLocale();
+  const list = items ?? faqsFor(locale);
+
   return (
     <JsonLd
       data={{
         '@context': 'https://schema.org',
         '@type': 'FAQPage',
-        mainEntity: items.map((item) => ({
+        inLanguage: SITES[locale].lang,
+        mainEntity: list.map((item) => ({
           '@type': 'Question',
           name: item.q,
           acceptedAnswer: {
@@ -176,22 +188,26 @@ export function FaqJsonLd({ items = faqs }: { items?: Faq[] } = {}) {
   );
 }
 
-export function BreadcrumbJsonLd({
+/** Breadcrumb trail after "Home"; paths are internal and get localized here. */
+export async function BreadcrumbJsonLd({
   items,
 }: {
   items: { name: string; path: string }[];
 }) {
+  const locale = await getLocale();
+  const t = dictionaryFor(locale);
+
   return (
     <JsonLd
       data={{
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
-        itemListElement: [{ name: 'Home', path: '/' }, ...items].map(
+        itemListElement: [{ name: t.breadcrumbHome, path: '/' }, ...items].map(
           (item, i) => ({
             '@type': 'ListItem',
             position: i + 1,
             name: item.name,
-            item: `${SITE_URL}${item.path === '/' ? '' : item.path}`,
+            item: absoluteUrl(locale, item.path),
           }),
         ),
       }}
@@ -199,19 +215,22 @@ export function BreadcrumbJsonLd({
   );
 }
 
-export function ProjectJsonLd({ project }: { project: Project }) {
-  const url = `${SITE_URL}/portfolio/${project.slug}`;
+export async function ProjectJsonLd({ project }: { project: Project }) {
+  const locale = await getLocale();
+  const base = SITES[locale].url;
+  const url = `${base}/portfolio/${project.slug}`;
   const categories = Array.isArray(project.category)
     ? project.category
     : [project.category];
+  const services = servicesFor(locale);
   // The case study is ABOUT the client's site, not the same thing as it —
   // so the live URL goes into `about`, never into sameAs.
   const about = [
     ...(project.link ? [{ '@type': 'WebSite', url: project.link, name: project.title }] : []),
-    ...(project.services ?? []).map((key) => ({
-      '@type': 'Service',
-      '@id': `${SITE_URL}/services/${key}#service`,
-    })),
+    ...(project.services ?? [])
+      .map((key) => services.find((s) => s.key === key))
+      .filter((s): s is ServiceDefinition => s !== undefined)
+      .map((s) => ({ '@type': 'Service', '@id': `${absoluteUrl(locale, s.path)}#service` })),
   ];
 
   return (
@@ -221,22 +240,20 @@ export function ProjectJsonLd({ project }: { project: Project }) {
         '@type': 'CreativeWork',
         '@id': `${url}#project`,
         name: project.title,
-        headline: `${project.title} — ${categories.join(', ')} case study`,
+        headline: `${project.title} — ${categories.join(', ')} ${dictionaryFor(locale).caseStudy.ogEyebrow.toLowerCase()}`,
         description: project.description.trim(),
         url,
-        image: `${SITE_URL}${project.images?.[0] ?? project.image}`,
+        image: `${base}${project.images?.[0] ?? project.image}`,
         genre: categories,
-        inLanguage: 'en',
+        inLanguage: SITES[locale].lang,
         ...(project.tech?.length ? { keywords: project.tech.join(', ') } : {}),
         ...(project.status ? { creativeWorkStatus: project.status } : {}),
         ...(about.length ? { about } : {}),
         ...(project.updated ? { dateModified: project.updated } : {}),
-        creator: { '@id': ORG_ID },
-        publisher: { '@id': ORG_ID },
-        ...(project.logo
-          ? { thumbnailUrl: `${SITE_URL}${project.logo}` }
-          : {}),
-        isPartOf: { '@id': SITE_ID },
+        creator: { '@id': orgId(locale) },
+        publisher: { '@id': orgId(locale) },
+        ...(project.logo ? { thumbnailUrl: `${base}${project.logo}` } : {}),
+        isPartOf: { '@id': siteId(locale) },
       }}
     />
   );

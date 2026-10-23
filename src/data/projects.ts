@@ -1,9 +1,9 @@
 export type ProjectCategory = 'Websites' | 'Commerce' | 'Apps' | 'Fintech';
 
-/** Service keys and labels live with the service registry; re-exported for existing imports. */
 import type { ServiceKey } from './services';
+import type { Locale } from '@/i18n';
+import { projectsLv } from './projects.lv';
 export type { ServiceKey } from './services';
-export { SERVICE_LABELS } from './services';
 
 export interface Project {
   slug: string;
@@ -1448,3 +1448,12 @@ export const projects: Project[] = [
   },
 
 ];
+
+/**
+ * The case studies in a site's language. Latvian text comes from
+ * projects.lv.ts; everything else — images, links, stack, order — is shared.
+ */
+export function projectsFor(locale: Locale): Project[] {
+  if (locale === 'en') return projects;
+  return projects.map((p) => ({ ...p, ...projectsLv[p.slug] }));
+}
