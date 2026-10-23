@@ -10,6 +10,14 @@ import { SITES, dictionaryFor, type Locale } from '@/i18n';
 
 const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
+/**
+ * A name + e-mail pair reads like a sign-in form to password managers, and
+ * Bitwarden offered to fill saved logins here. These opt-outs (Bitwarden,
+ * 1Password, LastPass) keep them away; the browser's own autofill of name and
+ * e-mail still works.
+ */
+const NOT_A_LOGIN = { 'data-bwignore': 'true', 'data-1p-ignore': 'true', 'data-lpignore': 'true' } as const;
+
 export default function ContactForm({ locale }: { locale: Locale }) {
   const t = dictionaryFor(locale).form;
   const MESSAGES = t.errors;
@@ -178,6 +186,7 @@ export default function ContactForm({ locale }: { locale: Locale }) {
             required
             maxLength={LIMITS.name}
             autoComplete="name"
+            {...NOT_A_LOGIN}
             placeholder={t.name}
             className={input}
           />
@@ -190,6 +199,7 @@ export default function ContactForm({ locale }: { locale: Locale }) {
             required
             maxLength={LIMITS.email}
             autoComplete="email"
+            {...NOT_A_LOGIN}
             placeholder={t.email}
             className={input}
           />
@@ -208,6 +218,7 @@ export default function ContactForm({ locale }: { locale: Locale }) {
           rows={5}
           required
           maxLength={LIMITS.message}
+          {...NOT_A_LOGIN}
           placeholder={t.messagePlaceholder}
           className={`${input} resize-none`}
         />
@@ -294,7 +305,7 @@ function Select({
   return (
     <label className="relative block">
       <span className="sr-only">{label}</span>
-      <select name={name} defaultValue="" className={`${input} appearance-none pr-10 cursor-pointer`}>
+      <select name={name} defaultValue="" {...NOT_A_LOGIN} className={`${input} appearance-none pr-10 cursor-pointer`}>
         <option value="" disabled>
           {label}
         </option>

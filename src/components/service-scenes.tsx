@@ -19,6 +19,7 @@ import {
   Zap,
 } from 'lucide-react';
 import { ACCENT_1, ACCENT_2 } from '@/lib';
+import type { Locale } from '@/i18n';
 import SceneScaler from './scene-scaler';
 
 /* ======================================================
@@ -34,37 +35,109 @@ import SceneScaler from './scene-scaler';
 export type SceneType = 'web' | 'web-platforms' | 'ai' | 'consulting';
 
 /* ------------------------------------------------------
+   Copy inside the mock windows — the home page shows them on both
+   sites, so the labels follow the page language.
+------------------------------------------------------ */
+
+const SCENE_COPY = {
+  en: {
+    web: {
+      nav: ['Product', 'Pricing', 'Stories'], quote: 'Get a quote', pill: 'New season',
+      h1: 'Faster sites.', h2: 'More enquiries.',
+      lead: 'A website that loads in under a second and turns visitors into calls, bookings and orders.',
+      start: 'Start a project', work: 'See work',
+      features: [['Performance', 'LCP under 1 s'], ['Search-ready', 'Schema, sitemaps'], ['Your CMS', 'Edit without us']],
+    },
+    platform: {
+      nav: ['Overview', 'Orders', 'Customers', 'Reports', 'Settings'], search: 'Search…',
+      kpis: [['Revenue', '+12.4%'], ['Active users', '+8.1%'], ['Uptime', '30 days']],
+      chart: 'Orders per day', range: 'Last 30 days', paid: 'Paid', shipped: 'Shipped',
+      toast: 'Deployed to production', toastSub: 'build 42 s · zero downtime',
+    },
+    ai: {
+      window: 'automations · invoice-intake', title: 'Invoice intake', live: 'Live', runs: '1,248 runs · 99.6% success',
+      nodes: [
+        ['Inbound email', 'invoices@ · IMAP'], ['Classify', 'LLM · invoice / other'], ['Post to ledger', 'matched supplier'],
+        ['Draft reply', 'ask for missing VAT no.'], ['Extract fields', 'total · date · IBAN'],
+      ],
+      msg: ['Invoice', 'matched to', '— posted €386.00, VAT 21%.'],
+    },
+    consulting: {
+      window: 'Payment stack · decision memo', label: 'Decision memo', heading: 'Payment stack for the marketplace',
+      steps: ['Discovery', 'Architecture', 'MVP', 'Scale'], head: ['Option', 'Fees', 'Trade-off'],
+      options: [['Stripe', 'Fast to launch'], ['Adyen', 'Enterprise onboarding'], ['Own gateway', 'Full control, 6–9 mo']],
+      rec: 'Recommendation', recText: ['Start on', ', keep the checkout PSP-agnostic — switch acquirers at volume without a rebuild.'],
+    },
+  },
+  lv: {
+    web: {
+      nav: ['Produkts', 'Cenas', 'Stāsti'], quote: 'Saņemt cenu', pill: 'Jaunā sezona',
+      h1: 'Ātrākas lapas.', h2: 'Vairāk pieteikumu.',
+      lead: 'Mājas lapa, kas ielādējas mazāk nekā sekundē un pārvērš apmeklētājus zvanos, pierakstos un pasūtījumos.',
+      start: 'Sākt projektu', work: 'Mūsu darbi',
+      features: [['Ātrums', 'LCP zem 1 s'], ['Gatava SEO', 'Schema, sitemap'], ['Jūsu CMS', 'Labojiet paši']],
+    },
+    platform: {
+      nav: ['Pārskats', 'Pasūtījumi', 'Klienti', 'Atskaites', 'Iestatījumi'], search: 'Meklēt…',
+      kpis: [['Ieņēmumi', '+12,4%'], ['Aktīvi lietotāji', '+8,1%'], ['Pieejamība', '30 dienas']],
+      chart: 'Pasūtījumi dienā', range: 'Pēdējās 30 dienas', paid: 'Apmaksāts', shipped: 'Nosūtīts',
+      toast: 'Publicēts produkcijā', toastSub: 'būvējums 42 s · bez dīkstāves',
+    },
+    ai: {
+      window: 'automatizācija · rēķinu apstrāde', title: 'Rēķinu apstrāde', live: 'Darbojas', runs: '1248 izpildes · 99,6% veiksmīgas',
+      nodes: [
+        ['Ienākošais e-pasts', 'rekini@ · IMAP'], ['Klasificēt', 'LLM · rēķins / cits'], ['Iegrāmatot', 'piegādātājs atrasts'],
+        ['Atbildes melnraksts', 'lūgt trūkstošo PVN nr.'], ['Nolasīt laukus', 'summa · datums · IBAN'],
+      ],
+      msg: ['Rēķins', 'sasaistīts ar', '- iegrāmatoti €386,00, PVN 21%.'],
+    },
+    consulting: {
+      window: 'Maksājumu risinājums · lēmuma memo', label: 'Lēmuma memo', heading: 'Maksājumi tirdzniecības platformai',
+      steps: ['Izpēte', 'Arhitektūra', 'MVP', 'Mērogošana'], head: ['Variants', 'Komisija', 'Kompromiss'],
+      options: [['Stripe', 'Ātri palaižams'], ['Adyen', 'Lieluzņēmumu pieslēgšana'], ['Savs maksājumu modulis', 'Pilna kontrole, 6–9 mēn.']],
+      rec: 'Ieteikums', recText: ['Sākt ar', ', saglabājot maksājumu daļu neatkarīgu no PSP - lielākos apjomos ekvaieri var mainīt bez pārbūves.'],
+    },
+  },
+} satisfies Record<Locale, unknown>;
+
+type SceneCopy = (typeof SCENE_COPY)['en'];
+
+
+/* ------------------------------------------------------
    Scaled scene — a server component; only SceneScaler runs on
    the client, to measure the box.
 ------------------------------------------------------ */
 
 export function ScaledScene({
   type,
+  locale = 'en',
   className = '',
   float = true,
 }: {
   type: SceneType;
+  /** Language of the labels inside the window. */
+  locale?: Locale;
   className?: string;
   /** true = gentle idle float, used in the service heroes */
   float?: boolean;
 }) {
   return (
     <SceneScaler className={className} float={float}>
-      <Scene type={type} />
+      <Scene type={type} c={SCENE_COPY[locale]} />
     </SceneScaler>
   );
 }
 
-function Scene({ type }: { type: SceneType }) {
+function Scene({ type, c }: { type: SceneType; c: SceneCopy }) {
   switch (type) {
     case 'web':
-      return <WebsiteScene />;
+      return <WebsiteScene c={c.web} />;
     case 'web-platforms':
-      return <PlatformScene />;
+      return <PlatformScene c={c.platform} />;
     case 'ai':
-      return <AiScene />;
+      return <AiScene c={c.ai} />;
     case 'consulting':
-      return <ConsultingScene />;
+      return <ConsultingScene c={c.consulting} />;
   }
 }
 
@@ -150,7 +223,7 @@ const Pill = ({ children, color }: { children: React.ReactNode; color: string })
    1 · Websites — a landing page in the browser
 ------------------------------------------------------ */
 
-function WebsiteScene() {
+function WebsiteScene({ c }: { c: SceneCopy['web'] }) {
   return (
     <>
       <Window title="yourbrand.com">
@@ -165,14 +238,14 @@ function WebsiteScene() {
               <span className="text-[11px] font-semibold text-[var(--fg)]">Northwind</span>
             </div>
             <div className="flex items-center gap-4 text-[10px] text-[var(--text-muted)]">
-              <span>Product</span>
-              <span>Pricing</span>
-              <span>Stories</span>
+              {c.nav.map((item) => (
+                <span key={item}>{item}</span>
+              ))}
               <span
                 className="rounded-md px-2 py-1 text-[10px] font-semibold text-[#0b1a06]"
                 style={{ background: ACCENT_1 }}
               >
-                Get a quote
+                {c.quote}
               </span>
             </div>
           </div>
@@ -181,25 +254,25 @@ function WebsiteScene() {
           <div className="mt-5 grid grid-cols-[1.15fr_1fr] gap-6">
             <div>
               <Pill color={ACCENT_1}>
-                <Zap className="h-2.5 w-2.5" /> New season
+                <Zap className="h-2.5 w-2.5" /> {c.pill}
               </Pill>
               <div className="mt-2 font-display text-[20px] font-semibold leading-[1.1] tracking-tight text-[var(--fg)]">
-                Faster sites.
+                {c.h1}
                 <br />
-                More enquiries.
+                {c.h2}
               </div>
               <p className="mt-1.5 max-w-[210px] text-[10px] leading-snug text-[var(--text-muted)]">
-                A website that loads in under a second and turns visitors into calls, bookings and orders.
+                {c.lead}
               </p>
               <div className="mt-2.5 flex items-center gap-2">
                 <span
                   className="inline-flex items-center gap-1 rounded-md px-2.5 py-1.5 text-[10px] font-semibold text-[#0b1a06]"
                   style={{ background: `linear-gradient(90deg, ${ACCENT_1}, ${ACCENT_2})` }}
                 >
-                  Start a project <ArrowRight className="h-2.5 w-2.5" />
+                  {c.start} <ArrowRight className="h-2.5 w-2.5" />
                 </span>
                 <span className="rounded-md border border-[var(--border)] px-2.5 py-1.5 text-[10px] font-medium text-[var(--fg)]">
-                  See work
+                  {c.work}
                 </span>
               </div>
             </div>
@@ -228,9 +301,9 @@ function WebsiteScene() {
           {/* feature row */}
           <div className="mt-4 grid grid-cols-3 gap-3">
             {[
-              { Icon: Gauge, t: 'Performance', s: 'LCP under 1 s', c: ACCENT_1 },
-              { Icon: Search, t: 'Search-ready', s: 'Schema, sitemaps', c: ACCENT_2 },
-              { Icon: FileText, t: 'Your CMS', s: 'Edit without us', c: ACCENT_1 },
+              { Icon: Gauge, t: c.features[0][0], s: c.features[0][1], c: ACCENT_1 },
+              { Icon: Search, t: c.features[1][0], s: c.features[1][1], c: ACCENT_2 },
+              { Icon: FileText, t: c.features[2][0], s: c.features[2][1], c: ACCENT_1 },
             ].map(({ Icon, t, s, c }) => (
               <div key={t} className="rounded-lg border border-[var(--border)] bg-[var(--surface-strong)] p-2.5">
                 <Icon className="h-3.5 w-3.5" style={{ color: c }} />
@@ -278,18 +351,18 @@ function WebsiteScene() {
    2 · Web platforms — an operations dashboard
 ------------------------------------------------------ */
 
-function PlatformScene() {
+function PlatformScene({ c }: { c: SceneCopy['platform'] }) {
   const nav = [
-    { Icon: LayoutDashboard, t: 'Overview', on: true },
-    { Icon: Package, t: 'Orders' },
-    { Icon: Users, t: 'Customers' },
-    { Icon: BarChart3, t: 'Reports' },
-    { Icon: Settings, t: 'Settings' },
+    { Icon: LayoutDashboard, t: c.nav[0], on: true },
+    { Icon: Package, t: c.nav[1] },
+    { Icon: Users, t: c.nav[2] },
+    { Icon: BarChart3, t: c.nav[3] },
+    { Icon: Settings, t: c.nav[4] },
   ];
   const rows = [
-    ['#10482', 'Aurora Outfitters', '€1,240', 'Paid', ACCENT_1],
-    ['#10481', 'Verde Supply Co', '€386', 'Shipped', ACCENT_2],
-    ['#10480', 'Banff Gear', '€2,910', 'Paid', ACCENT_1],
+    ['#10482', 'Aurora Outfitters', '€1,240', c.paid, ACCENT_1],
+    ['#10481', 'Verde Supply Co', '€386', c.shipped, ACCENT_2],
+    ['#10480', 'Banff Gear', '€2,910', c.paid, ACCENT_1],
   ];
   return (
     <>
@@ -325,7 +398,7 @@ function PlatformScene() {
             <div className="text-[12px] font-semibold text-[var(--fg)]">Overview</div>
             <div className="flex items-center gap-2">
               <span className="flex h-5 w-28 items-center gap-1.5 rounded-md border border-[var(--border)] px-2 text-[9px] text-[var(--text-muted)]">
-                <Search className="h-2.5 w-2.5" /> Search…
+                <Search className="h-2.5 w-2.5" /> {c.search}
               </span>
               <Bell className="h-3 w-3 text-[var(--text-muted)]" />
               <span className="h-5 w-5 rounded-full" style={{ background: `linear-gradient(135deg, ${ACCENT_2}, ${ACCENT_1})` }} />
@@ -335,9 +408,9 @@ function PlatformScene() {
           {/* KPIs */}
           <div className="mt-3 grid grid-cols-3 gap-2">
             {[
-              ['Revenue', '€48.2k', '+12.4%', ACCENT_1],
-              ['Active users', '2,410', '+8.1%', ACCENT_2],
-              ['Uptime', '99.98%', '30 days', ACCENT_1],
+              [c.kpis[0][0], '€48.2k', c.kpis[0][1], ACCENT_1],
+              [c.kpis[1][0], '2,410', c.kpis[1][1], ACCENT_2],
+              [c.kpis[2][0], '99.98%', c.kpis[2][1], ACCENT_1],
             ].map(([l, v, d, c]) => (
               <div key={l} className="rounded-lg border border-[var(--border)] p-2">
                 <div className="text-[9px] text-[var(--text-muted)]">{l}</div>
@@ -352,8 +425,8 @@ function PlatformScene() {
           {/* chart */}
           <div className="mt-2.5 rounded-lg border border-[var(--border)] p-2">
             <div className="flex items-center justify-between">
-              <span className="text-[9px] font-medium text-[var(--fg)]">Orders per day</span>
-              <span className="text-[9px] text-[var(--text-muted)]">Last 30 days</span>
+              <span className="text-[9px] font-medium text-[var(--fg)]">{c.chart}</span>
+              <span className="text-[9px] text-[var(--text-muted)]">{c.range}</span>
             </div>
             <svg viewBox="0 0 330 56" className="mt-1 h-14 w-full">
               <defs>
@@ -410,8 +483,8 @@ function PlatformScene() {
             <Check className="h-3 w-3" style={{ color: 'var(--accent-text)' }} />
           </span>
           <div className="leading-tight">
-            <div className="text-[10px] font-semibold text-[var(--fg)]">Deployed to production</div>
-            <div className="text-[9px] text-[var(--text-muted)]">build 42 s · zero downtime</div>
+            <div className="text-[10px] font-semibold text-[var(--fg)]">{c.toast}</div>
+            <div className="text-[9px] text-[var(--text-muted)]">{c.toastSub}</div>
           </div>
         </div>
       </Floating>
@@ -458,10 +531,10 @@ return (
 );
 }
 
-function AiScene() {
+function AiScene({ c }: { c: SceneCopy['ai'] }) {
   return (
     <>
-      <Window title="automations · invoice-intake">
+      <Window title={c.window}>
         {/* dotted canvas */}
         <div
           className="absolute inset-0"
@@ -474,12 +547,12 @@ function AiScene() {
         {/* header strip */}
         <div className="relative flex items-center justify-between px-4 pt-3">
           <div className="flex items-center gap-2">
-            <span className="text-[11px] font-semibold text-[var(--fg)]">Invoice intake</span>
+            <span className="text-[11px] font-semibold text-[var(--fg)]">{c.title}</span>
             <Pill color={ACCENT_1}>
-              <span className="h-1.5 w-1.5 rounded-full" style={{ background: ACCENT_1 }} /> Live
+              <span className="h-1.5 w-1.5 rounded-full" style={{ background: ACCENT_1 }} /> {c.live}
             </Pill>
           </div>
-          <span className="text-[9px] text-[var(--text-muted)]">1,248 runs · 99.6% success</span>
+          <span className="text-[9px] text-[var(--text-muted)]">{c.runs}</span>
         </div>
 
         {/* connectors */}
@@ -502,11 +575,11 @@ function AiScene() {
           ))}
         </svg>
 
-        <FlowNode Icon={Mail} title="Inbound email" sub="invoices@ · IMAP" color={ACCENT_2} className="left-6 top-[68px]" />
-        <FlowNode Icon={Sparkles} title="Classify" sub="LLM · invoice / other" color={ACCENT_1} className="left-[212px] top-[68px]" active />
-        <FlowNode Icon={Database} title="Post to ledger" sub="matched supplier" color={ACCENT_1} className="left-[400px] top-[126px]" />
-        <FlowNode Icon={Bot} title="Draft reply" sub="ask for missing VAT no." color={ACCENT_1} className="left-[400px] top-[208px]" />
-        <FlowNode Icon={FileText} title="Extract fields" sub="total · date · IBAN" color={ACCENT_2} className="left-[274px] top-[176px]" />
+        <FlowNode Icon={Mail} title={c.nodes[0][0]} sub={c.nodes[0][1]} color={ACCENT_2} className="left-6 top-[68px]" />
+        <FlowNode Icon={Sparkles} title={c.nodes[1][0]} sub={c.nodes[1][1]} color={ACCENT_1} className="left-[212px] top-[68px]" active />
+        <FlowNode Icon={Database} title={c.nodes[2][0]} sub={c.nodes[2][1]} color={ACCENT_1} className="left-[400px] top-[126px]" />
+        <FlowNode Icon={Bot} title={c.nodes[3][0]} sub={c.nodes[3][1]} color={ACCENT_1} className="left-[400px] top-[208px]" />
+        <FlowNode Icon={FileText} title={c.nodes[4][0]} sub={c.nodes[4][1]} color={ACCENT_2} className="left-[274px] top-[176px]" />
       </Window>
 
       {/* floating: assistant message */}
@@ -517,7 +590,7 @@ function AiScene() {
           </span>
           <div>
             <div className="text-[10px] leading-snug text-[var(--fg)]">
-              Invoice <b>#1042</b> matched to <b>Verde Supply</b> — posted €386.00, VAT 21%.
+              {c.msg[0]} <b>#1042</b> {c.msg[1]} <b>Verde Supply</b> {c.msg[2]}
             </div>
             <div className="mt-1 text-[9px] text-[var(--text-muted)]">340 ms · 1.2k tokens · gpt-4.1</div>
           </div>
@@ -531,26 +604,26 @@ function AiScene() {
    4 · Consulting — a decision document
 ------------------------------------------------------ */
 
-function ConsultingScene() {
+function ConsultingScene({ c }: { c: SceneCopy['consulting'] }) {
   const steps = [
-    ['Discovery', 'done'],
-    ['Architecture', 'done'],
-    ['MVP', 'now'],
-    ['Scale', 'next'],
+    [c.steps[0], 'done'],
+    [c.steps[1], 'done'],
+    [c.steps[2], 'now'],
+    [c.steps[3], 'next'],
   ] as const;
   const options = [
-    ['Stripe', '1.5% + €0.25', 'Fast to launch', true],
-    ['Adyen', '0.6% + €0.11', 'Enterprise onboarding', false],
-    ['Own gateway', 'interchange +', 'Full control, 6–9 mo', false],
+    [c.options[0][0], '1.5% + €0.25', c.options[0][1], true],
+    [c.options[1][0], '0.6% + €0.11', c.options[1][1], false],
+    [c.options[2][0], 'interchange +', c.options[2][1], false],
   ] as const;
   return (
     <>
-      <Window title="Payment stack · decision memo">
+      <Window title={c.window}>
         <div className="px-5 pt-4">
           <div className="flex items-center justify-between">
             <div>
-              <Label>Decision memo</Label>
-              <div className="mt-0.5 text-[13px] font-semibold text-[var(--fg)]">Payment stack for the marketplace</div>
+              <Label>{c.label}</Label>
+              <div className="mt-0.5 text-[13px] font-semibold text-[var(--fg)]">{c.heading}</div>
             </div>
             <Pill color={ACCENT_2}>
               <CreditCard className="h-2.5 w-2.5" /> Fintech
@@ -589,9 +662,9 @@ function ConsultingScene() {
           {/* comparison */}
           <div className="mt-3 overflow-hidden rounded-lg border border-[var(--border)]">
             <div className="grid grid-cols-[1fr_92px_1fr_24px] bg-[var(--surface-strong)] px-2.5 py-1.5 text-[8px] font-medium uppercase tracking-wider text-[var(--text-muted)]">
-              <span>Option</span>
-              <span>Fees</span>
-              <span>Trade-off</span>
+              <span>{c.head[0]}</span>
+              <span>{c.head[1]}</span>
+              <span>{c.head[2]}</span>
               <span />
             </div>
             {options.map(([n, f, t, pick]) => (
@@ -614,9 +687,9 @@ function ConsultingScene() {
 
       {/* floating: the recommendation */}
       <Floating className="left-[352px] top-[236px] w-[200px]">
-        <Label>Recommendation</Label>
+        <Label>{c.rec}</Label>
         <div className="mt-1 text-[10px] leading-snug text-[var(--fg)]">
-          Start on <b>Stripe</b>, keep the checkout PSP-agnostic — switch acquirers at volume without a rebuild.
+          {c.recText[0]} <b>Stripe</b>{c.recText[1]}
         </div>
         <div className="mt-1.5 flex items-center gap-1 text-[9px] font-medium" style={{ color: 'var(--accent-text)' }}>
           <ShieldCheck className="h-3 w-3" /> PCI SAQ A · 3-DS ready

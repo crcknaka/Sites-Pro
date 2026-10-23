@@ -6,7 +6,7 @@ import Reveal from './reveal';
 import Integrations from './integrations';
 import { ScaledScene, type SceneType } from './service-scenes';
 import { findService, servicesFor, type ServiceKey } from '@/data/services';
-import { localizePath } from '@/i18n';
+import { localizePath, type Locale } from '@/i18n';
 import { getI18n } from '@/i18n/server';
 
 export default async function Services() {
@@ -63,7 +63,7 @@ export default async function Services() {
               >
                 {/* INFOGRAPHIC */}
                 <div className="mb-6 sm:mb-8 flex h-32 items-center justify-center lg:animate-[slow-float_6s_ease-in-out_infinite]">
-                  <ServiceInfographic type={service.scene} />
+                  <ServiceInfographic type={service.scene} locale={locale} />
                 </div>
 
                 {/* TEXT */}
@@ -121,10 +121,10 @@ export default async function Services() {
    scaled down to the card. See service-scenes.tsx.
 ====================================================== */
 
-function ServiceInfographic({ type }: { type: string }) {
+function ServiceInfographic({ type, locale }: { type: string; locale: Locale }) {
   return (
     <div className="w-[188px]">
-      <ScaledScene type={type as SceneType} float={false} />
+      <ScaledScene type={type as SceneType} locale={locale} float={false} />
     </div>
   );
 }
