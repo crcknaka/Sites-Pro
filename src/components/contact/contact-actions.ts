@@ -5,7 +5,18 @@ import { Resend } from 'resend';
 import { BUDGETS, LIMITS, SERVICES, type ContactResult } from './contact-options';
 import { SITES, isLocale, type Locale } from '@/i18n';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+/**
+ * Each domain sends from its own verified Resend account: sitespro.org from
+ * info@sitespro.org, sitespro.lv from noreply@sitespro.lv as the Latvian site
+ * always did. A test lead sent to the .lv inbox (Zoho) from sitespro.org was
+ * accepted but never showed up there, while mail from sitespro.lv always did.
+ */
+const SENDERS: Record<Locale, { resend: Resend; from: string }> = {
+  en: { resend: new Resend(process.env.RESEND_API_KEY), from: 'Sites Pro <info@sitespro.org>' },
+  lv: process.env.RESEND_API_KEY_LV
+    ? { resend: new Resend(process.env.RESEND_API_KEY_LV), from: 'SitesPro <noreply@sitespro.lv>' }
+    : { resend: new Resend(process.env.RESEND_API_KEY), from: 'Sites Pro <info@sitespro.org>' },
+};
 
 /** Hosts the Turnstile widget may legitimately be solved on. */
 const ALLOWED_HOSTNAMES = [...SITES.en.hosts, ...SITES.lv.hosts];
@@ -143,9 +154,9 @@ export async function sendContactMessage(formData: FormData): Promise<ContactRes
   `;
 
   try {
-    const { error } = await resend.emails.send({
-      // Always sent from the verified sitespro.org domain; only the inbox differs.
-      from: 'Sites Pro <info@sitespro.org>',
+    const sender = SENDERS[locale];
+    const { error } = await sender.resend.emails.send({
+      from: sender.from,
       to: [SITES[locale].email],
       replyTo: email,
       subject,
