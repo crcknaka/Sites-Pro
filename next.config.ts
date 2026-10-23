@@ -63,6 +63,9 @@ const nextConfig: NextConfig = {
         destination: 'https://sitespro.lv/:path*',
         permanent: true,
       },
+      // Removed from the portfolio 2026-10-23 — old links land on the portfolio.
+      { source: '/portfolio/aerial-platform', destination: '/portfolio', permanent: true },
+      { source: '/portfolio/gift-roulette', destination: '/portfolio', permanent: true },
       // The Annexe case became the Institut de Français — Villefranche case.
       {
         source: '/portfolio/annexe-de-francais',

@@ -820,35 +820,44 @@ export const projects: Project[] = [
   {
     slug: 'pets-pro',
     title: 'Pets Pro',
-    seoTitle: 'Pets Pro — Multilingual Pet Supplies Store',
+    seoTitle: 'Pets Pro — Multilingual WooCommerce Pet Store',
+    updated: '2026-10-23',
     category: 'Commerce',
-    tech: ['WordPress', 'WooCommerce', 'Multilingual', 'Mailchimp'],
-    services: ['web', 'ecommerce', 'multilingual'],
-    description: 'Pet supplies store with a multilingual catalogue — clothing, beds, toys and care products, with featured categories and a favourites list on the storefront.',
+    tech: ['WordPress', 'WooCommerce', 'WoodMart', 'Multilingual (EN/LV/RU)', 'Brevo', 'Meta Conversions API', 'Cloudflare'],
+    services: ['web', 'ecommerce', 'multilingual', 'maintenance'],
+    description: 'Riga pet store for dogs and cats, selling across Europe in English, Latvian and Russian — 370+ products, size guides and size-range links, rule-based upsells, moderated reviews with the dog’s breed and size, and parcel-locker labels printed straight from the order.',
+    metaDescription: 'Pets Pro: WooCommerce pet store in EN, LV and RU — 370+ products, size guides, rule-based upsells, moderated reviews, parcel-locker labels from the order.',
     challenge: `
-      A pet-supplies retailer selling across the Baltics needed a store that
-      works like the big marketplaces shoppers are used to — fast browsing by
-      category, favourites, loyalty points, clear delivery terms — without a
-      marketplace budget, and with a small team running it in several languages.
+      Pets Pro started as a tidy WooCommerce storefront. As the catalogue grew
+      past 370 products — raincoats and clothing in many sizes, beds, harnesses,
+      care and hygiene — the shop had to sell in three languages across Europe,
+      help owners choose the right size without writing in, raise the average
+      order, and let a small team pack and ship parcels every day. All of it on
+      the existing WordPress stack, without making the site slower.
     `,
     solution: [
-      'Storefront built around featured categories (clothing and shoes, beds, dog toys, care products) and seasonal campaign banners',
-      'Wishlist and a loyalty scheme: shoppers register, earn points with every purchase and spend them next time',
-      'Country-specific free-delivery thresholds shown on every page, so cross-border buyers know the rules up front',
-      'Promotional bar and campaign blocks (a −20% food line, for example) the team changes without touching the layout',
-      'Multilingual WooCommerce catalogue with Elementor-editable pages',
-      'Mailchimp newsletter capture and links to Instagram, TikTok and Facebook',
+      'The whole shop in English, Latvian and Russian — product names, descriptions, categories, attributes, e-mails and forms — on SitesPro Translate, our own multilingual plugin, replacing TranslatePress',
+      'Product texts rewritten to one template (intro, features, how to use, specifications) and size guides transcribed from pictures into translated pop-ups',
+      '"Looking for another size?" links between the size ranges of a model, built automatically from product names and stock',
+      'Rule-based upsells under Add to cart and cross-sells in the cart for every product — a leash and harness next to a raincoat, refills next to a holder',
+      'Subcategory chips above the product grid, filters that survive a language switch and a colour filter only where colours exist',
+      'Reviews for registered customers only, held for moderation, with the dog’s name, breed and the size bought shown next to each review',
+      'Omniva, Expresspasts and Smartposti parcel-locker shipping with labels printed from the order, and a "label printer" role that lets packing staff print labels without being able to change orders',
+      'Free-shipping thresholds shown on every product, and a coupon pop-up that adds subscribers to Brevo with their language, so campaigns go out in the right one',
+      'Speed work: page cache kept free of tracking cookies, self-hosted fonts, a lighter home slider, and the Meta Conversions API limited to purchases — that change alone takes 0.1–0.65 s off every uncached page',
     ],
     result: `
-      A Baltic-wide pet store the client operates alone: campaigns, prices and
-      delivery rules change in the back office, while shoppers get the
-      favourites, points and delivery clarity they expect from much bigger
-      stores.
+      A storefront that grew into a working retail system: owners find their
+      size and the matching accessories on their own, every page reads naturally
+      in three languages, reviews come with real context, and the team prints the
+      day's parcel labels straight from the orders. We keep developing and
+      maintaining the shop as the business grows.
     `,
-    image: '/projects/covers/pets-pro.webp?v=4',
+    image: '/projects/covers/pets-pro.webp?v=5',
     images: [
-      '/projects/screenshots/pets-pro.jpg',
-      '/projects/screenshots/pets-pro-2.jpg',
+      '/projects/screenshots/pets-pro.jpg?v=5',
+      '/projects/screenshots/pets-pro-2.jpg?v=5',
+      '/projects/screenshots/pets-pro-3.jpg?v=5',
     ],
     logo: '/projects/logos/pets-pro.png',
     link: 'https://pets-pro.eu/',
@@ -1068,36 +1077,6 @@ export const projects: Project[] = [
   },
 
   {
-    slug: 'gift-roulette',
-    title: 'Gift Roulette',
-    seoTitle: 'Gift Roulette — Secret Santa Organiser App',
-    category: 'Apps',
-    services: ['web-platforms'],
-    description: 'Secret Santa organiser — create an event, manage participants, draw names automatically and share admin links by email, with nothing to install and no account to join.',
-    metaDescription: 'Secret Santa organiser: create an event, add participants and draw names automatically — nothing to install and no account needed to join.',
-    challenge: `
-      Simplify the organization of Secret Santa events by providing an intuitive
-      platform for creating events, managing participants, and coordinating gift
-      exchanges without complexity.
-    `,
-    solution: [
-      'Simple event creation with name, description, and date',
-      'Easy participant management with minimum requirements',
-      'Optional email notifications for admin links',
-      'Streamlined interface for quick event setup',
-      'Clear event details and participant tracking',
-    ],
-    result: `
-      A user-friendly app that makes organizing Secret Santa events effortless,
-      allowing users to focus on the fun of gift exchanges rather than logistics.
-    `,
-    image: '/projects/covers/gift-roulette.webp?v=4',
-    images: [
-      '/projects/screenshots/gift-roulette.jpg',
-    ],
-  },
-
-  {
     slug: 'ekobaltika',
     title: 'EkoBaltika',
     seoTitle: 'EkoBaltika — Services and Tools Web Shop',
@@ -1300,39 +1279,6 @@ export const projects: Project[] = [
       '/projects/screenshots/window-pros-3.jpg',
     ],
     link: 'https://bayareawindowpros.com/',
-  },
-
-  {
-    slug: 'aerial-platform',
-    title: 'Aerial Platform',
-    seoTitle: 'Aerial Platform — Drone Services Marketplace',
-    category: ['Apps', 'Commerce'] ,
-    services: ['web-platforms'],
-    description: 'The premier marketplace connecting professional drone operators with clients who need exceptional aerial photography and videography services.',
-    challenge: `
-      Create a comprehensive marketplace platform that seamlessly connects drone
-      operators with clients, facilitating bookings, payments, and service delivery
-      while ensuring quality and trust on both sides of the transaction.
-    `,
-    solution: [
-      'Professional operator profiles with portfolios and ratings',
-      'Client-friendly booking system with service filtering',
-      'Secure payment processing and transaction management',
-      'Service categorization for different aerial photography needs',
-      'Review and rating system for quality assurance',
-      'Real-time availability and scheduling',
-      'Mobile-responsive design for on-the-go bookings',
-    ],
-    result: `
-      A modern marketplace platform that streamlines the connection between
-      professional drone operators and clients, making exceptional aerial
-      photography and videography services easily accessible. (Still in development.)
-    `,
-    image: '/projects/covers/aerial-platform.webp?v=4',
-    images: [
-      '/projects/screenshots/aerial.jpg',
-    ],
-
   },
 
   {

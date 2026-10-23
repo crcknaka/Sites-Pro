@@ -637,6 +637,7 @@ export const LV_SERVICE_PAGES: Record<string, LvServicePage> = {
           a: "Jā. Kods, dati un visas piekļuves paliek jūsu īpašumā. Uzturēšanas līgums nepadara jūs atkarīgus no mums.",
         },
       ],
+      cases: { services: ['maintenance'], title: 'Vietnes, kuras uzturam un attīstām' },
       contactTitle: "Pastāstiet par savu mājas lapu",
       contactText: "Sāksim ar bezmaksas tehnisko auditu - parādīsim, kādā stāvoklī ir vietne un ko vajadzētu sakārtot. Atbildam vienas darba dienas laikā.",
     },
