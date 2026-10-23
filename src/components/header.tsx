@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import { ThemeToggle } from '@/components/theme/theme-toggle';
+import LanguageSwitch from '@/components/language-switch';
 import { ACCENT } from '@/lib';
 import { dictionaryFor, localizePath, type Locale } from '@/i18n';
 
@@ -30,7 +31,14 @@ function navItemsFor(locale: Locale): NavItem[] {
 
 const UNDERLINE_PADDING = 0.32;
 
-export default function Header({ locale }: { locale: Locale }) {
+export default function Header({
+  locale,
+  counterparts,
+}: {
+  locale: Locale;
+  /** This site's public paths → the same page on the other language's site. */
+  counterparts: Record<string, string>;
+}) {
   const t = dictionaryFor(locale).nav;
   const navItems = useMemo(() => navItemsFor(locale), [locale]);
   const pathname = usePathname();
@@ -256,6 +264,7 @@ export default function Header({ locale }: { locale: Locale }) {
 
           {/* RIGHT */}
           <div className="hidden md:flex items-center gap-4">
+            <LanguageSwitch locale={locale} counterparts={counterparts} />
             <ThemeToggle locale={locale} />
 
             <Link
@@ -266,18 +275,21 @@ export default function Header({ locale }: { locale: Locale }) {
             </Link>
           </div>
 
-          {/* MOBILE */}
-          <button
-            ref={menuButtonRef}
-            type="button"
-            onClick={() => setOpen(true)}
-            className="cursor-pointer select-none md:hidden"
-            aria-label={t.openMenu}
-            aria-expanded={open}
-            aria-controls="mobile-menu"
-          >
-            <Menu className="h-6 w-6 text-[var(--fg)]" aria-hidden="true" />
-          </button>
+          {/* MOBILE — the language switch stays in the bar, outside the menu */}
+          <div className="flex items-center gap-3 md:hidden">
+            <LanguageSwitch locale={locale} counterparts={counterparts} />
+            <button
+              ref={menuButtonRef}
+              type="button"
+              onClick={() => setOpen(true)}
+              className="cursor-pointer select-none"
+              aria-label={t.openMenu}
+              aria-expanded={open}
+              aria-controls="mobile-menu"
+            >
+              <Menu className="h-6 w-6 text-[var(--fg)]" aria-hidden="true" />
+            </button>
+          </div>
         </div>
       </header>
 

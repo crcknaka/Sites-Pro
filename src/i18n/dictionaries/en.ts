@@ -28,6 +28,11 @@ const en = {
     closeMenu: 'Close menu',
   },
 
+  languageSwitch: {
+    label: 'Language',
+    other: 'Latviski — this page on sitespro.lv',
+  },
+
   theme: {
     toLight: 'Switch to light theme',
     toDark: 'Switch to dark theme',

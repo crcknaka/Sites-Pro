@@ -9,6 +9,7 @@ import Footer from '@/components/footer';
 import ScrollToTop from '@/components/scroll-to-top';
 import { OrganizationJsonLd, WebsiteJsonLd } from '@/components/json-ld';
 import { LOCALES, SITES, dictionaryFor, isLocale } from '@/i18n';
+import { counterpartMap } from '@/i18n/counterparts';
 
 // latin-ext carries the Latvian letters (ā, č, ē, ģ, ī, ķ, ļ, ņ, š, ū, ž).
 const inter = Inter({ subsets: ['latin', 'latin-ext'] });
@@ -101,7 +102,7 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[lo
           bg-[var(--bg)]
         `}
       >
-        <Header locale={locale} />
+        <Header locale={locale} counterparts={counterpartMap(locale)} />
 
         <main id="main" className="relative min-h-screen">
           {children}

@@ -28,6 +28,11 @@ const lv: Dictionary = {
     closeMenu: 'Aizvērt izvēlni',
   },
 
+  languageSwitch: {
+    label: 'Valoda',
+    other: 'In English - this page on sitespro.org',
+  },
+
   theme: {
     toLight: 'Pārslēgt uz gaišo tēmu',
     toDark: 'Pārslēgt uz tumšo tēmu',
