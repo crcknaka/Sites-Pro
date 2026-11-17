@@ -1,0 +1,43 @@
+name: CI
+
+# Runs on pull requests only: a push to the main branch is a production deploy (Coolify webhook),
+# so checks must pass before the merge; Renovate automerges only on green.
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24.22.3
+          cache: npm
+
+      - run: npm ci
+
+      # Not blocking yet: the repo has older ESLint errors (the build never ran lint).
+      # Remove continue-on-error once `npm run lint` is clean.
+      - run: npm run lint
+        continue-on-error: true
+
+      - uses: docker/setup-buildx-action@v3
+
+      # The Dockerfile Coolify builds in production; the image is not pushed anywhere.
+      - name: Docker build (site)
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: false
+          cache-from: type=gha,scope=site
+          cache-to: type=gha,mode=max,scope=site
