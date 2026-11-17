@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import { Layers, ShoppingCart, Globe, Shield, Grid, ChevronDown } from 'lucide-react';
 import type { ProjectCategory } from '@/data/projects';
@@ -46,18 +46,10 @@ export default function PortfolioGrid({
   const s = t.portfolioSection;
   const [active, setActive] = useState<(typeof CATEGORIES)[number]>('All');
   const isMobile = useIsMobile();
-  const [visibleCount, setVisibleCount] = useState(8);
-  const [isInitialized, setIsInitialized] = useState(false);
-
-  // Set initial count based on screen size
-  useEffect(() => {
-    if (!isInitialized) {
-      setVisibleCount(isMobile ? 4 : 8);
-      setIsInitialized(true);
-    }
-  }, [isMobile, isInitialized]);
-
   const getInitialCount = () => (isMobile ? 4 : 8);
+  // null = untouched: follow the screen size (isMobile settles after mount).
+  const [shownCount, setShownCount] = useState<number | null>(null);
+  const visibleCount = shownCount ?? getInitialCount();
 
   const filteredProjects =
     active === 'All'
@@ -72,13 +64,13 @@ export default function PortfolioGrid({
 
   const loadMore = () => {
     const increment = isMobile ? 4 : 8;
-    setVisibleCount((prev) => prev + increment);
+    setShownCount(visibleCount + increment);
   };
 
   // Reset visible count when filter changes
   const handleCategoryChange = (category: (typeof CATEGORIES)[number]) => {
     setActive(category);
-    setVisibleCount(getInitialCount());
+    setShownCount(null);
   };
 
   return (

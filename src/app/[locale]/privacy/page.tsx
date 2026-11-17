@@ -54,7 +54,7 @@ function PrivacyPageEn() {
 
         <div className="mt-8 space-y-8 text-[var(--text-muted)] leading-relaxed">
           <p>
-            This Privacy Policy explains how personal data is collected, used, and protected when you visit sitespro.org (the "Website").
+            This Privacy Policy explains how personal data is collected, used, and protected when you visit sitespro.org (the “Website”).
           </p>
 
           <Section title="1. Who We Are">
@@ -126,7 +126,7 @@ function PrivacyPageEn() {
             <ul className="mt-2 ml-6 list-disc space-y-1">
               <li>Access your personal data</li>
               <li>Request correction of inaccurate data</li>
-              <li>Request deletion of your data ("right to be forgotten")</li>
+              <li>Request deletion of your data (“right to be forgotten”)</li>
               <li>Restrict or object to processing</li>
               <li>Request data portability</li>
               <li>Withdraw consent at any time</li>

@@ -182,7 +182,7 @@ export default async function WebsitesPage() {
             </h2>
 
             <p className="mt-4 sm:mt-6 text-sm sm:text-base text-[var(--text-muted)] leading-relaxed">
-              A website is not a one-off deliverable — it's a living product.
+              A website is not a one-off deliverable — it’s a living product.
               We support the full lifecycle, from initial launch to continuous improvement.
             </p>
           </div>
@@ -244,13 +244,13 @@ export default async function WebsitesPage() {
       >
         <div className="mx-auto max-w-4xl text-center mb-10 sm:mb-16">
           <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-semibold">
-            Let's build your website
+            Let’s build your website
           </h2>
 
           <p className="mt-4 sm:mt-6 text-sm sm:text-base text-[var(--text-muted)] leading-relaxed">
-            Tell us about your project — whether it's a high-end custom platform
+            Tell us about your project — whether it’s a high-end custom platform
             or a clean, efficient CMS website.
-            We'll help you choose the right approach.
+            We’ll help you choose the right approach.
           </p>
         </div>
 

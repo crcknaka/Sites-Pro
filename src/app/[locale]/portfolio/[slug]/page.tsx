@@ -73,7 +73,16 @@ export default async function WorkCase({
   const project = projects[index];
   const prev = projects[index - 1] ?? null;
   const next = projects[index + 1] ?? null;
-  const images = ((project as any).images || [project.image]).filter(Boolean);
+  const images = (project.images ?? [project.image]).filter(Boolean);
+  const projectLinks = [
+    { href: project.link, label: c.visit, Icon: ExternalLink },
+    { href: project.facebook, label: 'Facebook', Icon: Facebook },
+    { href: project.instagram, label: 'Instagram', Icon: Instagram },
+    { href: project.tiktok, label: 'TikTok', Icon: Music },
+    { href: project.linkedin, label: 'LinkedIn', Icon: Linkedin },
+    { href: project.youtube, label: 'YouTube', Icon: Youtube },
+    { href: project.googlePlay, label: 'Google Play', Icon: Play },
+  ].filter((l): l is typeof l & { href: string } => Boolean(l.href));
 
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 pt-24 sm:pt-32 pb-16 sm:pb-24 text-[var(--fg)]">
@@ -260,11 +269,12 @@ export default async function WorkCase({
           )}
 
           {/* SOCIAL LINKS */}
-          {(project.link || (project as any).facebook || (project as any).instagram || (project as any).tiktok || (project as any).linkedin || (project as any).youtube || (project as any).googlePlay) && (
+          {projectLinks.length > 0 && (
             <div className="flex flex-wrap items-center gap-3">
-              {project.link && (
+              {projectLinks.map(({ href, label, Icon }) => (
                 <a
-                  href={project.link}
+                  key={label}
+                  href={href}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="
@@ -279,143 +289,11 @@ export default async function WorkCase({
                     hover:bg-[var(--surface-strong)]
                     transition-all
                   "
-                  aria-label={c.visit}
+                  aria-label={label}
                 >
-                  <ExternalLink className="h-5 w-5" />
+                  <Icon className="h-5 w-5" />
                 </a>
-              )}
-              {(project as any).facebook && (
-                <a
-                  href={(project as any).facebook}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="
-                    inline-flex items-center justify-center
-                    w-10 h-10
-                    rounded-xl
-                    border border-[var(--border)]
-                    bg-[var(--surface)]
-                    text-[var(--text-muted)]
-                    hover:text-[var(--fg)]
-                    hover:border-[var(--accent-1)]
-                    hover:bg-[var(--surface-strong)]
-                    transition-all
-                  "
-                  aria-label="Facebook"
-                >
-                  <Facebook className="h-5 w-5" />
-                </a>
-              )}
-              {(project as any).instagram && (
-                <a
-                  href={(project as any).instagram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="
-                    inline-flex items-center justify-center
-                    w-10 h-10
-                    rounded-xl
-                    border border-[var(--border)]
-                    bg-[var(--surface)]
-                    text-[var(--text-muted)]
-                    hover:text-[var(--fg)]
-                    hover:border-[var(--accent-1)]
-                    hover:bg-[var(--surface-strong)]
-                    transition-all
-                  "
-                  aria-label="Instagram"
-                >
-                  <Instagram className="h-5 w-5" />
-                </a>
-              )}
-              {(project as any).tiktok && (
-                <a
-                  href={(project as any).tiktok}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="
-                    inline-flex items-center justify-center
-                    w-10 h-10
-                    rounded-xl
-                    border border-[var(--border)]
-                    bg-[var(--surface)]
-                    text-[var(--text-muted)]
-                    hover:text-[var(--fg)]
-                    hover:border-[var(--accent-1)]
-                    hover:bg-[var(--surface-strong)]
-                    transition-all
-                  "
-                  aria-label="TikTok"
-                >
-                  <Music className="h-5 w-5" />
-                </a>
-              )}
-              {(project as any).linkedin && (
-                <a
-                  href={(project as any).linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="
-                    inline-flex items-center justify-center
-                    w-10 h-10
-                    rounded-xl
-                    border border-[var(--border)]
-                    bg-[var(--surface)]
-                    text-[var(--text-muted)]
-                    hover:text-[var(--fg)]
-                    hover:border-[var(--accent-1)]
-                    hover:bg-[var(--surface-strong)]
-                    transition-all
-                  "
-                  aria-label="LinkedIn"
-                >
-                  <Linkedin className="h-5 w-5" />
-                </a>
-              )}
-              {(project as any).youtube && (
-                <a
-                  href={(project as any).youtube}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="
-                    inline-flex items-center justify-center
-                    w-10 h-10
-                    rounded-xl
-                    border border-[var(--border)]
-                    bg-[var(--surface)]
-                    text-[var(--text-muted)]
-                    hover:text-[var(--fg)]
-                    hover:border-[var(--accent-1)]
-                    hover:bg-[var(--surface-strong)]
-                    transition-all
-                  "
-                  aria-label="YouTube"
-                >
-                  <Youtube className="h-5 w-5" />
-                </a>
-              )}
-              {(project as any).googlePlay && (
-                <a
-                  href={(project as any).googlePlay}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="
-                    inline-flex items-center justify-center
-                    w-10 h-10
-                    rounded-xl
-                    border border-[var(--border)]
-                    bg-[var(--surface)]
-                    text-[var(--text-muted)]
-                    hover:text-[var(--fg)]
-                    hover:border-[var(--accent-1)]
-                    hover:bg-[var(--surface-strong)]
-                    transition-all
-                  "
-                  aria-label="Google Play"
-                >
-                  <Play className="h-5 w-5" />
-                </a>
-              )}
+              ))}
             </div>
           )}
         </div>

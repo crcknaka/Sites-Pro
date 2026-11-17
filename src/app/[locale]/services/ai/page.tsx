@@ -316,7 +316,7 @@ export default async function AIPage() {
           </h2>
 
           <p className="mt-4 sm:mt-6 text-sm sm:text-base text-[var(--text-muted)] leading-relaxed">
-            Let's explore how AI can transform your operations.
+            Let’s explore how AI can transform your operations.
           </p>
         </div>
 

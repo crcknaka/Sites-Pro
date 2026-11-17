@@ -1,6 +1,7 @@
 'use client';
 
 import { useParams } from 'next/navigation';
+import Link from 'next/link';
 import { DEFAULT_LOCALE, dictionaryFor, isLocale } from '@/i18n';
 
 export default function ErrorPage({
@@ -48,7 +49,7 @@ export default function ErrorPage({
           {t.retry}
         </button>
 
-        <a
+        <Link
           href="/"
           className="
             inline-flex items-center gap-2
@@ -61,7 +62,7 @@ export default function ErrorPage({
           "
         >
           {t.home}
-        </a>
+        </Link>
       </div>
     </section>
   );

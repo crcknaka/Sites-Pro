@@ -249,12 +249,12 @@ export default async function WebPlatformsPage() {
       >
         <div className="mx-auto max-w-4xl text-center mb-10 sm:mb-16">
           <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-semibold">
-            Let's build your platform
+            Let’s build your platform
           </h2>
 
           <p className="mt-4 sm:mt-6 text-sm sm:text-base text-[var(--text-muted)] leading-relaxed">
             Tell us about your idea or existing system.
-            We'll help design the right architecture
+            We’ll help design the right architecture
             and turn it into a reliable, scalable platform.
           </p>
         </div>

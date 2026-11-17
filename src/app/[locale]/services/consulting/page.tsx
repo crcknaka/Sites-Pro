@@ -190,7 +190,7 @@ export default async function ConsultingPage() {
             </h2>
 
             <p className="mt-4 sm:mt-6 text-sm sm:text-base text-[var(--text-muted)] leading-relaxed">
-              Whether you're planning a new project, integrating payment systems,
+              Whether you’re planning a new project, integrating payment systems,
               building fintech solutions, or need guidance on web/app/AI development,
               we provide expert consulting to help you make informed decisions
               and avoid costly mistakes.
@@ -254,12 +254,12 @@ export default async function ConsultingPage() {
       >
         <div className="mx-auto max-w-4xl text-center mb-10 sm:mb-16">
           <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-semibold">
-            Let's discuss your project
+            Let’s discuss your project
           </h2>
 
           <p className="mt-4 sm:mt-6 text-sm sm:text-base text-[var(--text-muted)] leading-relaxed">
             Tell us about your project, challenges or goals.
-            We'll provide expert guidance on payment systems, fintech solutions,
+            We’ll provide expert guidance on payment systems, fintech solutions,
             development strategies, AI integration, or any technical consulting needs.
           </p>
         </div>

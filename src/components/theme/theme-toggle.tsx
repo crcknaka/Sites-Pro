@@ -1,40 +1,35 @@
 'use client';
 
 import { Sun, Moon } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useSyncExternalStore } from 'react';
 import { dictionaryFor, type Locale } from '@/i18n';
+
+type Theme = 'dark' | 'light';
+
+/* The theme lives on <html data-theme>, set before paint by the inline
+   script in the root layout; the button only reads and flips it. */
+function subscribe(onChange: () => void) {
+  const observer = new MutationObserver(onChange);
+  observer.observe(document.documentElement, { attributeFilter: ['data-theme'] });
+  return () => observer.disconnect();
+}
+const getTheme = (): Theme =>
+  document.documentElement.dataset.theme === 'light' ? 'light' : 'dark';
+/** No theme on the server: render nothing until hydrated, as before. */
+const getServerTheme = (): Theme | null => null;
 
 export function ThemeToggle({ locale }: { locale: Locale }) {
   const t = dictionaryFor(locale).theme;
-  const [mounted, setMounted] = useState(false);
-  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
+  const theme = useSyncExternalStore<Theme | null>(subscribe, getTheme, getServerTheme);
 
-  useEffect(() => {
-    const stored = localStorage.getItem('theme') as 'dark' | 'light' | null;
-
-    if (stored) {
-      document.documentElement.dataset.theme = stored;
-      setTheme(stored);
-    } else {
-      const prefersLight = window.matchMedia(
-        '(prefers-color-scheme: light)'
-      ).matches;
-
-      const initial = prefersLight ? 'light' : 'dark';
-      document.documentElement.dataset.theme = initial;
-      setTheme(initial);
-    }
-
-    setMounted(true);
-  }, []);
-
-  if (!mounted) return null;
+  if (!theme) return null;
 
   const toggle = () => {
-    const next = theme === 'dark' ? 'light' : 'dark';
+    const next: Theme = theme === 'dark' ? 'light' : 'dark';
     document.documentElement.dataset.theme = next;
-    localStorage.setItem('theme', next);
-    setTheme(next);
+    try {
+      localStorage.setItem('theme', next);
+    } catch {}
   };
 
   return (
