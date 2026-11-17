@@ -855,9 +855,9 @@ export const projects: Project[] = [
     `,
     image: '/projects/covers/pets-pro.webp?v=5',
     images: [
-      '/projects/screenshots/pets-pro.jpg?v=5',
-      '/projects/screenshots/pets-pro-2.jpg?v=5',
-      '/projects/screenshots/pets-pro-3.jpg?v=5',
+      '/projects/screenshots/pets-pro.jpg?v=6',
+      '/projects/screenshots/pets-pro-2.jpg?v=6',
+      '/projects/screenshots/pets-pro-3.jpg?v=6',
     ],
     logo: '/projects/logos/pets-pro.png',
     link: 'https://pets-pro.eu/',
