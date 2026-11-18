@@ -27,6 +27,7 @@ import {
   Zap,
   Wrench,
   type LucideIcon,
+  QrCode,
 } from 'lucide-react';
 
 /**
@@ -124,6 +125,7 @@ const GENERIC_ICONS: Record<string, LucideIcon> = {
   'double-entry ledger': Scale,
   'state machine': Workflow,
   'pdf generation': BookOpenText,
+  'qr codes': QrCode,
   'drizzle orm': Database,
   'arabic rtl layout': PilcrowLeft,
   'ai document recognition': ScanText,

@@ -171,6 +171,55 @@ export const projects: Project[] = [
   },
 
   {
+    slug: 'parkspa',
+    title: 'Park Spa',
+    seoTitle: 'Park Spa — Spa Website with Online Gift Cards',
+    updated: '2026-11-18',
+    category: ['Websites', 'Commerce'],
+    tech: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Prisma', 'SQLite', 'Stripe', 'PDF generation', 'QR codes', 'Multilingual (LV/RU/EN)', 'Custom admin panel'],
+    services: ['web', 'web-platforms', 'payments', 'multilingual', 'seo-geo', 'maintenance'],
+    description: 'New website for a spa salon in the centre of Riga, replacing an old WordPress site — a treatment catalogue in Latvian, Russian and English, gift cards sold online through Stripe and delivered as a PDF with a QR code, a check-in screen for the front desk, and an admin panel the salon runs on its own.',
+    metaDescription: 'Park Spa, Riga: spa website in LV/RU/EN with a treatment catalogue, gift cards paid via Stripe and sent as a PDF with a QR code, front-desk check-in, admin.',
+    challenge: `
+      Park Spa had two old WordPress sites for the same salon — parkspa.lv and
+      vspa.lv — with different prices and different rules. Gift cards, the
+      thing people most often buy from a spa as a present, could only be bought
+      at the desk or by messaging the salon. The brief: one fast site in three
+      languages, gift cards that can be bought at any hour, a way for staff to
+      check a card at the desk without extra hardware — and all of it run by
+      the salon itself.
+    `,
+    solution: [
+      'One site in place of two old WordPress sites (parkspa.lv and vspa.lv): the content of both inventoried and merged, prices reconciled',
+      'Treatment catalogue in Latvian, Russian and English — medical massages, VIP programmes, couples rituals and treatments — with price variants by duration and number of guests, and discounts shown against the regular price',
+      'Three actions on every treatment: details, book (in the salon’s existing online booking system) and buy as a gift card; on mobile, WhatsApp, a call and Waze are always one tap away',
+      'Gift cards for a ritual, a multi-visit pass or a set amount, paid by card through Stripe Checkout; a finder narrows them by section, recipient, budget and discount, and keeps the choice in the address so it can be shared',
+      'After payment the buyer gets an e-mail in their language with a printable PDF card attached, and the salon gets a notification; the paid state is set in one place, so the e-mails go out exactly once whatever confirms the payment',
+      'A QR code on every card opens a check-in screen for staff: the status in large type (valid, already used, not found), one big button to record a visit and undo for the last one — any phone camera works, no scanner needed',
+      'Admin panel for the salon team: treatments, categories, prices and variants, gift cards, hero slides with a focus point and show dates for promotions, featured picks, gallery uploads, staff accounts and complimentary cards',
+      'A journal of articles in three languages for search and AI answers, with live price cards instead of prices written into the text',
+      'Privacy policy, salon rules and contraindications in three languages; the Google map loads only on click, so the site needs no cookie banner',
+      'Hosted on our server with daily off-site backups of the database and uploads, and a tested restore',
+    ],
+    result: `
+      The salon now sells gift cards around the clock instead of only over the
+      counter, and staff check them at the desk with any phone. Treatments,
+      prices and promotions are updated by the salon itself in three languages.
+      Live since September 2026, the site keeps gaining features — we develop
+      and maintain it as the salon grows.
+    `,
+    image: '/projects/covers/parkspa.webp?v=1',
+    images: [
+      '/projects/screenshots/parkspa.jpg?v=1',
+      '/projects/screenshots/parkspa-2.jpg?v=1',
+      '/projects/screenshots/parkspa-3.jpg?v=1',
+    ],
+    logo: '/projects/logos/parkspa.svg',
+    link: 'https://parkspa.lv/',
+    facebook: 'https://www.facebook.com/Parkspa2/',
+  },
+
+  {
     slug: 'payment-gateway',
     title: 'White-label Payment Gateway',
     seoTitle: 'White-label Payment Gateway Prototype',
