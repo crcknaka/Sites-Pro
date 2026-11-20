@@ -4,10 +4,10 @@
  */
 const en = {
   site: {
-    name: 'Sites Pro',
+    name: 'SitesPro',
     description: 'Product-grade websites, platforms and AI automations built to scale.',
-    defaultTitle: 'Sites Pro — Web Development, Platforms & AI Automation Agency',
-    ogAlt: 'Sites Pro — Digital Done Right',
+    defaultTitle: 'SitesPro — Web Development, Platforms & AI Automation Agency',
+    ogAlt: 'SitesPro — Digital Done Right',
     location: 'Riga, Latvia — working across the EU and worldwide',
   },
 
@@ -18,9 +18,9 @@ const en = {
     about: 'About',
     faq: 'FAQ',
     contact: 'Contact',
-    cta: 'Get Started',
+    cta: 'Start a project',
     skip: 'Skip to content',
-    homeLabel: 'Sites Pro — home',
+    homeLabel: 'SitesPro — home',
     main: 'Main',
     mobile: 'Mobile',
     menu: 'Menu',
@@ -170,15 +170,15 @@ const en = {
   },
 
   portfolioHub: {
-    title: 'Portfolio — Website, Platform & AI Project Case Studies',
+    title: 'Portfolio — Website, Platform & AI Case Studies',
     description:
-      'Case studies from Sites Pro: websites, online stores, web platforms, apps and fintech products — the challenge, the solution and the result for each project.',
-    socialTitle: 'Portfolio — Case Studies | Sites Pro',
+      'Case studies from SitesPro: websites, online stores, web platforms, apps and fintech products — the challenge, the solution and the result for each project.',
+    socialTitle: 'Portfolio — Case Studies | SitesPro',
     socialDescription:
       'Websites, commerce, apps and fintech projects with the challenge, solution and result behind each one.',
-    collectionName: 'Sites Pro Portfolio',
+    collectionName: 'SitesPro Portfolio',
     collectionDescription:
-      'Case studies from Sites Pro: websites, online stores, web platforms, apps and fintech products.',
+      'Case studies from SitesPro: websites, online stores, web platforms, apps and fintech products.',
     eyebrow: 'Portfolio',
     h1: 'All case',
     h1Accent: 'studies',
@@ -211,7 +211,7 @@ const en = {
     ctaTitle: 'Want a similar project?',
     ctaText:
       "Let's discuss how we can bring your vision to life with the same quality and attention to detail.",
-    ctaButton: 'Get in Touch',
+    ctaButton: 'Start a project',
     relatedEyebrow: (category: string) => `More ${category.toLowerCase()} work`,
     relatedTitle: 'Related case studies',
     logoAlt: (title: string) => `${title} logo`,

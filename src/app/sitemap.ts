@@ -15,9 +15,9 @@ import { hreflang } from '@/lib/metadata';
  * theirs in the service registry, cases in Project.updated.
  */
 const UPDATED: Record<Locale, { home: string; about: string; legal: string; hub: string }> = {
-  en: { home: '2026-10-02', about: '2026-10-02', legal: '2026-07-31', hub: '2026-10-02' },
+  en: { home: '2026-11-20', about: '2026-10-02', legal: '2026-07-31', hub: '2026-11-20' },
   // the Latvian site moved onto this codebase on this date
-  lv: { home: '2026-10-23', about: '2026-10-23', legal: '2026-10-23', hub: '2026-10-23' },
+  lv: { home: '2026-11-20', about: '2026-11-20', legal: '2026-10-23', hub: '2026-10-23' },
 };
 const RIGA_UPDATED = '2026-10-02';
 /** Default for cases without their own date: the last portfolio-wide pass. */
@@ -46,7 +46,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const newestCase = caseDates[caseDates.length - 1];
 
   const staticPages: MetadataRoute.Sitemap = [
-    entry('/', dates.home, 1, 'weekly'),
+    // the home page shows the newest cases, so a new or re-shot case moves its date too
+    entry('/', newestCase > dates.home ? newestCase : dates.home, 1, 'weekly'),
     entry('/services', dates.hub, 0.9, 'monthly'),
     entry('/portfolio', newestCase, 0.9, 'monthly'),
     entry('/about', dates.about, 0.8, 'monthly'),

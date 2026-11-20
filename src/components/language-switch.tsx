@@ -65,8 +65,8 @@ export default function LanguageSwitch({
             href={href}
             hrefLang={SITES[l].lang}
             lang={SITES[l].lang}
-            aria-label={t.other}
-            className="rounded-full px-2.5 py-1 text-[var(--text-muted)] transition-colors hover:text-[var(--fg)]"
+            aria-label={`${l.toUpperCase()} — ${t.other}`}
+            className="relative rounded-full px-2.5 py-1 text-[var(--text-muted)] transition-colors after:absolute after:-inset-x-1 after:-inset-y-2.5 after:content-[''] hover:text-[var(--fg)]"
           >
             {l.toUpperCase()}
           </a>

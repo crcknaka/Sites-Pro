@@ -11,7 +11,7 @@ export const metadata: Metadata = pageMetadata({
   alternate: null,
   title: 'Payment Systems & Fintech Development',
   description:
-    'Payment gateway cores, double-entry ledgers, checkout integration and accounting software — built by a team that has shipped a gateway prototype and runs its own accounting SaaS.',
+    'Payment gateway cores, double-entry ledgers, checkout integration and accounting software — by a team that shipped a gateway prototype and runs an accounting SaaS.',
   path: service.path,
   image: false, // opengraph-image.tsx in this folder
 });

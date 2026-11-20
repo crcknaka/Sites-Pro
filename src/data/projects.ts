@@ -27,7 +27,7 @@ export interface Project {
   status?: string;
   /** Our own product rather than client work — counted and listed on the About page. */
   own?: boolean;
-  /** <title> for the case page when the plain title says too little (≤ ~48 chars; " | Sites Pro" is appended). */
+  /** <title> for the case page when the plain title says too little (≤ ~48 chars; " | SitesPro" is appended). */
   seoTitle?: string;
   /** Meta description when `description` runs past ~160 characters. */
   metaDescription?: string;

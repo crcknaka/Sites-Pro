@@ -292,6 +292,7 @@ export const projectsLv: Record<string, ProjectCopy> = {
   },
   imun: {
     seoTitle: "Imun - maksājumu vārtejas mārketinga lapa",
+    metaDescription: "Mārketinga mājaslapa maksājumu vārtejas pakalpojumu sniedzējam - open banking, karšu maksājumi internetā, alternatīvās maksājumu metodes un izmaksas.",
     description: "Mārketinga mājaslapa maksājumu vārtejas pakalpojumu sniedzējam - open banking, karšu maksājumu pieņemšana internetā, alternatīvās maksājumu metodes un izmaksas, pasniegtas ar uzsvaru uz atbilstību regulējumam.",
     challenge: "Izveidot profesionālu un uzticamu klātbūtni internetā, kas parāda tehnisko meistarību un drošību, nepārslogojot biznesa klientus ar sarežģītām detaļām.",
     solution: [
@@ -305,6 +306,7 @@ export const projectsLv: Record<string, ProjectCopy> = {
   },
   "ma-sunglasses": {
     seoTitle: "Ma Sunglasses - saulesbriļļu interneta veikals",
+    metaDescription: "Saulesbriļļu interneta veikals ar plašu katalogu - pārlūkošana ar filtriem, skaidra preču prezentācija un pirkuma noformēšana ātriem, atkārtotiem pirkumiem.",
     description: "Saulesbriļļu interneta veikals, veidots ap plašu katalogu - pārlūkošana ar filtriem, skaidra preču prezentācija un pirkuma noformēšana, pielāgota ātriem un atkārtotiem pirkumiem.",
     challenge: "Pasniegt plašu preču sortimentu skaidri un lietotājam draudzīgi, nepārslogojot pircēju.",
     solution: [
@@ -317,6 +319,7 @@ export const projectsLv: Record<string, ProjectCopy> = {
   },
   sunachates: {
     seoTitle: "Sunachates - butika kataloga mājaslapa",
+    metaDescription: "Butika kataloga mājaslapa ar spilgtu vizuālo identitāti - attēlos balstīti izkārtojumi, redakcionāls ritms un režģis, kas preces notur uzmanības centrā.",
     description: "Butika kataloga mājaslapa ar spilgtu vizuālo identitāti - attēlos balstīti izkārtojumi, vienmērīgs redakcionālais ritms un responsīvs režģis, kas preces notur uzmanības centrā.",
     challenge: "Parādīt preces vizuāli bagātīgi, vienlaikus saglabājot saskarni tīru un viegli pārskatāmu.",
     solution: [
@@ -359,6 +362,7 @@ export const projectsLv: Record<string, ProjectCopy> = {
   },
   goldberg: {
     seoTitle: "Goldberg - zobārstniecības preču katalogs",
+    metaDescription: "Zobārstniecības preču katalogs Baltijas izplatītājam - endodontija, terapija, higiēna, ortodontija, implantoloģija un instrumenti, ko ārsti atrod ātri.",
     description: "Zobārstniecības preču katalogs Baltijas izplatītājam - endodontija, terapija, higiēna, ortodontija, implantoloģija un instrumenti, sakārtoti tā, lai ārsti vajadzīgo atrastu ātri.",
     challenge: "Zobārstniecības preču izplatītājs pārdod auditorijai, kas precīzi zina, kas tai vajadzīgs - konkrētu skalera uzgali, zondi, noteikta zīmola kompozītu. Katalogam bija jāpaliek viegli pārskatāmam plašā tehniskā sortimentā un trīs Baltijas tirgos, nepārvēršoties par artikulu numuru sienu, un komandai bija jāspēj to uzturēt aktuālu bez izstrādātāja palīdzības.",
     solution: [
@@ -373,6 +377,7 @@ export const projectsLv: Record<string, ProjectCopy> = {
   },
   barberly: {
     seoTitle: "Barberly - bārberu salona mājaslapa ar pierakstu",
+    metaDescription: "Bārberu salona mājaslapa - klasiskais bārbera amats kā premium pieredze: pakalpojumi, komanda, klientu atsauksmes un tiešsaistes pieraksts, ērts telefonā.",
     description: "Bārberu salona mājaslapa - klasiskais bārbera amats pasniegts kā premium pieredze, ar pakalpojumiem, komandu, klientu atsauksmēm un tiešsaistes pierakstu, kas ērti darbojas telefonā.",
     challenge: "Izveidot elegantu, uz pierakstu vērstu mājaslapu, kas atspoguļo premium bārberu salona pieredzi un padara pierakstīšanos vienkāršu un intuitīvu.",
     solution: [

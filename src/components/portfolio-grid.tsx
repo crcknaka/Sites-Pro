@@ -78,7 +78,7 @@ export default function PortfolioGrid({
       id="portfolio"
       className="
         scroll-mt-24 relative
-        px-4 sm:px-6 py-20 sm:py-32
+        px-4 sm:px-6 py-12 sm:py-32
         text-[var(--fg)]
       "
     >
@@ -90,7 +90,7 @@ export default function PortfolioGrid({
           title={s.title}
           highlight={s.highlight}
           subtitle={s.subtitle}
-          className="mb-14"
+          className="mb-10 sm:mb-14"
         />
 
         {/* FILTERS */}

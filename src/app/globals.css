@@ -39,6 +39,7 @@ html {
   /* accent used AS TEXT — the brand green is fine on dark, but only
      1.7:1 on the light background, so the light theme gets a darker one */
   --accent-text: #8fd759;
+  --accent-2-text: #27d6ff;
   --danger: #ff8a80;
 
   /* text — subtle stays ≥ 4.5:1 on --bg (WCAG AA) */
@@ -69,6 +70,7 @@ html {
   --text-subtle: rgba(16, 20, 16, 0.58);
 
   --accent-text: #3a7518;
+  --accent-2-text: #0b6b86;
   --danger: #b42318;
 
   --glow-soft: rgba(143, 215, 89, 0.18);

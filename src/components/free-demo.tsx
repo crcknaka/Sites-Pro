@@ -16,7 +16,7 @@ const POINTS = [
 
 export default function FreeDemo() {
   return (
-    <section id="demo" className="scroll-mt-24 px-4 py-20 sm:px-6 sm:py-28">
+    <section id="demo" className="scroll-mt-24 px-4 py-12 sm:px-6 sm:py-28">
       <Reveal className="mx-auto max-w-5xl">
         <div className="card-premium card-topline relative overflow-hidden rounded-3xl p-8 sm:p-14">
           <div

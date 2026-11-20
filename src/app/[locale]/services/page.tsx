@@ -11,9 +11,9 @@ import { getI18n } from '@/i18n/server';
 
 const COPY = {
   en: {
-    title: 'Services — Websites, Platforms, E-commerce, Fintech & AI',
+    title: 'Web, Platform, E-commerce, Fintech & AI Services',
     description:
-      'What Sites Pro builds: websites, web platforms, e-commerce and B2B shops, payment systems and fintech, custom CRMs, multilingual and RTL sites, AI automations and consulting.',
+      'What SitesPro builds: websites, web platforms, e-commerce and B2B shops, payment systems and fintech, custom CRMs, multilingual and RTL sites, AI automations and consulting.',
     eyebrow: 'Services',
     h1: 'What we build —',
     h1Accent: 'and the work behind each claim',

@@ -104,6 +104,27 @@ export default async function WorkCase({
         }
       >
         {/* =========================
+           GALLERY — rendered once and FIRST in the document: on a phone it
+           sits above the text, on desktop CSS order moves it to the right
+           column. It used to come after the text with `order-first`, so on a
+           slow connection the text painted first and then jumped down by the
+           height of the gallery when the rest of the HTML arrived (CLS 0.33).
+        ========================= */}
+        {images.length > 0 && (
+          <div
+            className={`lg:order-last ${
+              project.layout === 'landscape' ? 'lg:col-span-2' : 'lg:col-span-1'
+            }`}
+          >
+            <PortfolioLightbox
+              images={images}
+              projectTitle={project.title}
+              orientation={project.layout === 'landscape' ? 'landscape' : 'portrait'}
+            />
+          </div>
+        )}
+
+        {/* =========================
            LEFT — CONTENT
         ========================= */}
         <div
@@ -297,25 +318,6 @@ export default async function WorkCase({
             </div>
           )}
         </div>
-
-        {/* =========================
-           GALLERY — rendered once: first on mobile (CSS order), the right
-           column on desktop. It used to be rendered twice, one copy per
-           breakpoint, which shipped every image and its JS twice.
-        ========================= */}
-        {images.length > 0 && (
-          <div
-            className={`order-first lg:order-none ${
-              project.layout === 'landscape' ? 'lg:col-span-2' : 'lg:col-span-1'
-            }`}
-          >
-            <PortfolioLightbox
-              images={images}
-              projectTitle={project.title}
-              orientation={project.layout === 'landscape' ? 'landscape' : 'portrait'}
-            />
-          </div>
-        )}
       </div>
 
       <RelatedCases current={project} />

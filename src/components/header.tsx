@@ -276,13 +276,13 @@ export default function Header({
           </div>
 
           {/* MOBILE — the language switch stays in the bar, outside the menu */}
-          <div className="flex items-center gap-3 md:hidden">
+          <div className="flex items-center gap-1 md:hidden">
             <LanguageSwitch locale={locale} counterparts={counterparts} />
             <button
               ref={menuButtonRef}
               type="button"
               onClick={() => setOpen(true)}
-              className="cursor-pointer select-none"
+              className="-mr-2.5 flex h-11 w-11 cursor-pointer select-none items-center justify-center"
               aria-label={t.openMenu}
               aria-expanded={open}
               aria-controls="mobile-menu"

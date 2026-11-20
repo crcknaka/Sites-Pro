@@ -366,7 +366,7 @@ export default function Integrations({ t }: { t: Dictionary['integrations'] }) {
   const cat = CATEGORIES[active];
 
   return (
-    <Reveal className="mt-16 sm:mt-20">
+    <Reveal className="mt-10 sm:mt-20">
       <div className="rounded-3xl border border-[var(--border)] bg-[var(--surface)] p-6 sm:p-10">
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] lg:gap-12">
           {/* copy + tabs */}

@@ -2,7 +2,7 @@ import { projectsFor } from '@/data/projects';
 import { dictionaryFor, isLocale, LOCALES } from '@/i18n';
 import { OG_CONTENT_TYPE, OG_SIZE, loadShot, renderOg } from '@/lib/og';
 
-export const alt = 'Case study — Sites Pro';
+export const alt = 'Case study — SitesPro';
 export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
 

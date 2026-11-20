@@ -11,7 +11,7 @@ export const metadata: Metadata = pageMetadata({
   alternate: null,
   title: 'Web Development Company in Riga, Latvia',
   description:
-    'Sites Pro is a Riga web development studio: websites, online shops, web platforms and AI automations for Latvian companies and international teams — in English, Latvian or Russian.',
+    'Riga web development studio: websites, online shops, web platforms and AI automations for Latvian and international companies — in English, Latvian or Russian.',
   path: PATH,
   image: false, // opengraph-image.tsx in this folder
 });
@@ -22,7 +22,7 @@ const config: ServiceLandingConfig = {
   title: 'Web development company',
   titleAccent: 'in Riga',
   intro:
-    'Sites Pro is SIA SitesPro, a web development studio based in Riga. We build websites, online shops, web platforms and AI automations for Latvian companies and for international teams working in the Baltics — in English, Latvian or Russian.',
+    'SitesPro is SIA SitesPro, a web development studio based in Riga. We build websites, online shops, web platforms and AI automations for Latvian companies and for international teams working in the Baltics — in English, Latvian or Russian.',
   flagship: 'vadi',
 
   pointsTitle: 'What building for Latvia takes',

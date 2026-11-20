@@ -49,7 +49,7 @@ export default function ProjectCard({
       {/* Content */}
       <div className="p-3 sm:p-4">
         {/* Badge */}
-        <CategoryBadge category={category as never} locale={locale} />
+        <CategoryBadge category={category as never} locale={locale} compact />
 
         {/* Title */}
         {/* Title — two lines reserved on desktop so every card's link sits on the same line */}

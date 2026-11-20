@@ -32,6 +32,7 @@ export async function OrganizationJsonLd() {
         '@type': 'ProfessionalService',
         '@id': orgId(locale),
         name: t.site.name,
+        alternateName: 'Sites Pro',
         legalName: LEGAL_NAME,
         url: site.url,
         // the dark-ink mark — the light one is white and vanishes on white backgrounds

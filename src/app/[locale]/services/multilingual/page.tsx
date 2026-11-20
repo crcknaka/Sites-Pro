@@ -11,7 +11,7 @@ export const metadata: Metadata = pageMetadata({
   alternate: null,
   title: 'Multilingual & Arabic RTL Website Development',
   description:
-    'Multilingual websites and shops — Arabic right-to-left included — with hreflang, per-language SEO, translated catalogues, emails and legal texts, and regional sites from one codebase.',
+    'Multilingual websites and shops, Arabic RTL included: hreflang, per-language SEO, translated catalogues, emails and legal texts, regional sites from one codebase.',
   path: service.path,
   image: false, // opengraph-image.tsx in this folder
 });

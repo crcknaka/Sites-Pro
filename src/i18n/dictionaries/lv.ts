@@ -6,7 +6,7 @@ const lv: Dictionary = {
     name: 'SitesPro',
     description:
       'Mājas lapas, web aplikācijas un AI automatizācija uzņēmumiem - izstrāde, uzturēšana un SEO/GEO optimizācija.',
-    defaultTitle: 'SitesPro | Web izstrāde Latvijā',
+    defaultTitle: 'Mājas lapu izstrāde un web aplikācijas | SitesPro',
     ogAlt: 'SitesPro - web izstrāde Latvijā',
     location: 'Rīga, Latvija - strādājam visā ES un pasaulē',
   },
@@ -18,7 +18,7 @@ const lv: Dictionary = {
     about: 'Par mums',
     faq: 'BUJ',
     contact: 'Kontakti',
-    cta: 'Sazināties',
+    cta: 'Sākt projektu',
     skip: 'Pāriet uz saturu',
     homeLabel: 'SitesPro - sākums',
     main: 'Galvenā navigācija',
@@ -168,7 +168,7 @@ const lv: Dictionary = {
   },
 
   portfolioHub: {
-    title: 'Portfolio - mājas lapu, platformu un AI projektu piemēri',
+    title: 'Portfolio - mājas lapu, platformu un AI projekti',
     description:
       'SitesPro projektu piemēri: mājas lapas, interneta veikali, web platformas, aplikācijas un fintech produkti - katram projektam uzdevums, risinājums un rezultāts.',
     socialTitle: 'Portfolio - mūsu darbi | SitesPro',
@@ -209,7 +209,7 @@ const lv: Dictionary = {
     ctaTitle: 'Vēlaties līdzīgu projektu?',
     ctaText:
       'Pastāstiet par savu ideju - parādīsim, kā to īstenot ar tādu pašu kvalitāti un uzmanību detaļām.',
-    ctaButton: 'Sazināties',
+    ctaButton: 'Sākt projektu',
     relatedEyebrow: () => 'Līdzīgi projekti',
     relatedTitle: 'Saistītie projekti',
     logoAlt: (title: string) => `${title} logotips`,
@@ -226,7 +226,7 @@ const lv: Dictionary = {
   },
 
   landing: {
-    start: 'Saņemt piedāvājumu',
+    start: 'Sākt projektu',
     caseStudy: (title: string) => `Projekts: ${title}`,
     proofEyebrow: 'Pierādījumi',
     readCase: 'Lasīt projekta aprakstu',

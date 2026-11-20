@@ -27,7 +27,7 @@ export const metadata: Metadata = pageMetadata({
   alternate: null,
   title: 'Digital & Fintech Consulting',
   description:
-    'Strategic consulting for payment systems, fintech architecture, web and app development, AI integration and technical audits. Expert guidance for the right technical decisions.',
+    'Consulting on payment systems, fintech architecture, web and app development, AI integration and technical audits — guidance for the right technical decisions.',
   path: '/services/consulting',
   socialDescription:
     'Payment systems, fintech architecture, technology selection, AI strategy and technical audits.',

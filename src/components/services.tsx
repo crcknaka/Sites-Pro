@@ -25,7 +25,7 @@ export default async function Services() {
       id="services"
       className="
         scroll-mt-24 relative
-        py-20 sm:py-32 px-4 sm:px-6
+        py-12 sm:py-32 px-4 sm:px-6
         bg-transparent
         text-[var(--fg)]
       "
@@ -48,7 +48,7 @@ export default async function Services() {
         {/* CARDS — the link wraps only the title and is stretched over the card,
             so the anchor text search engines see is the service name, not the
             mock product window drawn inside the card. */}
-        <div className="mt-14 sm:mt-20 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
+        <div className="mt-10 sm:mt-20 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
           {cards.map((service, i) => (
             <Reveal key={service.service} delay={i * 90}>
               <div

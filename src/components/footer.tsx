@@ -102,7 +102,7 @@ export default async function Footer() {
               <p className="mb-4 text-xs font-semibold uppercase tracking-widest" style={{ color: 'var(--accent-text)' }}>
                 {t.footer.contact}
               </p>
-              <div className="grid grid-cols-2 items-start lg:block">
+              <div>
                 <ul className="space-y-3">
                   <li>
                     <a
@@ -117,11 +117,11 @@ export default async function Footer() {
                   </li>
                 </ul>
 
-                <div className="flex items-center gap-3 lg:mt-5">
+                <div className="mt-5 flex items-center gap-3">
                   <SocialLink
                     href="https://www.linkedin.com/company/sites-pro/"
                     icon={LinkedinIcon}
-                    label="Sites Pro on LinkedIn"
+                    label="SitesPro on LinkedIn"
                   />
                   <SocialLink
                     href="https://t.me/IljaFinTech"

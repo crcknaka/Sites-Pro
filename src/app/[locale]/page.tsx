@@ -16,15 +16,16 @@ import { getI18n } from '@/i18n/server';
 
 const HOME = {
   en: {
-    title: 'Sites Pro — Web Development, Platforms & AI Automation Agency',
+    title: 'SitesPro — Web Development, Platforms & AI Automation Agency',
     description:
-      'Sites Pro builds product-grade websites, web platforms and AI automations. A Latvia-based digital agency working with clients across the EU and worldwide.',
+      'SitesPro builds product-grade websites, web platforms and AI automations. A Latvia-based digital agency working with clients across the EU and worldwide.',
   },
   lv: {
-    // kept as sitespro.lv had it, so the move does not reset its search snippet
-    title: 'SitesPro | Web izstrāde Latvijā',
+    // leads with the main Latvian query (changed 2026-11-20; before that it was
+    // 'SitesPro | Web izstrāde Latvijā', carried over from the old sitespro.lv)
+    title: 'Mājas lapu izstrāde un web aplikācijas | SitesPro',
     description:
-      'SitesPro - profesionāla web izstrāde Latvijā. Mājas lapas, e-komercija, web aplikācijas, CRM sistēmas un AI automatizācija, uzturēšana un SEO/GEO optimizācija - redzamība gan Google, gan AI sistēmās.',
+      'Mājas lapu, interneta veikalu un web aplikāciju izstrāde Latvijā. CRM, AI automatizācija, uzturēšana un SEO/GEO - redzamība Google un AI sistēmās.',
   },
 };
 

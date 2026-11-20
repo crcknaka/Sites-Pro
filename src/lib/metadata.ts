@@ -29,7 +29,7 @@ export function pageMetadata({
   absoluteTitle = false,
 }: {
   locale: Locale;
-  /** Page title; the root template appends " | Sites Pro". */
+  /** Page title; the root template appends " | SitesPro". */
   title: string;
   description: string;
   /** Internal route path, e.g. '/services/web' — localized for the canonical. */
@@ -48,7 +48,7 @@ export function pageMetadata({
    */
   image?: string | false;
   type?: 'website' | 'article';
-  /** Skip the " | Sites Pro" template (the home page carries the brand already). */
+  /** Skip the " | SitesPro" template (the home page carries the brand already). */
   absoluteTitle?: boolean;
 }): Metadata {
   const siteName = dictionaryFor(locale).site.name;

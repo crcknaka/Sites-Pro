@@ -1,5 +1,12 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getI18n } from '@/i18n/server';
+
+/** The 404 gets its own tab title instead of inheriting the home page's. */
+export async function generateMetadata(): Promise<Metadata> {
+  const { t } = await getI18n();
+  return { title: t.notFound.title, robots: { index: false, follow: true } };
+}
 
 export default async function NotFound() {
   const { t } = await getI18n();

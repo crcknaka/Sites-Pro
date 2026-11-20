@@ -35,7 +35,7 @@ function buildLv(): string {
 
 ## Pakalpojumi
 
-${servicesFor('lv').map((s) => `- **${s.name}** - ${url(s.path)} - ${s.description}`).join('\n')}
+${servicesFor('lv').map((s) => `- [${s.name}](${url(s.path)}): ${s.description}`).join('\n')}
 
 ## Bezmaksas demo
 

@@ -1,6 +1,6 @@
 import { OG_CONTENT_TYPE, OG_SIZE, renderOg } from '@/lib/og';
 
-export const alt = 'Web development company in Riga — Sites Pro';
+export const alt = 'Web development company in Riga — SitesPro';
 export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
 

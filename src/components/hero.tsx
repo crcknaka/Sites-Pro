@@ -93,7 +93,7 @@ export default async function Hero() {
         </div>
 
         {/* CLIENTS */}
-        <ClientLogos className="mt-16 sm:mt-20" />
+        <ClientLogos className="mt-12 sm:mt-20" />
       </div>
     </section>
   );

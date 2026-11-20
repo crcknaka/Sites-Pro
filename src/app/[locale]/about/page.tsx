@@ -25,13 +25,13 @@ const COPY = {
   en: {
     title: 'About — How We Build Digital Products',
     description:
-      'How Sites Pro works: a Riga-based studio that builds websites, web platforms and AI automations the way a product team would — and runs its own products on the same stack.',
-    socialTitle: 'About Sites Pro — How We Build Digital Products',
-    eyebrow: 'About Sites Pro',
+      'How SitesPro works: a Riga-based studio that builds websites, web platforms and AI automations the way a product team would — and runs its own products on the same stack.',
+    socialTitle: 'About SitesPro — How We Build Digital Products',
+    eyebrow: 'About SitesPro',
     h1: 'A small studio that builds',
     h1Accent: 'like a product team',
     intro:
-      'Sites Pro is SIA SitesPro, a web development studio in Riga. We design and build websites, web platforms and AI automations for companies in Latvia, the EU and beyond — and we run our own products on the same stack, which keeps us honest about what actually works.',
+      'SitesPro is SIA SitesPro, a web development studio in Riga. We design and build websites, web platforms and AI automations for companies in Latvia, the EU and beyond — and we run our own products on the same stack, which keeps us honest about what actually works.',
     facts: (cases: number, own: number) => [
       { value: 'Riga', label: 'Latvia — working across the EU and worldwide' },
       { value: String(cases), label: 'case studies in the portfolio' },
@@ -86,14 +86,14 @@ const COPY = {
     whatWeBuild: 'What we build',
     services: ['web', 'web-platforms', 'ai', 'consulting'] as ServiceKey[],
     closing:
-      'Sites Pro is built for founders, companies and teams who value quality, clarity and long-term growth. We don’t chase trends — we design systems that last, and we stay around to run them.',
+      'SitesPro is built for founders, companies and teams who value quality, clarity and long-term growth. We don’t chase trends — we design systems that last, and we stay around to run them.',
     start: 'Start a project',
     work: 'See the work',
   },
   lv: {
     title: 'Par mums - kā mēs veidojam digitālus produktus',
     description:
-      'SitesPro ir web izstrādes studija Rīgā: mājas lapas, web platformas un AI automatizācija, veidota kā produktu komandā - un uz tām pašām tehnoloģijām darbojas arī mūsu pašu produkti.',
+      'SitesPro ir web izstrādes studija Rīgā: mājas lapas, web platformas un AI automatizācija. Uz tām pašām tehnoloģijām darbojas arī mūsu pašu produkti.',
     socialTitle: 'Par SitesPro - kā mēs veidojam digitālus produktus',
     eyebrow: 'Par SitesPro',
     h1: 'Neliela studija, kas strādā',

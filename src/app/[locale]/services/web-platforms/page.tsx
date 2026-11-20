@@ -120,7 +120,7 @@ export default async function WebPlatformsPage() {
               href="#contact"
               className="btn-primary mt-6 sm:mt-10 !text-sm"
             >
-              Start your project
+              Start a project
             </Link>
           </div>
 

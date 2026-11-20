@@ -15,7 +15,7 @@ export default async function Contact() {
     <section
       id="contact"
       className="
-        relative scroll-mt-24 py-20 sm:py-32 px-4 sm:px-6
+        relative scroll-mt-24 py-12 sm:py-32 px-4 sm:px-6
       "
     >
       {/* Ambient glow */}
@@ -32,7 +32,7 @@ export default async function Contact() {
           subtitle={c.subtitle}
         />
 
-        <div className="mt-14 sm:mt-20 grid grid-cols-1 gap-12 sm:gap-16 lg:grid-cols-2">
+        <div className="mt-10 sm:mt-20 grid grid-cols-1 gap-12 sm:gap-16 lg:grid-cols-2">
           {/* LEFT: what happens next + contacts */}
           <Reveal className="order-2 lg:order-1" delay={100}>
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--text-subtle)]">

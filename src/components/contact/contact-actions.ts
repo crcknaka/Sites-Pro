@@ -12,10 +12,10 @@ import { SITES, isLocale, type Locale } from '@/i18n';
  * accepted but never showed up there, while mail from sitespro.lv always did.
  */
 const SENDERS: Record<Locale, { resend: Resend; from: string }> = {
-  en: { resend: new Resend(process.env.RESEND_API_KEY), from: 'Sites Pro <info@sitespro.org>' },
+  en: { resend: new Resend(process.env.RESEND_API_KEY), from: 'SitesPro <info@sitespro.org>' },
   lv: process.env.RESEND_API_KEY_LV
     ? { resend: new Resend(process.env.RESEND_API_KEY_LV), from: 'SitesPro <noreply@sitespro.lv>' }
-    : { resend: new Resend(process.env.RESEND_API_KEY), from: 'Sites Pro <info@sitespro.org>' },
+    : { resend: new Resend(process.env.RESEND_API_KEY), from: 'SitesPro <info@sitespro.org>' },
 };
 
 /** Hosts the Turnstile widget may legitimately be solved on. */

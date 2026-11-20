@@ -23,6 +23,11 @@ const spaceGrotesk = Space_Grotesk({
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
+  // the browser chrome follows the page background (--bg) in each theme
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#fafbfa' },
+    { media: '(prefers-color-scheme: dark)', color: '#09090b' },
+  ],
 };
 
 export const dynamicParams = false;

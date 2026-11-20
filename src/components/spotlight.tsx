@@ -18,7 +18,7 @@ export default async function Spotlight() {
   const facts = s.facts.map((f, i) => ({ ...f, icon: FACT_ICONS[i] }));
 
   return (
-    <section className="relative px-4 py-20 sm:px-6 sm:py-28">
+    <section className="relative px-4 py-12 sm:px-6 sm:py-28">
       <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-12 lg:gap-14">
         {/* FRAME */}
         <Reveal className="lg:col-span-7">

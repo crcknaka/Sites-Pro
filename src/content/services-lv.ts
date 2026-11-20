@@ -73,7 +73,7 @@ export const LV_SERVICE_PAGES: Record<string, LvServicePage> = {
         "Google Analytics un Search Console pieslēgšana",
         "Apmācība darbam ar administrācijas paneli",
       ],
-      tech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Vercel / VPS"],
+      tech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "VPS / Cloud"],
       faqs: [
         {
           q: "Cik maksā mājas lapas izstrāde?",
@@ -366,7 +366,7 @@ export const LV_SERVICE_PAGES: Record<string, LvServicePage> = {
     },
   },
   "ai-automatizacija": {
-    metaTitle: "AI automatizācija uzņēmumiem - čatboti un integrācijas",
+    metaTitle: "AI automatizācija - čatboti un integrācijas",
     metaDescription: "AI automatizācija biznesa procesos - čatboti, dokumentu apstrāde, satura ģenerēšana un datu analīze. Mākslīgā intelekta integrācija jūsu sistēmās.",
     config: {
       service: "ai",
@@ -455,7 +455,7 @@ export const LV_SERVICE_PAGES: Record<string, LvServicePage> = {
   },
   "majas-lapas-uzturesana": {
     metaTitle: "Mājas lapas uzturēšana un administrēšana",
-    metaDescription: "Mājas lapas uzturēšana un administrēšana par fiksētu mēneša maksu: drošības atjauninājumi, rezerves kopijas, uzraudzība 24/7, satura izmaiņas un mēneša atskaite. Arī citu izstrādātāju vietnēm.",
+    metaDescription: "Mājas lapas uzturēšana par fiksētu mēneša maksu: drošības atjauninājumi, rezerves kopijas, uzraudzība 24/7, satura izmaiņas un atskaite. Arī citu izstrādātāju vietnēm.",
     config: {
       service: "maintenance",
       breadcrumb: [
@@ -644,7 +644,7 @@ export const LV_SERVICE_PAGES: Record<string, LvServicePage> = {
   },
   "seo-geo-optimizacija": {
     metaTitle: "SEO un GEO optimizācija - redzamība Google un AI",
-    metaDescription: "SEO un GEO optimizācija mājaslapām Latvijā: augstākas pozīcijas Google meklētājā un ieteikumi ChatGPT, Gemini un Perplexity atbildēs. Audits, tehniskie labojumi, saturs un atskaites.",
+    metaDescription: "SEO un GEO optimizācija mājaslapām Latvijā: augstākas pozīcijas Google un ieteikumi ChatGPT, Gemini un Perplexity atbildēs. Audits, labojumi, saturs un atskaites.",
     config: {
       service: "seo-geo",
       breadcrumb: [

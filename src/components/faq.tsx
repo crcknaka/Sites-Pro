@@ -15,7 +15,7 @@ export default function FAQ({ items, t }: { items: Faq[]; t: Dictionary['faqSect
     <section
       id="faq"
       className="
-        scroll-mt-24 relative px-4 sm:px-6 py-20 sm:py-32
+        scroll-mt-24 relative px-4 sm:px-6 py-12 sm:py-32
       "
     >
       <div className="mx-auto max-w-4xl">
@@ -24,7 +24,7 @@ export default function FAQ({ items, t }: { items: Faq[]; t: Dictionary['faqSect
           title={t.title}
           highlight={t.highlight}
           subtitle={t.subtitle}
-          className="mb-14 sm:mb-20"
+          className="mb-10 sm:mb-20"
         />
 
         {/* LIST — every answer is in the DOM (collapsed ones are display:none) */}
