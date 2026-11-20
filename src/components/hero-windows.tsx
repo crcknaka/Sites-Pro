@@ -15,7 +15,7 @@ const WINDOWS = [
     delay: '-2.5s',
   },
   {
-    src: '/projects/covers/vadi.webp?v=4',
+    src: '/projects/covers/vadi.webp?v=5',
     className: 'left-[6%] bottom-0 w-[80%]',
     delay: '-5s',
   },

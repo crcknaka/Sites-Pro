@@ -29,7 +29,7 @@ export default async function Spotlight() {
             aria-label={s.caseLabel}
           >
             <Image
-              src="/projects/spotlight/vadi-overview.jpg"
+              src="/projects/spotlight/vadi-overview.jpg?v=2"
               alt={s.imageAlt}
               width={1440}
               height={900}

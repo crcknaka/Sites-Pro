@@ -131,7 +131,7 @@ const en = {
     eyebrow: 'Case study · own product',
     title: 'Accounting that tells you what to do',
     text: 'Vadi is our own SaaS for Latvian sole traders and small companies: a tax calendar with the amounts already calculated, payroll with a full gross-to-net breakdown, bank statement matching and declarations that leave the system in the exact format the tax office expects.',
-    imageAlt: 'Vadi dashboard — July overview with income, expenses, result and the tax calendar',
+    imageAlt: 'Vadi dashboard — September overview with income, expenses, result, money in accounts and receivables',
     caseLabel: 'Vadi case study',
     facts: [
       { label: 'Eight free tax calculators', sub: 'on current-year rates' },

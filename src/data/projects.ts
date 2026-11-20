@@ -47,7 +47,7 @@ export const projects: Project[] = [
     slug: 'vadi',
     title: 'Vadi',
     seoTitle: 'Vadi — Accounting SaaS for Latvian Businesses',
-    updated: '2026-10-02',
+    updated: '2026-11-20',
     own: true,
     category: 'Fintech',
     layout: 'landscape',
@@ -89,12 +89,13 @@ export const projects: Project[] = [
       channel that feeds the trial, while accountants get a shared workspace for
       the clients they manage.
     `,
-    image: '/projects/covers/vadi.webp?v=4',
+    image: '/projects/covers/vadi.webp?v=5',
     images: [
-      '/projects/screenshots/vadi-dashboard.jpg?v=4',
-      '/projects/screenshots/vadi-finances.jpg?v=4',
-      '/projects/screenshots/vadi-income.jpg?v=4',
-      '/projects/screenshots/vadi-tax-calendar.jpg?v=4',
+      '/projects/screenshots/vadi-dashboard.jpg?v=5',
+      '/projects/screenshots/vadi-tax-calendar.jpg?v=5',
+      '/projects/screenshots/vadi-income.jpg?v=5',
+      '/projects/screenshots/vadi-expenses.jpg?v=5',
+      '/projects/screenshots/vadi-finances.jpg?v=5',
     ],
     logo: '/projects/logos/vadi.svg',
     link: 'https://vadi.lv/',

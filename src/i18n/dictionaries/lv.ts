@@ -129,7 +129,7 @@ const lv: Dictionary = {
     eyebrow: 'Projekta apraksts · mūsu produkts',
     title: 'Grāmatvedība, kas pati pasaka, kas jādara',
     text: 'Vadi ir mūsu pašu SaaS pašnodarbinātajiem un maziem uzņēmumiem Latvijā: nodokļu kalendārs ar jau aprēķinātām summām, algas ar pilnu aprēķinu no bruto līdz neto, bankas izrakstu sasaiste un deklarācijas tieši tādā formātā, kādu sagaida VID.',
-    imageAlt: 'Vadi panelis - jūlija pārskats ar ieņēmumiem, izdevumiem, rezultātu un nodokļu kalendāru',
+    imageAlt: 'Vadi panelis - septembra pārskats ar ieņēmumiem, izdevumiem, rezultātu, naudu kontos un debitoriem',
     caseLabel: 'Vadi projekta apraksts',
     facts: [
       { label: 'Astoņi bezmaksas nodokļu kalkulatori', sub: 'ar šī gada likmēm' },

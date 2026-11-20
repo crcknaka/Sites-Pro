@@ -1,10 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <defs>
-    <linearGradient id="vadi-g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#2765a3"/>
-      <stop offset="1" stop-color="#163e66"/>
-    </linearGradient>
-  </defs>
-  <rect width="64" height="64" rx="15" fill="url(#vadi-g)"/>
-  <path d="M19 24 31 47 47 16" fill="none" stroke="#fff" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64"><rect width="64" height="64" rx="7" fill="#1c4e80"/><path d="M16.224 25.447A1 1 0 0 1 17.118 24L23.882 24A1 1 0 0 1 24.776 24.553L29.5 34L39.224 14.553A1 1 0 0 1 40.118 14L46.882 14A1 1 0 0 1 47.776 15.447L30.394 50.211A1 1 0 0 1 28.606 50.211Z" fill="#fff"/></svg>
