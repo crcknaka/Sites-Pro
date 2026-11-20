@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { getI18n } from '@/i18n/server';
+import ClientLogosStrip from './client-logos-strip';
 
 /* ======================================================
    CLIENT LOGOS — a quiet, monochrome strip of the brands we
@@ -36,6 +37,7 @@ function Row({ ariaHidden = false }: { ariaHidden?: boolean }) {
             alt=""
             width={28}
             height={28}
+            draggable={false}
             className="h-6 w-6 rounded-md sm:h-7 sm:w-7"
           />
           <span className="font-display text-sm font-medium tracking-tight text-[var(--fg)]">{c.name}</span>
@@ -53,19 +55,10 @@ export default async function ClientLogos({ className = '' }: { className?: stri
         {t.hero.clients}
       </p>
 
-      {/* the row is rendered twice and scrolled by half its width: a seamless loop */}
-      <div
-        className="group relative overflow-hidden"
-        style={{
-          maskImage: 'linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent)',
-          WebkitMaskImage: 'linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent)',
-        }}
-      >
-        <div className="flex w-max animate-marquee opacity-60 grayscale transition-all duration-500 group-hover:opacity-100 group-hover:grayscale-0">
-          <Row />
-          <Row ariaHidden />
-        </div>
-      </div>
+      <ClientLogosStrip prevLabel={t.caseStudy.prev} nextLabel={t.caseStudy.next}>
+        <Row />
+        <Row ariaHidden />
+      </ClientLogosStrip>
     </div>
   );
 }
