@@ -50,6 +50,11 @@ const lv: Dictionary = {
     legal: 'Lietošanas noteikumi',
     switchLabel: 'In English - sitespro.org',
     extraLinks: [],
+    vadi: {
+      lead: 'Grāmatvedību kārtojam ar',
+      hover: 'Rēķini, nodokļi, noliktava',
+      href: 'https://vadi.lv/?utm_source=sitespro.lv&utm_medium=badge',
+    },
   },
 
   hero: {

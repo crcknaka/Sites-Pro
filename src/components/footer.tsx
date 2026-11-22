@@ -4,6 +4,7 @@ import { LinkedinIcon, Send, type LucideIcon } from 'lucide-react';
 import { servicesFor } from '@/data/services';
 import { SITES, localizePath, otherLocale } from '@/i18n';
 import { getI18n } from '@/i18n/server';
+import VadiBadge from './vadi-badge';
 
 export default async function Footer() {
   const { locale, t } = await getI18n();
@@ -63,6 +64,8 @@ export default async function Footer() {
               <p className="mt-3 text-sm font-medium" style={{ color: 'var(--accent-text)' }}>
                 {t.footer.motto}
               </p>
+
+              <VadiBadge {...t.footer.vadi} className="mt-6" />
             </div>
 
             {/* SERVICES */}

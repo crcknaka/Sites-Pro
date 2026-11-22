@@ -177,6 +177,74 @@ body {
 }
 
 /* ======================================================
+   VADI BADGE (footer) — copy of Vadi's footer badge in its
+   "design C" version (Vadi repo, design/footer-badge, 2026-11-19:
+   mark "1. Griezts", 3px corners, IBM Plex Sans if installed —
+   the font is not loaded). Blue on the light theme, white on
+   the dark one, as that design specifies.
+====================================================== */
+.vadi-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px 8px 9px;
+  border-radius: 3px;
+  background: #fff;
+  box-shadow: inset 0 0 0 1px #d9dde2;
+  font: 400 11px/1.2 "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  white-space: nowrap;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color .16s ease;
+}
+.vadi-badge__mark { display: block; flex: none; width: 32px; height: 32px; }
+.vadi-badge__mark rect { fill: #1c4e80; }
+.vadi-badge__mark path { fill: #fff; }
+.vadi-badge__text { display: grid; }
+.vadi-badge__face {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  transition: opacity .16s ease, transform .16s ease;
+}
+.vadi-badge__small { font-size: 11px; line-height: 1.2; color: #555e68; }
+.vadi-badge__big {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -.01em;
+  color: #10243c;
+}
+.vadi-badge__arrow { display: block; flex: none; width: 13px; height: 13px; }
+.vadi-badge__arrow path { fill: none; stroke: currentColor; }
+.vadi-badge__face--hover { opacity: 0; transform: translateY(5px); }
+.vadi-badge:focus-visible { outline: 2px solid #6aa5df; outline-offset: 2px; }
+.vadi-badge:focus-visible .vadi-badge__face--rest { opacity: 0; transform: translateY(-5px); }
+.vadi-badge:focus-visible .vadi-badge__face--hover { opacity: 1; transform: none; }
+@media (hover: hover) {
+  .vadi-badge:hover { background: #f3f4f6; }
+  .vadi-badge:hover .vadi-badge__face--rest { opacity: 0; transform: translateY(-5px); }
+  .vadi-badge:hover .vadi-badge__face--hover { opacity: 1; transform: none; }
+}
+
+[data-theme="light"] .vadi-badge { background: #1c4e80; box-shadow: none; }
+[data-theme="light"] .vadi-badge__mark rect { fill: #fff; }
+[data-theme="light"] .vadi-badge__mark path { fill: #1c4e80; }
+[data-theme="light"] .vadi-badge__small { color: #cfe0f1; }
+[data-theme="light"] .vadi-badge__big { color: #fff; }
+@media (hover: hover) {
+  [data-theme="light"] .vadi-badge:hover { background: #10243c; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vadi-badge, .vadi-badge__face { transition: none; }
+  .vadi-badge .vadi-badge__face { transform: none; }
+}
+
+/* ======================================================
    MICRO-ANIMATIONS
 ====================================================== */
 

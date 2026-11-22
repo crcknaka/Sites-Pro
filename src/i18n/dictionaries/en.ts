@@ -51,6 +51,12 @@ const en = {
     /** Link to the other language's site. */
     switchLabel: 'Latviski — sitespro.lv',
     extraLinks: [{ label: 'Web development in Riga', href: '/web-development-riga' }],
+    /** "We use Vadi" badge — Vadi is our own accounting product (vadi.lv). */
+    vadi: {
+      lead: 'We keep our books with',
+      hover: 'Invoices, taxes, inventory',
+      href: 'https://vadi.lv/en?utm_source=sitespro.org&utm_medium=badge',
+    },
   },
 
   hero: {
